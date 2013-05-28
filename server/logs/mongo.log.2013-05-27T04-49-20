@@ -1,0 +1,25 @@
+Mon May 27 00:46:51.591 Trying to start Windows service 'MongoDB'
+Mon May 27 00:46:51.593 Service running
+Mon May 27 00:46:51.595 [initandlisten] MongoDB starting : pid=7728 port=27017 dbpath=c:\server\data\db 64-bit host=Annihilator
+Mon May 27 00:46:51.595 [initandlisten] db version v2.4.3
+Mon May 27 00:46:51.595 [initandlisten] git version: fe1743177a5ea03e91e0052fb5e2cb2945f6d95f
+Mon May 27 00:46:51.595 [initandlisten] build info: windows sys.getwindowsversion(major=6, minor=1, build=7601, platform=2, service_pack='Service Pack 1') BOOST_LIB_VERSION=1_49
+Mon May 27 00:46:51.595 [initandlisten] allocator: system
+Mon May 27 00:46:51.595 [initandlisten] options: { dbpath: "c:\server\data\db", directoryperdb: true, logpath: "c:\server\logs\mongo.log", service: true }
+Mon May 27 00:46:51.595 [initandlisten] exception in initAndListen: 10296 
+*********************************************************************
+ ERROR: dbpath (c:\server\data\db) does not exist.
+ Create this directory or give existing directory in --dbpath.
+ See http://dochub.mongodb.org/core/startingandstoppingmongo
+*********************************************************************
+, terminating
+Mon May 27 00:46:51.595 dbexit: 
+Mon May 27 00:46:51.595 [initandlisten] shutdown: going to close listening sockets...
+Mon May 27 00:46:51.595 [initandlisten] shutdown: going to flush diaglog...
+Mon May 27 00:46:51.595 [initandlisten] shutdown: going to close sockets...
+Mon May 27 00:46:51.595 [initandlisten] shutdown: waiting for fs preallocator...
+Mon May 27 00:46:51.595 [initandlisten] shutdown: lock for final commit...
+Mon May 27 00:46:51.595 [initandlisten] shutdown: final commit...
+Mon May 27 00:46:51.595 [initandlisten] shutdown: closing all files...
+Mon May 27 00:46:51.595 [initandlisten] closeAllFiles() finished
+Mon May 27 00:46:51.595 dbexit: really exiting now

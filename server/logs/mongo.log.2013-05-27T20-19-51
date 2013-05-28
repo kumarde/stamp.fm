@@ -1,0 +1,67 @@
+Mon May 27 15:51:05.679 [initandlisten] MongoDB starting : pid=492 port=27017 dbpath=c:\server\data 64-bit host=Annihilator
+Mon May 27 15:51:05.679 [initandlisten] db version v2.4.3
+Mon May 27 15:51:05.679 [initandlisten] git version: fe1743177a5ea03e91e0052fb5e2cb2945f6d95f
+Mon May 27 15:51:05.679 [initandlisten] build info: windows sys.getwindowsversion(major=6, minor=1, build=7601, platform=2, service_pack='Service Pack 1') BOOST_LIB_VERSION=1_49
+Mon May 27 15:51:05.679 [initandlisten] allocator: system
+Mon May 27 15:51:05.679 [initandlisten] options: { dbpath: "c:\server\data", logpath: "c:\server\logs\mongo.log" }
+Mon May 27 15:51:05.679 [initandlisten] journal dir=c:\server\data\journal
+Mon May 27 15:51:05.679 [initandlisten] recover : no journal files present, no recovery needed
+Mon May 27 15:51:05.759 [FileAllocator] allocating new datafile c:\server\data\local.ns, filling with zeroes...
+Mon May 27 15:51:05.759 [FileAllocator] creating directory c:\server\data\_tmp
+Mon May 27 15:51:05.789 [FileAllocator] done allocating datafile c:\server\data\local.ns, size: 16MB,  took 0.028 secs
+Mon May 27 15:51:05.789 [FileAllocator] allocating new datafile c:\server\data\local.0, filling with zeroes...
+Mon May 27 15:51:05.889 [FileAllocator] done allocating datafile c:\server\data\local.0, size: 64MB,  took 0.102 secs
+Mon May 27 15:51:05.889 [initandlisten] command local.$cmd command: { create: "startup_log", size: 10485760, capped: true } ntoreturn:1 keyUpdates:0  reslen:37 132ms
+Mon May 27 15:51:05.889 [initandlisten] waiting for connections on port 27017
+Mon May 27 15:51:05.889 [websvr] admin web console waiting for connections on port 28017
+Mon May 27 15:51:14.349 [initandlisten] connection accepted from 127.0.0.1:55184 #1 (1 connection now open)
+Mon May 27 15:51:14.349 [initandlisten] connection accepted from 127.0.0.1:55185 #2 (2 connections now open)
+Mon May 27 15:51:14.349 [conn1] end connection 127.0.0.1:55184 (1 connection now open)
+Mon May 27 15:51:14.349 [initandlisten] connection accepted from 127.0.0.1:55186 #3 (2 connections now open)
+Mon May 27 15:51:14.349 [conn2] end connection 127.0.0.1:55185 (1 connection now open)
+Mon May 27 15:51:14.349 [initandlisten] connection accepted from 127.0.0.1:55187 #4 (2 connections now open)
+Mon May 27 15:51:14.349 [initandlisten] connection accepted from 127.0.0.1:55188 #5 (3 connections now open)
+Mon May 27 15:51:14.349 [initandlisten] connection accepted from 127.0.0.1:55189 #6 (4 connections now open)
+Mon May 27 15:51:14.359 [initandlisten] connection accepted from 127.0.0.1:55190 #7 (5 connections now open)
+Mon May 27 15:51:14.359 [initandlisten] connection accepted from 127.0.0.1:55191 #8 (6 connections now open)
+Mon May 27 15:51:14.359 [initandlisten] connection accepted from 127.0.0.1:55192 #9 (7 connections now open)
+Mon May 27 15:51:14.359 [initandlisten] connection accepted from 127.0.0.1:55193 #10 (8 connections now open)
+Mon May 27 15:51:14.359 [initandlisten] connection accepted from 127.0.0.1:55194 #11 (9 connections now open)
+Mon May 27 15:51:14.359 [initandlisten] connection accepted from 127.0.0.1:55195 #12 (10 connections now open)
+Mon May 27 15:51:14.359 [FileAllocator] allocating new datafile c:\server\data\db.ns, filling with zeroes...
+Mon May 27 15:51:14.389 [FileAllocator] done allocating datafile c:\server\data\db.ns, size: 16MB,  took 0.034 secs
+Mon May 27 15:51:14.389 [FileAllocator] allocating new datafile c:\server\data\db.0, filling with zeroes...
+Mon May 27 15:51:14.489 [FileAllocator] done allocating datafile c:\server\data\db.0, size: 64MB,  took 0.098 secs
+Mon May 27 15:51:14.489 [FileAllocator] allocating new datafile c:\server\data\db.1, filling with zeroes...
+Mon May 27 15:51:14.489 [conn5] build index db.users { _id: 1 }
+Mon May 27 15:51:14.519 [conn5] build index done.  scanned 0 total records. 0.025 secs
+Mon May 27 15:51:14.519 [conn5] insert db.users ninserted:1 keyUpdates:0 locks(micros) w:160066 159ms
+Mon May 27 15:51:14.699 [FileAllocator] done allocating datafile c:\server\data\db.1, size: 128MB,  took 0.204 secs
+Mon May 27 16:19:10.751 [conn4] end connection 127.0.0.1:55187 (9 connections now open)
+Mon May 27 16:19:10.751 [conn10] end connection 127.0.0.1:55193 (9 connections now open)
+Mon May 27 16:19:10.751 [conn7] end connection 127.0.0.1:55190 (9 connections now open)
+Mon May 27 16:19:10.751 [conn3] end connection 127.0.0.1:55186 (9 connections now open)
+Mon May 27 16:19:10.751 [conn11] end connection 127.0.0.1:55194 (9 connections now open)
+Mon May 27 16:19:10.751 [conn9] end connection 127.0.0.1:55192 (9 connections now open)
+Mon May 27 16:19:10.751 [conn6] end connection 127.0.0.1:55189 (9 connections now open)
+Mon May 27 16:19:10.751 [conn8] end connection 127.0.0.1:55191 (9 connections now open)
+Mon May 27 16:19:10.751 [conn5] end connection 127.0.0.1:55188 (9 connections now open)
+Mon May 27 16:19:10.751 [conn12] end connection 127.0.0.1:55195 (9 connections now open)
+Mon May 27 16:19:35.931 Ctrl-C signal
+Mon May 27 16:19:35.931 [consoleTerminate] got CTRL_C_EVENT, will terminate after current cmd ends
+Mon May 27 16:19:35.931 [consoleTerminate] now exiting
+Mon May 27 16:19:35.931 dbexit: 
+Mon May 27 16:19:35.931 [consoleTerminate] shutdown: going to close listening sockets...
+Mon May 27 16:19:35.931 [consoleTerminate] closing listening socket: 544
+Mon May 27 16:19:35.931 [consoleTerminate] closing listening socket: 548
+Mon May 27 16:19:35.931 [consoleTerminate] shutdown: going to flush diaglog...
+Mon May 27 16:19:35.931 [consoleTerminate] shutdown: going to close sockets...
+Mon May 27 16:19:35.931 [consoleTerminate] shutdown: waiting for fs preallocator...
+Mon May 27 16:19:35.931 [consoleTerminate] shutdown: lock for final commit...
+Mon May 27 16:19:35.931 [consoleTerminate] shutdown: final commit...
+Mon May 27 16:19:35.941 [consoleTerminate] shutdown: closing all files...
+Mon May 27 16:19:35.941 [consoleTerminate] closeAllFiles() finished
+Mon May 27 16:19:35.941 [consoleTerminate] journalCleanup...
+Mon May 27 16:19:35.961 [consoleTerminate] removeJournalFiles
+Mon May 27 16:19:35.961 [consoleTerminate] shutdown: removing fs lock...
+Mon May 27 16:19:35.961 dbexit: really exiting now

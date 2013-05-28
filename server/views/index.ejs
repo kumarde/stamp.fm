@@ -1,0 +1,14 @@
+<% layout('layout') -%>
+<% stylesheet('/stylesheets/style.css') -%>
+<% script('/scripts/main.js') -%>
+
+<h1><%=title%></h1>
+
+<form>
+   <input type="button" id="enter" value="Enter">
+</form>
+
+<%- partial('block', blocks) %>
+
+<% block('header', "<p>I'm in the header.</p>") -%>
+<% block('footer', "<p>I'm in the footer.</p>") -%>
