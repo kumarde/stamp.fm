@@ -2,7 +2,7 @@ var express = require('express')
   , engine = require('ejs-locals')
   , app = express();
 
-var db = require('mongojs').connect("db", ["users","reports"]);
+var db = require('mongojs').connect("db", ["users","reports","votes"]);
 var TestModule =  require('./scripts/testmodule.js').TestModule;
   
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
@@ -47,7 +47,7 @@ app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 app.post('/ajax', express.bodyParser(), function (req, res){
 
 
-db.users.save({name: "jon", number: "0", sex: "female"}, function(err,saved){
+db.votes.save({name: "jon", number: "0", sex: "female"}, function(err,saved){
 	if (err || !saved) console.log("User not saved");
 	else {
 	console.log("User Saved"); 
