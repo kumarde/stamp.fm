@@ -10,7 +10,7 @@ TestModule.prototype.ReadMessage = function(callback) {
 };
 
 TestModule.prototype.QueryDB = function(callback) {
-	db.votes.find({ votes: 1 }, function(err, votes) {
+	db.votes.find({ votes: 0 }, function(err, votes) {
 		if( err || !votes) callback(true,null);
 		else callback(null, votes);
 	});

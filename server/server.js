@@ -48,7 +48,7 @@ app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 app.post('/ajax', express.bodyParser(), function (req, res){
 
 
-db.votes.save({votes: 1}, function(err,saved){
+db.votes.save({votes: 0}, function(err,saved){
 	if (err || !saved) console.log("Vote not saved");
 	else {
 	console.log("Vote Saved"); 

@@ -99,30 +99,30 @@ background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0
 #vote1 {
 	position:absolute;
 	top:320px;
-	left:160px;	
+	left:230px;	
 }
 #fb1 {
 	position:absolute;
 	top:320px;
-	left:240px;	
+	left:20px;	
 }
 #twitter1 {
 	position:absolute;
 	top:320px;
-	left:320px;	
+	left:400px;	
 }
 #vote2 {
 	position:absolute;
 	top:320px;
-	left:160px;	
+	left:230px;	
 }
 #fb2 {
 	position:absolute;
 	top:320px;
-	left:240px;	
+	left:20px;	
 }
 #twitter2 {
 	position:absolute;
 	top:320px;
-	left:320px;	
+	left:400px;	
 }
