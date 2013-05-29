@@ -4,6 +4,7 @@ var express = require('express')
 
 var db = require('mongojs').connect("db", ["users","reports","votes"]);
 var TestModule =  require('./scripts/testmodule.js').TestModule;
+var AuditionModule = requires('./scripts/auditionmodule.js');
   
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
 app.set('views',__dirname + '/views');//set views directory
@@ -57,9 +58,6 @@ db.votes.save({name: "jon", number: "0", sex: "female"}, function(err,saved){
 	});
 	}
 });
-
-
-
    console.log('AJAX post recieved');
    //res.redirect('/');
    var newMessage = "Server response to AJAX";
