@@ -3,8 +3,8 @@ var express = require('express')
   , app = express();
 
 var db = require('mongojs').connect("db", ["votes"]);
-var TestModule =  require('./scripts/testmodule.js').TestModule;
-var AuditionModule = require('./scripts/auditionmodule.js').AuditionModule;
+var TestModule =  require('./scripts/testModule.js').TestModule;
+var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
   
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
 app.set('views',__dirname + '/views');//set views directory
@@ -48,7 +48,7 @@ app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 app.post('/ajax', express.bodyParser(), function (req, res){
 
 
-db.votes.save({votes: 0}, function(err,saved){
+db.votes.save({votes: 1}, function(err,saved){
 	if (err || !saved) console.log("Vote not saved");
 	else {
 	console.log("Vote Saved"); 
