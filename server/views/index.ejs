@@ -2,13 +2,23 @@
 <% stylesheet('/stylesheets/style.css') -%>
 <% script('/scripts/main.js') -%>
 
-<h1><%=title%></h1>
-
-<form>
-   <input type="button" id="enter" value="Enter">
+<div class="matchup">
+<form id="artist1" class="vote_song">
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/reLbRnWGP5w" frameborder="0" allowfullscreen></iframe>
+    <div>
+        <input type="button" id="vote1" value=" Vote ">
+        <input type="button" id="fb1" value="Share ">
+        <input type="button" id="twitter1" value="Tweet">
+    </div>
 </form>
+<form id="artist2" class="vote_song">
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/5LNTXE9e5ok?list=PL_rKzeF6K2knMJVKDKG_UMdU2P77Ho09U" frameborder="0" allowfullscreen></iframe>
+    <div>
+        <input type="button" id="vote2" value=" Vote ">
+        <input type="button" id="fb2" value="Share ">
+        <input type="button" id="twitter2" value="Tweet">
+    </div>
+</form>
+</div>
 
-<%- partial('block', blocks) %>
-
-<% block('header', "<p>I'm in the header.</p>") -%>
-<% block('footer', "<p>I'm in the footer.</p>") -%>
+<% block('header', "<p><center>Vote For Your Favorite Artist<br> The Vote Button, Facebook Share, and Tweets Are All Worth One Vote Each</center></p>") -%>
