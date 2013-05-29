@@ -52,7 +52,7 @@ db.votes.save({votes: 1}, function(err,saved){
 	if (err || !saved) console.log("Vote not saved");
 	else {
 	console.log("Vote Saved"); 
-	AuditionModule.UpdateDB(function(error,votes) {
+	AuditionModule.prototype.UpdateDB(function(error,votes) {
 	if ( error ) console.log("error");
 	else console.log(votes[0]);
 	});
