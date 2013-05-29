@@ -64,6 +64,8 @@ db.votes.save({name: "jon", number: "0", sex: "female"}, function(err,saved){
 	
 	res.send({message: newMessage});
 });
+
+
 /*db.users.find({sex: "female"}, function(err, users) {
   if( err || !users) console.log("No female user found");
   else users.forEach( function(femaleUser) {
