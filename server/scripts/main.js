@@ -1,17 +1,16 @@
 $( document ).ready(function() {
-      $('#enter').click(function(){  
-
-     $.ajax({ 
+      $('#vote1').click(function(){
+      $.ajax({ 
            url: '/ajax',
            type: 'POST',
-           cache: false, 
-           data: { field1: 1, field2: 2 }, 
+           cache: false,
+           data: { field1: 1 },
            success: function(data){
-              alert(data.message)
+                  alert(data.message)
            }
            , error: function(jqXHR, textStatus, err){
                alert('text status '+textStatus+', err '+err)
            }
-        })
-     });
+      })
+      });
 });

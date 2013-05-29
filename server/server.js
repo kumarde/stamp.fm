@@ -2,7 +2,7 @@ var express = require('express')
   , engine = require('ejs-locals')
   , app = express();
 
-var db = require('mongojs').connect("db", ["users","reports","votes"]);
+var db = require('mongojs').connect("db", ["votes"]);
 var TestModule =  require('./scripts/testmodule.js').TestModule;
 var AuditionModule = require('./scripts/auditionmodule.js').AuditionModule;
   
@@ -49,7 +49,7 @@ app.post('/ajax', express.bodyParser(), function (req, res){
 
 
 db.votes.save({name: "jon", number: "0", sex: "female"}, function(err,saved){
-	if (err || !saved) console.log("User not saved");
+	if (err || !saved) console.log("Vote not saved");
 	else {
 	console.log("User Saved"); 
 	testModule.QueryDB(function(error,users) {
