@@ -48,13 +48,13 @@ app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 app.post('/ajax', express.bodyParser(), function (req, res){
 
 
-db.votes.save({name: "jon", number: "0", sex: "female"}, function(err,saved){
+db.votes.save({votes: 0}, function(err,saved){
 	if (err || !saved) console.log("Vote not saved");
 	else {
-	console.log("User Saved"); 
-	testModule.QueryDB(function(error,users) {
-	if ( error ) console.log("No female users");
-	else console.log(users[0]._id);
+	console.log("Vote Saved"); 
+	AuditionModule.UpdateDB(function(error,votes) {
+	if ( error ) console.log("error");
+	else console.log(votes[0]);
 	});
 	}
 });
@@ -64,11 +64,3 @@ db.votes.save({name: "jon", number: "0", sex: "female"}, function(err,saved){
 	
 	res.send({message: newMessage});
 });
-
-
-/*db.users.find({sex: "female"}, function(err, users) {
-  if( err || !users) console.log("No female user found");
-  else users.forEach( function(femaleUser) {
-    console.log(femaleUser);
-  } );
-});*/

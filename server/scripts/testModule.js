@@ -1,7 +1,7 @@
 TestModule = function(){};
 TestModule.prototype.message = "Message from the module";
 
-var db = require('mongojs').connect("db", ["users","reports"]);
+var db = require('mongojs').connect("db", ["votes"]);
 
 
 
@@ -10,9 +10,9 @@ TestModule.prototype.ReadMessage = function(callback) {
 };
 
 TestModule.prototype.QueryDB = function(callback) {
-	db.users.find({ sex: "female"}, function(err, users) {
-		if( err || !users) callback(true,null);
-		else callback(null, users);
+	db.votes.find({ votes: 1 }, function(err, votes) {
+		if( err || !votes) callback(true,null);
+		else callback(null, votes);
 	});
 };
 
