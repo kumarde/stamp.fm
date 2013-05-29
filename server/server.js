@@ -4,7 +4,7 @@ var express = require('express')
 
 var db = require('mongojs').connect("db", ["users","reports","votes"]);
 var TestModule =  require('./scripts/testmodule.js').TestModule;
-var AuditionModule = requires('./scripts/auditionmodule.js');
+var AuditionModule = require('./scripts/auditionmodule.js');
   
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
 app.set('views',__dirname + '/views');//set views directory
