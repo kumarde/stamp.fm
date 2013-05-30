@@ -4,7 +4,6 @@ $( document ).ready(function() {
            url: '/ajax',
            type: 'POST',
            cache: false,
-           data: { field1: 1 },
            success: function(data){
                   alert(data.message)
            }

@@ -47,10 +47,10 @@
     </div>
     <a href="http://www.stamp.fm" id="stampHome"></a>
 </center>
-<form id="newArtist">
+<form id="newArtist" method = "POST" action = "/save">
     Name: <input type="text" name="name"><br>
     Song Title: <input type="text" name="songTitle">
-    <input type="submit" value="sumbit">
+    <input type="submit" value="submit">
 </form>
 
 <% block('header', "<p><center>Vote For Your Favorite Artist<br> The Vote Button, Facebook Share, and Tweets Are All Worth One Vote Each</center></p>") -%>

@@ -2,7 +2,8 @@ var express = require('express')
   , engine = require('ejs-locals')
   , app = express();
 
-var db = require('mongojs').connect("db", ["votes"]);
+var db = require('mongojs').connect("db", ["music", "users"]);
+var count = db.music.stats().count;
 var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
   
@@ -12,6 +13,7 @@ app.set('view engine', 'ejs'); // so you can render('index')
 app.use(express.bodyParser());
 
 var testModule = new TestModule;
+var auditionModule = new AuditionModule;
 
 app.get('/', function(req, res,next) {// get for index page,
 
@@ -44,17 +46,27 @@ app.get('/include/views.js', function(req,res,next){
 app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 
 
+app.post('/save', express.bodyParser(), function(req, res){
 
-app.post('/ajax', express.bodyParser(), function (req, res){
+  auditionModule.Save(req, function(err, saved) {
+    console.log(saved.body.name);
+    console.log(saved.body.songTitle);
+
+  });
+});
+
+/*app.post('/ajax', express.bodyParser(), function (req, res){
+  db.music.save({})
 
 
-db.votes.save({votes: 0}, function(err,saved){
+/*db.votes.save({votes: 0}, function(err,saved){
 	if (err || !saved) console.log("Vote not saved");
 	else {
 	console.log("Vote Saved"); 
 	AuditionModule.prototype.UpdateDB(function(error,votes) {
 	if ( error ) console.log("error");
 	else console.log(votes[0]);
+  console.log(votes[0].votes);
 	});
 	}
 });
@@ -63,4 +75,4 @@ db.votes.save({votes: 0}, function(err,saved){
    var newMessage = "Server response to AJAX";
 	
 	res.send({message: newMessage});
-});
+});*/
