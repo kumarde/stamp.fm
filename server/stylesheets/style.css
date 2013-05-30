@@ -129,3 +129,9 @@ background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0
 	left:410px;
 	background-image: url(http://www.stamp.fm/uploads/2/0/1/2/20128091/1369182660.png);
 }
+#newArtist {
+	background-color: #FFFFFF;
+	position: absolute;
+	top:600px;
+	
+}
