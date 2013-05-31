@@ -1,6 +1,6 @@
 AuditionModule = function(){};
 
-var db = require('mongojs').connect("db", ["votes"]);
+var db = require('mongojs').connect("stampfm", ["votes"]);
 
 AuditionModule.prototype.UpdateDB = function(callback){
 	db.votes.update({ $inc: {votes:1}}, { multi: true});
@@ -10,5 +10,3 @@ AuditionModule.prototype.UpdateDB = function(callback){
 };
 
 exports.AuditionModule = AuditionModule;
-
-AuditionModule.prototype.Save()
