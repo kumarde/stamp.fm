@@ -52,9 +52,9 @@ app.post('/save', express.bodyParser(), function(req, res){
   //added a comment
   db.music.save({_id: ++count, name:req.body.name, songTitle:req.body.songTitle, votes:0});
     //console.log(db.music.count());
-    db.music.count(function(err,docs){
+    /*db.music.count(function(err,docs){
       console.log(docs);
-    });
+    });*/
     console.log(db.music.find({name:req.body.name}));
     console.log(req.body.name);
     console.log(req.body.songTitle);
