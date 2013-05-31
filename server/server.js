@@ -7,7 +7,7 @@ var db = require('mongojs').connect("stampfm", ["music", "users"]);
 var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
 //if collection exists, store variable count == 0;
-var count = db.music.find({_id:0});
+var count = 0;
 
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
 app.set('views',__dirname + '/views');//set views directory
