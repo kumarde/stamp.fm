@@ -1,12 +1,14 @@
+//need to find some way to count in the node.js D;
 var express = require('express')
   , engine = require('ejs-locals')
   , app = express();
 
-var db = require('mongojs').connect("db", ["music", "users"]);
-var count = db.music.stats().count;
+var db = require('mongojs').connect("stampfm", ["music", "users"]);
 var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
-  
+//if collection exists, store variable count == 0;
+var count = 0;
+
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
 app.set('views',__dirname + '/views');//set views directory
 app.set('view engine', 'ejs'); // so you can render('index')
@@ -48,11 +50,11 @@ app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 
 app.post('/save', express.bodyParser(), function(req, res){
   //added a comment
-  auditionModule.Save(req, function(err, saved) {
-    console.log(saved.body.name);
-    console.log(saved.body.songTitle);
-
-  });
+  db.music.save({_id: ++count, name:req.body.name, songTitle:req.body.songTitle});
+    //console.log(db.music.count());
+    console.log(db.music.find({name:req.body.name}));
+    console.log(req.body.name);
+    console.log(req.body.songTitle);
 });
 
 /*app.post('/ajax', express.bodyParser(), function (req, res){
