@@ -8,9 +8,16 @@ var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
 //if collection exists, store variable count == 0;
 var count = 0;
+var c = 0;
+var sorted;
 db.music.count(function(err, count){
   counter = count;
 })
+
+db.music.find().sort({_id:1}, function(err, rest){
+  sorted = rest;
+  console.log(sorted[5].name);
+});
 
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
 app.set('views',__dirname + '/views');//set views directory
@@ -26,7 +33,6 @@ app.get('/', function(req, res,next) {// get for index page,
 	console.log(data);
   });
   res.render('index', { title: testModule.message })//render index.ejs, send to <%=title%>
-  
 });
 
 
@@ -53,10 +59,15 @@ app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 
 app.post('/save', express.bodyParser(), function(req, res){
   //added a comment
-  db.music.save({_id: ++counter, name:req.body.name, songTitle:req.body.songTitle, votes:0});
+  db.music.save({_id: ++counter, name:req.body.name, songTitle:req.body.songTitle, votes:0, views:0});
     console.log(req.body.name);
     console.log(req.body.songTitle);
 });
+
+app.post('/newView', express.bodyParser(), function(req, res){
+
+});
+
 
 /*app.post('/ajax', express.bodyParser(), function (req, res){
   db.music.save({})
