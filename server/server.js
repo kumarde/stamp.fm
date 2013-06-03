@@ -3,11 +3,14 @@ var express = require('express')
   , engine = require('ejs-locals')
   , app = express();
 
-var db = require('mongojs').connect("stampfm", ["music", "users"]);
+var db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
 var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
 //if collection exists, store variable count == 0;
 var count = 0;
+db.music.count(function(err, count){
+  counter = count;
+})
 
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
 app.set('views',__dirname + '/views');//set views directory
@@ -53,12 +56,7 @@ app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 
 app.post('/save', express.bodyParser(), function(req, res){
   //added a comment
-  db.music.save({_id: ++count, name:req.body.name, songTitle:req.body.songTitle, votes:0});
-    //console.log(db.music.count());
-    /*db.music.count(function(err,docs){
-      console.log(docs);
-    });*/
-    console.log(db.music.find({name:req.body.name}));
+  db.music.save({_id: ++counter, name:req.body.name, songTitle:req.body.songTitle, votes:0});
     console.log(req.body.name);
     console.log(req.body.songTitle);
 });
