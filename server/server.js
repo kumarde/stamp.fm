@@ -52,6 +52,9 @@ app.get('/include/ejs_production.js', function(req,res,next){
 app.get('/include/views.js', function(req,res,next){
   res.sendfile('include/views.js');
 });
+app.get('/images/stampLogo.png', function(req,res,next){
+  res.sendfile('images/stampLogo.png');
+});
 
 
 app.listen(8888);//listen on port 8888, e.g. localhost:8888/

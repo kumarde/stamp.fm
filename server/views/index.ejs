@@ -43,14 +43,21 @@
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
 
-    </form>
+    </form>s
     </div>
     <a href="http://www.stamp.fm" id="stampHome"></a>
 </center>
-<form id="newArtist" method = "POST" action = "/save">
-    Name: <input type="text" name="name"><br>
-    Song Title: <input type="text" name="songTitle">
-    <input type="submit" value="submit">
-</form>
+
+<div id="footerBuffer"></div>
+<div class="footer">
+    <button id="play" onclick="expandFooter()" >
+        Play Da Music
+    </button>
+</div>
+<div id="expandedFooter">
+    <iframe class="playerSongs" width="250" height="24" src="https://www.youtube-nocookie.com/embed/jXrnOWKVE5E?rel=0&autohide=0&#8243" frameborder="0" allowfullscreen></iframe>
+</div>
+
+
 
 <% block('header', "<p><center>Vote For Your Favorite Artist<br> The Vote Button, Facebook Share, and Tweets Are All Worth One Vote Each</center></p>") -%>

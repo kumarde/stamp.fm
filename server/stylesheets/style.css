@@ -127,11 +127,41 @@ background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0
 	height: 179px;
 	top:475px;
 	left:410px;
-	background-image: url(http://www.stamp.fm/uploads/2/0/1/2/20128091/1369182660.png);
+	background-image: url(/images/stampLogo.png);
 }
 #newArtist {
 	background-color: #FFFFFF;
 	position: absolute;
-	top:600px;
+	top:600px;	
+}
+.footer {
+    position:fixed;
+    bottom:0;
+    background-color: #808080;
+    width: 100%;
+    height: 75px;
+}
+#expandedFooter {
+    position:fixed;
+    bottom:75px;
+    background-color: #909090;
+    width: 100%;
+    height: 24px;
+    display: none;
+}
+#stampLogo {
+	position: absolute;
+	background-image: url(/images/stampLogo.png);
+	align:left;
+	width: 150px;
+	height: 50px;
 	
+}
+#footerBuffer {
+	position: absolute;
+	height: 100px;
+	width: 100%;
+	vertical-align: bottom;
+	background-color: #FFBB00;
+	top:700px;
 }
