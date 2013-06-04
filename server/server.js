@@ -71,6 +71,9 @@ app.get('/', function(req, res,next) {// get for index page,
 app.get('/stylesheets/style.css', function(req,res,next){
   res.sendfile('stylesheets/style.css');
 });
+app.get('/stylesheets/main.css', function(req,res,next){
+  res.sendfile('stylesheets/main.css');
+});
 app.get('/scripts/main.js', function(req,res,next){
   res.sendfile('scripts/main.js');
 });
@@ -86,7 +89,9 @@ app.get('/include/views.js', function(req,res,next){
 app.get('/images/stampLogo.png', function(req,res,next){
   res.sendfile('images/stampLogo.png');
 });
-
+app.get('/videos/video.mp4', function(req,res,next){
+  res.sendfile('videos/video.mp4');
+});
 
 app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 
