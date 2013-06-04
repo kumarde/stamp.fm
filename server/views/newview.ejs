@@ -1,0 +1,13 @@
+<% layout('layout') -%>
+<% stylesheet('/stylesheets/style.css') -%>
+<% script('/scripts/main.js') -%>
+
+    <form method = "POST" action = "/newView">
+        <input type = "submit" name = "view1" value = "Vote!">
+    </form>
+
+    <form method = "POST" action = "/newView">
+    	<input type = "submit" name = "view2" value = "Vote!">
+    </form>
+
+<% block('header', "<p><center>Vote For Your Favorite Artist<br> The Vote Button, Facebook Share, and Tweets Are All Worth One Vote Each</center></p>") -%>

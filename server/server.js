@@ -2,6 +2,7 @@
 var express = require('express')
   , engine = require('ejs-locals')
   , app = express();
+app.use(express.bodyParser());
 
 var db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
 var TestModule =  require('./scripts/testModule.js').TestModule;
@@ -11,12 +12,17 @@ var count = 0;
 var c = 0;
 var sorted;
 db.music.count(function(err, count){
-  counter = count;
+  if(count == 0){
+    counter = 0;
+  }
+  else if(count != 0){
+    counter = count;
+  }
 })
 
 db.music.find().sort({_id:1}, function(err, rest){
   sorted = rest;
-  console.log(sorted[5].name);
+  //console.log(sorted[5].name);
 });
 
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
@@ -26,6 +32,31 @@ app.use(express.bodyParser());
 
 var testModule = new TestModule;
 var auditionModule = new AuditionModule;
+
+app.get('/newView', function(req, res, next){
+  res.render('newview', { title: testModule.message})
+});
+
+app.post('/newview', function(req, res){
+  console.log(sorted[c].views);
+  console.log(sorted[c+1].views);
+  sorted[c].views++;
+  sorted[c+1].views++;
+  c += 2;
+  if(c >= counter){
+    db.music.find().sort({views:1}, function(err, rest){
+      sorted = rest;
+      c = 0;
+    })
+  }
+  else if(c+1 == counter){
+    sorted[c].views++;
+    db.music.find().sort({views:1}, function(err, rest){
+      sorted = rest;
+      c = 0;
+    })
+  }
+})
 
 app.get('/', function(req, res,next) {// get for index page,
 
@@ -62,7 +93,7 @@ app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 
 app.post('/save', express.bodyParser(), function(req, res){
   //added a comment
-  db.music.save({_id: ++counter, name:req.body.name, songTitle:req.body.songTitle, votes:0, views:0});
+  db.music.save({_id: counter++, name:req.body.name, songTitle:req.body.songTitle, votes:0, views:0});
     console.log(req.body.name);
     console.log(req.body.songTitle);
 });
