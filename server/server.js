@@ -89,8 +89,8 @@ app.get('/include/views.js', function(req,res,next){
 app.get('/images/stampLogo.png', function(req,res,next){
   res.sendfile('images/stampLogo.png');
 });
-app.get('/videos/video.mp4', function(req,res,next){
-  res.sendfile('videos/video.mp4');
+app.get('/images/treble.png', function(req,res,next){
+  res.sendfile('images/treble.png');
 });
 
 app.listen(8888);//listen on port 8888, e.g. localhost:8888/

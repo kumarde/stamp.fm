@@ -9,7 +9,6 @@
             <li id="profileTab">Profile</li>
         </ul>
     </div>
-    
     <div class="matchup">
         <form id="artist1" class="vote_song">
             <iframe width="420" height="236" src="http://www.youtube.com/embed/5LNTXE9e5ok?list=PL_rKzeF6K2knMJVKDKG_UMdU2P77Ho09U?rel=0" frameborder="0" allowfullscreen></iframe>
@@ -40,12 +39,59 @@
     </div>
     
     <div class="sidebar">
-        
+        <head>
+            <meta charset="utf-8" />
+            <title>jQuery UI Accordion - Default functionality</title>
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+            <link rel="stylesheet" href="/resources/demos/style.css" />
+            <script>
+                $(function() {
+                    $( "#accordion" ).accordion();
+                });
+            </script>
+        </head>
+        <div id="accordion">
+            <h3>Login</h3>
+            <div>
+                <div class="label">
+                    <b>
+                        Username/Email:<br>
+                        Password:<br>
+                    </b>
+                </div>
+                <div class="input">
+                    <input type="text" name = "email" class="textbox"><br>
+                    <input type="password" name = "password" class="textbox"><br><br>
+                    <input type="submit" value="Login" id="button">  
+                </div>
+            </div>
+            <h3>Create Profile</h3>
+            <div>
+                <div class="label">
+                <b>
+                    Band Name: <br>
+                    Username/Email:<br>
+                    Password:<br>
+                    Confirm Password:<br>
+                </b>
+                </div>
+                <div class="input">
+                    <input type="text" name="bandName" class="textbox"><br>
+                    <input type="text" name = "email" class="textbox"><br>
+                    <input type="password" name = "password" class="textbox"><br>
+                    <input type="password" name = "password2" class="textbox"><br><br>
+                    <input type="submit" value="Create" id="button">
+                </div>
+            </div>
+        </div>
+        <img id="stampBannerLogo" src="/images/stampLogo.png">
     </div>
     
     <div class="footer">
-        <button id="play" onclick="expandFooter()" >
-            Play Da Music
+        <button class="play" onclick="expandFooter()" >
+            <img class="play" src="/images/treble.png">
         </button>
     </div>
     <div id="expandedFooter">
