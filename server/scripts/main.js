@@ -1,24 +1,28 @@
-$( document ).ready(function() {
-
-      $('#button').click(function () {       
-        $.post('/vote/', { 
-         stuff: {"id": $('#div1vote').html()}}, callback, "json");
-      });
-
-      $('#vote1').submit(function(){
-        $.ajax({ 
-             url: '/vote',
-             type: "POST",
-             cache: false,
-             data: $('div#div1vote').html();
-             success: function(data){
-                    alert(data.name)
-             }
-             , error: function(jqXHR, textStatus, err){
-                 alert('text status '+textStatus+', err '+err)
-             }
+$(document).ready(function() {
+    $('#enter').click(function(){  
+     $.ajax({ 
+           url: '/vote',
+           type: 'POST',
+           cache: false, 
+           data: { vid: $('#div1vote').html()},
+           success: function(data){
+            $('#div1vote').html(data.v1id);
+            $('#div2vote').html(data.v2id);
+           }
         })
-      });      
+     });
+    $('#enter2').click(function(){  
+     $.ajax({ 
+           url: '/vote',
+           type: 'POST',
+           cache: false, 
+           data: { vid: $('#div2vote').html()},
+           success: function(data){
+            $('#div1vote').html(data.v1id);
+            $('#div2vote').html(data.v2id);
+           }
+        })
+     });     
 });
 function expandFooter(){
         if(document.getElementById("expandedFooter").style.display=='none'){
