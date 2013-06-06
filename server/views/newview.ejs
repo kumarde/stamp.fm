@@ -3,13 +3,15 @@
 <% script('/scripts/main.js') -%>
 
 
-<div id='div1vote'><%=v1id%> </div>
- 
+<div id='div1vote'><%=v1id%></div>
+<div id='div2vote'><%=v2id%></div>
 
-<form id = "vote1">
-	<input type = "submit"></input>
+<form>
+   <input type="button" id="enter" value="Enter">
 </form>
 
+<form>
+	<input type = "button" id = "enter2" value = "Enter2">
+</form>
 
-
-<% block('header', "<p><center>Vote For Your Favorite Artist<br> The Vote Button, Facebook Share, and Tweets Are All Worth One Vote Each</center></p>") -%>
+<% block('header', "<p><center>Vote For Your Favorite Artist<br> The Vote Button, Facebook Share, and Tweets Are All Worth One Vote Each</center></p>") -%> 

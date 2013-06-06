@@ -4,6 +4,8 @@ var express = require('express')
   , app = express();
 app.use(express.bodyParser());
 
+var fs = require('fs');
+
 var db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
 var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
@@ -35,30 +37,13 @@ var auditionModule = new AuditionModule;
 
 app.get('/newView', function(req, res, next){
       res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
-      console.log(sorted[c]._id);
-      console.log(sorted[c+1]._id);
-      /*UPDATE THE DB WITH THE PROPER NUMBER OF VIEWS*/
-      db.music.update({_id:sorted[c]._id}, {$inc:{views:1}}, function(err, count){
-
-      });
-      db.music.update({_id:sorted[c+1]._id}, {$inc:{views:1}}, function(err, count){
-
-      });
-      //increment the two
-      c += 2;
-      if(c >= counter){
-        db.music.find().sort({votes:1}, function(err, rest){
-          sorted = rest;
+      auditionModule.UpdateDB(c, function(inc, newsort){
+        if(inc) c+=2;
+        else{
+          sorted = newsort;
           c = 0;
-        })
-      }
-      else if(c+1 == counter){
-        sorted[c].views++;
-        db.music.find().sort({votes:1}, function(err, rest){
-          sorted = rest;
-          c = 0;
-        })
-      }
+        }
+      });
 });
 
 
@@ -73,7 +58,9 @@ app.get('/', function(req, res,next) {// get for index page,
 
 //get for needed files
 app.get('/stylesheets/style.css', function(req,res,next){
-  res.sendfile('stylesheets/style.css');
+  var stream = fs.createReadStream(__dirname + '/stylesheets/style.css').pipe(res);
+
+  //res.sendfile('stylesheets/style.css');
 });
 app.get('/stylesheets/main.css', function(req,res,next){
   res.sendfile('stylesheets/main.css');
@@ -114,9 +101,43 @@ app.post('/save', express.bodyParser(), function(req, res){
 
 app.post('/vote', function(req, res){
     console.log(req.body);
-    console.log(res.body);
-    db.music.update({_id:0}, {$inc:{votes:1}}, function(err, count){
-      console.log("updated");
+    db.music.update({_id:parseInt(req.body.vid)}, {$inc:{votes:1}}, function(err, count){
+      res.send({v1id: sorted[c]._id, v2id: sorted[c+1]._id});
+      auditionModule.UpdateDB(c, function(inc, newsort){
+        if(inc) c += 2;
+        else{
+          sorted = newsort;
+          c = 0;
+        }
+      })
+
+
+      //console.log("updated");
+      //res.send({v1id: sorted[c]._id, v2id: sorted[c+1]._id});
+      /*db.music.update({_id:sorted[c]._id}, {$inc:{views:1}}, function(err, count){
+
+      });
+      db.music.update({_id:sorted[c+1]._id}, {$inc:{views:1}}, function(err, count){
+
+      });
+      //increment the two
+      c += 2;
+      if(c >= counter){
+        db.music.find().sort({votes:-1}, function(err, rest){
+          sorted = rest;
+          console.log(sorted);
+          c = 0;
+        })
+      }
+      else if(c+1 == counter){
+        db.music.update({_id:sorted[c]._id}, {$inc:{views:1}}, function(err,count){
+            db.music.find().sort({votes:-1}, function(err, rest){
+            sorted = rest;
+            console.log(sorted);
+            c = 0;
+          })
+        })
+      }*/
     });
 })
 

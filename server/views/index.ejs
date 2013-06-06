@@ -1,6 +1,13 @@
 <% layout('layout') -%>
 <% stylesheet('/stylesheets/main.css') -%>
 <% script('/scripts/main.js') -%>
+
+<form id="newArtist" method = "POST" action = "/save">
+    Name: <input type="text" name="name"><br>
+    Song Title: <input type="text" name="songTitle">
+    <input type="submit" value="submit">
+</form>
+
 <div id="wrapper">
     <div class="center">
         <ul id="centerTabs">
