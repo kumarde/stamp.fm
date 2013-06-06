@@ -1,67 +1,100 @@
 <% layout('layout') -%>
-<% stylesheet('/stylesheets/style.css') -%>
+<% stylesheet('/stylesheets/main.css') -%>
 <% script('/scripts/main.js') -%>
-
-    <form id="newArtist" method = "POST" action = "/save">
-        Name: <input type="text" name="name"><br>
-        Song Title: <input type="text" name="songTitle">
-        <input type="submit" value="submit">
-    </form>
-<center>
-    <div class="matchup">
-    <form id="artist1" class="vote_song">
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/jXrnOWKVE5E?rel=0" frameborder="0" allowfullscreen></iframe>
-        <div>
-            <input type="button" id="vote1" value=" Vote " class="voteButton">
-        </div>
-
-        <div class="likeButton" id="fb2">
-
-            <script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><style> html .fb_share_button { display: -moz-inline-block; display:inline-block; padding:0px 0px 0 50px; height:18px; border:0px solid #d8dfea; background:url(http://uk.advfn.com/common/images/icons/facebook_share.gif) no-repeat top right; } html .fb_share_button:hover { color:#fff; border-color:#295582; background:#3b5998 url(http://uk.advfn.com/common/images/icons/facebook_share.gif) no-repeat top right; text-decoration:none; } </style> <a rel="nofollow" href="http://www.facebook.com/share.php?u=<;url>" class="fb_share_button" onclick="return fbs_click()" target="_blank" style="text-decoration:none;"></a>
-
-        </div>
-
-        <div class = "twitterButton" id = "twitter1">
-            <a href="https://twitter.com/intent/tweet?button_hashtag=StampChamp&text=Check out this artist!" class="twitter-hashtag-button" data-lang="en" data-related="jasoncosta">Tweet #StampChamp</a>  
-
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
-           
-    </form>
-
-    <form id="artist2" class="vote_song">
-        <iframe width="560" height="315" src="http://www.youtube.com/embed/5LNTXE9e5ok?list=PL_rKzeF6K2knMJVKDKG_UMdU2P77Ho09U?rel=0" frameborder="0" allowfullscreen></iframe>
-
-        <div>
-            <input type="button" id="vote2" value=" Vote " class="voteButton">
-        </div>
-
-        <div class="likeButton" id="fb2">
-
-            <script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><style> html .fb_share_button { display: -moz-inline-block; display:inline-block; padding:0px 0px 0 50px; height:18px; border:0px solid #d8dfea; background:url(http://uk.advfn.com/common/images/icons/facebook_share.gif) no-repeat top right; } html .fb_share_button:hover { color:#fff; border-color:#295582; background:#3b5998 url(http://uk.advfn.com/common/images/icons/facebook_share.gif) no-repeat top right; text-decoration:none; } </style> <a rel="nofollow" href="http://www.facebook.com/share.php?u=<;url>" class="fb_share_button" onclick="return fbs_click()" target="_blank" style="text-decoration:none;"></a>
-
-        </div>
-        <div class = "twitterButton" id = "twitter2">
-            <a href="https://twitter.com/intent/tweet?button_hashtag=StampChamp&text=Check out this artist!" class="twitter-hashtag-button" data-lang="en" data-related="jasoncosta">Tweet #StampChamp</a>  
-
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
-
-    </form>
+<div id="wrapper">
+    <div class="center">
+        <ul id="centerTabs">
+            <li id="auditionTab">Audition</li>
+            <li id="tournamentTab">Tournament</li>
+            <li id="profileTab">Profile</li>
+        </ul>
     </div>
-    <a href="http://www.stamp.fm" id="stampHome"></a>
-</center>
-
-<div id="footerBuffer"></div>
-<div class="footer">
-    <button id="play" onclick="expandFooter()" >
-        Play Da Music
-    </button>
+    <div class="matchup">
+        <form id="artist1" class="vote_song">
+            <iframe width="420" height="236" src="http://www.youtube.com/embed/5LNTXE9e5ok?list=PL_rKzeF6K2knMJVKDKG_UMdU2P77Ho09U?rel=0" frameborder="0" allowfullscreen></iframe>
+            <div class="voteButton">
+                <input type="button" id="vote1" value=" Vote " class="voteButton">
+            </div>
+            <div class="shareButton" id="fb2">
+                <script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><style> html .fb_share_button { display: -moz-inline-block; display:inline-block; padding:0px 0px 0 50px; height:18px; border:0px solid #d8dfea; background:url(http://uk.advfn.com/common/images/icons/facebook_share.gif) no-repeat top right; } html .fb_share_button:hover { color:#fff; border-color:#295582; background:#3b5998 url(http://uk.advfn.com/common/images/icons/facebook_share.gif) no-repeat top right; text-decoration:none; } </style> <a rel="nofollow" href="http://www.facebook.com/share.php?u=<;url>" class="fb_share_button" onclick="return fbs_click()" target="_blank" style="text-decoration:none;"></a>
+            </div>
+            <div class = "twitterButton" id = "twitter1">
+                <a href="https://twitter.com/intent/tweet?button_hashtag=StampChamp&text=Check out this artist!" class="twitter-hashtag-button" data-lang="en" data-related="jasoncosta">Tweet #StampChamp</a>  
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </div> 
+        </form>
+        <form id="artist2" class="vote_song">
+            <iframe width="420" height="236" src="http://www.youtube.com/embed/5LNTXE9e5ok?list=PL_rKzeF6K2knMJVKDKG_UMdU2P77Ho09U?rel=0" frameborder="0" allowfullscreen></iframe>
+            <div class="voteButton">
+                <input type="button" id="vote2" value=" Vote " class="voteButton">
+            </div>
+            <div class="shareButton" id="fb2">
+                <script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><style> html .fb_share_button { display: -moz-inline-block; display:inline-block; padding:0px 0px 0 50px; height:18px; border:0px solid #d8dfea; background:url(http://uk.advfn.com/common/images/icons/facebook_share.gif) no-repeat top right; } html .fb_share_button:hover { color:#fff; border-color:#295582; background:#3b5998 url(http://uk.advfn.com/common/images/icons/facebook_share.gif) no-repeat top right; text-decoration:none; } </style> <a rel="nofollow" href="http://www.facebook.com/share.php?u=<;url>" class="fb_share_button" onclick="return fbs_click()" target="_blank" style="text-decoration:none;"></a>
+            </div>
+            <div class = "twitterButton" id = "twitter2">
+                <a href="https://twitter.com/intent/tweet?button_hashtag=StampChamp&text=Check out this artist!" class="twitter-hashtag-button" data-lang="en" data-related="jasoncosta">Tweet #StampChamp</a>  
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </div>
+        </form>
+    </div>
+    
+    <div class="sidebar">
+        <head>
+            <meta charset="utf-8" />
+            <title>jQuery UI Accordion - Default functionality</title>
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+            <link rel="stylesheet" href="/resources/demos/style.css" />
+            <script>
+                $(function() {
+                    $( "#accordion" ).accordion();
+                });
+            </script>
+        </head>
+        <div id="accordion">
+            <h3>Login</h3>
+            <div>
+                <div class="label">
+                    <b>
+                        Username/Email:<br>
+                        Password:<br>
+                    </b>
+                </div>
+                <div class="input">
+                    <input type="text" name = "email" class="textbox"><br>
+                    <input type="password" name = "password" class="textbox"><br><br>
+                    <input type="submit" value="Login" id="button">  
+                </div>
+            </div>
+            <h3>Create Profile</h3>
+            <div>
+                <div class="label">
+                <b>
+                    Band Name: <br>
+                    Username/Email:<br>
+                    Password:<br>
+                    Confirm Password:<br>
+                </b>
+                </div>
+                <div class="input">
+                    <input type="text" name="bandName" class="textbox"><br>
+                    <input type="text" name = "email" class="textbox"><br>
+                    <input type="password" name = "password" class="textbox"><br>
+                    <input type="password" name = "password2" class="textbox"><br><br>
+                    <input type="submit" value="Create" id="button">
+                </div>
+            </div>
+        </div>
+        <img id="stampBannerLogo" src="/images/stampLogo.png">
+    </div>
+    
+    <div class="footer">
+        <button class="play" onclick="expandFooter()" >
+            <img class="play" src="/images/treble.png">
+        </button>
+    </div>
+    <div id="expandedFooter">
+        <iframe class="playerSongs" width="250" height="24" src="https://www.youtube-nocookie.com/embed/jXrnOWKVE5E?rel=0&autohide=0&#8243" frameborder="0" allowfullscreen></iframe>
+    </div>
 </div>
-<div id="expandedFooter">
-    <iframe class="playerSongs" width="250" height="24" src="https://www.youtube-nocookie.com/embed/jXrnOWKVE5E?rel=0&autohide=0&#8243" frameborder="0" allowfullscreen></iframe>
-</div>
-
-
-
-<% block('header', "<p><center>Vote For Your Favorite Artist<br> The Vote Button, Facebook Share, and Tweets Are All Worth One Vote Each</center></p>") -%>
