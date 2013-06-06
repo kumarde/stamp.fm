@@ -1,0 +1,117 @@
+#wrapper {
+    width:960px;
+    border: 0;
+}
+.center {
+    position: absolute;
+    height: 575px;
+    width: 900px;
+    top: 10px;
+    left: 10px;
+    background-color: #FF0000;
+}
+#footerBuffer {
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    vertical-align: bottom;
+    background-color: #FFFFFF;
+    top:700px;
+}
+.footer {
+    position:fixed;
+    bottom:0;
+    background-color: #808080;
+    width: 100%;
+    height: 75px;
+    
+}
+#expandedFooter {
+    position:fixed;
+    bottom:75px;
+    background-color: #909090;
+    width: 100%;
+    height: 24px;
+    display: none;
+}
+.play {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #808080;
+}
+.sidebar {
+    position: absolute;
+    height: 575px;
+    width: 435px;
+    top: 10px;
+    left: 920px;
+    background-color: #291F1D;
+}
+#stampBannerLogo {
+    position: absolute;
+    top: 380px;
+    left: 20px;
+}
+#centerTabs {
+    border-bottom: .5em solid #291F1D;
+    border: .5em solid #291F1D;
+    margin: 0;
+    padding: 0;
+}
+#centerTabs li {
+    display: inline;
+    border: .5em solid #291F1D;
+    margin: 100px;
+    background-color: #FFFFFF;
+}
+.matchup {
+	position: absolute;
+	width: 900px;
+        top: 100px;
+        left: 30px;
+}
+.vote_song {
+	position: absolute;
+	height: 275px;
+	width: auto;
+	border-style: solid;
+	border-width:10px;
+	border-color: #291F1D;
+}
+#artist1 {
+    left: -15px;
+}
+#artist2 {
+    right: 25px;
+}
+.shareButton {
+    position: absolute;
+    left:10px;
+    top:245px;
+}
+.voteButton {
+    position: absolute;
+    left:80px;
+}
+.twitterButton {
+    position: absolute;
+    right: 10px;
+    top: 245px;
+}
+.label{
+    float: left;
+    text-align: right;
+    font-size: 17px;
+}
+
+.input{
+   margin-left: 10px;
+   float: left;
+}
+
+.textbox{
+    margin: 0;
+    width:150px;   
+    height: 10px;
+}   
