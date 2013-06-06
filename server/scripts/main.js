@@ -1,18 +1,24 @@
 $( document ).ready(function() {
-      $('#vote1').click(function(){
-      $.ajax({ 
-           url: '/ajax',
-           type: 'POST',
-           cache: false,
-           success: function(data){
-                  alert(data.message)
-           }
-           , error: function(jqXHR, textStatus, err){
-               alert('text status '+textStatus+', err '+err)
-           }
-      })
+
+      $('#button').click(function () {       
+        $.post('/vote/', { 
+         stuff: {"id": $('#div1vote').html()}}, callback, "json");
       });
-      
+
+      $('#vote1').submit(function(){
+        $.ajax({ 
+             url: '/vote',
+             type: "POST",
+             cache: false,
+             data: $('div#div1vote').html();
+             success: function(data){
+                    alert(data.name)
+             }
+             , error: function(jqXHR, textStatus, err){
+                 alert('text status '+textStatus+', err '+err)
+             }
+        })
+      });      
 });
 function expandFooter(){
         if(document.getElementById("expandedFooter").style.display=='none'){
