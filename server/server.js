@@ -34,29 +34,33 @@ var testModule = new TestModule;
 var auditionModule = new AuditionModule;
 
 app.get('/newView', function(req, res, next){
-  res.render('newview', { title: testModule.message})
+      res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
+      console.log(sorted[c]._id);
+      console.log(sorted[c+1]._id);
+      /*UPDATE THE DB WITH THE PROPER NUMBER OF VIEWS*/
+      db.music.update({_id:sorted[c]._id}, {$inc:{views:1}}, function(err, count){
+
+      });
+      db.music.update({_id:sorted[c+1]._id}, {$inc:{views:1}}, function(err, count){
+
+      });
+      //increment the two
+      c += 2;
+      if(c >= counter){
+        db.music.find().sort({votes:1}, function(err, rest){
+          sorted = rest;
+          c = 0;
+        })
+      }
+      else if(c+1 == counter){
+        sorted[c].views++;
+        db.music.find().sort({votes:1}, function(err, rest){
+          sorted = rest;
+          c = 0;
+        })
+      }
 });
 
-app.post('/newview', function(req, res){
-  console.log(sorted[c].views);
-  console.log(sorted[c+1].views);
-  sorted[c].views++;
-  sorted[c+1].views++;
-  c += 2;
-  if(c >= counter){
-    db.music.find().sort({views:1}, function(err, rest){
-      sorted = rest;
-      c = 0;
-    })
-  }
-  else if(c+1 == counter){
-    sorted[c].views++;
-    db.music.find().sort({views:1}, function(err, rest){
-      sorted = rest;
-      c = 0;
-    })
-  }
-})
 
 app.get('/', function(req, res,next) {// get for index page,
 
@@ -98,10 +102,13 @@ app.post('/save', express.bodyParser(), function(req, res){
     console.log(req.body.songTitle);
 });
 
-app.post('/newView', express.bodyParser(), function(req, res){
-
-});
-
+app.post('/vote', function(req, res){
+    console.log(req.body);
+    console.log(res.body);
+    db.music.update({_id:0}, {$inc:{votes:1}}, function(err, count){
+      console.log("updated");
+    });
+})
 
 /*app.post('/ajax', express.bodyParser(), function (req, res){
   db.music.save({})
