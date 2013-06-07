@@ -63,25 +63,25 @@ app.get('/stylesheets/style.css', function(req,res,next){
   //res.sendfile('stylesheets/style.css');
 });
 app.get('/stylesheets/main.css', function(req,res,next){
-  res.sendfile('stylesheets/main.css');
+  var stream2 = fs.createReadStream(__dirname+ '/stylesheets/main.css'.pipe(res));
 });
 app.get('/scripts/main.js', function(req,res,next){
-  res.sendfile('scripts/main.js');
+  var stream3 = fs.createReadStream(__dirname + '/scripts/main.js').pipe(res);
 });
 app.get('/include/jquery.ejs.js', function(req,res,next){
-  res.sendfile('include/jquery.ejs.js');
+  var stream4 = fs.createReadStream(__dirname + '/include/jquery.ejs.js').pipe(res);
 });
 app.get('/include/ejs_production.js', function(req,res,next){
-  res.sendfile('include/ejs_production.js');
+  var stream5 = fs.createReadStream(__dirname + '/include/ejs_production.js').pipe(res);
 });
 app.get('/include/views.js', function(req,res,next){
-  res.sendfile('include/views.js');
+  var stream6 = fs.createReadStream(__direname + '/include/views.js').pipe(res);
 });
 app.get('/images/stampLogo.png', function(req,res,next){
-  res.sendfile('images/stampLogo.png');
+  var stream7 = fs.createReadStream(__dirname + '/images/stampLogo.png').pipe(res);
 });
 app.get('/images/treble.png', function(req,res,next){
-  res.sendfile('images/treble.png');
+  var steam8 = fs.createReadStream(__dirname + '/images/treble.png').pipe(res);
 });
 app.get('/videos/video.mp4', function(req,res,next){
   var stream = fs.createReadStream('videos/video.mp4');
