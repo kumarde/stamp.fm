@@ -63,7 +63,7 @@ app.get('/stylesheets/style.css', function(req,res,next){
   //res.sendfile('stylesheets/style.css');
 });
 app.get('/stylesheets/main.css', function(req,res,next){
-  var stream2 = fs.createReadStream(__dirname+ '/stylesheets/main.css'.pipe(res));
+  var stream2 = fs.createReadStream(__dirname+ '/stylesheets/main.css').pipe(res);
 });
 app.get('/scripts/main.js', function(req,res,next){
   var stream3 = fs.createReadStream(__dirname + '/scripts/main.js').pipe(res);
@@ -81,11 +81,11 @@ app.get('/images/stampLogo.png', function(req,res,next){
   var stream7 = fs.createReadStream(__dirname + '/images/stampLogo.png').pipe(res);
 });
 app.get('/images/treble.png', function(req,res,next){
-  var steam8 = fs.createReadStream(__dirname + '/images/treble.png').pipe(res);
+  var stream8 = fs.createReadStream(__dirname + '/images/treble.png').pipe(res);
 });
 app.get('/videos/video.mp4', function(req,res,next){
-  var stream = fs.createReadStream('videos/video.mp4');
-  stream.pipe(res);
+  var stream9 = fs.createReadStream(__dirname +'/videos/video.mp4');
+      stream9.pipe(res);
 });
 
 
