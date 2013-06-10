@@ -87,6 +87,13 @@ app.get('/videos/video.mp4', function(req,res,next){
   var stream9 = fs.createReadStream(__dirname +'/videos/video.mp4');
       stream9.pipe(res);
 });
+app.get('/video-js/video-js.css', function(req,res,next){
+  var stream8 = fs.createReadStream(__dirname + '/video-js/video-js.css').pipe(res);
+});
+app.get('/video-js/video.js', function(req,res,next){
+  var stream8 = fs.createReadStream(__dirname + '/video-js/video.js').pipe(res);
+});
+
 
 
 app.listen(8888);//listen on port 8888, e.g. localhost:8888/
