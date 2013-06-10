@@ -73,7 +73,7 @@
 }
 .vote_song {
 	position: absolute;
-	height: 275px;
+	height: 300px;
 	width: auto;
 	border-style: solid;
 	border-width:10px;
@@ -88,7 +88,7 @@
 .shareButton {
     position: absolute;
     left:10px;
-    top:245px;
+    top:265px;
 }
 .voteButton {
     position: absolute;
@@ -97,7 +97,7 @@
 .twitterButton {
     position: absolute;
     right: 10px;
-    top: 245px;
+    top: 265px;
 }
 .label{
     float: left;
@@ -115,3 +115,4 @@
     width:150px;   
     height: 10px;
 }   
+.vjs-default-skin .vjs-play-progress { background: #990000; }
