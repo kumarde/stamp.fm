@@ -24,7 +24,6 @@ db.music.count(function(err, count){
 
 db.music.find().sort({_id:1}, function(err, rest){
   sorted = rest;
-  //console.log(sorted[5].name);
 });
 
 app.engine('ejs', engine);// use ejs-locals for all ejs templates
@@ -55,6 +54,9 @@ app.get('/', function(req, res,next) {// get for index page,
   res.render('index', { title: testModule.message })//render index.ejs, send to <%=title%>
 });
 
+app.get('/upload', function(req, res, next){
+  res.render('upload', {title: testModule.message})
+});
 
 //get for needed files
 app.get('/stylesheets/style.css', function(req,res,next){
@@ -110,55 +112,5 @@ app.post('/vote', function(req, res){
           c = 0;
         }
       })
-
-
-      //console.log("updated");
-      //res.send({v1id: sorted[c]._id, v2id: sorted[c+1]._id});
-      /*db.music.update({_id:sorted[c]._id}, {$inc:{views:1}}, function(err, count){
-
-      });
-      db.music.update({_id:sorted[c+1]._id}, {$inc:{views:1}}, function(err, count){
-
-      });
-      //increment the two
-      c += 2;
-      if(c >= counter){
-        db.music.find().sort({votes:-1}, function(err, rest){
-          sorted = rest;
-          console.log(sorted);
-          c = 0;
-        })
-      }
-      else if(c+1 == counter){
-        db.music.update({_id:sorted[c]._id}, {$inc:{views:1}}, function(err,count){
-            db.music.find().sort({votes:-1}, function(err, rest){
-            sorted = rest;
-            console.log(sorted);
-            c = 0;
-          })
-        })
-      }*/
     });
 })
-
-/*app.post('/ajax', express.bodyParser(), function (req, res){
-  db.music.save({})
-
-
-/*db.votes.save({votes: 0}, function(err,saved){
-	if (err || !saved) console.log("Vote not saved");
-	else {
-	console.log("Vote Saved"); 
-	AuditionModule.prototype.UpdateDB(function(error,votes) {
-	if ( error ) console.log("error");
-	else console.log(votes[0]);
-  console.log(votes[0].votes);
-	});
-	}
-});
-   console.log('AJAX post recieved');
-   //res.redirect('/');
-   var newMessage = "Server response to AJAX";
-	
-	res.send({message: newMessage});
-});*/
