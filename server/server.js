@@ -5,6 +5,7 @@ var express = require('express')
 app.configure(function(){  
     app.use(express.bodyParser());
     app.use(express.cookieParser());
+    app.use(express.session({ secret: 'super-duper-secret-secret'}));
     app.engine('ejs', engine);// use ejs-locals for all ejs templates
     app.set('views',__dirname + '/views');//set views directory
     app.set('view engine', 'ejs'); // so you can render('index')
