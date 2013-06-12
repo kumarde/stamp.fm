@@ -14,4 +14,11 @@
 	<input type = "button" id = "enter2" value = "Enter2">
 </form>
 
+<form method="post" enctype="multipart/form-data" action="/file-upload">
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="file" name="thumbnail">
+    <input type="submit">
+</form>
+
 <% block('header', "<p><center>Vote For Your Favorite Artist<br> The Vote Button, Facebook Share, and Tweets Are All Worth One Vote Each</center></p>") -%> 

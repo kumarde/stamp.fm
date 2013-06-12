@@ -1,0 +1,23 @@
+<% script('/scripts/main.js') -%>
+<% stylesheet('/video-js/video-js.css') -%>
+<% script('/video-js/video.js') -%>
+
+<div id = "account-form-container">
+	<form method = "post">
+		<h1>
+			<p id = "sub1"> Please tell us a little about yourself. </p>
+		</h1>
+		<fieldset>
+			<legend> Enter your information </legend>
+			<label for = "name"> Name: </label>
+			<input type = "text" name = "name" ><br>
+			<label for = "email"> Email: </label>
+			<input type = "text" name = "email"><br>
+			<label for = "username"> Username: </label>
+			<input type = "text" name = "user"><br>
+			<label for = "password"> Password: </label>
+			<input type = "password" name = "pass">
+			<input type = "submit" name = "submit" value = "Be heard">
+		</fieldset>
+	</form>
+</div>

@@ -10,15 +10,13 @@ PlayerModule.prototype.back = function(id){
 }
 
 PlayerModule.prototype.pause = function(readStream, res){
-	readStream.on('data', function(data){
+	readStream.on('data', function(err, data){
 		var flushed = res.write(data);
 		if(!flushed)
 			readStream.pause();
 	});
 }
 
-PlayerModule.prototype.stop = function(readStream){
-	readStream.end();
-}
+//idk what streams 
 
 exports.PlayerModule = PlayerModule;

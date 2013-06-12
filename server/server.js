@@ -1,14 +1,23 @@
-//need to find some way to count in the node.js D;
 var express = require('express')
   , engine = require('ejs-locals')
   , app = express();
-app.use(express.bodyParser());
+
+app.configure(function(){  
+    app.use(express.bodyParser());
+    app.use(express.cookieParser());
+    app.engine('ejs', engine);// use ejs-locals for all ejs templates
+    app.set('views',__dirname + '/views');//set views directory
+    app.set('view engine', 'ejs'); // so you can render('index')
+    app.use(express.bodyParser());
+});
+
 
 var fs = require('fs');
 
 var db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
 var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
+var AccountModule = require('./scripts/AccountModule.js').AccountModule;
 //if collection exists, store variable count == 0;
 var count = 0;
 var c = 0;
@@ -26,13 +35,15 @@ db.music.find().sort({_id:1}, function(err, rest){
   sorted = rest;
 });
 
-app.engine('ejs', engine);// use ejs-locals for all ejs templates
+
+/*app.engine('ejs', engine);// use ejs-locals for all ejs templates
 app.set('views',__dirname + '/views');//set views directory
 app.set('view engine', 'ejs'); // so you can render('index')
-app.use(express.bodyParser());
+app.use(express.bodyParser());*/
 
 var testModule = new TestModule;
 var auditionModule = new AuditionModule;
+var accountModule = new AccountModule;
 
 app.get('/newView', function(req, res, next){
       res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
@@ -44,18 +55,12 @@ app.get('/newView', function(req, res, next){
         }
       });
 });
-
-
 app.get('/', function(req, res,next) {// get for index page,
 
   testModule.ReadMessage(function(error,data){
-	console.log(data);
+       console.log(data);
   });
   res.render('index', { title: testModule.message })//render index.ejs, send to <%=title%>
-});
-
-app.get('/upload', function(req, res, next){
-  res.render('upload', {title: testModule.message})
 });
 
 //get for needed files
@@ -98,12 +103,12 @@ app.get('/video-js/video.js', function(req,res,next){
 
 
 
-app.listen(8888);//listen on port 8888, e.g. localhost:8888/
+app.listen(8880);//listen on port 8888, e.g. localhost:8888/
 
 
 app.post('/save', express.bodyParser(), function(req, res){
   //added a comment
-  db.music.save({_id: counter++, name:req.body.name, songTitle:req.body.songTitle, votes:0, views:0});
+  	db.music.save({_id: counter++, name:req.body.name, songTitle:req.body.songTitle, votes:0, views:0});
     console.log(req.body.name);
     console.log(req.body.songTitle);
 });
@@ -121,3 +126,54 @@ app.post('/vote', function(req, res){
       })
     });
 })
+
+/*******************************LOGIN STUFF HERE******************************************/
+app.get('/login', function(req, res){
+	if(req.cookies.user == undefined || req.cookies.pass == undefined){
+		res.render('login', {title: 'Hello - Please login To Your Account'});
+	}else{
+		accountModule.autoLogin(req.param('user'), req.param('pass'), function(o){
+			if(o != null){
+				req.session.user = o;
+				res.redirect('/loggedin');
+			} else{
+				res.render('login', {title: "Hello - Please Login to your Account"});
+			}
+		});
+	}
+});
+
+app.post('/login', function(req, res){
+	accountModule.manualLogin(req.param('user'), req.param('pass'), function(e, o){
+		if(!o){
+			res.send(e, 400);
+		} else{
+			req.session.user = o;
+			if(req.param('remember-me') == 'true'){
+				res.cookie('user', o.user, {maxAge: 900000});
+				res.cookie('pass', o.pass, {maxAge: 900000});
+			}
+            console.log("You are being redirected home");
+            console.log(req.session.user);
+			res.redirect('/');
+		}
+	});
+});
+
+app.get('/signup', function(req, res){
+	res.render('account', {title: "Signup"});
+});
+
+app.post('/signup', function(req, res){
+	accountModule.addNewAccount({
+		name 	: req.param('name'),
+		email 	: req.param('email'),
+		user 	: req.param('user'),
+		pass 	: req.param('pass')
+	}, function(e){
+		if(e)
+			res.send(e, 400);
+		else
+			res.send('ok', 200);
+	});
+});
