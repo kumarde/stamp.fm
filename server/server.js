@@ -2,13 +2,19 @@ var express = require('express')
   , engine = require('ejs-locals')
   , app = express();
 
-app.configure(function(){  
+app.configure(function(){
+    app.use(express.static(__dirname + '/stylesheets'));
+    app.use(express.static(__dirname + '/images'));
+    app.use(express.static(__dirname + '/video-js'));
+    app.use(express.static(__dirname + '/videos'));
+    app.use(express.static(__dirname + '/scripts'));
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'super-duper-secret-secret'}));
     app.engine('ejs', engine);// use ejs-locals for all ejs templates
     app.set('views',__dirname + '/views');//set views directory
     app.set('view engine', 'ejs'); // so you can render('index')
+    app.engine('html', require('ejs').renderFile);
     app.use(express.bodyParser());
 });
 
@@ -85,22 +91,7 @@ app.get('/include/ejs_production.js', function(req,res,next){
 app.get('/include/views.js', function(req,res,next){
   var stream6 = fs.createReadStream(__direname + '/include/views.js').pipe(res);
 });
-app.get('/images/stampLogo.png', function(req,res,next){
-  var stream7 = fs.createReadStream(__dirname + '/images/stampLogo.png').pipe(res);
-});
-app.get('/images/treble.png', function(req,res,next){
-  var stream8 = fs.createReadStream(__dirname + '/images/treble.png').pipe(res);
-});
-app.get('/videos/video.mp4', function(req,res,next){
-  var stream9 = fs.createReadStream(__dirname +'/videos/video.mp4');
-      stream9.pipe(res);
-});
-app.get('/video-js/video-js.css', function(req,res,next){
-  var stream8 = fs.createReadStream(__dirname + '/video-js/video-js.css').pipe(res);
-});
-app.get('/video-js/video.js', function(req,res,next){
-  var stream8 = fs.createReadStream(__dirname + '/video-js/video.js').pipe(res);
-});
+
 
 
 
@@ -126,6 +117,10 @@ app.post('/vote', function(req, res){
         }
       })
     });
+})
+
+app.get('/upload', function(req, res){
+    res.render('upload.html', {title: "hi"})
 })
 
 /*******************************LOGIN STUFF HERE******************************************/
