@@ -1,0 +1,19 @@
+#background{
+    background-image: url("/images/background.png");
+    position: 0;
+    position: absolute;
+}
+
+#header{
+    position: fixed;
+    top: 0;
+    height: 200px;
+    width: 100%;
+    background-color: #291F1D;
+}
+#blurb {
+    top: 300px;
+}
+#beHeard {
+    top: 500px;
+}

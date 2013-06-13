@@ -1,0 +1,31 @@
+#header {
+    background-color: rgba(180,7,6,1);
+    width:100%;
+    height: 75px;
+    position: fixed;
+    top: 0;
+    float: left;
+    opacity:0.9;
+    filter:alpha(opacity=90);
+    z-index:99;
+}
+#upload_block {
+    background-color: rgba(180,7,6,1);
+    width: 500px;
+    height: 380px;
+    position: relative;
+    margin-top: 75px;
+    margin-right: 20px;
+    margin-left: 10%;
+    float: left;
+}
+#form_block {
+    background-color: rgba(180,7,6,1);
+    width: 270px;
+    height: 380px;
+    position: relative;
+    margin-top: 75px;
+    margin-right: 10%;
+    margin-left: 20px;
+    float: right;
+}
