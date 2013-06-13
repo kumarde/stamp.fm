@@ -128,14 +128,14 @@ app.get('/upload', function(req, res){
 /*******************************LOGIN STUFF HERE******************************************/
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
-		res.render('login', {title: 'Hello - Please login To Your Account'});
+		res.render('login.html', {title: 'Hello - Please login To Your Account'});
 	}else{
 		accountModule.autoLogin(req.param('user'), req.param('pass'), function(o){
 			if(o != null){
 				req.session.user = o;
 				res.redirect('/loggedin');
 			} else{
-				res.render('login', {title: "Hello - Please Login to your Account"});
+				res.render('login.html', {title: "Hello - Please Login to your Account"});
 			}
 		});
 	}
@@ -159,7 +159,7 @@ app.post('/login', function(req, res){
 });
 
 app.get('/signup', function(req, res){
-	res.render('account', {title: "Signup"});
+	res.render('createAccount.html', {title: "Signup"});
 });
 
 app.post('/signup', function(req, res){
