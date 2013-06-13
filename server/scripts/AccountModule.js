@@ -39,8 +39,8 @@ AccountModule.prototype.manualLogin = function(user, pass, callback)
 AccountModule.prototype.addNewAccount = function(newData, callback)
 {
 	db.users.findOne({user:newData.user}, function(e, o) {
-		if (o){
-			callback('username-taken');
+		if (o)
+{			callback('username-taken');
 		}	else{
 			db.users.findOne({email:newData.email}, function(e, o) {
 				if (o){
@@ -128,7 +128,7 @@ exports.AccountModule = AccountModule;
 
 var generateSalt = function()
 {
-	var set = '0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ';
+	var set = 'alkdaadfa!@&$@^$*68247612871abcdefghijklmnopqrstuvwxyz36'
 	var salt = '';
 	for (var i = 0; i < 10; i++) {
 		var p = Math.floor(Math.random() * set.length);

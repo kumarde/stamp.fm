@@ -19,6 +19,7 @@ var db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
 var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
 var AccountModule = require('./scripts/AccountModule.js').AccountModule;
+var EmailModule = require('./scripts/EmailModule.js').EmailModule;
 //if collection exists, store variable count == 0;
 var count = 0;
 var c = 0;
@@ -45,6 +46,7 @@ app.use(express.bodyParser());*/
 var testModule = new TestModule;
 var auditionModule = new AuditionModule;
 var accountModule = new AccountModule;
+var emailModule = new EmailModule;
 
 app.get('/newView', function(req, res, next){
       res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
@@ -176,5 +178,58 @@ app.post('/signup', function(req, res){
 			res.send(e, 400);
 		else
 			res.send('ok', 200);
+      res.redirect('/');
 	});
 });
+
+app.get('/forgot', function(req ,res, next){
+    res.render('forgot', {title: 'Forgot Password?'});
+});
+
+app.post('/forgot', function(req, res, next){
+    accountModule.getAccountByEmail(req.param('email'), function(o){
+        if(o){
+            res.send('ok', 200);
+            emailModule.dispatchResetPasswordLink(o, function(e, m){
+                if(!e){
+                    //do nothing
+                } else{
+                    res.send('email-server-error', 400);
+                    for(k in e) console.log('error : ', k, e[k]);
+                }
+            });
+        }   else{
+            res.send('email-not-found', 400);
+        }
+    });
+});
+
+app.get('/reset-password', function(req, res) {
+        var email = req.query["e"];
+        var passH = req.query["p"];
+        accountModule.validateResetLink(email, passH, function(e){
+            if (e != 'ok'){
+                res.redirect('/');
+            } else{
+    // save the user's email in a session instead of sending to the client //
+                req.session.reset = { email:email, passHash:passH };
+                res.render('reset', { title : 'Reset Password' });
+            }
+        })
+    });
+    
+    app.post('/reset-password', function(req, res) {
+        var nPass = req.param('pass');
+    // retrieve the user's email from the session to lookup their account and reset password //
+        var email = req.session.reset.email;
+    // destory the session immediately after retrieving the stored email //
+        req.session.destroy();
+        accountModule.updatePassword(email, nPass, function(e, o){
+            if (o){
+                res.send('ok', 200);
+            }   else{
+                res.send('unable to update password', 400);
+            }
+        })
+    });
+/********************************************LOGIN STUFF DONE*******************************/
