@@ -32,7 +32,7 @@
 	    </thead>
 	    <tbody>
 	      <tr>
-		<td><div class="song_name">Song Name</div></td>
+		<td><div class="song_name"><a href="#upload_song">Song Name</a></div></td>
 	      </tr>
 	      <tr>
 		<td><div class="song_name">Song Name</div></td>
@@ -112,6 +112,27 @@
 	    </tbody>
 	  </table>
 	</div>
+      </div>
+      <div id="upload_song">
+	<center>
+	  <br><br><br><br>Song Name<br><br>
+	  <select id = "select_genre">
+	    <option value = "default">Enter this song under which genre?</option>
+            <option value = "0">genre 0</option>
+            <option value = "1">genre 1</option>
+            <option value = "2">genre 2</option>
+            <option value = "3">genre 3</option>
+	    <option value = "4">genre 4</option>
+	    <option value = "5">genre 5</option>
+	    <option value = "6">genre 6</option>
+	    <option value = "7">genre 7</option>
+	    <option value = "8">genre 8</option>
+	    <option value = "9">genre 9</option>
+          </select>
+	  <br><br>Warning: You may only enter one song per genre<br><br>
+	  <button id="submit_song">Submit</button>
+	  <a id="close_upload_song" href="#"><img src="/close_icon.png"></a>
+	</center>
       </div>
     </div>
     
