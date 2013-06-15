@@ -1,6 +1,9 @@
 var express = require('express')
   , engine = require('ejs-locals')
-  , app = express();
+  , form  = require('express-form')
+  , field = form.field;
+
+var app = express();
 
 app.configure(function(){
     app.use(express.static(__dirname + '/stylesheets'));
@@ -15,7 +18,7 @@ app.configure(function(){
     app.set('views',__dirname + '/views');//set views directory
     app.set('view engine', 'ejs'); // so you can render('index')
     app.engine('html', require('ejs').renderFile);
-    app.use(express.bodyParser());
+    app.use(app.router);
 });
 
 
@@ -42,12 +45,6 @@ db.music.count(function(err, count){
 db.music.find().sort({_id:1}, function(err, rest){
   sorted = rest;
 });
-
-
-/*app.engine('ejs', engine);// use ejs-locals for all ejs templates
-app.set('views',__dirname + '/views');//set views directory
-app.set('view engine', 'ejs'); // so you can render('index')
-app.use(express.bodyParser());*/
 
 var testModule = new TestModule;
 var auditionModule = new AuditionModule;
@@ -97,7 +94,7 @@ app.get('/include/views.js', function(req,res,next){
 
 
 
-app.listen(8880);//listen on port 8888, e.g. localhost:8888/
+app.listen(8888);//listen on port 8888, e.g. localhost:8888/
 
 
 app.post('/save', express.bodyParser(), function(req, res){
@@ -128,14 +125,14 @@ app.get('/upload', function(req, res){
 /*******************************LOGIN STUFF HERE******************************************/
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
-		res.render('login.html', {title: 'Hello - Please login To Your Account'});
+		res.render('login', {title: 'Hello - Please login To Your Account'});
 	}else{
 		accountModule.autoLogin(req.param('user'), req.param('pass'), function(o){
 			if(o != null){
 				req.session.user = o;
 				res.redirect('/loggedin');
 			} else{
-				res.render('login.html', {title: "Hello - Please Login to your Account"});
+				res.render('login', {title: "Hello - Please Login to your Account"});
 			}
 		});
 	}
@@ -151,31 +148,47 @@ app.post('/login', function(req, res){
 				res.cookie('user', o.user, {maxAge: 900000});
 				res.cookie('pass', o.pass, {maxAge: 900000});
 			}
-            console.log("You are being redirected home");
-            console.log(req.session.user);
-			res.redirect('/');
+          console.log("You are being redirected home");
+          console.log(req.session.user);
+			    res.redirect('/');
 		}
 	});
 });
 
 app.get('/signup', function(req, res){
-	res.render('createAccount.html', {title: "Signup"});
+	res.render('account.html', {title: "Signup"});
 });
 
-app.post('/signup', function(req, res){
-	accountModule.addNewAccount({
-		name 	: req.param('name'),
-		email 	: req.param('email'),
-		user 	: req.param('user'),
-		pass 	: req.param('pass')
-	}, function(e){
-		if(e)
-			res.send(e, 400);
-		else
-			res.send('ok', 200);
-      res.redirect('/');
-	});
-});
+    app.post('/signup', 
+
+        form(
+            field("name").required(),
+            field("email").required(),
+            field("user").required(),
+            field("pass").required(),
+            field("pass-confirm").equals("pass")
+        )
+        ,function(req, res){
+        if(!req.form.isValid){
+            res.send(req.form.errors)
+        }
+        else{
+            AM.addNewAccount({
+                name    : req.param('name'),
+                email   : req.param('email'),
+                user    : req.param('user'),
+                pass    : req.param('pass'),
+                country : req.param('country')
+            }, function(e){
+                if (e){
+                    res.send(e, 400);
+                }   else{
+                    res.send('ok', 200);
+                }
+            });
+        }
+    });
+
 
 app.get('/forgot', function(req ,res, next){
     res.render('forgot', {title: 'Forgot Password?'});
@@ -185,7 +198,8 @@ app.post('/forgot', function(req, res, next){
     accountModule.getAccountByEmail(req.param('email'), function(o){
         if(o){
             res.send('ok', 200);
-            emailModule.dispatchResetPasswordLink(o, function(e, m){
+            var options = emailModule.composeEmail(o);
+            emailModule.dispatchResetPasswordLink(options, function(e, m){
                 if(!e){
                     //do nothing
                 } else{
