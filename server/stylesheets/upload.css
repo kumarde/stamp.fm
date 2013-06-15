@@ -89,12 +89,30 @@ table th {
 table td {
     background: #eee; overflow: hidden;
 }
+table td a{
+    text-decoration: none;
+    color:#000000;
+}
 table tr:hover td { 
     background-color: #FFFFFF;
 }
-.dark{
-    background-color: rgb(102,102,102);
+
+#upload_song{
+    border: 3px solid #000000;
+    background-color: rgba(163,163,163,.96);
+    position: absolute;
+    height:400px;
+    width:500px;
+    top:180px;
+    right:100px;
+    display:none;
+    font-family: verdana, arial, helvetica;
 }
-.light{
-    background-color: rgb(163,163,163);
+#upload_song:target{
+    display:block;
+}
+#upload_song #close_upload_song {
+    top:0;
+    right:0;
+    position: absolute;
 }
