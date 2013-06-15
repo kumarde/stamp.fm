@@ -10,13 +10,13 @@
   </head>
   
   <body>
-    <div id=wrapper">
+    <div id="wrapper">
       <header id="header">
 	<a href="http://www.stamp.fm"><img src="/headerStamp.png"></a>
       </header>
       <div id="upload_block">
         <script src="/dropzone.js"></script>
-        <form action="/file-upload" class="dropzone">
+        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data">
 	  <div class="fallback">
 	    <input name="file" type="file" multiple />
       	  </div>
