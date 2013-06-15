@@ -72,8 +72,6 @@ app.get('/', function(req, res,next) {// get for index page,
 //get for needed files
 app.get('/stylesheets/style.css', function(req,res,next){
   var stream = fs.createReadStream(__dirname + '/stylesheets/style.css').pipe(res);
-
-  //res.sendfile('stylesheets/style.css');
 });
 app.get('/stylesheets/main.css', function(req,res,next){
   var stream2 = fs.createReadStream(__dirname+ '/stylesheets/main.css').pipe(res);
@@ -170,7 +168,7 @@ app.get('/signup', function(req, res){
         )
         ,function(req, res){
         if(!req.form.isValid){
-            res.send(req.form.errors)
+            console.log(req.form.errors)
         }
         else{
             AM.addNewAccount({
@@ -188,8 +186,6 @@ app.get('/signup', function(req, res){
             });
         }
     });
-
-
 app.get('/forgot', function(req ,res, next){
     res.render('forgot', {title: 'Forgot Password?'});
 });
@@ -242,3 +238,15 @@ app.get('/reset-password', function(req, res) {
         })
     });
 /********************************************LOGIN STUFF DONE*******************************/
+/****************************UPLOAD FILES TO LOCAL SERVER***********************************/
+
+app.post('/file-upload', function(req, res, next){
+    console.log(req.files);
+    fs.readFile(req.files.file.path, function(e, data){
+        
+        var newPath = __dirname + "/videos/";
+        fs.writeFile(newPath, data, function(e){
+            res.redirect("back");
+        });
+    });
+});
