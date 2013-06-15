@@ -125,7 +125,7 @@ app.get('/upload', function(req, res){
 /*******************************LOGIN STUFF HERE******************************************/
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
-		res.render('login', {title: 'Hello - Please login To Your Account'});
+		res.render('login.html', {title: 'Hello - Please login To Your Account'});
 	}else{
 		accountModule.autoLogin(req.param('user'), req.param('pass'), function(o){
 			if(o != null){
@@ -156,7 +156,7 @@ app.post('/login', function(req, res){
 });
 
 app.get('/signup', function(req, res){
-	res.render('account.html', {title: "Signup"});
+	res.render('createAccount.html', {title: "Signup"});
 });
 
     app.post('/signup', 
