@@ -5,9 +5,13 @@ var flash = require('connect-flash')
   , http = require('http')
   , field = form.field
   , passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+  , FacebookStrategy = require('passport-facebook').Strategy
+  , fs = require('fs')
+  , db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
+
 
 var app = express();
+
 
 app.configure(function(){
     app.set('port', process.env.PORT || 8888);
@@ -28,16 +32,48 @@ app.configure(function(){
     app.set('view engine', 'ejs'); // so you can render('index')
     app.engine('html', require('ejs').renderFile);
     app.use(app.router);
+
+    passport.serializeUser(function(user, done){
+        done(null, user._id);
+    });
+
+    passport.deserializeUser(function(id, done){
+        db.users.find({_id: id}, function(err, user){
+            done(err, user);
+        });
+    });
+
+    passport.use(new FacebookStrategy({
+        clientID: "427362497341922",
+        clientSecret: "12e395fc0c5f42b67e58f60894bf66a2",
+        callbackURL: "http://localhost:8888/auth/facebook/callback"
+        },
+        function(accessToken, refreshToken, profile, done){
+            db.users.findOne({_id: profile.id}, function(err, user){
+                if(user){
+                        return done(null, user);
+                }
+                else if(err){
+                    return done(err);
+                }
+                else{
+                    db.users.insert({name:profile.displayName, _id:profile.id, email:profile.emails[1], gender:profile.gender});
+                    return done(null, user);
+                }
+            });
+        }
+    ));
 });
 
+/*INSTANTIATE MODULES*/
 
-var fs = require('fs');
-
-var db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
 var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
 var AccountModule = require('./scripts/AccountModule.js').AccountModule;
 var EmailModule = require('./scripts/EmailModule.js').EmailModule;
+
+/*****************algorithm*****************/
+
 //if collection exists, store variable count == 0;
 var count = 0;
 var c = 0;
@@ -68,7 +104,7 @@ app.get('/newView', function(req, res, next){
           sorted = newsort;
           c = 0;
         }
-      });
+    });
 });
 
 app.get('/', function(req, res, next){
@@ -116,10 +152,23 @@ app.post('/vote', function(req, res){
 })
 
 app.get('/upload', function(req, res){
-    res.render('upload.html', {title: "hi"})
-})
+    if(req.session.user === null || req.user === null){
+        //tell the user they are not logged in, redirect to login
+        res.redirect('/login');
+    }
+    else{    
+        res.render('upload.html', {title: "hi"});
+    }
+});
 
 /*******************************LOGIN STUFF HERE******************************************/
+
+/*FACEBOOK AUTH*/
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', 
+    passport.authenticate('facebook', { successRedirect: '/upload',
+                                        failureRedirect: '/login'}));
+
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
 		res.render('login.html', {title: 'Hello - Please login To Your Account'});
@@ -127,40 +176,16 @@ app.get('/login', function(req, res){
 		accountModule.autoLogin(req.param('user'), req.param('pass'), function(o){
 			if(o != null){
 				req.session.user = o;
-				res.redirect('/loggedin');
+				res.redirect('/upload');
 			} else{
-				res.render('login', {title: "Hello - Please Login to your Account"});
+				res.render('login.html', {title: "Hello - Please Login to your Account"});
 			}
 		});
 	}
 });
 
-passport.use(new LocalStrategy({
-        usernameField: 'user',
-        passwordField: 'pass'
-    },
-    function(username, password, done){
-        db.users.findOne({username: username}, function(err, user){
-            if(err){return done(err);}
-            if(!user){
-                return done(null, false, { message: 'Incorrect username.'});
-            }
-            if(!user.validPassword(password)){
-                return done(null, false, {message: "Incorrect password."});
-            }
-            return done(null, user);
-        });
-    }
-));
 
-app.post('/login',
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash: true})
-);
-
-/*app.post('/login', function(req, res){
+app.post('/login', function(req, res){
 	accountModule.manualLogin(req.param('user'), req.param('pass'), function(e, o){
 		if(!o){
 			res.send(e, 400);
@@ -175,7 +200,7 @@ app.post('/login',
 			    res.redirect('/');
 		}
 	});
-});*/
+});
 
 app.get('/signup', function(req, res){
 	res.render('createAccount.html', {title: "Signup"});

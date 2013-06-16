@@ -33,7 +33,6 @@ AccountModule.prototype.manualLogin = function(user, pass, callback)
 		}
 	});
 }
-
 /* record insertion, update & deletion methods */
 
 AccountModule.prototype.addNewAccount = function(newData, callback)
