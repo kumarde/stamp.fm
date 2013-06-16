@@ -4,7 +4,11 @@ html{
     background-size: cover;
     min-width: 100%;
     min-height: 100%;
+<<<<<<< HEAD
     font-family: "Poiret One", cursive;
+=======
+    font-family: 'Poiret One', cursive;
+>>>>>>> 649b60eba5c1598de798c9ee34f7d33006c85bfd
 }
 
 #header {
@@ -49,7 +53,10 @@ h1{
   	color: white;
   	background-color: #000;
   	opacity: .9;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 649b60eba5c1598de798c9ee34f7d33006c85bfd
 }
 
 .link{
@@ -111,11 +118,12 @@ h1{
 
 #createAccount{
 	margin-left: 80px;
+	margin-bottom: 28px;
 }
 
 .blurb{
 	float: left;
-    margin-left: 100px;
+    margin-left: 90px;
     margin-right: 0px;
     margin-top: 8%;
     -moz-border-radius:5px;  

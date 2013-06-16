@@ -14,10 +14,7 @@ body {
 }
 #wrapper {
   position: relative;
-  width: 800px;
   min-height: 400px;
-  margin: 100px auto;
-  color: #333;
 }
 #header {
     background-color: rgba(180,7,6,1);
