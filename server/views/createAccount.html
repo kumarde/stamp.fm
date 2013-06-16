@@ -5,6 +5,7 @@
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
     <link rel="stylesheet" type="text/css" href="/createAccount.css">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style type="text/css">
@@ -82,34 +83,32 @@ yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, 
         Use your Email</p><br>
       <input type = "text" name = "email" id="user-tf" placeholder="Email" class="email"><br><br>
       <input type = "password" name = "pass" id = "pass-tf" placeholder="Password" class="pass"><br><br>
-      <input type = "password" name = "pass" id = "pass-tf" placeholder="Confirm Password" class="pass"><br><br>
+      <input type = "password" name = "pass-confirm" id = "pass-tf" placeholder="Confirm Password" class="pass"><br><br>
       <input type = "text" name = "name" id="user-tf" placeholder="Name" class="name"><br><br>
-      <input type = "text" name = "username" id="user-tf" placeholder="Username" class="username"><br>
+      <input type = "text" name = "user" id="user-tf" placeholder="Username" class="username"><br>
       </center>
       <p id="birthday" style="font-size:20px">Birthdate<br>
 
       <form action="" name="someform" style="float:left">
-      <select id="daydropdown">
-      </select> 
-      <select id="monthdropdown">
-      </select> 
-      <select id="yeardropdown">
-      </select> 
+        <select id="daydropdown"></select> 
+        <select id="monthdropdown"></select> 
+        <select id="yeardropdown"></select> 
       </form>
 
       <script type="text/javascript">
 
       //populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
       window.onload=function(){
-      populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
+        populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
       }
       </script>
       </p>
       <center>
       <input type = "submit" value = "Create Account" style="float:left" id="createAccount"><br><br>
-      </center>
+   </form>
 </div>
-</div>
+</center>
+<div>
 
 
 </body>

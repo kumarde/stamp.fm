@@ -72,8 +72,10 @@
     <center>
     <h5 style="color:white">Enter Email to Recover Password</h5>
     <div>
-    <input type="text" class="enterEmail" placeholder="Email"><br><br>
-    <input type="submit" value="Recover Password">
+      <form method = "post" action = "/forgot">
+        <input type="text" class="enterEmail" placeholder="Email" name = "email"><br><br>
+        <input type="submit" value="Recover Password">
+      </form>
     </div>
 </center>
   </div>

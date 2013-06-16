@@ -10,8 +10,8 @@ var smtpTransport = nodemailer.createTransport("SMTP", {
 
 EmailModule.prototype.composeEmail = function(o)
 {
-	var link = 'localhost:8880/reset-password?e='+o.email+'&p='+o.pass;
-	var a = '<a href ='+link+'>Please click this</a><br><br>'
+	var link = "localhost:8880/reset-password?e="+o.email+"&p="+o.pass;
+	var a = "<a href = "+link+"> Click here to reset</a><br><br>";
 	console.log(a);
 	console.log(o.email);
 	console.log(o.pass);
@@ -19,7 +19,7 @@ EmailModule.prototype.composeEmail = function(o)
 	var html = "<html><body>";
 		html += "Hi "+o.name+",<br><br>";
 		html += "Your username is :: <b>"+o.user+"</b><br><br>";
-		html += a;
+		html += "<a href = "+link+"> Click here to reset</a><br><br>";
 		html += "Cheers,<br>";
 		html += "<a href='http://twitter.com/stamp.fm'>stamp.fm</a><br><br>";
 		html += "</body></html>";

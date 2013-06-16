@@ -1,19 +1,28 @@
-var express = require('express')
+var flash = require('connect-flash')
+  , express = require('express')
   , engine = require('ejs-locals')
   , form  = require('express-form')
-  , field = form.field;
+  , http = require('http')
+  , field = form.field
+  , passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
 app.configure(function(){
+    app.set('port', process.env.PORT || 8888);
     app.use(express.static(__dirname + '/stylesheets'));
     app.use(express.static(__dirname + '/images'));
     app.use(express.static(__dirname + '/video-js'));
     app.use(express.static(__dirname + '/videos'));
     app.use(express.static(__dirname + '/scripts'));
     app.use(express.bodyParser());
+    app.use(express.methodOverride());
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'super-duper-secret-secret'}));
+    app.use(flash());
+    app.use(passport.initialize());
+    app.use(passport.session());
     app.engine('ejs', engine);// use ejs-locals for all ejs templates
     app.set('views',__dirname + '/views');//set views directory
     app.set('view engine', 'ejs'); // so you can render('index')
@@ -61,14 +70,10 @@ app.get('/newView', function(req, res, next){
         }
       });
 });
-app.get('/', function(req, res,next) {// get for index page,
 
-  testModule.ReadMessage(function(error,data){
-       console.log(data);
-  });
-  res.render('index', { title: testModule.message })//render index.ejs, send to <%=title%>
+app.get('/', function(req, res, next){
+    res.render('index', {title: "Stamp.fm"});
 });
-
 //get for needed files
 app.get('/stylesheets/style.css', function(req,res,next){
   var stream = fs.createReadStream(__dirname + '/stylesheets/style.css').pipe(res);
@@ -88,12 +93,6 @@ app.get('/include/ejs_production.js', function(req,res,next){
 app.get('/include/views.js', function(req,res,next){
   var stream6 = fs.createReadStream(__direname + '/include/views.js').pipe(res);
 });
-
-
-
-
-app.listen(8888);//listen on port 8888, e.g. localhost:8888/
-
 
 app.post('/save', express.bodyParser(), function(req, res){
   //added a comment
@@ -136,7 +135,32 @@ app.get('/login', function(req, res){
 	}
 });
 
-app.post('/login', function(req, res){
+passport.use(new LocalStrategy({
+        usernameField: 'user',
+        passwordField: 'pass'
+    },
+    function(username, password, done){
+        db.users.findOne({username: username}, function(err, user){
+            if(err){return done(err);}
+            if(!user){
+                return done(null, false, { message: 'Incorrect username.'});
+            }
+            if(!user.validPassword(password)){
+                return done(null, false, {message: "Incorrect password."});
+            }
+            return done(null, user);
+        });
+    }
+));
+
+app.post('/login',
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true})
+);
+
+/*app.post('/login', function(req, res){
 	accountModule.manualLogin(req.param('user'), req.param('pass'), function(e, o){
 		if(!o){
 			res.send(e, 400);
@@ -151,7 +175,7 @@ app.post('/login', function(req, res){
 			    res.redirect('/');
 		}
 	});
-});
+});*/
 
 app.get('/signup', function(req, res){
 	res.render('createAccount.html', {title: "Signup"});
@@ -181,7 +205,8 @@ app.get('/signup', function(req, res){
                 if (e){
                     res.send(e, 400);
                 }   else{
-                    res.send('ok', 200);
+                    res.write("Redirecting to login...");
+                    res.redirect('/login');
                 }
             });
         }
@@ -249,4 +274,9 @@ app.post('/file-upload', function(req, res, next){
             res.redirect("back");
         });
     });
+});
+
+
+http.createServer(app).listen(app.get('port'), function(){
+    console.log("Server listening on port " + app.get('port'));
 });
