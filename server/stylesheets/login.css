@@ -5,6 +5,7 @@ html{
     /*min-width: 100%;
     min-height: 100%;*/
     font-family: 'Poiret One', cursive;
+    min-width: 1500px;
 }
 
 #header {
