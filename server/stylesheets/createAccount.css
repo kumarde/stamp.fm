@@ -39,6 +39,7 @@ h1{
 }
 
 .login{
+	background: rgba(0,0,0,.8);
     float: right;
     margin-right: 8%;
     margin-top: 8%;
@@ -48,7 +49,6 @@ h1{
   	-webkit-border-radius: 5px;
   	color: white;
   	background-color: #000;
-  	opacity: .9;
 }
 
 .link{
