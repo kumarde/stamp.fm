@@ -8,11 +8,8 @@ var flash = require('connect-flash')
   , FacebookStrategy = require('passport-facebook').Strategy
   , fs = require('fs')
   , db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
-
-
+  
 var app = express();
-
-
 app.configure(function(){
     app.set('port', process.env.PORT || 8888);
     app.use(express.static(__dirname + '/stylesheets'));
@@ -49,6 +46,7 @@ app.configure(function(){
         callbackURL: "http://localhost:8888/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
+            console.log(profile);
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
                         return done(null, user);
@@ -57,7 +55,7 @@ app.configure(function(){
                     return done(err);
                 }
                 else{
-                    db.users.insert({name:profile.displayName, _id:profile.id, email:profile.emails[1], gender:profile.gender});
+                    db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, gender:profile.gender});
                     return done(null, user);
                 }
             });
@@ -152,7 +150,7 @@ app.post('/vote', function(req, res){
 })
 
 app.get('/upload', function(req, res){
-    if(req.session.user === null || req.user === null){
+    if(req.session.user == null && req.user == null){
         //tell the user they are not logged in, redirect to login
         res.redirect('/login');
     }
@@ -164,14 +162,19 @@ app.get('/upload', function(req, res){
 /*******************************LOGIN STUFF HERE******************************************/
 
 /*FACEBOOK AUTH*/
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', { successRedirect: '/upload',
                                         failureRedirect: '/login'}));
 
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
-		res.render('login.html', {title: 'Hello - Please login To Your Account'});
+        if(req.session.user == null && req.user == null){
+		  res.render('login.html', {title: 'Hello - Please login To Your Account'});
+        }
+        else{
+            res.redirect('/upload');
+        }
 	}else{
 		accountModule.autoLogin(req.param('user'), req.param('pass'), function(o){
 			if(o != null){
@@ -197,7 +200,7 @@ app.post('/login', function(req, res){
 			}
           console.log("You are being redirected home");
           console.log(req.session.user);
-			    res.redirect('/');
+			    res.redirect('/upload');
 		}
 	});
 });
@@ -300,7 +303,6 @@ app.post('/file-upload', function(req, res, next){
         });
     });
 });
-
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Server listening on port " + app.get('port'));
