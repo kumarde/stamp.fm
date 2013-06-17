@@ -2,9 +2,10 @@ html{
     background: #000 no-repeat center center fixed;
     background-image: url('/login-background.jpg');
     background-size: cover;
-    min-width: 100%;
-    min-height: 100%;
+    /**min-width: 100%;
+    min-height: 100%;**/
     font-family: 'Poiret One', cursive;
+    min-width: 1500px;
 }
 
 #header {
@@ -143,39 +144,6 @@ body{
 	overflow: auto;
 }
 
-.modalDialog {
-	position: fixed;
-	font-family: 'Poiret One', cursive;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(0,0,0,0.8);
-	z-index: 99999;
-	opacity:0;
-	-webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
-	pointer-events: none;
-}
-
-.modalDialog:target {
-	opacity:1;
-	pointer-events: auto;
-}
-
-.modalDialog > div {
-	width: 20%;
-	height: 20%;
-	position: relative;
-	margin: 10% auto;
-	padding: 5px 20px 13px 20px;
-	border-radius: 10px;
-	background: rgba(180,7,6,1);
-	background: -moz-linear-gradient(##014421, #999);
-	background: -webkit-linear-gradient(##014421, #999);
-	background: -o-linear-gradient(##014421, #999);
-}
 
 .close {
 	background: #000;
@@ -197,4 +165,54 @@ body{
 }
 
 .close:hover { background: rgba(163,163,163,1); }
+
+.modalDialog_temp {
+	position: fixed;
+	font-family: 'Poiret One', cursive;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalDialog_temp:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalDialog_temp > div {
+	width: 30%;
+	height: 30%;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: rgba(180,7,6,1);
+	background: -moz-linear-gradient(##014421, #999);
+	background: -webkit-linear-gradient(##014421, #999);
+}
+
+.modalDialog_temp ul{
+	list-style-type: none;
+}
+
+.modalDialog_temp li{
+	display: inline;
+}
+
+.twitter-follow-button{
+	margin-right: 4%;
+}
+
+.fb-like{
+	float: left;
+	margin-left: 15%;
+}
 
