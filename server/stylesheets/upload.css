@@ -27,6 +27,39 @@ body {
     filter:alpha(opacity=80);
     z-index:99;
 }
+
+#header {
+    min-width: 700px;
+    background-color: rgba(180,7,6,1);
+    width:100%;
+    height: 75px;
+    position: fixed;
+    top: 0;
+    float: left;
+    opacity:0.9;
+    filter:alpha(opacity=90);
+    z-index:99;
+}
+
+#header ul{
+	list-style-type: none;
+}
+
+#header li{
+	display: inline;
+	margin-right: 20px;
+	font-size: 30px;
+}
+
+#header .nav{
+	color: black;
+}
+
+#header h1{
+	margin-left: 80px;
+	margin-right: 80px;
+}
+
 #upload_block {
     background-color: rgba(163,163,163,1);
     width: 500px;
