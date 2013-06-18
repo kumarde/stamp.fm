@@ -206,6 +206,9 @@ app.post('/login', function(req, res){
 app.get('/signup', function(req, res){
 	res.render('createAccount.html', {title: "Signup"});
 });
+app.get('/profile', function(req, res){
+	res.render('profile.html', {title: "Your Profile"});
+});
 
 app.post('/signup', function(req, res){
     accountModule.addNewAccount({
