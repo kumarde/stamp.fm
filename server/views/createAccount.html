@@ -16,41 +16,7 @@
         padding-bottom: 40px;
       }
     </style>
-
-<!--Birthdate Dropdown
-    <script type="text/javascript">
-/***********************************************
-* Drop Down Date select script- by JavaScriptKit.com
-* This notice MUST stay intact for use
-* Visit JavaScript Kit at http://www.javascriptkit.com/ for this script and more
-***********************************************/
-
-var monthtext=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
-
-function populatedropdown(dayfield, monthfield, yearfield){
-var today=new Date()
-var dayfield=document.getElementById(dayfield)
-var monthfield=document.getElementById(monthfield)
-var yearfield=document.getElementById(yearfield)
-for (var i=1; i<=31; i++)
-dayfield.options[i]=new Option(i, i+1)
-dayfield.options[today.getDate()]=new Option(today.getDate(), today.getDate(), true, true) //select today's day
-for (var m=0; m<12; m++)
-monthfield.options[m]=new Option(monthtext[m], monthtext[m])
-monthfield.options[today.getMonth()]=new Option(monthtext[today.getMonth()], monthtext[today.getMonth()], true, true) //select today's month
-var thisyear=today.getFullYear()
-for (var y=-0; y<120; y++){
-yearfield.options[y]=new Option(thisyear, thisyear)
-thisyear-=1
-}
-yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, true) //select today's year
-}
-
-</script>
-End Birthdate Dropdown-->
-
   </head>
-
 <body style="margin:0;min-width: 1100px;">
   <header id="header">
       <a href="http://www.stamp.fm"><img src="/treble.png"></a>
@@ -80,7 +46,7 @@ End Birthdate Dropdown-->
 <div id = "login-container">
   <form name = "InputFields" method = "post">
       <p style="font-size: 30px">Join Stamp.fm</p>
-      <p style="font-size: 25px"><img src="/facebook_login.png"><br>
+      <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
         or<br>
         Use your Email</p><br>
       <input type = "text" name = "name" id="user-tf" placeholder="Name" class="name"><br><br>
@@ -90,23 +56,6 @@ End Birthdate Dropdown-->
       <label for = "birthday" id = "birthday" style="float:left"> I certify that I am over the age of 13: </label>
       <input type = "checkbox" checked = "checked" style="float:left"><br>
       </center>
-      <!--Birthday Dropdown
-      <p id="birthday" style="font-size:20px">Birthdate<br>
-
-      <form action="" name="someform" style="float:left">
-        <select id="daydropdown"></select> 
-        <select id="monthdropdown"></select> 
-        <select id="yeardropdown"></select> 
-      </form>
-
-      <script type="text/javascript">
-
-      //populatedropdown(id_of_day_select, id_of_month_select, id_of_year_select)
-      window.onload=function(){
-        populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
-      }
-      </script>
-      End Birthday Dropdown-->
       </p>
       <center>
       <input type = "submit" value = "Create Account" style="float:left" id="createAccount"><br><br>
@@ -149,38 +98,5 @@ End Birthdate Dropdown-->
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- End FB Like Script -->
-<script type="text/javascript">
-  var validator = new FormValidator('InputFields', [{
-    name: 'email',
-    display: 'Email',    
-    rules: 'required|valid_email'
-}, {
-    name: 'pass',
-    display: 'Password',
-    rules: 'required'
-}, {
-    name: 'pass-confirm',
-    display: 'Password Confirmation',
-    rules: 'required|matches[pass]'
-}, {
-    name: 'name',
-    display: 'Name',
-    rules: 'required|alpha'
-}, {
-    name: 'user',
-    display: 'Username',
-    rules: 'required|alpha_numeric'
-}], function(errors, event) {
-    if (errors.length > 0) {
-        var errorString = '';
-        
-        for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
-            errorString += errors[i].message + '<br />';
-        }
-        
-        el.innerHTML = errorString;
-    }       
-});
-</script>
 </body>
 </html>
