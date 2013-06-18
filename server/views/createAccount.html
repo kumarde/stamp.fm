@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript" src="validate.min.js"></script>
     <title>stamp.fm</title>
-    <% script ('/scripts/FormValidation') -%>
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
     <link rel="stylesheet" type="text/css" href="/createAccount.css">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -44,25 +44,17 @@
 <div class="login">
 <center>
 <div id = "login-container">
-  <form id = "InputFields" method = "post">
+  <form name = "InputFields" method = "post">
       <p style="font-size: 30px">Join Stamp.fm</p>
       <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
         or<br>
         Use your Email</p><br>
-<<<<<<< HEAD
-      <input type = "text" name = "email" id="Email" placeholder="Email" class="email"><br><br>
-      <input type = "password" name = "pass" id = "Password" placeholder="Password" class="pass"><br><br>
-      <input type = "password" name = "pass-confirm" id = "Password Confirmation" placeholder="Confirm Password" class="pass"><br><br>
-      <input type = "text" name = "name" id="Name" placeholder="Name" class="name"><br><br>
-      <input type = "text" name = "user" id="Username" placeholder="Username" class="username"><br>
-=======
       <input type = "text" name = "name" id="user-tf" placeholder="Name" class="name"><br><br>
       <input type = "text" name = "email" id="user-tf" placeholder="Email" class="email"><br><br>
       <input type = "password" name = "pass" id = "pass-tf" placeholder="Password" class="pass"><br><br>
       <input type = "password" name = "pass-confirm" id = "pass-tf" placeholder="Confirm Password" class="pass"><br><br>
       <label for = "birthday" id = "birthday" style="float:left"> I certify that I am over the age of 13: </label>
       <input type = "checkbox" checked = "checked" style="float:left"><br>
->>>>>>> 347d0c442d8e208d2bfeeae0a302690a5c300f14
       </center>
       </p>
       <center>
@@ -106,9 +98,5 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- End FB Like Script -->
-<<<<<<< HEAD
-=======
-
->>>>>>> 39602ee37933e8279277077cd0214d854811f7fe
 </body>
 </html>
