@@ -17,7 +17,7 @@
       }
     </style>
 
-<!--Birthdate Dropdown-->
+<!--Birthdate Dropdown
     <script type="text/javascript">
 /***********************************************
 * Drop Down Date select script- by JavaScriptKit.com
@@ -47,7 +47,7 @@ yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, 
 }
 
 </script>
-<!--End Birthdate Dropdown-->
+End Birthdate Dropdown-->
 
   </head>
 
@@ -87,8 +87,11 @@ yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, 
       <input type = "password" name = "pass" id = "pass-tf" placeholder="Password" class="pass"><br><br>
       <input type = "password" name = "pass-confirm" id = "pass-tf" placeholder="Confirm Password" class="pass"><br><br>
       <input type = "text" name = "name" id="user-tf" placeholder="Name" class="name"><br><br>
-      <input type = "text" name = "user" id="user-tf" placeholder="Username" class="username"><br>
+      <input type = "text" name = "user" id="user-tf" placeholder="Username" class="username"><br><br>
+      <label for = "birthday" id = "birthday" style="float:left"> I certify that I am over the age of 13: </label>
+      <input type = "checkbox" checked = "checked" style="float:left"><br>
       </center>
+      <!--Birthday Dropdown
       <p id="birthday" style="font-size:20px">Birthdate<br>
 
       <form action="" name="someform" style="float:left">
@@ -104,13 +107,14 @@ yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, 
         populatedropdown("daydropdown", "monthdropdown", "yeardropdown")
       }
       </script>
+      End Birthday Dropdown-->
       </p>
       <center>
       <input type = "submit" value = "Create Account" style="float:left" id="createAccount"><br><br>
    </form>
 </div>
 </center>
-
+    
 <!-- Modal Window(s) -->
 
 <div id="notReal" class="modalDialog_temp">

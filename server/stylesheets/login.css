@@ -227,6 +227,7 @@ body{
 
 .modalDialog_temp li{
 	display: inline;
+	float: center;
 }
 
 .twitter-follow-button{
