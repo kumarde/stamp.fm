@@ -46,7 +46,6 @@ app.configure(function(){
         callbackURL: "http://localhost:8888/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
-            console.log(profile);
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
                         return done(null, user);
@@ -104,10 +103,6 @@ app.get('/newView', function(req, res, next){
         }
     });
 });
-
-app.get('/', function(req, res, next){
-    res.render('index', {title: "Stamp.fm"});
-});
 //get for needed files
 app.get('/stylesheets/style.css', function(req,res,next){
   var stream = fs.createReadStream(__dirname + '/stylesheets/style.css').pipe(res);
@@ -154,7 +149,9 @@ app.get('/upload', function(req, res){
         //tell the user they are not logged in, redirect to login
         res.redirect('/login');
     }
-    else{    
+    else{
+        console.log(req.session.user);
+        console.log(req.user);
         res.render('upload.html', {title: "hi"});
     }
 });
@@ -199,7 +196,7 @@ app.post('/login', function(req, res){
 				res.cookie('pass', o.pass, {maxAge: 900000});
 			}
           console.log("You are being redirected home");
-          console.log(req.session.user);
+          console.log(req.user);
 			    res.redirect('/upload');
 		}
 	});
