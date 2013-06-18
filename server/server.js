@@ -2,6 +2,7 @@ var flash = require('connect-flash')
   , express = require('express')
   , engine = require('ejs-locals')
   , form  = require('express-form')
+  , moment = require('moment')
   , http = require('http')
   , field = form.field
   , passport = require('passport')
@@ -54,7 +55,7 @@ app.configure(function(){
                     return done(err);
                 }
                 else{
-                    db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, gender:profile.gender});
+                    db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')});
                     return done(null, user);
                 }
             });
@@ -156,6 +157,7 @@ app.get('/upload', function(req, res){
     }
 });
 
+
 /*******************************LOGIN STUFF HERE******************************************/
 
 /*FACEBOOK AUTH*/
@@ -184,15 +186,14 @@ app.get('/login', function(req, res){
 	}
 });
 
-
 app.post('/login', function(req, res){
-	accountModule.manualLogin(req.param('user'), req.param('pass'), function(e, o){
+	accountModule.manualLogin(req.param('email'), req.param('pass'), function(e, o){
 		if(!o){
 			res.send(e, 400);
 		} else{
 			req.session.user = o;
 			if(req.param('remember-me') == 'true'){
-				res.cookie('user', o.user, {maxAge: 900000});
+				res.cookie('email', o.email, {maxAge: 900000});
 				res.cookie('pass', o.pass, {maxAge: 900000});
 			}
           console.log("You are being redirected home");
@@ -205,37 +206,23 @@ app.post('/login', function(req, res){
 app.get('/signup', function(req, res){
 	res.render('createAccount.html', {title: "Signup"});
 });
+app.get('/profile', function(req, res){
+	res.render('profile.html', {title: "Your Profile"});
+});
 
-    app.post('/signup', 
-
-        form(
-            field("name").required(),
-            field("email").required(),
-            field("user").required(),
-            field("pass").required(),
-            field("pass-confirm").equals("pass")
-        )
-        ,function(req, res){
-        if(!req.form.isValid){
-            console.log(req.form.errors)
-        }
-        else{
-            AM.addNewAccount({
-                name    : req.param('name'),
-                email   : req.param('email'),
-                user    : req.param('user'),
-                pass    : req.param('pass'),
-                country : req.param('country')
-            }, function(e){
-                if (e){
-                    res.send(e, 400);
-                }   else{
-                    res.write("Redirecting to login...");
-                    res.redirect('/login');
-                }
-            });
-        }
+app.post('/signup', function(req, res){
+    accountModule.addNewAccount({
+        name    : req.param('name'),
+        email   : req.param('email'),
+        pass    : req.param('pass'),
+    }, function(e){
+        if (e){
+            res.send(e, 400);
+        }   else{
+        res.redirect('/login');
+       }
     });
+});
 app.get('/forgot', function(req ,res, next){
     res.render('forgot', {title: 'Forgot Password?'});
 });

@@ -204,7 +204,8 @@ body{
 }
 
 .modalDialog_temp li{
-	display: inline;
+	display: inline-block;
+	float: center;
 }
 
 .twitter-follow-button{
@@ -212,7 +213,5 @@ body{
 }
 
 .fb-like{
-	float: left;
 	margin-left: 15%;
 }
-
