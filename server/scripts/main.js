@@ -22,7 +22,13 @@ $(document).ready(function() {
             $('#div2vote').html(data.v2id);
            }
         })
-     });     
+     });
+    
+
+
+
+
+
 });
 function expandFooter(){
         if(document.getElementById("expandedFooter").style.display=='none'){

@@ -17,9 +17,9 @@ AccountModule.prototype.autoLogin = function(user, pass, callback)
 	});
 }
 
-AccountModule.prototype.manualLogin = function(user, pass, callback)
+AccountModule.prototype.manualLogin = function(email, pass, callback)
 {
-	db.users.findOne({user:user}, function(e, o) {
+	db.users.findOne({email:email}, function(e, o) {
 		if (o == null){
 			callback('user-not-found');
 		}	else{
@@ -37,43 +37,19 @@ AccountModule.prototype.manualLogin = function(user, pass, callback)
 
 AccountModule.prototype.addNewAccount = function(newData, callback)
 {
-	db.users.findOne({user:newData.user}, function(e, o) {
-		if (o)
-{			callback('username-taken');
-		}	else{
-			db.users.findOne({email:newData.email}, function(e, o) {
-				if (o){
-					callback('email-taken');
-				}	else{
-					saltAndHash(newData.pass, function(hash){
-						newData.pass = hash;
-					// append date stamp when record was created //
-						newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-						db.users.insert(newData, {safe: true}, callback);
-					});
-				}
-			});
-		}
-	});
-}
-
-AccountModule.prototype.updateAccount = function(newData, callback)
-{
-	db.users.findOne({user:newData.user}, function(e, o){
-		o.name 		= newData.name;
-		o.email 	= newData.email;
-		o.country 	= newData.country;
-		if (newData.pass == ''){
-			db.users.save(o, {safe: true}, callback);
+	db.users.findOne({email:newData.email}, function(e, o) {
+		if (o){
+			callback('email-taken');
 		}	else{
 			saltAndHash(newData.pass, function(hash){
-				o.pass = hash;
-				db.users.save(o, {safe: true}, callback);
+				newData.pass = hash;
+				// append date stamp when record was created //
+				newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+				db.users.insert(newData, {safe: true}, callback);
 			});
 		}
 	});
 }
-
 AccountModule.prototype.updatePassword = function(email, newPass, callback)
 {
 	db.users.findOne({email:email}, function(e, o){
