@@ -1,0 +1,57 @@
+html{
+    background: #000 no-repeat center center fixed;
+    background-image: url('/404_background.jpg');
+    background-size: cover;
+    /**min-width: 100%;
+    min-height: 100%;**/
+    font-family: 'Poiret One', cursive;
+    min-width: 1500px;
+}
+
+#header {
+    min-width: 700px;
+    background-color: rgba(180,7,6,1);
+    width:100%;
+    height: 75px;
+    position: fixed;
+    top: 0;
+    float: left;
+    opacity:0.9;
+    filter:alpha(opacity=90);
+    z-index:99;
+}
+
+#header ul{
+	list-style-type: none;
+}
+
+#header li{
+	display: inline;
+	margin-right: 20px;
+	font-size: 30px;
+}
+
+#header .nav{
+	color: black;
+}
+
+#header h1{
+	margin-left: 80px;
+	margin-right: 80px;
+}
+
+body{
+    overflow: auto;
+}
+
+.blurb{
+    width:50%;
+    height: 50%;
+    margin-top: 8%;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+    color: #FFFFFF;
+    background-color: #000;
+    opacity: .8;
+}

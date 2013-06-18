@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript" src="validate.min.js"></script>
     <title>stamp.fm</title>
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
     <link rel="stylesheet" type="text/css" href="/createAccount.css">
@@ -77,7 +78,7 @@ yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, 
 <div class="login">
 <center>
 <div id = "login-container">
-  <form method = "post">
+  <form name = "InputFields" method = "post">
       <p style="font-size: 30px">Join Stamp.fm</p>
       <p style="font-size: 25px"><img src="/facebook_login.png"><br>
         or<br>
@@ -112,17 +113,75 @@ yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, 
 
 <!-- Modal Window(s) -->
 
-<div id="notReal" class="modalDialog">
+<div id="notReal" class="modalDialog_temp">
   <div>
     <a href="#close" title="Close" class="close">X</a>
     <center>
     <h3 style="color:white">This stage of the competition has not begun yet.<br><br>
     See you July 25th!</h3>
-</center>
+
+    <p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
+
+    <ul>
+      <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
+      <li>  <div>
+            <a href="https://twitter.com/stampfm" class="twitter-follow-button" data-show-count="false" data-lang="en"></a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
+    </ul>          
+    </center>
   </div>
 </div>
 
 <!-- End Modal Window(s) -->
 
+
+<!-- FB Like Script-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- End FB Like Script -->
+<script type="text/javascript">
+  var validator = new FormValidator('InputFields', [{
+    name: 'email',
+    display: 'Email',    
+    rules: 'required|valid_email'
+}, {
+    name: 'pass',
+    display: 'Password',
+    rules: 'required'
+}, {
+    name: 'pass-confirm',
+    display: 'Password Confirmation',
+    rules: 'required|matches[pass]'
+}, {
+    name: 'password_confirm',
+    display: 'password confirmation',
+    rules: 'required|matches[password]'
+}, {
+    name: 'name',
+    display: 'Name',
+    rules: 'required|alpha'
+}, {
+    name: 'user',
+    display: 'Username',
+    rules: 'required|alpha_numeric'
+}], function(errors, event) {
+    if (errors.length > 0) {
+        var errorString = '';
+        
+        for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
+            errorString += errors[i].message + '<br />';
+        }
+        
+        el.innerHTML = errorString;
+    }       
+});
+</script>
 </body>
 </html>
