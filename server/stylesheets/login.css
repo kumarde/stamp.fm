@@ -41,16 +41,16 @@ html{
 }
 
 .login{
-	background: rgba(0,0,0,.8);
+    background: rgba(0,0,0,.8);
     float: right;
     margin-right: 8%;
     margin-top: 8%;
     border: 3px solid rgba(0,0,0,0.1);
     -moz-border-radius:5px;  
-  	border-radius: 5px;  
-  	-webkit-border-radius: 5px;
-  	color: white;
-  	background-color: #000;
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+    color: white;
+    height: 480px;
 }
 
 .link{
@@ -96,16 +96,17 @@ html{
 }
 
 .blurb{
-	float: left;
+    float: left;
     margin-left: 90px;
     margin-right: 0px;
     margin-top: 8%;
     -moz-border-radius:5px;  
-  	border-radius: 5px;  
-  	-webkit-border-radius: 5px;
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
     color: #FFFFFF;
     background-color: #000;
     opacity: .7;
+    height: 485px;
 }
 
 .big{
