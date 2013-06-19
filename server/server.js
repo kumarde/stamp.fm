@@ -204,7 +204,7 @@ app.post('/login', function(req, res){
 });
 
 app.get('/signup', function(req, res){
-	res.render('createAccount.html', {title: "Signup"});
+	res.render('createAccount', {title: "Signup"});
 });
 app.get('/profile', function(req, res){
 	res.render('profile.html', {title: "Your Profile"});
