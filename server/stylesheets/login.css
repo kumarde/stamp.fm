@@ -2,10 +2,7 @@ html{
     background: #000 no-repeat center center fixed;
     background-image: url('/login-background.jpg');
     background-size: cover;
-    /**min-width: 100%;
-    min-height: 100%;**/
     font-family: 'Poiret One', cursive;
-    min-width: 1500px;
 }
 
 #header {
@@ -41,9 +38,10 @@ html{
 }
 
 .login{
-    background: rgba(0,0,0,.8);
-    float: right;
-    margin-right: 8%;
+	position: relative;
+	background: rgba(0,0,0,.8);
+    float: left;
+    margin-left: 5%;
     margin-top: 8%;
     border: 3px solid rgba(0,0,0,0.1);
     -moz-border-radius:5px;  
@@ -97,8 +95,7 @@ html{
 
 .blurb{
     float: left;
-    margin-left: 90px;
-    margin-right: 0px;
+    margin-left: 5%;
     margin-top: 8%;
     -moz-border-radius:5px;  
     border-radius: 5px;  
