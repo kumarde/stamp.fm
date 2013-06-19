@@ -10,6 +10,21 @@ var flash = require('connect-flash')
   , fs = require('fs')
   , db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
   
+
+
+var mpu = require('knox-mpu');
+var S3_KEY = 'AKIAIZQEDQU7GWKOSZ3A';
+var S3_SECRET = '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';
+var S3_BUCKET = 'media.stamp.fm';
+var knox = require('knox');
+var songs = 0;
+
+var client = knox.createClient({
+    key: S3_KEY,
+    secret: S3_SECRET,
+    bucket: S3_BUCKET
+});
+
 var app = express();
 app.configure(function(){
     app.set('port', process.env.PORT || 8888);
@@ -146,15 +161,15 @@ app.post('/vote', function(req, res){
 })
 
 app.get('/upload', function(req, res){
-    if(req.session.user == null && req.user == null){
+    /*if(req.session.user == null && req.user == null){
         //tell the user they are not logged in, redirect to login
         res.redirect('/login');
     }
-    else{
+    else{*/
         console.log(req.session.user);
         console.log(req.user);
-        res.render('upload.html', {title: "hi"});
-    }
+        res.render('upload', {title: "hi"});
+    //}
 });
 
 
@@ -276,16 +291,24 @@ app.get('/reset-password', function(req, res) {
     });
 /********************************************LOGIN STUFF DONE*******************************/
 /****************************UPLOAD FILES TO LOCAL SERVER***********************************/
-
 app.post('/file-upload', function(req, res, next){
-    console.log(req.files);
-    fs.readFile(req.files.file.path, function(e, data){
-        
-        var newPath = __dirname + "/videos/";
-        fs.writeFile(newPath, data, function(e){
-            res.redirect("back");
-        });
-    });
+    console.log(req.files.file.name);
+        var stream = fs.createReadStream(req.files.file.path);
+        songs++;
+        upload = new mpu(
+            {
+                client: client,
+                objectName: 'video'+ songs + '.mp4', // Amazon S3 object name
+                stream: stream
+            },
+            // Callback handler
+            function(err, obj) {
+                // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
+                console.log(obj);
+                console.log(err);
+                res.send("back");
+            }
+        ); 
 });
 
 http.createServer(app).listen(app.get('port'), function(){

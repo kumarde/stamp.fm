@@ -1,144 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset=utf-8>
-<meta name="viewport" content="width=620">
-<title>Upload to Stamp.fm</title>
-<link rel="stylesheet" href="css/html5demos.css">
-<script src="js/h5utils.js"></script></head>
-<body>
-<section id="wrapper">
-<div id="carbonads-container"><div class="carbonad"><div id="azcarbon"></div><script type="text/javascript">var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = "http://engine.carbonads.com/z/14060/azcarbon_2_1_0_VERT"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script></div></div>
-    <header>
-      <h1>Drag and drop videos or songs to upload</h1>
+<html>
+  <head>
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/upload.css">
+    <link rel="stylesheet" type="text/css" href="/dropzone.css">
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  
+  <body>
+    <div id="wrapper">
+      <header id="header">
+      <a href="http://www.stamp.fm"><img src="/headerStamp.png"></a>
+      <ul style="float:right">
+      <li>
+      <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
+ 	  </li>
+ 	  <li>
+      <a href="/audition" style="text-decoration:none" class="nav">AUDITION</a>
+  	  </li>
+  	  <li>
+      <a href="/bracket" style="text-decoration:none" class="nav">BRACKET</a>
+  	  </li>
+   	  </ul>  
     </header>
 
-<style>
-#holder { border: 10px dashed #ccc; width: 300px; min-height: 300px; margin: 20px auto;}
-#holder.hover { border: 10px solid #0c0; }
-#holder img { display: block; margin: 10px auto; }
-#holder p { margin: 10px; font-size: 14px; }
-progress { width: 100%; }
-progress:after { content: '%'; }
-.fail { background: #c00; padding: 2px; color: #fff; }
-.hidden { display: none !important;}
-</style>
-<article>
-  <div id="holder">
-  </div> 
-  <p id="upload" class="hidden"><label>Drag & drop not supported, but you can still upload via this input field:<br><input type="file"></label></p>
-  <p id="filereader">File API & FileReader API not supported</p>
-  <p id="formdata">XHR2's FormData is not supported</p>
-  <p id="progress">XHR2's upload progress isn't supported</p>
-  <p>Upload progress: <progress id="uploadprogress" min="0" max="100" value="0">0</progress></p>
-</article>
-
-<script>
-var holder = document.getElementById('holder'),
-    tests = {
-      filereader: typeof FileReader != 'undefined',
-      dnd: 'draggable' in document.createElement('span'),
-      formdata: !!window.FormData,
-      progress: "upload" in new XMLHttpRequest
-    }, 
-    support = {
-      filereader: document.getElementById('filereader'),
-      formdata: document.getElementById('formdata'),
-      progress: document.getElementById('progress')
-    },
-    acceptedTypes = {
-      '.mp4 video/mpeg': true,
-      '.mp3 audio/mpeg': true,
-      '.mov video/mpeg': true,
-      '.avi video/mpeg': true,
-      '.wmv video/mpeg': true
-    },
-    progress = document.getElementById('uploadprogress'),
-    fileupload = document.getElementById('upload');
-
-"filereader formdata progress".split(' ').forEach(function (api) {
-  if (tests[api] === false) {
-    support[api].className = 'fail';
-  } else {
-    support[api].className = 'hidden';
-  }
-});
-
-function previewfile(file) {
-  if (tests.filereader === true && acceptedTypes[file.type] === true) {
-    var reader = new FileReader();
-    reader.onload = function (event) {
-      var image = new Image();
-      image.src = event.target.result;
-      image.width = 250; // a fake resize
-      holder.appendChild(image);
-    };
-
-    reader.readAsDataURL(file);
-  }  else {
-    holder.innerHTML += '<p>Uploaded ' + file.name + ' ' + (file.size ? (file.size/1024|0) + 'K' : '');
-    console.log(file);
-  }
-}
-
-function readfiles(files) {
-    debugger;
-    var formData = tests.formdata ? new FormData() : null;
-    for (var i = 0; i < files.length; i++) {
-      if (tests.formdata) formData.append('file', files[i]);
-      previewfile(files[i]);
-    }
-
-    // now post a new XHR request
-    if (tests.formdata) {
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/devnull.php');
-      xhr.onload = function() {
-        progress.value = progress.innerHTML = 100;
-      };
-
-      if (tests.progress) {
-        xhr.upload.onprogress = function (event) {
-          if (event.lengthComputable) {
-            var complete = (event.loaded / event.total * 100 | 0);
-            progress.value = progress.innerHTML = complete;
-          }
-        }
-      }
-
-      xhr.send(formData);
-    }
-}
-
-if (tests.dnd) { 
-  holder.ondragover = function () { this.className = 'hover'; return false; };
-  holder.ondragend = function () { this.className = ''; return false; };
-  holder.ondrop = function (e) {
-    this.className = '';
-    e.preventDefault();
-    readfiles(e.dataTransfer.files);
-  }
-} else {
-  fileupload.className = 'hidden';
-  fileupload.querySelector('input').onchange = function () {
-    readfiles(this.files);
-  };
-}
-
-</script><a id="stampfmBadge" href="http://www.stamp.fm/">
-<img src="http://www.stamp.fm/uploads/2/0/1/2/20128091/1711337_orig.jpg" width="100" height="100" alt="Stamp.fm" title="Upload">
-</a>
-</section>
-
-<script src="js/prettify.packed.js"></script>
-<script>
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script>
-try {
-var pageTracker = _gat._getTracker("UA-1656750-18");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-</body>
+      <div id="upload_block">
+        <script src="/dropzone.js"></script>
+        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data">
+	  <div class="fallback">
+	    <input name="file" type="file" multiple />
+      	  </div>
+        </form>
+      </div>
+      <div id="form_block">
+	<div class="scrollingArea">
+	  <table class="scrollable">
+	    <thead>
+	      <tr>
+		<th>Select your entry</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+		<td><div class="song_name"><a href="#upload_song">Song Name</a></div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	      <tr>
+		<td><div class="song_name">Song Name</div></td>
+	      </tr>
+	    </tbody>
+	  </table>
+	</div>
+      </div>
+      <div id="upload_song">
+	<center>
+	  <br><br><br><br>Song Name<br><br>
+	  <select id = "select_genre">
+	    <option value = "default">Enter this song under which genre?</option>
+            <option value = "0">genre 0</option>
+            <option value = "1">genre 1</option>
+            <option value = "2">genre 2</option>
+            <option value = "3">genre 3</option>
+	    <option value = "4">genre 4</option>
+	    <option value = "5">genre 5</option>
+	    <option value = "6">genre 6</option>
+	    <option value = "7">genre 7</option>
+	    <option value = "8">genre 8</option>
+	    <option value = "9">genre 9</option>
+          </select>
+	  <br><br>Warning: You may only enter one song per genre<br><br>
+	  <button id="submit_song">Submit</button>
+	  <a id="close_upload_song" href="#"><img src="/close_icon.png"></a>
+	</center>
+      </div>
+    </div>
+    
+  </body>
 </html>
