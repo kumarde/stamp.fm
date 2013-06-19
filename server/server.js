@@ -129,6 +129,9 @@ app.get('/stylesheets/main.css', function(req,res,next){
 app.get('/scripts/main.js', function(req,res,next){
   var stream3 = fs.createReadStream(__dirname + '/scripts/main.js').pipe(res);
 });
+app.get('/scripts/FormValidation.js', function(req, res){
+  var stream7 = fs.createReadStream(__dirname + '/scripts/FormValidation.js').pipe(res);
+})
 app.get('/include/jquery.ejs.js', function(req,res,next){
   var stream4 = fs.createReadStream(__dirname + '/include/jquery.ejs.js').pipe(res);
 });
@@ -290,7 +293,7 @@ app.get('/reset-password', function(req, res) {
         })
     });
 /********************************************LOGIN STUFF DONE*******************************/
-/****************************UPLOAD FILES TO LOCAL SERVER***********************************/
+/****************************UPLOAD FILES TO S3 SERVER***********************************/
 app.post('/file-upload', function(req, res, next){
     console.log(req.files.file.name);
         var stream = fs.createReadStream(req.files.file.path);
@@ -310,6 +313,8 @@ app.post('/file-upload', function(req, res, next){
             }
         ); 
 });
+
+/**************************************DONE WITH FILE UPLOAD*********************************/
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Server listening on port " + app.get('port'));

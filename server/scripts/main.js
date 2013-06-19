@@ -1,4 +1,6 @@
+alert("muther");
 $(document).ready(function() {
+  alert("ohgawd");
     $('#enter').click(function(){  
      $.ajax({ 
            url: '/vote',
@@ -23,12 +25,6 @@ $(document).ready(function() {
            }
         })
      });
-    
-
-
-
-
-
 });
 function expandFooter(){
         if(document.getElementById("expandedFooter").style.display=='none'){
