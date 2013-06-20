@@ -41,8 +41,8 @@ html{
 	position: relative;
 	background: rgba(0,0,0,.8);
     float: left;
-    margin-left: 5%;
-    margin-top: 8%;
+    margin-left: 1%;
+    margin-top: 2%;
     border: 3px solid rgba(0,0,0,0.1);
     -moz-border-radius:5px;  
     border-radius: 5px;  
@@ -95,8 +95,8 @@ html{
 
 .blurb{
     float: left;
-    margin-left: 5%;
-    margin-top: 8%;
+    margin-left: 1%;
+    margin-top: 2%;
     -moz-border-radius:5px;  
     border-radius: 5px;  
     -webkit-border-radius: 5px;
@@ -104,22 +104,26 @@ html{
     background-color: #000;
     opacity: .7;
     height: 485px;
+    width:53%;
 }
 
 .big{
 	margin-top: 15px;
-	margin-left: 40px;
-	margin-right: 100px;
+	margin-left: 10px;
+	margin-right: 10px;
 	margin-bottom: 0px;
+	font-size: 3em;
 }
 
 .small{
-	margin-left: 40px;
-	margin-bottom: 270px;
+	margin-left: 10px;
+	font-size: 2em;
 }
 
 body{
 	overflow: auto;
+	margin:0;
+	min-width: 800px;
 }
 
 .modalDialog {
@@ -215,8 +219,8 @@ body{
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
 	background: rgba(180,7,6,1);
-	background: -moz-linear-gradient(##014421, #999);
-	background: -webkit-linear-gradient(##014421, #999);
+	background: -moz-linear-gradient(#014421, #999);
+	background: -webkit-linear-gradient(#014421, #999);
 }
 
 .modalDialog_temp ul{
