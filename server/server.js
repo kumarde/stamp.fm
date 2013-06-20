@@ -295,7 +295,7 @@ app.get('/reset-password', function(req, res) {
 /********************************************LOGIN STUFF DONE*******************************/
 /****************************UPLOAD FILES TO S3 SERVER***********************************/
 app.post('/file-upload', function(req, res, next){
-    console.log(req.files.file.name);
+    console.log(req.files.file.size);
         var stream = fs.createReadStream(req.files.file.path);
         var id;
         songs++;
