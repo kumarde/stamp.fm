@@ -62,6 +62,19 @@ html{
     color: #FFFFFF;
 }
 
+
+.InputFields input:focus:invalid, .InputFields textarea:focus:invalid { /* when a field is considered invalid by the browser */
+    background: #fff url(images/invalid.PNG) no-repeat 98% center;
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535
+}
+
+.InputFields input:required:valid, .InputFields textarea:required:valid { /* when a field is considered valid by the browser */
+    background: #fff url(images/valid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
+}
+
 .email{
 	float: left;
 	margin-left: 80px;
@@ -72,18 +85,6 @@ html{
 	-moz-border-radius:4px;  
   	border-radius: 4px;  
   	-webkit-border-radius: 4px;
-}
-
-.email input:focus:invalid, .email textarea:focus:invalid { /* when a field is considered invalid by the browser */
-    background: #fff url(images/invalid.PNG) no-repeat 98% center;
-    box-shadow: 0 0 5px #d45252;
-    border-color: #b03535
-}
-
-.email input:required:valid, .email textarea:required:valid { /* when a field is considered valid by the browser */
-    background: #fff url(images/valid.png) no-repeat 98% center;
-    box-shadow: 0 0 5px #5cd053;
-    border-color: #28921f;
 }
 
 .pass{
@@ -98,18 +99,6 @@ html{
   	-webkit-border-radius: 4px;
 }
 
-.pass input:focus:invalid, .pass textarea:focus:invalid { /* when a field is considered invalid by the browser */
-    background: #fff url(images/invalid.png) no-repeat 98% center;
-    box-shadow: 0 0 5px #d45252;
-    border-color: #b03535
-}
-
-.pass input:required:valid, .pass textarea:required:valid { /* when a field is considered valid by the browser */
-    background: #fff url(images/valid.png) no-repeat 98% center;
-    box-shadow: 0 0 5px #5cd053;
-    border-color: #28921f;
-}
-
 .name{
 	float: left;
 	margin-left: 80px;
@@ -120,18 +109,6 @@ html{
 	-moz-border-radius:4px;  
   	border-radius: 4px;  
   	-webkit-border-radius: 4px;
-}
-
-.name input:focus:invalid, .name textarea:focus:invalid { /* when a field is considered invalid by the browser */
-    background: #fff url(images/invalid.PNG) no-repeat 98% center;
-    box-shadow: 0 0 5px #d45252;
-    border-color: #b03535
-}
-
-.name input:required:valid, .name textarea:required:valid { /* when a field is considered valid by the browser */
-    background: #fff url(images/valid.png) no-repeat 98% center;
-    box-shadow: 0 0 5px #5cd053;
-    border-color: #28921f;
 }
 
 #birthday{
