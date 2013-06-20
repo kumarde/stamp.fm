@@ -1,5 +1,5 @@
 <% layout('layout') -%>
-<% script('form.js') -%>
+<% script('FormValidation.js') -%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -44,15 +44,15 @@
 <div class="login">
 <center>
 <div id = "login-container">
-  <form name = "InputFields" method = "post">
+  <form id = "InputFields" method = "post">
       <p style="font-size: 30px">Join Stamp.fm</p>
       <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
         or<br>
         Use your Email</p><br>
-      <input type = "text" name = "name" id="user-tf" placeholder="Name" class="name"><br><br>
-      <input type = "text" name = "email" id="user-tf" placeholder="Email" class="email"><br><br>
-      <input type = "password" name = "pass" id = "pass-tf" placeholder="Password" class="pass"><br><br>
-      <input type = "password" name = "pass-confirm" id = "pass-tf" placeholder="Confirm Password" class="pass"><br><br>
+      <input type = "text" name = "name" id="Name" placeholder="Name" class="name"><br><br>
+      <input type = "text" name = "email" id="Email" placeholder="Email" class="email"><br><br>
+      <input type = "password" name = "pass" id = "Password" placeholder="Password" class="pass"><br><br>
+      <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass"><br><br>
       <label for = "birthday" id = "birthday" style="float:left"> I certify that I am over the age of 13: </label>
       <input type = "checkbox" checked = "checked" style="float:left"><br>
       </center>

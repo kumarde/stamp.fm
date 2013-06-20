@@ -1,51 +1,47 @@
 $(document).ready(function(){
-  function FieldISEmpty(id){
-      var x=document.forms["InputFields"]["id"].value;
-      if(x == null || x == ""){
-        alert("The " + id " field must be filled out");
-        return true;
-      }
+  var form = $("#InputFields");
+  var name = $("#Name");
+  var email = $("#Email");
+  var password = $("#Password");
+  var passconfirm = $("#PasswordConfirmation");
+  
+  function InvalidName(){
+    if(name.val().length < 1){
+      alert("Please enter a Valid Name");
     }
-  function InvaildEmail(){
-    var x=document.forms["InputFields"]["Email"].value;
-    var atpos=x.indexOf("@");
-    var dotpos=x.lastIndexOf(".");
-    if( atpos<1 || dotpos<atpos+2 || dotpos+2>x.length){
-      alert("Invalid e-mail address");
-      return true;
+  }
+  function InvalidEmail(){
+    alert("jgfzfdbfds");
+    var a = email.val();
+    var regexp = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_­-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9­]+.[a-z]{2,4}$/;
+    if(regexp.text(a)){
+      alert("Please Enter a Valid Email");
+    }
+  }
+  function InvalidPassword(){
+    if(password.val().length < 1){
+      alert("Please Enter a Valid Password");
+    }
+  }
+  function InvalidPassConfirm(){
+    if(passconfirm.val().length < 1){
+      alert("Please Enter a Valid Password Confirmation");
     }
   }
   function PasswordConfirmNoMatch(){
-    var x = document.forms["InputFields"]["Password"].value;
-    var y = document.forms["InputFields"]["Password Confirmation"].value;
-    if(x !== y){
-      alert("Password Confirmation Doesn't Match Password");
-      return true;
+    if(password.val() !== passconfirm.val()){
+      alert("Passwords don't match");
     }
   }
+  form.submit(function(e){
+    e.preventDefault();
+    InvalidName();
+    alert("Working");
+    InvaildEmail();
+    alert("khgfkhgf");
+    InvaildPassword();
+    InvalidPassConfirm();
+    PasswordConfirmNoMatch();
+    });
 
-    $(document).on('submit', 'InputFields', function(e){
-      var form = e.currentTarget;
-        if( FieldISEmpty("Email") || 
-          FieldISEmpty("Password") || 
-          FieldISEmpty("Password Confirmation") || 
-          FieldISEmpty("Name")|| 
-          FieldISEmpty("Username") ||
-          InvaildEmail() ||
-          PasswordConfirmNoMatch()){
-
-        }
-        else{
-      $.ajax({
-        url: sdfsdfsdf,
-        type: 'POST',
-
-        data: $(form).serialize(),
-        success: function(){},
-        error: function(){
-
-        },
-      });
-      e.preventDefault();
-    })};
 });
