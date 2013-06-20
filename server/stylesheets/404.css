@@ -55,3 +55,7 @@ body{
     background-color: #000;
     opacity: .8;
 }
+
+#little{
+    float: left;
+}

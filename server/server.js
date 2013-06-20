@@ -164,15 +164,15 @@ app.post('/vote', function(req, res){
 })
 
 app.get('/upload', function(req, res){
-    /*if(req.session.user == null && req.user == null){
+    if(req.session.user == null && req.user == null){
         //tell the user they are not logged in, redirect to login
         res.redirect('/login');
     }
-    else{*/
+    else{
         console.log(req.session.user);
         console.log(req.user);
         res.render('upload', {title: "hi"});
-    //}
+    }
 });
 
 
@@ -297,6 +297,7 @@ app.get('/reset-password', function(req, res) {
 app.post('/file-upload', function(req, res, next){
     console.log(req.files.file.name);
         var stream = fs.createReadStream(req.files.file.path);
+        var id;
         songs++;
         upload = new mpu(
             {
@@ -306,9 +307,21 @@ app.post('/file-upload', function(req, res, next){
             },
             // Callback handler
             function(err, obj) {
+                if(err){
+                    console.log(err);
+                    res.send(err, 400);
+                }
+                else{
+                    console.log(obj); //for testing purposes print the object
+                    if(req.session.user == null){
+                        id = req.user[0]._id;
+                    }
+                    else if(req.user == null){
+                        id = req.session.user._id;
+                    }
+                    db.music.save({_id:songs, name: req.files.file.name, artistID:id, ETag: obj.ETag, votes: 0, views: 0});
+                }
                 // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
-                console.log(obj);
-                console.log(err);
                 res.send("back");
             }
         ); 
