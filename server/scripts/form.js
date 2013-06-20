@@ -1,4 +1,14 @@
 $(document).ready(function(){
-	var errorMsg = <%= error %>;
-	if(errorMsg) alert(errorMsg);
+	$('#inputFields').submit(function(){  
+     $.ajax({ 
+           url: '/login',
+           type: 'POST',
+           cache: false,
+           success: function(data){
+           		if(data.error == true){
+           			alert("Password does not match Email");
+           		}
+           }
+        })
+     });
 });
