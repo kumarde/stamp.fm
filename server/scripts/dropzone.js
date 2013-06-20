@@ -419,7 +419,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       url: null,
       method: "post",
       withCredentials: false,
-      parallelUploads: 2,
+      parallelUploads: 1,
       maxFilesize: 256,
       paramName: "file",
       createImageThumbnails: true,
@@ -432,10 +432,10 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       acceptParameter: null,
       enqueueForUpload: true,
       previewsContainer: null,
-      dictDefaultMessage: "Drop files here to upload",
+      dictDefaultMessage: "Upload a Song to the Tournament",
       dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
       dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
-      dictFileTooBig: "File is too big ({{filesize}}MB). Max filesize: {{maxFilesize}}MB.",
+      dictFileTooBig: "Please upload a smaller file. Max filesize: {{maxFilesize}}MB.",
       dictInvalidFileType: "You can't upload files of this type.",
       dictResponseError: "Server responded with {{statusCode}} code.",
       accept: function(file, done) {
@@ -459,7 +459,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
           }
         }
         if (!messageElement) {
-          messageElement = Dropzone.createElement("<div class=\"dz-message\"><span></span></div>");
+          messageElement = Dropzone.createElement("<div class=\"\"><span></span></div>");
           this.element.appendChild(messageElement);
         }
         span = messageElement.getElementsByTagName("span")[0];
@@ -562,6 +562,12 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       totaluploadprogress: noop,
       sending: noop,
       success: function(file) {
+        $(document).ready(function(){
+          $('div#info').addClass("unhidden");
+          $('a#close').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+        });
         return file.previewElement.classList.add("dz-success");
       },
       complete: noop,
@@ -1473,3 +1479,12 @@ if (typeof exports == "object") {
 } else {
   this["Dropzone"] = require("dropzone");
 }})();
+
+
+
+
+function popitup(url) {
+  newwindow=window.open(url,'name','height=200,width=150');
+  if (window.focus) {newwindow.focus()}
+  return false;
+}

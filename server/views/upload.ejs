@@ -1,3 +1,4 @@
+<% layout('layout') -%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,124 +31,52 @@
       <div id="upload_block">
         <script src="/dropzone.js"></script>
         <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data">
+        	<center><p id="uploadText" style="color:#FFFFFF">Drag and Drop to Upload a Song to the Tournament</p></center>
 	  <div class="fallback">
-	    <input name="file" type="file" multiple />
+	    <input id="uploaded" name="file" type="file" multiple success="onComplete(file)"/>
       	  </div>
         </form>
       </div>
-      <div id="form_block">
-	<div class="scrollingArea">
-	  <table class="scrollable">
-	    <thead>
-	      <tr>
-		<th>Select your entry</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr>
-		<td><div class="song_name"><a href="#upload_song">Song Name</a></div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	      <tr>
-		<td><div class="song_name">Song Name</div></td>
-	      </tr>
-	    </tbody>
-	  </table>
-	</div>
-      </div>
-      <div id="upload_song">
-	<center>
-	  <br><br><br><br>Song Name<br><br>
-	  <select id = "select_genre">
-	    <option value = "default">Enter this song under which genre?</option>
-            <option value = "0">genre 0</option>
-            <option value = "1">genre 1</option>
-            <option value = "2">genre 2</option>
-            <option value = "3">genre 3</option>
-	    <option value = "4">genre 4</option>
-	    <option value = "5">genre 5</option>
-	    <option value = "6">genre 6</option>
-	    <option value = "7">genre 7</option>
-	    <option value = "8">genre 8</option>
-	    <option value = "9">genre 9</option>
-          </select>
-	  <br><br>Warning: You may only enter one song per genre<br><br>
-	  <button id="submit_song">Submit</button>
-	  <a id="close_upload_song" href="#"><img src="/close_icon.png"></a>
-	</center>
-      </div>
+
+  </div>
+
+
+  <!-- Modal Window(s) -->
+
+<div id="info" class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close" id="close">X</a>
+
+    <center>
+    <h5 style="color:white">Fill in your Song Information</h5>
+    <div>
+      <form method = "post">
+        <input type="text" class="songName" placeholder="Song Name" name = "songName"><br><br>
+        <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
+        <form action="">
+        	<center>
+        	<select name="genre">
+        	<option class="genreChoice" id="country">Country</option>
+			<option class="genreChoice" id="pop">Soft, Adult Rock, Pop</option>
+			<option class="genreChoice" id="alternative">Alternative, Modern, Classic Rock</option>
+			<option class="genreChoice" id="rap">Rap and Hip-Hop</option>
+			<option class="genreChoice" id="rnb">R&B</option>
+			<option class="genreChoice" id="instrumental">Instrumental and Classical</option>
+			<option class="genreChoice" id="hardrock">Hard Rock and Metal</option>
+			<option class="genreChoice" id="EDM">EDM and DJ</option>
+			<option class="genreChoice" id="international">International</option>
+			<option class="genreChoice" id="folk">Folk, Jazz, Reggae, Blues</option>
+			</select>
+			</center>
+		</form><br>
+        <input type="submit" value="Enter">
+      </form>
     </div>
-    
+</center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
   </body>
 </html>
