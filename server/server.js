@@ -207,8 +207,7 @@ app.get('/login', function(req, res){
 app.post('/login', function(req, res){
 	accountModule.manualLogin(req.param('email'), req.param('pass'), function(e, o){
 		if(!o){
-            var x = true;
-			res.send("x");
+            res.send({error: true});
 		} else{
 			req.session.user = o;
 			if(req.param('remember-me') == 'true'){

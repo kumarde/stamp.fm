@@ -1,6 +1,5 @@
 <% layout('layout') -%>
-<% script('form.js') -%>
-<%= error %>
+<% script('form.js') -%> 
 <!DOCTYPE html>
 <html>
   <head>
@@ -46,13 +45,13 @@
 <div class="login">
 <center>
 <div id = "login-container">
-	<form method = "post">
+	<form method = "post" id = "inputFields">
 			<p style="font-size: 30px">Enter Stamp.fm</p>
 			<p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
 				or<br>
 				Sign in with your Email</p><br>
-			<input type = "text" name = "email" id="user-tf" placeholder="Email" class="user"><br><br>
-			<input type = "password" name = "pass" id = "pass-tf" placeholder="Password" class="pass"><br><br>
+			<input type = "text" name = "email" id="user-tf" placeholder="Email" class="user" required/><br><br>
+			<input type = "password" name = "pass" id = "pass-tf" placeholder="Password" class="pass" required/><br><br>
 			<input type = "submit" value = "Sign In!" style="float:left" id="signIn"><br><br>
 			<label for = "remember" id = "remember" style="float:left"> Remember Me: </label>
 			<input type = "checkbox" checked = "checked" style="float:left"><br><br>
@@ -119,14 +118,6 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
 <!-- End FB Like Script -->
-<script>
-  $(document).ready(function(){
-    console.log('hi');
-    var errorMessage = <%= error %>;
-    alert(errorMessage);
-  })
-</script>
 </body>
 </html>
