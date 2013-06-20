@@ -43,6 +43,7 @@ html{
     float: left;
     margin-left: 5%;
     margin-top: 8%;
+    margin-bottom: 5%;
     border: 3px solid rgba(0,0,0,0.1);
     -moz-border-radius:5px;  
   	border-radius: 5px;  
@@ -198,8 +199,6 @@ body{
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
 	background: rgba(180,7,6,1);
-	background: -moz-linear-gradient(##014421, #999);
-	background: -webkit-linear-gradient(##014421, #999);
 }
 
 .modalDialog_temp ul{
