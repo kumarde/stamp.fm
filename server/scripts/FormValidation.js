@@ -11,10 +11,9 @@ $(document).ready(function(){
     }
   }
   function InvalidEmail(){
-    alert("jgfzfdbfds");
     var a = email.val();
-    var regexp = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_­-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9­]+.[a-z]{2,4}$/;
-    if(regexp.text(a)){
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    if(!pattern.test(a)){
       alert("Please Enter a Valid Email");
     }
   }
@@ -36,12 +35,9 @@ $(document).ready(function(){
   form.submit(function(e){
     e.preventDefault();
     InvalidName();
-    alert("Working");
-    InvaildEmail();
-    alert("khgfkhgf");
-    InvaildPassword();
+    InvalidPassword();
     InvalidPassConfirm();
+    InvalidEmail();
     PasswordConfirmNoMatch();
     });
-
 });
