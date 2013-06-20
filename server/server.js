@@ -9,8 +9,6 @@ var flash = require('connect-flash')
   , FacebookStrategy = require('passport-facebook').Strategy
   , fs = require('fs')
   , db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
-  
-
 
 var mpu = require('knox-mpu');
 var S3_KEY = 'AKIAIZQEDQU7GWKOSZ3A';
@@ -187,7 +185,7 @@ app.get('/auth/facebook/callback',
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
         if(req.session.user == null && req.user == null){
-		  res.render('login.html', {title: 'Hello - Please login To Your Account'});
+		  res.render('login', {title: 'Hello - Please login To Your Account', error: null});
         }
         else{
             res.redirect('/upload');
@@ -198,7 +196,7 @@ app.get('/login', function(req, res){
 				req.session.user = o;
 				res.redirect('/upload');
 			} else{
-				res.render('login.html', {title: "Hello - Please Login to your Account"});
+				res.render('login', {title: "Hello - Please Login to your Account", error:null});
 			}
 		});
 	}
@@ -207,7 +205,8 @@ app.get('/login', function(req, res){
 app.post('/login', function(req, res){
 	accountModule.manualLogin(req.param('email'), req.param('pass'), function(e, o){
 		if(!o){
-			res.send(e, 400);
+            var x = true;
+			res.send("x");
 		} else{
 			req.session.user = o;
 			if(req.param('remember-me') == 'true'){
@@ -233,11 +232,12 @@ app.post('/signup', function(req, res){
         name    : req.param('name'),
         email   : req.param('email'),
         pass    : req.param('pass'),
-    }, function(e){
+    }, function(e, o){
         if (e){
             res.send(e, 400);
         }   else{
-        res.redirect('/login');
+            req.session.user = o;
+            res.redirect('/upload');
        }
     });
 });
