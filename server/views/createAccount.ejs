@@ -49,10 +49,10 @@
       <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
         or<br>
         Use your Email</p><br>
-      <input type = "text" name = "name" id="Name" placeholder="Name" class="name" required/><br><br>
-      <input type = "email" name = "email" id="Email" placeholder="Email" class="email" required/><br><br>
+      <input type = "text" name = "name" id="Name" placeholder="Name" class="name" required oninvalid="this.setCustomValidity('Please Enter a Name')"/><br><br>
+      <input type = "email" name = "email" id="Email" placeholder="Email" class="email" required oninvalid="this.setCustomValidity('Please Enter a Valid Email Address')"/><br><br>
       <input type = "password" name = "pass" id = "Password" placeholder="Password" class="pass" required/><br><br>
-      <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass" oninput="check(this)"><br><br>
+      <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass" required oninput="check(this)"/><br><br>
       <script language='javascript' type='text/javascript'>
       function check(input) {
       if (input.value != document.getElementById('Password').value) {
@@ -65,7 +65,7 @@
 </script>
 
       <label for = "birthday" id = "birthday" style="float:left"> I certify that I am over the age of 13: </label>
-      <input type = "checkbox" checked = "checked" style="float:left" required/><br>
+      <input type = "checkbox" checked = "checked" style="float:left" required oninvalid="this.setCustomValidity('Please Check the Box to Confirm Your Age')"/><br>
       </center>
       </p>
       <center>
