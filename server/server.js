@@ -8,7 +8,7 @@ var flash = require('connect-flash')
   , passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["music", "users", "counters"]);
+  , db = require('mongojs').connect("stampfm", ["music", "users", "country", "pop", "alternative", "rap", "rnb", "instrumental", "hardrock", "EDM", "international", "folk"]);
 
 var mpu = require('knox-mpu');
 var S3_KEY = 'AKIAIZQEDQU7GWKOSZ3A';
@@ -82,6 +82,7 @@ var TestModule =  require('./scripts/testModule.js').TestModule;
 var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
 var AccountModule = require('./scripts/AccountModule.js').AccountModule;
 var EmailModule = require('./scripts/EmailModule.js').EmailModule;
+var UploadModule = require('./scripts/UploadModule.js').UploadModule;
 
 /*****************algorithm*****************/
 
@@ -106,6 +107,7 @@ var testModule = new TestModule;
 var auditionModule = new AuditionModule;
 var accountModule = new AccountModule;
 var emailModule = new EmailModule;
+var uploadModule = new UploadModule;
 
 app.get('/newView', function(req, res, next){
       res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
