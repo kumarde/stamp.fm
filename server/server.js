@@ -384,6 +384,45 @@ app.get('/video/:fname', function( req, res) {
     res.render('video',{vidurl: myS3Account.readPolicy(req.params.fname, 'media.stamp.fm', 60)});
 });   
 
+app.get('/vidtest', function(req, res){
+    if(req.session.user == null && req.user == null){
+        res.redirect('/login');
+    }
+    else{
+        res.render('vidtest');
+    } 
+
+})
+
+app.post('/vidtest', function(req, res){
+    console.log(req.files);
+    var stream = fs.createReadStream(req.files.video.path);
+    var id;
+    if(req.session.user == null){
+        id = req.user[0]._id;
+    }
+    else if(req.user == null){
+        id = req.session.user._id;
+    }
+    upload = new mpu(
+        {
+            client: client,
+            objectName: songs.toString(),
+            stream: stream
+        },
+        function(e, o){
+            if(e){
+                console.log(e);
+                res.send(e, 400);
+            }
+            else{
+                console.log(o);
+                db.music.save({_id: songs, accountID: id, name: req.files.video.name});
+                res.render('videof', {id: myS3Account.readPolicy(songs, 'media.stamp.fm', 60), name: req.files.video.name});
+            }
+        }
+    );
+});
 
 
 
