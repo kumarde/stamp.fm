@@ -36,13 +36,13 @@
 
     <div id="profileInfo" class="grid wfull" style="color: white">
     	<div class="row">
-    		<div class="c3" id="profilePic" style="float:left"><img id="picture" src="http://image.cdnllnwnl.xosnetwork.com/pics33/640/RT/RTYIPNKWKGAJEPZ.20130307213851.JPG"></div>
+    		<div class="c3" id="profilePic" style="float:left"><img id="picture" src="<%=imgid%>"></div>
     		<div class="c1" id="name" style="font-size:50px">
-    		<strong>The Maine</strong>
+    		<strong><%=name%></strong>
     		</div>
 
     		<div class="c7 end" id="bio" style="float:right">Bio: 
-    			asadasasadasa sadasasadas asadasasadasasa dasasadasasad asasadasasada sasadasasadasasadasa sa dasasadasasadasas adasasadasasadasasadas asadasasadas sadasasadas
+    			<%=bio%>
     		</div>
    			
     	</div>	
@@ -50,7 +50,7 @@
 
     	<div class="row">
     		<div class="c2" id="location" style="float:left">
-    		Location: <span id="locationInput">Farmington Hills, MI</span>
+    		Location: <span id="locationInput"><%=location%></span>
     		</div>
     	</div>	
 
@@ -58,15 +58,23 @@
       <div class="row">
         <div class="c4" id="videoPlayer" style="float:left">
           <div id="videoPlayer" style="border:none">
-           <center> <video class="video-js vjs-default-skin" controls width="420" height="264" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
-                <source src="deejay.mp4" type="video/mp4">
+           <center> <video id = "video" class="video-js vjs-default-skin" controls width="420" height="264" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+                <source src="<%=songId%>" type="video/mp4">
             </video></center>
           </div>   
         </div>
 
         <div class="c4" id="songList" style="position: center">
           <center><p id="songListLabel">Songs</p></center>
-          <div id="songContent"></div>
+          <div id="songContent">
+            <ul style = "list-style-type: none">
+              <% songs.forEach(function(song){ %>
+                  <a href = "/vidUpdate?id=<%=song._id%>" id = "videoplay">
+                    <%= song.name %>
+                  </a>
+              <% }); %>
+            </ul>
+          </div>
     </div>
 
         <div class="c4" id="playlist" style="float:right">
