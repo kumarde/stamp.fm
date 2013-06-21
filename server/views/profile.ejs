@@ -1,0 +1,123 @@
+<% layout('layout') -%>
+<% script('/scripts/main.js') -%>
+<% stylesheet('/video-js/video-js.css') -%>
+<% script('/video-js/video.js') -%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/gridiculous.css">
+    <link rel="stylesheet" type="text/css" href="/profile.css">
+    <link rel="stylesheet" type="text/css" href="/dropzone.css">
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  
+  <body>
+    <div id="wrapper">
+      <header id="header">
+      <a href="http://www.stamp.fm" style="float:left"><img src="/headerStamp.png"></a>
+      <ul style="float:right">
+      <li>
+      <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
+ 	    </li>
+ 	    <li>
+      <a href="/audition" style="text-decoration:none" class="nav">AUDITION</a>
+  	  </li>
+  	  <li>
+      <a href="/bracket" style="text-decoration:none" class="nav">BRACKET</a>
+  	  </li>
+      <li>
+      <a href="" style="text-decoration:none" class="nav" id="logOut">Log Out</a>
+      </li>
+   	  </ul>  
+    </header>
+
+    <div id="profileInfo" class="grid wfull" style="color: white">
+    	<div class="row">
+    		<div class="c3" id="profilePic" style="float:left"><img id="picture" src="<%=imgid%>"></div>
+    		<div class="c1" id="name" style="font-size:50px">
+    		<strong><%=name%></strong>
+    		</div>
+
+    		<div class="c7 end" id="bio" style="float:right"><span3 style="font-size:35px"><strong><u>Bio:</u> </strong></span3>
+    			<%=bio%>
+    		</div>
+   			
+    	</div>	
+
+
+    	<div class="row">
+    		<div class="c2" id="location" style="float:left">
+    		<span2 style="font-size: 20px">Location: </span2><span id="locationInput"><%=location%></span>
+    		</div>
+    	</div>	
+
+    <div id="music" class="grid wfull" style="color:black">
+      <div class="row">
+        <div class="c4" id="videoPlayer" style="float:left">
+          <div class="c12 end" id="videoPlayer" style="border:none">
+           <center> <video id="vidYo" class="video-js vjs-default-skin" controls width="420" height="264" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+                <source src="<%=songId%>" type="video/mp4">
+            </video></center>
+          </div>   
+        </div>
+
+        <div class="c4" id="songList" style="position: center">
+          <center><span id="songListLabel">Songs</span></center>
+          <div id="songContent">
+            <% songs.forEach(function(song){ %>
+              <a href = "/vidUpdate?id=<%=song._id%>" id = "videoplay">
+                <%= song.name %>
+              </a>
+             <% }); %>
+
+          </div>
+        </div>
+
+        <div class="c4" id="playlist" style="float:right">
+          <center><span id="playlistLabel">Playlists</span></center>
+          <div id="playlistContent"></div>
+        </div>  
+    </div>	
+
+    <div class="row">
+      <div class="c4" id="upload_block" style="float:left">
+        <script src="/dropzoneProfile.js"></script>
+        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data" style="color:#000">
+          <center><span style="font-size: 30px"><strong>Upload Songs to Your Profile</strong></span></center>
+        </form>
+      </div>
+
+    </div>  
+
+  <!-- Modal Window(s) -->
+
+<div id="info" class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close" id="close">X</a>
+
+    <center>
+    <h5 style="color:white">Fill in your Song Information</h5>
+    <div>
+      <form method = "post">
+        <input type="text" class="songName" placeholder="Song Name" name = "songName"><br><br>
+        <input type="submit" value="Enter">
+      </form>
+    </div>
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+</body>
+
+
+    		
+
+
+
+
