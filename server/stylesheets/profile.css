@@ -55,6 +55,7 @@ body {
 }
 #profileInfo{
     width: 100%;
+    max-width: 100%;
     margin-left: 0px;
     background-color: black;
 }
@@ -63,16 +64,29 @@ body {
     margin-left: 0px;
 }
 #name{
+    max-height: 200px;
     margin-top: 8%;
     margin-left: 0px;
+    width: 15%;
+    overflow: auto;
 }
 #location{
+    width: 100%;
+    margin-top: 0px;
     margin-left: 0%;
     font-size: 30px;
 }
 #bio{
     margin-top: 8%;
-    font-size: 30px;
+    overflow : auto;
+    word-wrap: break-word;
+    font-size: 20px;
+    border : 1px;
+    background : #000000;
+    color : #ffffff; 
+    padding : 4px; 
+    max-width : 58%; 
+    max-height : 200px; 
 }
 #picture{
     max-height: 250px;
