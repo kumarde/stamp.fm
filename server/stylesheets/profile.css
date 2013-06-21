@@ -64,8 +64,12 @@ body {
 }
 #location{
     margin-left: 3.5%;
-    font-size: 20px;
+    font-size: 30px;
 }
 #bio{
     margin-top: 8%;
+    font-size: 30px;
+}
+#picture{
+    max-height: 250px;
 }
