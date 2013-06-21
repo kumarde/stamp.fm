@@ -1,5 +1,4 @@
 <% layout('layout') -%>
-<% script('form.js') -%> 
 <!DOCTYPE html>
 <html>
   <head>
@@ -45,7 +44,7 @@
 <div class="login">
 <center>
 <div id = "login-container">
-	<form id = "inputFields">
+	<form method = "POST" id = "inputFields">
 			<p style="font-size: 30px">Enter Stamp.fm</p>
 			<p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
 				or<br>
@@ -120,9 +119,10 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 <div id="<%= error%>" style="visibility:hidden"> Error: Invalid Username/Password combination </div>
 <script>
-$("#unhide").show();
+  $(document).ready(function(){
+      $("#unhide").addClass("unhidden");
+    });
 </script>
-
 <!-- End FB Like Script -->
 </body>
 </html>
