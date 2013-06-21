@@ -8,7 +8,7 @@ var flash = require('connect-flash')
   , passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["music", "users", "country", "pop", "alternative", "rap", "rnb", "instrumental", "hardrock", "EDM", "international", "folk"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "country", "pop", "alternative", "rap", "rnb", "instrumental", "hardrock", "EDM", "international", "folk"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -380,7 +380,9 @@ app.post('/create', function(req, res){
             else{
                 console.log(o);
                 userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), id);
-                res.render('profile', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), name: req.param('name'), location: req.param('location'), bio: req.param('bio')});
+                db.music.find({accountID: id}, function(e, songs){
+                    res.render('profile', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), name: req.param('name'), location: req.param('location'), bio: req.param('bio'), songId: 0, songs: songs});    
+                }); 
             }
         }
     );
@@ -424,7 +426,7 @@ app.post('/vidtest', function(req, res){
             else{
                 console.log(o);
                 db.music.save({_id: songs, accountID: id, name: req.files.video.name});
-                res.render('videof', {id: myS3Account.readPolicy(songs, 'media.stamp.fm', 60), name: req.files.video.name});
+                res.render('videof', {id: myS3Account.readPolicy(songs, 'media.stamp.fm', 60), name: req.files.video.name, songId: 0});
             }
         }
     );
@@ -440,20 +442,67 @@ app.get('/populate', function(req, res){
     });
 });
 
+app.get('/profile', function(req, res){
+    if(req.session.user == null && req.user == null){
+            res.redirect('/login');
+    }
+    else{
+        var id;
+        if(req.session.user == null){
+            id = req.user[0]._id;
+        }
+        else if(req.user == null){
+            id = req.session.user._id;
+        }
+        db.profiles.findOne({_id: id}, function(e, profile){
+            if(e){
+                console.log(e);
+            }
+            else{
+                db.music.find({accountID: id}, function(e, songs){
+                    if(e){
+                        console.log(e);
+                    }
+                    else{
+                        res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, songId: 0});
+                    }
+                });
+            };
+        });
+    }
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.get('/vidUpdate', function(req, res){
+    console.log(req.body);
+    vid = myS3Account.readPolicy(req.query["id"], 'media.stamp.fm', 60)
+    if(req.session.user == null && req.user == null){
+            res.redirect('/login');
+    }
+    else{
+        var id;
+        if(req.session.user == null){
+            id = req.user[0]._id;
+        }
+        else if(req.user == null){
+            id = req.session.user._id;
+        }
+        db.profiles.findOne({_id: id}, function(e, profile){
+            if(e){
+                console.log(e);
+            }
+            else{
+                db.music.find({accountID: id}, function(e, songs){
+                    if(e){
+                        console.log(e);
+                    }
+                    else{
+                        res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, songId: vid});
+                    }
+                });
+            };
+        });
+    }
+});
 
 
 

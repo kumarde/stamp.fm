@@ -23,6 +23,16 @@ $(document).ready(function() {
            }
         })
      });
+    $('#videoplay').click(function(){
+      var alertable = $('#videoplay').attr('songid');
+      alert(alertable);
+      $.ajax({
+          url: '/vidUpdate',
+          type: 'GET',
+          cache: false,
+          data: { vid: $('#videoplay').attr('songid')},
+      })
+    });
 });
 function expandFooter(){
         if(document.getElementById("expandedFooter").style.display=='none'){
