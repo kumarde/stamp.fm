@@ -50,7 +50,9 @@ body {
 }
 
 #profileInfo{
+    width: 100%;
     margin-left: 0px;
+    background-color: black;
 }
 #profilePic{
     margin-top: 8%;
@@ -58,12 +60,11 @@ body {
 }
 #name{
     margin-top: 8%;
-    margin-right: 30px;
     margin-left: 0px;
 }
 #location{
-    margin-left: 20px;
-    font-size: 30px;
+    margin-left: 3.5%;
+    font-size: 20px;
 }
 #bio{
     margin-top: 8%;
