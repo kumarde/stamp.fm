@@ -36,25 +36,26 @@
     </header>
 
     <div id="profileInfo" class="grid wfull" style="color: white">
+      <div class="row">
+        <div class="c12" id="name" style="font-size:40px">
+        <strong><%=name%></strong>
+        </div>
+      </div>  
     	<div class="row">
     		<div class="c3" id="profilePic" style="float:left"><img id="picture" src="<%=imgid%>"></div>
-    		<div class="c1" id="name" style="font-size:40px">
-    		<strong><%=name%></strong>
-    		</div>
 
-    		<div class="c7 end" id="bio" style="float:right"><span3 style="font-size:25px"><strong><u>Bio:</u> </strong></span3>
+    		<div class="c8" id="bio" ><span3 style="font-size:25px"><strong><u>Bio:</u> </strong></span3>
     			<%=bio%>
     		</div>
    			
-    	</div>	
-
+    	</div>	  
 
     	<div class="row">
     		<div class="c2" id="location" style="float:left">
     		<span2 style="font-size: 20px">Location: </span2><span id="locationInput"><%=location%></span>
     		</div>
     	</div>	
-
+    </div>  
     <div id="music" class="grid wfull" style="color:black">
       <div class="row">
         <div class="c4" id="videoPlayer" style="float:left">
