@@ -180,8 +180,6 @@ app.get('/upload', function(req, res){
         res.redirect('/login');
     }
     else{
-        console.log(req.session.user);
-        console.log(req.user);
         res.render('upload', {title: "hi"});
     }
 });
@@ -216,18 +214,20 @@ app.get('/login', function(req, res){
 });
 
 app.post('/login', function(req, res){
-	accountModule.manualLogin(req.param('email'), req.param('pass'), function(e, o){
+	accountModule.manualLogin(req.body.email, req.body.password, function(e, o){
 		if(!o){
-            res.render('login', {error: "unhide"});
+            res.send({error: "Error: Username and Password Combination don't match"});
 		} else{
 			req.session.user = o;
-			if(req.param('remember-me') == 'true'){
+            console.log(o);
+			if(req.body.rememberme == 'true'){
+                console.log("rememberme works!");
 				res.cookie('email', o.email, {maxAge: 900000});
 				res.cookie('pass', o.pass, {maxAge: 900000});
 			}
           console.log("You are being redirected home");
           console.log(req.user);
-			    res.redirect('/upload');
+			    res.send({redirect:'/upload'});
 		}
 	});
 });
