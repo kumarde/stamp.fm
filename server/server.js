@@ -374,7 +374,7 @@ app.post('/create', function(req, res){
             else{
                 console.log(o);
                 userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), id);
-                res.render('imgtest', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), name: req.param('name'), location: req.param('location'), bio: req.param('bio')});
+                res.render('profile', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), name: req.param('name'), location: req.param('location'), bio: req.param('bio')});
             }
         }
     );
