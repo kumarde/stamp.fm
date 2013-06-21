@@ -118,6 +118,11 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+<div id="<%= error%>" style="visibility:hidden"> Error: Invalid Username/Password combination </div>
+<script>
+$("#unhide").show();
+</script>
+
 <!-- End FB Like Script -->
 </body>
 </html>
