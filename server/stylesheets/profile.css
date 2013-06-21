@@ -49,6 +49,10 @@ body {
     margin-right: 80px;
 }
 
+#logOut{
+    font-size: 20px;
+    margin-left: 30px;
+}
 #profileInfo{
     width: 100%;
     margin-left: 0px;
@@ -73,3 +77,118 @@ body {
 #picture{
     max-height: 250px;
 }
+
+#music{
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+#videoPlayer{
+    border: 2px solid;
+    border-color: red;
+}
+
+#songList{
+    border: 2px solid;
+    border-color: red;
+    height: 100%;
+}
+
+#songListLabel{
+    font-size: 30px;
+}
+
+#songContent{
+    height: 100%;
+}
+
+#playlist{
+    border: 2px solid;
+    border-color: red;
+    height: 100%;
+}
+
+#playlistLabel{
+    font-size: 30px;
+}
+
+#playlistContent{
+    height: 100%;
+}
+
+#upload_block{
+    background-color: #FFFFFF;
+    color: white;
+    width: 480px;
+    height: 365px;
+    position: relative;
+    margin-top: 20px;
+    float: left;
+    border-style: solid;
+    border-width:2px;
+    border-color: rgba(180,7,6,1); 
+
+}
+
+.modalDialog {
+    position: fixed;
+    font-family: 'Poiret One', cursive;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog > div {
+    width: 30%;
+    height: 30%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(180,7,6,1);
+}
+
+.close {
+    background: #000;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: rgba(163,163,163,1); }
+
+.songName{
+    width: 200px;
+    height: 20px;
+    font-size: 15px;
+    -moz-border-radius:4px;  
+    border-radius: 4px;  
+}
+
+.unhidden {
+    opacity:1;
+    pointer-events: auto;
+}
+
+
+
