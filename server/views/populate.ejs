@@ -1,0 +1,8 @@
+<% layout('layout') -%>
+<% script('/scripts/main.js') -%>
+<% stylesheet('/video-js/video-js.css') -%>
+<% script('/video-js/video.js') -%>
+
+<% todos.forEach(function(todo){ %>
+	<p><%= todo._id %></p>
+<% }); %>
