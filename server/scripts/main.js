@@ -1,6 +1,4 @@
-alert("muther");
 $(document).ready(function() {
-  alert("ohgawd");
     $('#enter').click(function(){  
      $.ajax({ 
            url: '/vote',

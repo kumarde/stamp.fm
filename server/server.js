@@ -10,10 +10,13 @@ var flash = require('connect-flash')
   , fs = require('fs')
   , db = require('mongojs').connect("stampfm", ["music", "users", "country", "pop", "alternative", "rap", "rnb", "instrumental", "hardrock", "EDM", "international", "folk"]);
 
+var s3 = require('s3policy');
+var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
 var mpu = require('knox-mpu');
 var S3_KEY = 'AKIAIZQEDQU7GWKOSZ3A';
 var S3_SECRET = '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';
 var S3_BUCKET = 'media.stamp.fm';
+var PIC_BUCKET = 'pictures.stamp.fm'
 var knox = require('knox');
 var songs = 0;
 
@@ -21,6 +24,12 @@ var client = knox.createClient({
     key: S3_KEY,
     secret: S3_SECRET,
     bucket: S3_BUCKET
+});
+
+var picClient = knox.createClient({
+    key: S3_KEY,
+    secret: S3_SECRET,
+    bucket: PIC_BUCKET
 });
 
 var app = express();
@@ -83,6 +92,7 @@ var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
 var AccountModule = require('./scripts/AccountModule.js').AccountModule;
 var EmailModule = require('./scripts/EmailModule.js').EmailModule;
 var UploadModule = require('./scripts/UploadModule.js').UploadModule;
+var UserModule = require('./scripts/UserModule.js').UserModule;
 
 /*****************algorithm*****************/
 
@@ -108,6 +118,7 @@ var auditionModule = new AuditionModule;
 var accountModule = new AccountModule;
 var emailModule = new EmailModule;
 var uploadModule = new UploadModule;
+var userModule = new UserModule;
 
 app.get('/newView', function(req, res, next){
       res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
@@ -329,6 +340,69 @@ app.post('/file-upload', function(req, res, next){
 });
 
 /**************************************DONE WITH FILE UPLOAD*********************************/
+/**************************************TIME TO DO PROFILES***********************************/
+app.get('/create', function(req, res){
+    if(req.session.user == null && req.user == null){
+        res.redirect('/login');
+    }
+    else{
+        res.render('CreateProfile');
+    } 
+});
+
+app.post('/create', function(req, res){
+    console.log(req.files);
+    var stream = fs.createReadStream(req.files.picture.path);
+    var id;
+    if(req.session.user == null){
+        id = req.user[0]._id;
+    }
+    else if(req.user == null){
+        id = req.session.user._id;
+    }
+    upload = new mpu(
+        {
+            client: picClient,
+            objectName: id,
+            stream: stream
+        },
+        function(e, o){
+            if(e){
+                console.log(e);
+                res.send(e, 400);
+            }
+            else{
+                console.log(o);
+                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), id);
+                res.render('imgtest', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), name: req.param('name'), location: req.param('location'), bio: req.param('bio')});
+            }
+        }
+    );
+});
+
+app.get('/video/:fname', function( req, res) {
+    res.render('video',{vidurl: myS3Account.readPolicy(req.params.fname, 'media.stamp.fm', 60)});
+});   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Server listening on port " + app.get('port'));

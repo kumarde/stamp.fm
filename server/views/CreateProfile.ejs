@@ -1,0 +1,22 @@
+<% layout('layout') -%>
+<% script('/scripts/main.js') -%>
+<% stylesheet('/video-js/video-js.css') -%>
+<% script('/video-js/video.js') -%>
+<html>
+<head>
+
+</head>
+
+<body>
+	<form method = "POST" enctype = "multipart/form-data">
+		<input type = "text" placeholder = "name" name = "name" id= "name" required/><br><br>
+		<input type = "text" placeholder = "location" name = "location" id= "location" required/><br><br>
+		<textarea rows = "4" cols = "50" placeholder = "bio" id = "bio" name = "bio" required/></textarea><br>
+		<input type = "file" name = "picture" id = "picture" accept = 'image/*'><br>
+		<input type = "submit" value = "Create a Profile"><br>
+	</form>
+
+
+</body>
+
+</html>

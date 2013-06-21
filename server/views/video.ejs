@@ -1,0 +1,8 @@
+<% layout('layout') -%>
+<% script('/scripts/main.js') -%>
+<% stylesheet('/video-js/video-js.css') -%>
+<% script('/video-js/video.js') -%>
+
+<video class="video-js vjs-default-skin" controls width="420" height="264" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+                <source src="<%=vidurl%>" type="video/mp4">
+</video>
