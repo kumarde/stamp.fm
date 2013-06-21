@@ -25,18 +25,20 @@
   	  <li>
       <a href="/bracket" style="text-decoration:none" class="nav">BRACKET</a>
   	  </li>
+      <li>
+      <a href="" style="text-decoration:none" class="nav" id="logOut">Log Out</a>
    	  </ul>  
     </header>
 
     <div id="profileInfo" class="grid wfull" style="color: white">
     	<div class="row">
-    		<div class="c3" id="profilePic" style="float:left"><img id="picture" src="<%=imgid%>"></div>
+    		<div class="c3" id="profilePic" style="float:left"><img id="picture" src="http://image.cdnllnwnl.xosnetwork.com/pics33/640/RT/RTYIPNKWKGAJEPZ.20130307213851.JPG"></div>
     		<div class="c1" id="name" style="font-size:50px">
-    		<strong><%=name%></strong>
+    		<strong>The Maine</strong>
     		</div>
 
     		<div class="c7 end" id="bio" style="float:right">Bio: 
-    			<%=bio%>
+    			asadasasadasasadasasadas asadasasadasasadasasadasasad asasadasasadasa sadasasadasasadasasadasasadasasadasasa dasasadasasadasasadasasadasasadasasadasasadas
     		</div>
    			
     	</div>	
@@ -44,12 +46,31 @@
 
     	<div class="row">
     		<div class="c2" id="location" style="float:left">
-    		Location: <span id="locationInput"><%=location%></span>
+    		Location: <span id="locationInput">Farmington Hills, MI</span>
     		</div>
     	</div>	
 
+    <div id="music" class="grid wfull" style="color:black">
+      <div class="row">
+        <div class="c4" id="videoPlayer" style="float:left">
+          <div id="videoPlayer" style="border:none">
+           <center> <video class="video-js vjs-default-skin" controls width="420" height="264" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+                <source src="deejay.mp4" type="video/mp4">
+            </video></center>
+          </div>   
+        </div>
 
+        <div class="c4" id="songList" style="position: center">
+          <center><p id="songListLabel">Songs</p></center>
+        </div>
+
+        <div class="c4" id="playlist" style="float:right">
+          <center><p id="playlistLabel">Playlists</p></center>
+        </div>  
     </div>	
+
+</body>
+
 
     		
 

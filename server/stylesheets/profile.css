@@ -49,6 +49,10 @@ body {
     margin-right: 80px;
 }
 
+#logOut{
+    font-size: 20px;
+    margin-left: 30px;
+}
 #profileInfo{
     width: 100%;
     margin-left: 0px;
@@ -73,3 +77,36 @@ body {
 #picture{
     max-height: 250px;
 }
+
+#music{
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+#videoPlayer{
+    border: 2px solid;
+    border-color: red;
+}
+
+#songList{
+    border: 2px solid;
+    border-color: red;
+}
+
+#songListLabel{
+    font-size: 30px;
+}
+
+#playlist{
+    border: 2px solid;
+    border-color: red;
+}
+
+#playlistLabel{
+    font-size: 30px;
+}
+
+
+
+
+
