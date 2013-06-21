@@ -198,7 +198,7 @@ app.get('/auth/facebook/callback',
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
         if(req.session.user == null && req.user == null){
-		  res.render('login', {title: 'Hello - Please login To Your Account', error: null});
+		  res.render('login', {title: 'Hello - Please login To Your Account', error: "hello"});
         }
         else{
             res.redirect('/upload');
@@ -209,7 +209,7 @@ app.get('/login', function(req, res){
 				req.session.user = o;
 				res.redirect('/upload');
 			} else{
-				res.render('login', {title: "Hello - Please Login to your Account", error:null});
+				res.render('login', {title: "Hello - Please Login to your Account", error:"hello"});
 			}
 		});
 	}
@@ -218,7 +218,7 @@ app.get('/login', function(req, res){
 app.post('/login', function(req, res){
 	accountModule.manualLogin(req.param('email'), req.param('pass'), function(e, o){
 		if(!o){
-            res.send({error: true});
+            res.render('login', {error: "unhide"});
 		} else{
 			req.session.user = o;
 			if(req.param('remember-me') == 'true'){
