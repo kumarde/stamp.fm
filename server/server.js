@@ -236,7 +236,13 @@ app.get('/signup', function(req, res){
 	res.render('createAccount', {title: "Signup"});
 });
 app.get('/profile', function(req, res){
-	res.render('profile', {title: "Your Profile"});
+      if(req.session.user == null && req.user == null){
+        //tell the user they are not logged in, redirect to login
+        res.redirect('/login');
+    }
+    else{
+      res.render('profile', {title: "Your Profile"});
+    }
 });
 
 app.post('/signup', function(req, res){
@@ -307,7 +313,7 @@ app.get('/reset-password', function(req, res) {
 /********************************************LOGIN STUFF DONE*******************************/
 /****************************UPLOAD FILES TO S3 SERVER***********************************/
 app.post('/file-upload', function(req, res, next){
-    console.log(req.files.file.size);
+    console.log(req.files.file.path);
         var stream = fs.createReadStream(req.files.file.path);
         var id;
         songs++;

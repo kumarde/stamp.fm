@@ -1,4 +1,7 @@
 <% layout('layout') -%>
+<% script('/scripts/main.js') -%>
+<% stylesheet('/video-js/video-js.css') -%>
+<% script('/video-js/video.js') -%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,6 +9,7 @@
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
     <link rel="stylesheet" type="text/css" href="/gridiculous.css">
     <link rel="stylesheet" type="text/css" href="/profile.css">
+    <link rel="stylesheet" type="text/css" href="/dropzone.css">
     <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +42,7 @@
     		</div>
 
     		<div class="c7 end" id="bio" style="float:right">Bio: 
-    			asadasasadasasadasasadas asadasasadasasadasasadasasad asasadasasadasa sadasasadasasadasasadasasadasasadasasa dasasadasasadasasadasasadasasadasasadasasadas
+    			asadasasadasa sadasasadas asadasasadasasa dasasadasasad asasadasasada sasadasasadasasadasa sa dasasadasasadasas adasasadasasadasasadas asadasasadas sadasasadas
     		</div>
    			
     	</div>	
@@ -62,12 +66,60 @@
 
         <div class="c4" id="songList" style="position: center">
           <center><p id="songListLabel">Songs</p></center>
-        </div>
+          <div id="songContent"></div>
+    </div>
 
         <div class="c4" id="playlist" style="float:right">
           <center><p id="playlistLabel">Playlists</p></center>
+          <div id="playlistContent"></div>
         </div>  
     </div>	
+
+    <div class="row">
+      <div class="c4" id="upload_block" style="float:left">
+        <script src="/dropzoneProfile.js"></script>
+        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data" style="color:#000">
+      </form>
+      </div>
+
+    </div>  
+
+  <!-- Modal Window(s) -->
+
+<div id="info" class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close" id="close">X</a>
+
+    <center>
+    <h5 style="color:white">Fill in your Song Information</h5>
+    <div>
+      <form method = "post">
+        <input type="text" class="songName" placeholder="Song Name" name = "songName"><br><br>
+        <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
+        <form action="">
+          <center>
+          <select name="genre">
+          <option class="genreChoice" id="country">Country</option>
+      <option class="genreChoice" id="pop">Soft, Adult Rock, Pop</option>
+      <option class="genreChoice" id="alternative">Alternative, Modern, Classic Rock</option>
+      <option class="genreChoice" id="rap">Rap and Hip-Hop</option>
+      <option class="genreChoice" id="rnb">R&B</option>
+      <option class="genreChoice" id="instrumental">Instrumental and Classical</option>
+      <option class="genreChoice" id="hardrock">Hard Rock and Metal</option>
+      <option class="genreChoice" id="EDM">EDM and DJ</option>
+      <option class="genreChoice" id="international">International</option>
+      <option class="genreChoice" id="folk">Folk, Jazz, Reggae, Blues</option>
+      </select>
+      </center>
+    </form><br>
+        <input type="submit" value="Enter">
+      </form>
+    </div>
+</center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
 
 </body>
 

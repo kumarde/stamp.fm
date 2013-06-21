@@ -424,8 +424,8 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       paramName: "file",
       createImageThumbnails: true,
       maxThumbnailFilesize: 10,
-      thumbnailWidth: 100,
-      thumbnailHeight: 100,
+      thumbnailWidth: 0,
+      thumbnailHeight: 0,
       params: {},
       clickable: true,
       acceptedMimeTypes: null,
@@ -1479,12 +1479,3 @@ if (typeof exports == "object") {
 } else {
   this["Dropzone"] = require("dropzone");
 }})();
-
-
-
-
-function popitup(url) {
-  newwindow=window.open(url,'name','height=200,width=150');
-  if (window.focus) {newwindow.focus()}
-  return false;
-}
