@@ -55,6 +55,7 @@ body {
 }
 #profileInfo{
     width: 100%;
+    max-width: 100%;
     margin-left: 0px;
     background-color: black;
 }
@@ -63,16 +64,29 @@ body {
     margin-left: 0px;
 }
 #name{
+    max-height: 200px;
     margin-top: 8%;
     margin-left: 0px;
+    width: 15%;
+    overflow: auto;
 }
 #location{
+    width: 100%;
+    margin-top: 0px;
     margin-left: 0%;
     font-size: 30px;
 }
 #bio{
     margin-top: 8%;
-    font-size: 30px;
+    overflow : auto;
+    word-wrap: break-word;
+    font-size: 20px;
+    border : 1px;
+    background : #000000;
+    color : #ffffff; 
+    padding : 4px; 
+    max-width : 57%; 
+    max-height : 200px; 
 }
 #picture{
     max-height: 250px;
@@ -87,7 +101,7 @@ body {
 
 #videoPlayer{
     border: 2px solid;
-    border-color: red;
+    border-color: rgba(180,7,6,1);
 }
 
 #vidYo{
@@ -98,7 +112,7 @@ body {
     width: 33.3%;
     height: 276px;
     border: 2px solid;
-    border-color: red;
+    border-color: rgba(180,7,6,1);
 }
 
 #songListLabel{
@@ -109,7 +123,7 @@ body {
 margin-top: 0px;
 border : solid 2px;
 border-color: rgba(180,7,6,1);
-background : #000000;
+background : #E0E0E0;
 color : #ffffff; 
 padding : 4px; 
 max-width : 100%; 
@@ -119,7 +133,7 @@ overflow : auto;
 
 #playlist{
     border: 2px solid;
-    border-color: red;
+    border-color: rgba(180,7,6,1);
     width: 33.3%;
     height: 276px;
 }
@@ -132,7 +146,7 @@ overflow : auto;
 margin-top: 0px;
 border : solid 2px;
 border-color: rgba(180,7,6,1);
-background : #000000;
+background : #E0E0E0;
 color : #ffffff; 
 padding : 4px; 
 max-width : 100%; 
@@ -214,5 +228,51 @@ overflow : auto;
     pointer-events: auto;
 }
 
+.modalDialog_temp {
+    position: fixed;
+    font-family: 'Poiret One', cursive;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
 
+.modalDialog_temp:target {
+    opacity:1;
+    pointer-events: auto;
+}
 
+.modalDialog_temp > div {
+    width: 30%;
+    height: 40%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(180,7,6,1);
+}
+
+.modalDialog_temp ul{
+    list-style-type: none;
+}
+
+.modalDialog_temp li{
+    display: inline;
+    float: center;
+}
+
+.twitter-follow-button{
+    margin-right: 4%;
+}
+
+.fb-like{
+    float: left;
+    margin-left: 15%;
+}
