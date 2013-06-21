@@ -4,19 +4,83 @@
 <% script('/video-js/video.js') -%>
 <html>
 <head>
-
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/gridiculous.css">
+    <link rel="stylesheet" type="text/css" href="/createProfile.css">
+    <link rel="stylesheet" type="text/css" href="/dropzone.css">
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-	<form method = "POST" enctype = "multipart/form-data">
-		<input type = "text" placeholder = "name" name = "name" id= "name" required/><br><br>
-		<input type = "text" placeholder = "location" name = "location" id= "location" required/><br><br>
-		<textarea rows = "4" cols = "50" placeholder = "bio" id = "bio" name = "bio" required/></textarea><br>
-		<input type = "file" name = "picture" id = "picture" accept = 'image/*'><br>
-		<input type = "submit" value = "Create a Profile"><br>
+	<div id="wrapper">
+      <header id="header">
+      <a href="http://www.stamp.fm" style="float:left"><img src="/headerStamp.png"></a>
+      <ul style="float:right">
+      <li>
+      <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
+ 	    </li>
+ 	    <li>
+      <a href="#notReal" style="text-decoration:none" class="nav">AUDITION</a>
+  	  </li>
+  	  <li>
+      <a href="#notReal" style="text-decoration:none" class="nav">BRACKET</a>
+  	  </li>
+      <li>
+      <a href="" style="text-decoration:none" class="nav" id="logOut">Log Out</a>
+      </li>
+   	  </ul>  
+    </header>
+
+	<div id="profileInfo" class="grid wfull" style="color: white">
+		<div class="row">
+			<div class="c12" id="createPageLabel" style="font-size:40px">
+				<h1>Create your Profile</h1>
+			</div>	
+		<form method = "POST" enctype = "multipart/form-data">
+		<div class="row">
+			<div class="c12" id="name" style="font-size:40px">
+			<input type = "text" placeholder = "nickname" name = "name" id= "name" required/>
+		</div>
+		</div>  
+
+		<div class="row">
+    		<div class="c3" id="profilePic" style="float:left">
+    			<img id="preview" src="" placeholder="Upload a Profile Picture" height="250px" width="250px" />
+    			<input type = "file" name = "picture" id = "picture" accept = 'image/*' onchange="previewImage(this)">
+    			<div class="c2" id="location" style="float:left">
+    			<span2 style="font-size: 20px" id="locationLabel">Location: </span2><span id="locationInput"><input type = "text" placeholder = "location" name = "location" id= "location" required/></span>
+    			</div>
+    		</div>
+    			<div class="c8" id="bioLabel" ><span3 style="font-size:25px"><strong><u>Bio:</u> </strong></span3>
+    			<textarea rows = "20" cols = "120" placeholder = "bio" id = "bio" name = "bio" required/></textarea>
+    			<center><input type = "submit" id="createButton" value = "Click to View Your Profile"><br></center>
+    			</div>
+    	</div>
+	
+    </div>
+
 	</form>
+	</div>	
+
+	</div>
 
 
+
+<script type="text/javascript">      
+  function previewImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        //the only jQuery line.  All else is the File API.
+        $('#preview').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
 </body>
 
 </html>
