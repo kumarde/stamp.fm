@@ -424,7 +424,15 @@ app.post('/vidtest', function(req, res){
     );
 });
 
-
+app.get('/populate', function(req, res){
+    db.music.find({name:0}, function(e, o){
+        if(e){
+            console.log(e);
+        } else{
+            res.render('populate', {todos: o});
+        }
+    });
+});
 
 
 
