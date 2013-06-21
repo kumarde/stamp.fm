@@ -1,6 +1,7 @@
 html{
-    background: url("/textured_white_background.png") repeat;
-    background-size: 200px;
+    background: #FFFFFF no-repeat center center fixed;
+    font-family: 'Poiret One', cursive;
+    background-size: cover;
     min-width: 100%;
     min-height: 100%;
 }
@@ -11,58 +12,59 @@ body {
     min-width: 1100px;
     min-height:100%;
 }
+#wrapper {
+  position: relative;
+  min-height: 400px;
+}
 
 #header {
-    min-width: 800px;
+    min-width: 700px;
     background-color: rgba(180,7,6,1);
     width:100%;
     height: 75px;
     position: fixed;
     top: 0;
     float: left;
+    opacity:0.9;
+    filter:alpha(opacity=90);
     z-index:99;
 }
 
 #header ul{
-	list-style-type: none;
+    list-style-type: none;
 }
 
 #header li{
-	display: inline;
-	margin-right: 20px;
-	font-size: 30px;
+    display: inline;
+    margin-right: 20px;
+    font-size: 30px;
 }
 
 #header .nav{
-	color: black;
+    color: black;
 }
 
 #header h1{
-	margin-left: 80px;
-	margin-right: 80px;
+    margin-left: 80px;
+    margin-right: 80px;
 }
-#profile_info{
-    margin-top: 80px;
-    margin-left: 30px;
+
+#profileInfo{
+    margin-left: 0px;
 }
-#band_name {
-    margin:0;
-    float: none;
+#profilePic{
+    margin-top: 8%;
+    margin-left: 0px;
 }
-#profile_text{
-    position: absolute;
-    top: 150px;
-    left: 260px;
-    min-width: 1000px;
+#name{
+    margin-top: 8%;
+    margin-right: 30px;
+    margin-left: 0px;
 }
-#profile_text p{
-    float: left;
-    margin-right: 10px;
+#location{
+    margin-left: 20px;
+    font-size: 30px;
 }
-#bio_box{
-    position: absolute;
-    top:200px;
-    left:260px;
-    min-width: 500px;
-    padding-right:100px;
+#bio{
+    margin-top: 8%;
 }

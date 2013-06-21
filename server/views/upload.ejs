@@ -28,15 +28,25 @@
    	  </ul>  
     </header>
 
+<center>
+    <div id="explain">
+    	<center>
+    	<p id="top">Upload a Song to Enter into the Tournament</p>
+    	<p>You are allowed one song entry per genre</p>
+    	</center>
+    </div>	
+</center>
+
       <div id="upload_block">
         <script src="/dropzone.js"></script>
         <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data">
-        	<center><p id="uploadText" style="color:#FFFFFF">Drag and Drop to Upload a Song to the Tournament</p></center>
+        	<center><p id="uploadText" style="color:#FFFFFF">Drag and Drop to Upload</p></center>
 	  <div class="fallback">
 	    <input id="uploaded" name="file" type="file" multiple success="onComplete(file)"/>
       	  </div>
         </form>
       </div>
+
 
   </div>
 

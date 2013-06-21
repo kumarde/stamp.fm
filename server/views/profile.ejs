@@ -1,0 +1,56 @@
+<% layout('layout') -%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/gridiculous.css">
+    <link rel="stylesheet" type="text/css" href="/profile.css">
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  
+  <body>
+    <div id="wrapper">
+      <header id="header">
+      <a href="http://www.stamp.fm" style="float:left"><img src="/headerStamp.png"></a>
+      <ul style="float:right">
+      <li>
+      <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
+ 	  </li>
+ 	  <li>
+      <a href="/audition" style="text-decoration:none" class="nav">AUDITION</a>
+  	  </li>
+  	  <li>
+      <a href="/bracket" style="text-decoration:none" class="nav">BRACKET</a>
+  	  </li>
+   	  </ul>  
+    </header>
+
+    <div id="profileInfo" class="grid">
+    	<div class="row">
+    		<div class="c3" id="profilePic" style="float:left"><img src="data:image/jpeg;base64,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"></div>
+
+    		<div class="c1" id="name" style="font-size:50px">
+    		<strong>The Maine</strong>
+    		</div>
+
+    		<div class="c7 end" id="bio" style="float:right">
+    			One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.
+    		</div>
+   			
+    	</div>	
+
+    	<div class="row">
+    		<div class="c4" id="location" style="float:left">
+    		Location: <span id="locationInput">HELL</span>
+    		</div>
+    	</div>	
+    </div>	
+
+    		
+
+
+
+

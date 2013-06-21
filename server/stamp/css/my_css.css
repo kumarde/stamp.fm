@@ -1,0 +1,108 @@
+@charset "UTF-8";
+/* CSS Document */
+	
+	body{
+	color:#000000;
+	font-family: Verdana, Arial, sans-serif;
+	position: relative;
+	}
+	a:hover {
+	text-decoration:underline;
+	opacity: .8;
+	text-shadow: none;
+	}
+/* Note: .erimgMain and .erimgMain rotatorTileNav are for EasyRotator.*/
+/*	.erimgMain {
+		box-shadow: 5px 5px 5px #888888;
+      }
+	.erimgMain rotatorTileNav {
+		box-shadow: 5px 0px 5px #888888;
+      } */
+	
+.hero-unit {
+		-webkit-border-radius: 0px;
+	    -moz-border-radius: 0px;
+		position:relative;
+		background-color:#FFFFFF;
+		opacity:1;
+/*		box-shadow: 5px 5px 5px #000000; */
+      }
+	.hero-unit p {
+		font-size:18px;
+		line-height:200%;
+	}
+	.hero-unit ol li {
+		font-size:18px;
+	    line-height:200%;
+	}
+	.span3 {
+		position:relative;
+/*		box-shadow: 5px 5px 5px #000000; */
+		margin-bottom:0px;
+	      }
+	
+	.span4 ul li{
+		list-style-type: none;
+		line-height:200%;
+	}
+
+	#pull-left {
+  		float: left;
+  		margin-left:-50px;
+		margin-top:-10px;
+		position:fixed;
+	}
+	#pull-right {
+  		margin-right:-50px;
+		margin-top:-10px;
+		float: right;
+	}
+	
+
+/*	.fixed { 
+	position: fixed !important;
+	zoom:1; /* This enables hasLayout, which is required for older IE browsers *//*
+		top: 200px !important;
+	}*/
+
+	.collapse ul li a{
+		color:#000000;
+	}
+	.well {
+		margin-bottom:0px;
+		background:#ffffff;
+	}
+	.sidebar-nav{
+		-webkit-border-radius: 0px;
+	    -moz-border-radius: 0px;
+	}
+	.navbar-inner{
+/*		background:#99000E;*/
+		background:#CC0000;
+		font-size:18px;
+		opacity:0.85;
+		text-shadow:none;
+	}
+	.anand_big_font{
+		font-size:150%;
+		color:#000000;
+		line-height:200%;
+	}
+	
+	#anand_line_space ul li{ font-size:110%; margin-bottom: 7px; vertical-align:top;
+	}
+	
+		#top_nav1_img li{
+		list-style:none;
+		display:inline;
+		text-shadow:none;
+		}
+	
+	#top_nav1_img {
+		padding-right:50px;
+		float:right;
+	}
+	
+	#top_nav1_img li img{
+		padding-top:8px;
+	}

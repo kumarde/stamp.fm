@@ -1,6 +1,6 @@
 html{
     background: #000 no-repeat center center fixed;
-    background-image: url('/upload_background.png');
+    background-image: url('/upload_background.jpg');
     font-family: 'Poiret One', cursive;
     background-size: cover;
     min-width: 100%;
@@ -56,17 +56,34 @@ body {
     width: 500px;
     height: 380px;
     position: relative;
-    margin-top: 180px;
-    margin-left: 30%;
+    margin-top: 50px;
+    margin-left: 32%;
     float: left;
     border-style: solid;
     border-width:6px;
     border-color: rgba(180,7,6,1);
-    background: rgba(0,0,0,.7);
+    background: rgba(0,0,0,.9);
 }
 
 #uploadText{
     font-size: 40px;
+}
+
+#explain{
+    position: center;
+    margin-top: 110px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+    color: #FFFFFF;
+    background-color: #000;
+    background: rgba(0,0,0,.7);
+    height: 30%;
+    width: 35%;
+}
+
+#top{
+    font-size: 30px;
 }
 
 .modalDialog {
