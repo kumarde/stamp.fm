@@ -1,0 +1,78 @@
+html{
+    background: #000 no-repeat center center fixed;
+    background-image: url('');
+    font-family: 'Poiret One', cursive;
+    background-size: cover;
+    min-width: 100%;
+    min-height: 100%;
+}
+body{
+	overflow: auto;
+	margin:0;
+}
+
+#error_box {
+    position: relative;
+    top:50px;
+    margin-left: auto;
+    margin-right: auto;
+    width:600px;
+    height:400px;
+    background: #FF0000;
+    border: 3px solid rgba(1,0,0,1);
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#error_box img{
+    position: relative;
+    width: 260px;
+    height: 315px;    
+}
+#error_box #watcha_text{
+    position: relative;
+    margin: 0;
+    top:-10px;
+    font-size: 50px;
+    color: #FFFFFF;
+}
+#error_box #error_text{
+    position: relative;
+    top:-30px;
+    margin: 0;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+
+#header {
+    min-width: 700px;
+    background-color: rgba(180,7,6,1);
+    width:100%;
+    height: 75px;
+    position: fixed;
+    top: 0;
+    float: left;
+    opacity:0.9;
+    filter:alpha(opacity=90);
+    z-index:99;
+}
+
+#header ul{
+	list-style-type: none;
+}
+
+#header li{
+	display: inline;
+	margin-right: 20px;
+	font-size: 30px;
+}
+
+.nav{
+	color: black;
+}
+
+#header h1{
+	margin-left: 80px;
+	margin-right: 80px;
+}
