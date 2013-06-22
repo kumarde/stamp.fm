@@ -11,6 +11,7 @@ body {
     border: 0;
     min-width: 1100px;
     min-height:100%;
+    overflow: auto;
 }
 #wrapper {
   position: relative;
@@ -64,26 +65,26 @@ body {
     margin-left: 0px;
     background-color: black;
 }
-#profilePic{    
-    height: 250px;
-}
-#name{
+
+.c3 #name{
     margin-top: 0%;
-    margin-left: 1.9%;
-    width: 52%;
+    margin-left: 5%;
+    width: 90%;
 }
 #location{
-    width: 250px;
+    width: 90%;
     margin-top: 2%;
-    margin-left: 3%;
     font-size: 20px;
     float: left;
 }
-#locationLabel{
-    margin-left: 3%;
+
+#bioLabel #profilePic{
+    display: inline;
 }
+
 #bio{
-    margin-top: 1%;
+    min-width: 20%;
+    margin-top: 0%;
 }
 #picture{
     margin-left:20%;
@@ -93,15 +94,17 @@ body {
     border: 1px solid;
     border-color: #FFFFFF;
     height: 250px;
-    width: 250px;
+    width: 90%;
 }
 #createButton{
     background-color: rgba(180,7,6,1);
     color: #FFFFFF;
-    margin-top: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-right: 15%;
     font-size: 50px;
-    height: 100px;
-    width: 70%;
+    height: 110px;
+    width: 100cols;
     border: 2px solid rgba(180,7,6,1);
     -moz-border-radius:5px;  
     border-radius: 5px;  
