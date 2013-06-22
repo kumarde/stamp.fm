@@ -19,6 +19,7 @@ var S3_BUCKET = 'media.stamp.fm';
 var PIC_BUCKET = 'pictures.stamp.fm'
 var knox = require('knox');
 var songs = 0;
+var flag = false; 
 
 var client = knox.createClient({
     key: S3_KEY,
@@ -71,6 +72,7 @@ app.configure(function(){
         function(accessToken, refreshToken, profile, done){
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
+                        flag = true;
                         return done(null, user);
                 }
                 else if(err){
@@ -175,6 +177,8 @@ app.post('/vote', function(req, res){
 })
 
 app.get('/upload', function(req, res){
+    console.log(req.session.user);
+    console.log(req.user);
     if(req.session.user == null && req.user == null){
         //tell the user they are not logged in, redirect to login
         res.redirect('/login');
@@ -190,8 +194,10 @@ app.get('/upload', function(req, res){
 /*FACEBOOK AUTH*/
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
 app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', { successRedirect: '/upload',
+    passport.authenticate('facebook', { successRedirect: '/create',
                                         failureRedirect: '/login'}));
+
+
 
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
@@ -227,22 +233,13 @@ app.post('/login', function(req, res){
 			}
           console.log("You are being redirected home");
           console.log(req.user);
-			    res.send({redirect:'/upload'});
+			    res.send({redirect:'/profile'});
 		}
 	});
 });
 
 app.get('/signup', function(req, res){
 	res.render('createAccount', {title: "Signup"});
-});
-app.get('/profile', function(req, res){
-      if(req.session.user == null && req.user == null){
-        //tell the user they are not logged in, redirect to login
-        res.redirect('/login');
-    }
-    else{
-      res.render('profile', {title: "Your Profile"});
-    }
 });
 
 app.post('/signup', function(req, res){
@@ -255,13 +252,21 @@ app.post('/signup', function(req, res){
             res.send(e, 400);
         }   else{
             req.session.user = o;
-            res.redirect('/upload');
+            res.redirect('/create');
        }
     });
 });
+
 app.get('/forgot', function(req ,res, next){
     res.render('forgot', {title: 'Forgot Password?'});
 });
+
+app.get('/logout', function(req, res){
+    req.logout();
+    req.session.destroy();
+    res.redirect('/login');
+});
+
 
 app.post('/forgot', function(req, res, next){
     accountModule.getAccountByEmail(req.param('email'), function(o){
@@ -296,7 +301,7 @@ app.get('/reset-password', function(req, res) {
         })
     });
     
-    app.post('/reset-password', function(req, res) {
+app.post('/reset-password', function(req, res) {
         var nPass = req.param('pass');
     // retrieve the user's email from the session to lookup their account and reset password //
         var email = req.session.reset.email;
@@ -310,13 +315,14 @@ app.get('/reset-password', function(req, res) {
             }
         })
     });
+
+
 /********************************************LOGIN STUFF DONE*******************************/
 /****************************UPLOAD FILES TO S3 SERVER***********************************/
 app.post('/file-upload', function(req, res, next){
     console.log(req.files.file.path);
         var stream = fs.createReadStream(req.files.file.path);
         var id;
-        songs++;
         upload = new mpu(
             {
                 client: client,
@@ -338,6 +344,7 @@ app.post('/file-upload', function(req, res, next){
                         id = req.session.user._id;
                     }
                     db.music.save({_id:songs, name: req.files.file.name, artistID:id, ETag: obj.ETag, votes: 0, views: 0});
+                    songs++;
                 }
                 // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
                 res.send("back");
@@ -352,7 +359,18 @@ app.get('/create', function(req, res){
         res.redirect('/login');
     }
     else{
-        res.render('CreateProfile');
+        var email;
+        if(req.session.user == null){
+            email = req.user[0].email;
+        }
+        else if(req.user == null){
+            email = req.session.user[0].email;
+        }
+        console.log(email);
+        db.users.find({email: email}, function(e, o){
+            console.log(o);
+            res.render('CreateProfile', {name: o[0].name});
+        })
     } 
 });
 
@@ -381,7 +399,7 @@ app.post('/create', function(req, res){
                 console.log(o);
                 userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), id);
                 db.music.find({accountID: id}, function(e, songs){
-                    res.render('profile', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), name: req.param('name'), location: req.param('location'), bio: req.param('bio'), songId: 0, songs: songs});    
+                    res.redirect('profile', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), name: req.param('name'), location: req.param('location'), bio: req.param('bio'), songId: 0, songs: songs});    
                 }); 
             }
         }
@@ -448,6 +466,8 @@ app.get('/profile', function(req, res){
     }
     else{
         var id;
+        console.log(req.user);
+        console.log(req.user.session);
         if(req.session.user == null){
             id = req.user[0]._id;
         }
@@ -503,8 +523,6 @@ app.get('/vidUpdate', function(req, res){
         });
     }
 });
-
-
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Server listening on port " + app.get('port'));
