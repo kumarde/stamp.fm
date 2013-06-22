@@ -69,11 +69,18 @@
         <div class="c4" id="songList" style="position: center">
           <center><span id="songListLabel">Songs</span></center>
           <div id="songContent">
-            <% songs.forEach(function(song){ %>
-              <a href = "/vidUpdate?id=<%=song._id%>" id = "videoplay">
-                <%= song.name %>
+           <div id="song">
+              <% songs.forEach(function(song){ %>
+                <a href = "/vidUpdate?id=<%=song._id%>" id = "videoplay">
+                <spanLink id="songName"><%= song.name %></spanLink>
+                </a>
+              <% }); %>
+
+              <a id="plusPlaylist">
+                <img src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" id="add">
               </a>
-             <% }); %>
+
+            </div> 
 
           </div>
         </div>

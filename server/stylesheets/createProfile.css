@@ -1,5 +1,5 @@
 html{
-    background: #FFFFFF no-repeat center center fixed;
+    background: #000 no-repeat center center fixed;
     font-family: 'Poiret One', cursive;
     background-size: cover;
     min-width: 100%;
@@ -68,16 +68,19 @@ body {
 
 .c3 #name{
     margin-top: 0%;
-    margin-left: 5%;
-    width: 90%;
+    margin-left: 13%;
+    width: 75%;
 }
 #location{
     width: 90%;
-    margin-top: 2%;
     font-size: 20px;
-    float: left;
 }
-
+#locationInput{
+    margin-left: 10%;
+}
+#locationLabel{
+    margin-left: 10%;
+}
 #bioLabel #profilePic{
     display: inline;
 }
@@ -92,9 +95,10 @@ body {
 }
 #preview{
     border: 1px solid;
+    position: center;
     border-color: #FFFFFF;
-    height: 250px;
-    width: 90%;
+    max-height: 90%;
+    max-width: 90%;
 }
 #createButton{
     background-color: rgba(180,7,6,1);
