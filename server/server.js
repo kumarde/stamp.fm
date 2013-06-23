@@ -524,6 +524,12 @@ app.get('/vidUpdate', function(req, res){
     }
 });
 
+/*****************************************404**************************************************/
+app.get("*", function(req, res){
+      res.render('page404');
+})
+/*****************************************404 done**************************************************/
+
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Server listening on port " + app.get('port'));
 });
