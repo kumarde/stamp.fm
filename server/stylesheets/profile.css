@@ -53,6 +53,11 @@ body {
     font-size: 20px;
     margin-left: 30px;
 }
+
+.replace {
+display:none;
+}
+
 #profileInfo{
     width: 100%;
     max-width: 100%;
@@ -68,11 +73,41 @@ body {
     margin-left: 0px;
     width: 100%;
 }
+#displayName:hover{
+    background-color: rgba(180,7,6,.3);
+}
+#submitNameButton{
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    font-size: 30px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#submitNameButton:hover{
+    background-color: rgba(120,7,6,1);
+}
 #location{
     width: 100%;
     margin-top: 0px;
     margin-left: 0%;
     font-size: 30px;
+}
+#spanLocation:hover{
+    background-color: rgba(180,7,6,.3);
+}
+#submitLocationButton{
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    font-size: 20px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#submitLocationButton:hover{
+    background-color: rgba(120,7,6,1);
 }
 #bio{
     overflow : auto;
@@ -85,12 +120,30 @@ body {
     max-width : 57%; 
     max-height : 200px; 
 }
+#bio:hover{
+    background-color: rgba(180,7,6,.3);
+}
+#submitBioButton{
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    font-size: 20px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#submitBioButton:hover{
+    background-color: rgba(120,7,6,1);
+}
 #picture{
     max-height: 250px;
     border: 1px solid;
     border-color: #FFFFFF;
+    opacity: 1;
 }
-
+#picture:hover{
+    opacity: .7;
+}
 #music{
     width: 100%;
     background-color: #FFFFFF;
