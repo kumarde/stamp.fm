@@ -533,6 +533,13 @@ app.get('/profile', function(req, res){
 
 app.post('/profileUpload', function(req, res){
     var name = req.body.name;
+    var id;
+    if(req.session.user == null){
+        id = req.user[0]._id;
+    }
+    else if(req.user == null){
+       id = req.session.user[0]._id;
+   }
     db.music.save({_id: songs, name: name, artistID:id}, function(e, o){
         if(e){
             console.log(e);
@@ -540,7 +547,6 @@ app.post('/profileUpload', function(req, res){
             res.send({msg: "saved", songs: o})
         }
     });
-    console.log()
 })
 
 app.get('/vidUpdate', function(req, res){
