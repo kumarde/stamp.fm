@@ -464,7 +464,7 @@ app.post('/create', function(req, res){
         id = req.user[0]._id;
     }
     else if(req.user == null){
-        id = req.session.user._id;
+        id = req.session.user[0]._id;
     }
     upload = new mpu(
         {
@@ -514,7 +514,7 @@ app.get('/profile', function(req, res){
             id = req.user[0]._id;
         }
         else if(req.user == null){
-            id = req.session.user._id;
+            id = req.session.user[0]._id;
         }
         db.profiles.findOne({_id: id}, function(e, profile){
             if(e){
@@ -568,7 +568,7 @@ app.get('/vidUpdate', function(req, res){
             id = req.user[0]._id;
         }
         else if(req.user == null){
-            id = req.session.user._id;
+            id = req.session.user[0]._id;
         }
         db.profiles.findOne({_id: id}, function(e, profile){
             if(e){
