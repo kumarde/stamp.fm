@@ -29,7 +29,6 @@ db.music.count(function(e, count){
         songs = 0;
     }
 });
-
 /**********************ON SERVER STARTUP SONGS WILL BE 0 AND WILL INCREMENT WHENEVER UPDATED**/
 
 
@@ -239,6 +238,8 @@ app.post('/vote', function(req, res){
     });
 })
 
+/*********************************UPLOAD TO THE TOURNAMENT ROUTES ***************************************/
+
 app.get('/upload', function(req, res){
     console.log(req.session.user);
     console.log(req.user);
@@ -303,6 +304,8 @@ app.post('/file-upload', function(req, res, next){
     ); 
     res.send("back");
 });
+
+/************************************END UPLOAD TO THE TOURNAMENT****************************************/
 
 
 /*******************************LOGIN STUFF HERE******************************************/
@@ -490,56 +493,6 @@ app.get('/video/:fname', function( req, res) {
     res.render('video',{vidurl: myS3Account.readPolicy(req.params.fname, 'media.stamp.fm', 60)});
 });   
 
-app.get('/vidtest', function(req, res){
-    if(req.session.user == null && req.user == null){
-        res.redirect('/login');
-    }
-    else{
-        res.render('vidtest');
-    } 
-
-})
-
-app.post('/vidtest', function(req, res){
-    console.log(req.files);
-    var stream = fs.createReadStream(req.files.video.path);
-    var id;
-    if(req.session.user == null){
-        id = req.user[0]._id;
-    }
-    else if(req.user == null){
-        id = req.session.user._id;
-    }
-    upload = new mpu(
-        {
-            client: client,
-            objectName: songs.toString(),
-            stream: stream
-        },
-        function(e, o){
-            if(e){
-                console.log(e);
-                res.send(e, 400);
-            }
-            else{
-                console.log(o);
-                db.music.save({_id: songs, accountID: id, name: req.files.video.name});
-                res.render('videof', {id: myS3Account.readPolicy(songs, 'media.stamp.fm', 60), name: req.files.video.name, songId: 0});
-            }
-        }
-    );
-});
-
-app.get('/populate', function(req, res){
-    db.music.find({name:0}, function(e, o){
-        if(e){
-            console.log(e);
-        } else{
-            res.render('populate', {todos: o});
-        }
-    });
-});
-
 app.get('/profile', function(req, res){
     if(req.session.user == null && req.user == null){
             res.redirect('/login');
@@ -551,8 +504,6 @@ app.get('/profile', function(req, res){
             vid = 0;
         }
         var id;
-        console.log(req.user);
-        console.log(req.user.session);
         if(req.session.user == null){
             id = req.user[0]._id;
         }
@@ -579,6 +530,18 @@ app.get('/profile', function(req, res){
         });
     }
 });
+
+app.post('/profileUpload', function(req, res){
+    var name = req.body.name;
+    db.music.save({_id: songs, name: name, artistID:id}, function(e, o){
+        if(e){
+            console.log(e);
+        } else {
+            res.send({msg: "saved", songs: o})
+        }
+    });
+})
+
 
 app.get('/vidUpdate', function(req, res){
     console.log(req.body);

@@ -127,7 +127,7 @@
 
 <!-- Modal Window(s) -->
 
-<div id="<%=createModal%>" class="modalDialogCreate">
+<div id="create" class="modalDialogCreate">
     <div id="profileSection" class="grid wfull" style="color: white">
     <div class="row">
       <div class="c12" id="createPageLabel" style="font-size:30px">
@@ -194,9 +194,9 @@
     <center>
     <h5 style="color:white">Fill in your Song Information</h5>
     <div>
-      <form method = "post">
-        <input type="text" class="songName" placeholder="Song Name" name = "songName"><br><br>
-        <input type="submit" value="Enter">
+      <form method = "post" id = "profileUpload">
+        <input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName"><br><br>
+        <input type="submit" value="Enter" id = "songSubmit">
       </form>
     </div>
     </center>
@@ -239,6 +239,32 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- End FB Like Script -->
+
+<script>
+  $(document).ready(function() {
+    $("#profileUpload").submit(function(e){
+      return false;
+    });
+    $('#songSubmit').click(function(event){ 
+     var name = $('#songName').val();
+     $.ajax({ 
+           url: '/profileUpload',
+           type: 'POST',
+           cache: false, 
+           data: {name : name},
+           success: function(data){
+            if(data.msg == "saved"){
+              alert("Your song has been saved!");
+            }
+            if (typeof data.redirect == 'string'){
+              window.location = data.redirect;
+            }
+           }
+        })
+     });
+  });
+</script>
+
 </body>
 
 
