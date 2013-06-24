@@ -398,6 +398,7 @@ app.post('/create', function(req, res){
             else{
                 console.log(o);
                 userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), id);
+                //need to actually add something to the profiles collection awkward.
                 db.music.find({accountID: id}, function(e, songs){
                     res.redirect('profile', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), name: req.param('name'), location: req.param('location'), bio: req.param('bio'), songId: 0, songs: songs});    
                 }); 
