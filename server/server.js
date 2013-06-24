@@ -551,7 +551,8 @@ app.post('/profileUpload', function(req, res){
             console.log(e);
         } else {
             res.send({msg: "saved", songs: o});
-            res.send(redirect:'/')
+            res.send({redirect:'/'})
+            ++songs;
         }
     });
 })
