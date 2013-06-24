@@ -469,7 +469,7 @@ app.post('/create', function(req, res){
     upload = new mpu(
         {
             client: picClient,
-            objectName: id,
+            objectName: id.toString(),
             stream: stream
         },
         function(e, o){
@@ -540,8 +540,8 @@ app.post('/profileUpload', function(req, res){
             res.send({msg: "saved", songs: o})
         }
     });
+    console.log()
 })
-
 
 app.get('/vidUpdate', function(req, res){
     console.log(req.body);
