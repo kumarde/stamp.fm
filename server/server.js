@@ -361,15 +361,15 @@ app.get('/signup', function(req, res){
 
 app.post('/signup', function(req, res){
     accountModule.addNewAccount({
-        name    : req.param('name'),
-        email   : req.param('email'),
-        pass    : req.param('pass'),
+        name    : req.body.Name,
+        email   : req.body.email,
+        pass    : req.body.password,
     }, function(e, o){
         if (e){
-            res.send(e, 400);
+            res.send({error: "Error: Username already exists"});
         }   else{
             req.session.user = o;
-            res.redirect('/create');
+            res.send({redirect:'/create'});
        }
     });
 });

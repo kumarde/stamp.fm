@@ -44,7 +44,7 @@
 <div class="login">
 <center>
 <div id = "login-container">
-  <form class = "InputFields" method = "post">
+  <form class = "InputFields" id = "inputFields" method = "post">
       <p style="font-size: 30px">Join Stamp.fm</p>
       <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
         or<br>
@@ -108,6 +108,36 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<!---AJAX page rendering -->
+
+<script>
+  $(document).ready(function() {
+    $("#inputFields").submit(function(e){
+      return false;
+    });
+    $('#createAccount').click(function(event){ 
+     var Name = $('input#Name').val();
+     var email = $('input#Email').val();
+     var password = $('input#Password').val();
+     $.ajax({ 
+           url: '/signup',
+           type: 'POST',
+           cache: false, 
+           data: {Name: Name, email: email, password: password},
+           success: function(data){
+            if(data.error != null){
+              alert(data.error);
+            }
+            if (typeof data.redirect == 'string'){
+              window.location = data.redirect;
+            }
+           }
+        })
+     });
+  });
+</script>
+
 <!-- End FB Like Script -->
+
 </body>
 </html>
