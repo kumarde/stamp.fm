@@ -34,28 +34,28 @@
    	  </ul>  
     </header>
 
-	<div id="profileInfo" class="grid wfull" style="color: white">
+	<div id="profileSection" class="grid wfull" style="color: white">
 		<div class="row">
 			<div class="c12" id="createPageLabel" style="font-size:40px">
 				<h1>Create your Profile</h1>
 			</div>	
 		<form method = "POST" enctype = "multipart/form-data">
 		<div class="row">
-			<div class="c3" id="name" style="font-size:30px">
+			<div class="c3" id="nameCreate" style="font-size:30px">
 			<input type = "text" placeholder = "nickname" name = "name" id= "name" required/>
 			</div>
 		</div>  
 
 		<div class="row">
-    		<div class="c3" id="profilePic" style="float:left">
+    		<div class="c3" id="proPic" style="float:left">
     			<img id="preview" src="stampman.png"/>
-    			<input type = "file" name = "picture" id = "picture" accept = 'image/*' onchange="previewImage(this)">
-    			<div class="c2" id="location" style="float:left">
-    			<span2 style="font-size: 20px" id="locationLabel">Location: </span2><span id="locationInput"><input type = "text" placeholder = "location" name = "location" id= "location" required/></span>
+    			<input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
+    			<div class="c2" id="locationEnter" style="float:left">
+    			<span2 style="font-size: 20px" id="locationLabelCreate">Location: </span2><span id="locationInputCreate"><input type = "text" placeholder = "location" name = "location" id= "locationEnter" required/></span>
     			</div>
     		</div>
-    			<div class="c8" id="bioLabel" ><span3 style="font-size:20px"><strong><u>Bio:</u> </strong></span3>
-    			<textarea rows = "19" cols = "110" placeholder = "bio" id = "bio" name = "bio" required/></textarea>
+    			<div class="c8" id="bioLbl" ><span3 style="font-size:20px"><strong><u>Bio:</u> </strong></span3>
+    			<textarea rows = "19" cols = "110" placeholder = "bio" id = "bioCreate" name = "bio" required/></textarea>
     			<center><input type = "submit" id="createButton" value = "Click to View Your Profile"><br></center>
     			</div>
     	</div>

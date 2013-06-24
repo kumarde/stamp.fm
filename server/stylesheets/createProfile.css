@@ -57,7 +57,7 @@ body {
 #createProfileLabel{
     margin-top: 5%;
 }
-#profileInfo{
+#profileSection{
     min-width: 1100px;
     width: 100%;
     height: 100%;
@@ -66,30 +66,30 @@ body {
     background-color: black;
 }
 
-.c3 #name{
+.c3 #nameCreate{
     margin-top: 0%;
     margin-left: 13%;
     width: 75%;
 }
-#location{
+#locationEnter{
     width: 90%;
     font-size: 20px;
 }
-#locationInput{
+#locationInputCreate{
     margin-left: 10%;
 }
-#locationLabel{
+#locationLabelCreate{
     margin-left: 10%;
 }
-#bioLabel #profilePic{
+#bioLbl #proPic{
     display: inline;
 }
 
-#bio{
+#bioCreate{
     min-width: 20%;
     margin-top: 0%;
 }
-#picture{
+#pic{
     margin-left:20%;
     width: 70%;
 }

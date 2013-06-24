@@ -119,6 +119,60 @@
 
     </div>  
 
+<!-- Modal Window(s) -->
+
+<div id="create" class="modalDialogCreate">
+    <div id="profileSection" class="grid wfull" style="color: white">
+    <div class="row">
+      <div class="c12" id="createPageLabel" style="font-size:30px">
+        <h1>Create your Profile</h1>
+      </div>  
+    <form method = "POST" enctype = "multipart/form-data">
+    <div class="row">
+      <div class="c3" id="nameCreate" style="font-size:20px">
+      <input type = "text" placeholder = "name" name = "name" id= "name" required/>
+      </div>
+    </div>  
+
+    <div class="row">
+        <div class="c3" id="proPic" style="float:left">
+          <img id="preview" src="stampman.png"/>
+          <input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
+          <div class="c2" id="locationEnter" style="float:left">
+          <span2 style="font-size: 15px" id="locationLabelCreate">Location: </span2><span id="locationInputCreate"><input type = "text" placeholder = "location" name = "location" id= "locationEnter" required/></span>
+          </div>
+        </div>
+          <div class="c8" id="bioLbl" ><span3 style="font-size:15px"><strong><u>Bio:</u> </strong></span3>
+          <textarea rows = "15" cols = "110" placeholder = "bio" id = "bioCreate" name = "bio" required/></textarea>
+          <center><a href="/profile" title="Submit" class="submitProfileButton" id="submitProf"><input href="#close" title="Submit" class="submitProfile" type = "submit" id="createButton" value = "Click to View Your Profile"><br></center></a>
+          </div>
+    </div>
+
+  </form>
+  </div>  
+
+  </div>
+
+
+
+<script type="text/javascript">      
+  function previewImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        //the only jQuery line.  All else is the File API.
+        $('#preview').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+
+</div>
+
+<!-- End Modal Window(s) -->
+
+
   <!-- Modal Window(s) -->
 
 <div id="info" class="modalDialog">
