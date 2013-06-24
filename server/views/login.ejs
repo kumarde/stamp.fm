@@ -22,7 +22,7 @@
       <a href="http://www.stamp.fm"><img src="/headerStamp.png"></a>
       <ul style="float:right">
       <li>
-      <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
+      <a href="/upload" style="text-decoration:none" id = "Upload" class="nav">UPLOAD</a>
  	  </li>
  	  <li>
       <a href="#notReal" style="text-decoration:none" class="nav">AUDITION</a>
@@ -32,7 +32,14 @@
   	  </li>
    	  </ul>  
     </header>
-
+    <script>
+    $(document).ready(function(){
+      $("#Upload").click(function(event){
+        event.preventDefault();
+        alert("You must log in before you use this feature!");
+      });
+    });
+    </script>
 <div class="blurb">
 <p style="font-size: 50px" class="big">Music lovers worldwide, rejoice.<br>
    Discover or compete.<br>
