@@ -44,13 +44,11 @@
         <script src="/dropzone.js"></script>
         <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data">
         	<center><p id="uploadText" style="color:#FFFFFF">Drag and Drop to Upload</p></center>
-	  <div class="fallback">
-	    <input id="uploaded" name="file" type="file" multiple success="onComplete(file)"/>
-      	  </div>
+          <div class = "fallback">
+	         <input id="uploaded" name="file" type="file" multiple success="onComplete(file)"/>
+          </div>
         </form>
       </div>
-
-
   </div>
 
 
@@ -63,26 +61,24 @@
     <center>
     <h5 style="color:white">Fill in your Song Information</h5>
     <div>
-      <form method = "post">
-        <input type="text" class="songName" placeholder="Song Name" name = "songName"><br><br>
+      <form method = "post" id = "songInfo">
+        <input type="text" class="songName" placeholder="Song Name" id = "songName"><br><br>
         <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
-        <form action="">
-        	<center>
-        	<select name="genre">
-        	<option class="genreChoice" id="country">Country</option>
-			<option class="genreChoice" id="pop">Soft, Adult Rock, Pop</option>
-			<option class="genreChoice" id="alternative">Alternative, Modern, Classic Rock</option>
-			<option class="genreChoice" id="rap">Rap and Hip-Hop</option>
-			<option class="genreChoice" id="rnb">R&B</option>
-			<option class="genreChoice" id="instrumental">Instrumental and Classical</option>
-			<option class="genreChoice" id="hardrock">Hard Rock and Metal</option>
-			<option class="genreChoice" id="EDM">EDM and DJ</option>
-			<option class="genreChoice" id="international">International</option>
-			<option class="genreChoice" id="folk">Folk, Jazz, Reggae, Blues</option>
-			</select>
-			</center>
-		</form><br>
-        <input type="submit" value="Enter">
+        <center>
+        <select name="genre" form="songInfo" id = "genre">
+        	<option class="genreChoice" id="country">country</option>
+			    <option class="genreChoice" id="pop">pop</option>
+			    <option class="genreChoice" id="alternative">alternative</option>
+			    <option class="genreChoice" id="rap">rap</option>
+			    <option class="genreChoice" id="rnb">rnb</option>
+			    <option class="genreChoice" id="instrumental">instrumental</option>
+			    <option class="genreChoice" id="hardrock">hardrock</option>
+			    <option class="genreChoice" id="EDM">EDM</option>
+			    <option class="genreChoice" id="international">international</option>
+			    <option class="genreChoice" id="folk">folk</option>
+			 </select>
+			 </center>
+        <input type="submit" value="Enter" id = "submit">
       </form>
     </div>
 </center>
@@ -125,6 +121,34 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- End FB Like Script -->
-
+<script>
+  $(document).ready(function() {
+    $("#songInfo").submit(function(e){
+      return false;
+    });
+    $('#submit').click(function(event){ 
+     var name = $('#songName').val();
+     var genre = $('#genre').val();
+     console.log(name);
+     console.log(genre);
+     $.ajax({ 
+           url: '/upload',
+           type: 'POST',
+           cache: false, 
+           data: {name: name, genre: genre},
+           success: function(data){
+            if(data.msg != "ok"){
+              alert(data.msg);
+            } else {
+              alert("We have recieved your video!")
+            }
+            if (typeof data.redirect == 'string'){
+              window.location = data.redirect;
+            }
+           }
+        })
+     });
+  });
+</script>
   </body>
 </html>
