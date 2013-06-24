@@ -109,6 +109,7 @@ var AccountModule = require('./scripts/AccountModule.js').AccountModule;
 var EmailModule = require('./scripts/EmailModule.js').EmailModule;
 var UploadModule = require('./scripts/UploadModule.js').UploadModule;
 var UserModule = require('./scripts/UserModule.js').UserModule;
+var FeedModule = require('./scripts/FeedModule.js').FeedModule;
 
 /*****************algorithm*****************/
 
@@ -135,6 +136,54 @@ var accountModule = new AccountModule;
 var emailModule = new EmailModule;
 var uploadModule = new UploadModule;
 var userModule = new UserModule;
+
+var Feed = new FeedModule;
+
+app.get('/feed', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/login');
+		}
+		else res.render('feed');
+});
+
+app.post('/feed/add', function(req, res){
+
+	if (req.session.user == null && req.user == null) {
+		res.send({redirect:'/login'});
+	}
+	else{
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			id = req.session.user._id;
+		}
+		Feed.add(id, req.body.type, req.body.data, function(data) {
+			res.send(data);
+		});
+	}
+});
+
+app.post('/feed/load', function(req, res){
+
+	if (req.session.user == null && req.user == null) {
+		res.send({redirect:'/login'});
+	}
+	else{
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			id = req.session.user._id;
+		}
+
+		Feed.load(req.body.index, function(data) {
+			if ( data == null )res.send({error: "Up to date"});
+			else res.send(data);
+		});
+	}
+});
+
 
 app.get('/newView', function(req, res, next){
       res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
