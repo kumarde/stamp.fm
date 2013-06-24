@@ -8,7 +8,7 @@ var flash = require('connect-flash')
   , passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "country", "pop", "alternative", "rap", "rnb", "instrumental", "hardrock", "EDM", "international", "folk"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -19,6 +19,20 @@ var S3_BUCKET = 'media.stamp.fm';
 var PIC_BUCKET = 'pictures.stamp.fm'
 var knox = require('knox');
 var songs = 0;
+
+/***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
+db.music.count(function(e, count){
+    if(count){
+        songs = count;
+    }
+    else {
+        songs = 0;
+    }
+});
+
+/**********************ON SERVER STARTUP SONGS WILL BE 0 AND WILL INCREMENT WHENEVER UPDATED**/
+
+
 var flag = false; 
 
 var client = knox.createClient({
@@ -95,11 +109,12 @@ var AccountModule = require('./scripts/AccountModule.js').AccountModule;
 var EmailModule = require('./scripts/EmailModule.js').EmailModule;
 var UploadModule = require('./scripts/UploadModule.js').UploadModule;
 var UserModule = require('./scripts/UserModule.js').UserModule;
+var FeedModule = require('./scripts/FeedModule.js').FeedModule;
 
 /*****************algorithm*****************/
 
 //if collection exists, store variable count == 0;
-var count = 0;
+var counter = 0;
 var c = 0;
 var sorted;
 db.music.count(function(err, count){
@@ -121,6 +136,54 @@ var accountModule = new AccountModule;
 var emailModule = new EmailModule;
 var uploadModule = new UploadModule;
 var userModule = new UserModule;
+
+var Feed = new FeedModule;
+
+app.get('/feed', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/login');
+		}
+		else res.render('feed');
+});
+
+app.post('/feed/add', function(req, res){
+
+	if (req.session.user == null && req.user == null) {
+		res.send({redirect:'/login'});
+	}
+	else{
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			id = req.session.user._id;
+		}
+		Feed.add(id, req.body.type, req.body.data, function(data) {
+			res.send(data);
+		});
+	}
+});
+
+app.post('/feed/load', function(req, res){
+
+	if (req.session.user == null && req.user == null) {
+		res.send({redirect:'/login'});
+	}
+	else{
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			id = req.session.user._id;
+		}
+
+		Feed.load(req.body.index, function(data) {
+			if ( data == null )res.send({error: "Up to date"});
+			else res.send(data);
+		});
+	}
+});
+
 
 app.get('/newView', function(req, res, next){
       res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
@@ -184,8 +247,61 @@ app.get('/upload', function(req, res){
         res.redirect('/login');
     }
     else{
-        res.render('upload', {title: "hi"});
+        res.render('upload');
     }
+});
+
+app.post('/upload', function(req, res){
+    var id;
+    if(req.session.user == null){
+        id = req.user[0]._id;
+    }
+    else if(req.user == null){
+        id = req.session.user._id;
+    }
+    var genre = req.body.genre.toString();
+    var name = req.body.name;
+    db.music.save({_id: songs, name: name, artistID:id});
+    db.tournament.findOne({ $and: [{genre: genre}, {artistID: id}]}, function(e,o){
+        if(o){
+            res.send({msg:"You have already entered in one video in this genre."});
+        } else {
+            db.tournament.insert({genre: genre, artistID: id, _id: songs, name: name});
+            res.send({msg: "ok"})
+            res.send({redirect:'/upload'});
+        }
+    });
+    ++songs;
+})
+
+app.post('/file-upload', function(req, res, next){
+    var stream = fs.createReadStream(req.files.file.path);
+    var id;
+    upload = new mpu(
+        {
+            client: client,
+            objectName: songs.toString(), // Amazon S3 object name
+            stream: stream
+        },
+            // Callback handler
+        function(err, obj) {
+             if(err){
+               console.log(err);
+               res.send(err, 400);
+             }
+            else{
+                 console.log(obj); //for testing purposes print the object
+                 if(req.session.user == null){
+                    id = req.user[0]._id;
+                 }
+                 else if(req.user == null){
+                   id = req.session.user._id;
+                 }
+           }
+                // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
+        }
+    ); 
+    res.send("back");
 });
 
 
@@ -194,10 +310,8 @@ app.get('/upload', function(req, res){
 /*FACEBOOK AUTH*/
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
 app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', { successRedirect: '/create',
+    passport.authenticate('facebook', { successRedirect: '/profile',
                                         failureRedirect: '/login'}));
-
-
 
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
@@ -318,41 +432,6 @@ app.post('/reset-password', function(req, res) {
 
 
 /********************************************LOGIN STUFF DONE*******************************/
-/****************************UPLOAD FILES TO S3 SERVER***********************************/
-app.post('/file-upload', function(req, res, next){
-    console.log(req.files.file.path);
-        var stream = fs.createReadStream(req.files.file.path);
-        var id;
-        upload = new mpu(
-            {
-                client: client,
-                objectName: 'video'+ songs + '.mp4', // Amazon S3 object name
-                stream: stream
-            },
-            // Callback handler
-            function(err, obj) {
-                if(err){
-                    console.log(err);
-                    res.send(err, 400);
-                }
-                else{
-                    console.log(obj); //for testing purposes print the object
-                    if(req.session.user == null){
-                        id = req.user[0]._id;
-                    }
-                    else if(req.user == null){
-                        id = req.session.user._id;
-                    }
-                    db.music.save({_id:songs, name: req.files.file.name, artistID:id, ETag: obj.ETag, votes: 0, views: 0});
-                    songs++;
-                }
-                // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
-                res.send("back");
-            }
-        ); 
-});
-
-/**************************************DONE WITH FILE UPLOAD*********************************/
 /**************************************TIME TO DO PROFILES***********************************/
 app.get('/create', function(req, res){
     if(req.session.user == null && req.user == null){
@@ -400,7 +479,7 @@ app.post('/create', function(req, res){
                 userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), id);
                 //need to actually add something to the profiles collection awkward.
                 db.music.find({accountID: id}, function(e, songs){
-                    res.redirect('profile', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), name: req.param('name'), location: req.param('location'), bio: req.param('bio'), songId: 0, songs: songs});    
+                    res.redirect('/profile');   
                 }); 
             }
         }
@@ -466,6 +545,11 @@ app.get('/profile', function(req, res){
             res.redirect('/login');
     }
     else{
+        if(req.query["id"]){
+              vid = myS3Account.readPolicy(req.query["id"], 'media.stamp.fm', 60)
+        } else {
+            vid = 0;
+        }
         var id;
         console.log(req.user);
         console.log(req.user.session);
@@ -479,13 +563,16 @@ app.get('/profile', function(req, res){
             if(e){
                 console.log(e);
             }
+            else if(!profile){
+                res.redirect('/create');
+            }
             else{
-                db.music.find({accountID: id}, function(e, songs){
+                db.music.find({artistID: id}, function(e, songs){
                     if(e){
                         console.log(e);
                     }
                     else{
-                        res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, songId: 0});
+                        res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"});
                     }
                 });
             };
@@ -512,18 +599,23 @@ app.get('/vidUpdate', function(req, res){
                 console.log(e);
             }
             else{
-                db.music.find({accountID: id}, function(e, songs){
+                db.music.find({artistID: id}, function(e, songs){
                     if(e){
                         console.log(e);
                     }
                     else{
-                        res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, songId: vid});
+                        res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"});
                     }
                 });
             };
         });
     }
 });
+
+app.get('/reVideo', function(req, res){
+    vid = myS3Account.readPolicy(req.body.songID, 'media.stamp.fm', 60);
+    res.send({songID: vid});
+})
 
 /*****************************************404**************************************************/
 app.get("*", function(req, res){

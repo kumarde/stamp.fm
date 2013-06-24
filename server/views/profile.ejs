@@ -89,9 +89,15 @@
           <div id="songContent">
            <div id="song">
               <% songs.forEach(function(song){ %>
-                <a href = "/vidUpdate?id=<%=song._id%>" id = "videoplay">
-                <spanLink id="songName"><%= song.name %></spanLink>
+              <ul>
+                <a href = "/profile?id=<%=song._id%>" id = "videoplay">
+                <spanLink id="songName">
+                  <li>
+                    <%= song.name %>
+                  </li>
+                </spanLink>
                 </a>
+              </ul>
               <% }); %>
 
               <a id="plusPlaylist">
@@ -121,7 +127,7 @@
 
 <!-- Modal Window(s) -->
 
-<div id="create" class="modalDialogCreate">
+<div id="<%=createModal%>" class="modalDialogCreate">
     <div id="profileSection" class="grid wfull" style="color: white">
     <div class="row">
       <div class="c12" id="createPageLabel" style="font-size:30px">
@@ -170,6 +176,12 @@
 
 </div>
 
+<script>
+  $(document).ready(function(){
+    $('#create').show();
+  });
+
+</script>
 <!-- End Modal Window(s) -->
 
 
@@ -227,7 +239,6 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- End FB Like Script -->
-
 </body>
 
 
