@@ -8,7 +8,7 @@ var flash = require('connect-flash')
   , passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlist"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -489,6 +489,12 @@ app.post('/create', function(req, res){
     );
 });
 
+app.get('/profile/:pid', function(req, res){
+    var id = req.params.pid;
+        
+})
+
+
 app.get('/video/:fname', function( req, res) {
     res.render('video',{vidurl: myS3Account.readPolicy(req.params.fname, 'media.stamp.fm', 60)});
 });   
@@ -544,7 +550,8 @@ app.post('/profileUpload', function(req, res){
         if(e){
             console.log(e);
         } else {
-            res.send({msg: "saved", songs: o})
+            res.send({msg: "saved", songs: o});
+            res.send(redirect:'/')
         }
     });
 })

@@ -1,1 +1,0 @@
-c:\mongodb\bin\mongod.exe --logpath c:\server\logs\mongo.log --dbpath c:\server\data
