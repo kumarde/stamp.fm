@@ -40,8 +40,9 @@ html{
 .login{
 	position: relative;
 	background: rgba(0,0,0,.8);
-    float: left;
+    float: right;
     margin-left: 1%;
+    margin-right: 1%;
     margin-top: 2%;
     border: 3px solid rgba(0,0,0,0.1);
     -moz-border-radius:5px;  
@@ -134,6 +135,21 @@ html{
     width:53%;
 }
 
+@media only screen and (max-width: 999px) {
+    .blurb{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	width:80%;
+    }
+    .login{
+	float:none;
+	margin-left: auto;
+	margin-right: auto;
+	width:400px;
+    }
+}
+
 .big{
 	margin-top: 15px;
 	margin-left: 10px;
@@ -153,8 +169,6 @@ body{
     margin:0;
     padding: 0;
     border: 0;
-    min-width: 800px;
-    min-height:100%;
     margin:0;
 }
 
