@@ -38,31 +38,41 @@
 
     <div id="profileInfo" class="grid wfull" style="color: white">
       <div class="row">
-        <div class="c12" id="name" style="font-size:40px">
+        <div class="c10" id="name" style="font-size:40px">
         <strong><spanName id="displayName" onclick="exchange(this); visibilityName();"><%=name%></spanName></strong>
         <input id="displayNameEdit" name="editName" class="replace" type="text" value="">
         <input type="submit" id="submitNameButton" value="Submit" style="visibility: hidden" onclick="visibilityName(); exchange((document.getElementById('displayNameEdit')));"/>
         </div>
+	<div class="c2" id="feed" style="overflow:auto;">
+	  <spanFeed>
+	    <table border="0" style="border-collapse:collapse;" cellspacing="0" cellpadding="1" >
+		<% songs.forEach(function(song){ %>
+	  	  <tr id="feed_element">
+      		    <td style="width:300px;color:#000;" href="/profile?id=<%=song._id%>"><%= song.name %></td>
+      		  </tr>
+      		<% }); %>
+	    </table>  
+	  </spanFeed>
+	</div>
       </div>  
-    	<div class="row">
-    		<div class="c3" id="profilePic" style="float:left"><img id="picture" src="<%=imgid%>">
-          <input type="file" id="uploadPicture" style="visibility:hidden">  
-          <!--Profile Pic Upload Dialog-->    
+      <div class="row">
+    	<div class="c3" id="profilePic" style="float:left"><img id="picture" src="<%=imgid%>">
+        <input type="file" id="uploadPicture" style="visibility:hidden">  
+        <!--Profile Pic Upload Dialog-->    
            <script>
            $('#picture').click(function() {
              $('#uploadPicture').click();
             });
            </script>
-          <!--END Profile Pic Upload Dialog--> 
+        <!--END Profile Pic Upload Dialog--> 
         </div>
 
-    		<div class="c8" id="bio" ><span3 style="font-size:25px"><strong><u>Bio:</u> </strong></span3>
-    			<spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
+    	<div class="c8" id="bio" ><span3 style="font-size:25px"><strong><u>Bio:</u> </strong></span3>
+	  <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
           <textarea rows="5" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
           <input type="submit" id="submitBioButton" value="Submit" style="visibility: hidden" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/>          
-    		</div>
-   			
-    	</div>	  
+    	</div>	
+      </div>	  
 
     	<div class="row">
     		<div class="c2" id="location" style="float:left">
