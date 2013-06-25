@@ -88,24 +88,23 @@
           <center><span id="songListLabel">Songs</span></center>
           <div id="songContent">
            <div id="song">
-              <% songs.forEach(function(song){ %>
-              <ul>
-                <a href = "/profile?id=<%=song._id%>" id = "videoplay">
-                <spanLink id="songName">
-                  <li>
-                    <%= song.name %>
-                  </li>
-                </spanLink>
-                </a>
-              </ul>
-              <% }); %>
-
-              <a id="plusPlaylist">
-                <img src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" id="add">
-              </a>
-
+	      <table cellspacing="0" cellpadding="0" >
+	        <tr>
+	          <td>
+	           <div style=" overflow:auto;">
+	             <table cellspacing="0" cellpadding="1" >
+			<% songs.forEach(function(song){ %>
+			  <tr id="song_name">
+			    <td href="/profile?id=<%=song._id%>"><%= song.name %></td>
+			    <td><img src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
+			  </tr>
+			<% }); %>
+		      </table>  
+		    </div>
+		    </td>
+		</tr>
+	      </table>
             </div> 
-
           </div>
         </div>
 
@@ -127,7 +126,7 @@
 
 <!-- Modal Window(s) -->
 
-<div id="create" class="modalDialogCreate">
+<div id="<%=createModal%>" class="modalDialogCreate">
     <div id="profileSection" class="grid wfull" style="color: white">
     <div class="row">
       <div class="c12" id="createPageLabel" style="font-size:30px">
@@ -237,7 +236,6 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- End FB Like Script -->
-
 <script>
   $(document).ready(function() {
     $("#profileUpload").submit(function(e){
@@ -262,7 +260,6 @@
      });
   });
 </script>
-
 </body>
 
 

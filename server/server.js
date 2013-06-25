@@ -567,6 +567,10 @@ app.post('/profileUpload', function(req, res){
         } else {
             res.send({msg: "saved", songs: o});
             res.send({redirect:'/'})
+<<<<<<< HEAD
+=======
+            ++songs;
+>>>>>>> 1bf0e5e94ba02fbaee0d2c241fec94d1b7d1ad76
         }
     });
 })

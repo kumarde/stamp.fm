@@ -200,7 +200,7 @@ overflow : auto;
     -webkit-border-radius: 2px;
 }
 
-#song:hover{
+#song_name:hover{
     background-color: #A6A6A6;
 }
 
