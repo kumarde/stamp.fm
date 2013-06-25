@@ -42,7 +42,7 @@
 
       <div id="upload_block">
         <script src="/dropzone.js"></script>
-        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data">
+        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data" id = "myDrop">
         	<center><p id="uploadText" style="color:#FFFFFF">Drag and Drop to Upload</p></center>
           <div class = "fallback">
 	         <input id="uploaded" name="file" type="file" multiple success="onComplete(file)"/>
@@ -127,6 +127,7 @@
     $('#submit').click(function(event){ 
      var name = $('#songName').val();
      var genre = $('#genre').val();
+     var myDropzone = new Dropzone('#myDrop');
      console.log(name);
      console.log(genre);
      $.ajax({ 

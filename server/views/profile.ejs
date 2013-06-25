@@ -106,7 +106,7 @@
 			<% songs.forEach(function(song){ %>
 			  <tr id="song_name">
 			    <td><div data-tag ="<%=song._id%>" id= "vidPlay"><%= song.name %></div></td>
-			    <td><img src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;" id = "playlist"></td>
+			    <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" id = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
 			  </tr>
 			<% }); %>
 		      </table>  
@@ -120,7 +120,25 @@
 
         <div class="c4" id="playlist" style="float:right">
           <center><span id="playlistLabel">Playlists</span></center>
-          <div id="playlistContent"></div>
+          <div id="playlistContent">
+              <div id="song">
+        <table cellspacing="0" cellpadding="0" >
+          <tr>
+            <td>
+             <div style=" overflow:auto;">
+               <table cellspacing="0" cellpadding="1" >
+      <% playlist.forEach(function(play){ %>
+        <tr id="song_name">
+          <td><div data-tag ="<%=play._id%>" id= "vidPlay"><%= play.name %></div></td>
+        </tr>
+        <% }); %>
+          </table>  
+        </div>
+        </td>
+      </tr>
+        </table>
+            </div> 
+          </div>
         </div>  
     </div>	
 
@@ -269,7 +287,6 @@
         })
      });
     $('#vidPlay').click(function(event){
-
       var tag = $(this).attr('data-tag');
       $.ajax({
         url: '/vidPlay',
@@ -280,6 +297,21 @@
           $('#vidYo').find("#source").attr("src", data.video);
           $('#vidYo').load();
           $('#vidYo').get(0).play();
+        }
+      })
+    })
+    $('#addPlay').click(function(event){
+      var tag = $(this).attr('data-tag');
+      var name = $(this).attr('data-name');
+      console.log(tag);
+      console.log(name);
+      $.ajax({
+        url: '/addPlay',
+        type: 'POST',
+        cache: false,
+        data: {sid: tag, name: name},
+        success: function(data){
+          alert(data.name + "was added to your Playlist");
         }
       })
     })

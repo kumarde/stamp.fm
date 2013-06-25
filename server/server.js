@@ -8,7 +8,7 @@ var flash = require('connect-flash')
   , passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlist"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -309,7 +309,6 @@ app.post('/file-upload', function(req, res, next){
 
 
 /*******************************LOGIN STUFF HERE******************************************/
-
 /*FACEBOOK AUTH*/
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
 app.get('/auth/facebook/callback', 
@@ -386,7 +385,6 @@ app.get('/logout', function(req, res){
     res.redirect('/login');
 });
 
-
 app.post('/forgot', function(req, res, next){
     accountModule.getAccountByEmail(req.param('email'), function(o){
         if(o){
@@ -458,10 +456,10 @@ app.post('/create', function(req, res){
     console.log(req.files);
     var stream = fs.createReadStream(req.files.picture.path);
     var id;
-    if(req.session.user == null){
+    if(req.session.user == undefined){
         id = req.user[0]._id;
     }
-    else if(req.user == null){
+    else if(req.user == undefined){
         id = req.session.user._id;
     }
     upload = new mpu(
@@ -472,7 +470,6 @@ app.post('/create', function(req, res){
         },
         function(e, o){
             if(e){
-                console.log(e);
                 res.send(e, 400);
             }
             else{
@@ -487,14 +484,18 @@ app.post('/create', function(req, res){
     );
 });
 
-app.get('/profile/:pid', function(req, res){
-    var pid = req.params.pid;
+app.get('/view', function(req, res){
+    var pid = req.query["id"];
+    if(pid == null){
+        res.send('error, you suck');
+    }
     console.log(pid);
     var vid = 0;
     db.profiles.find({_id: pid}, function(e, profile){
         if(e){
-            console.log(e);
-        } else if(!profile){
+            res.send(e, 400);
+        }
+        if(profile == null){
             res.render('*');
         }else{
             console.log(profile);
@@ -502,7 +503,7 @@ app.get('/profile/:pid', function(req, res){
                 if(e){
                     console.log(e);
                 } else{
-                    res.render('profile', {name: profile[0].name, bio: profile[0].bio, location: profile[0].location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"})
+                    res.render('profileView', {name: profile[0].name, bio: profile[0].bio, location: profile[0].location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"})
                 }
             })
         }
@@ -515,6 +516,25 @@ app.post('/vidPlay', function(req, res){
     var vid = myS3Account.readPolicy(temp, 'media.stamp.fm', 60);
     console.log(vid);
     res.send({video: vid});
+})
+
+app.post('/addPlay', function(req, res){
+    var id;
+    if(req.session.user == undefined){
+            id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+            id = req.session.user._id;
+    }
+    db.playlists.insert({
+        _id: req.body.sid,
+        name: req.body.name,
+        artistID: id
+    }, function(e, o){
+        if(e) res.send(e, 400);
+    });
+    res.send({name: req.body.name});
+
 })
 
 app.get('/video/:fname', function( req, res) {
@@ -553,7 +573,9 @@ app.get('/profile', function(req, res){
                         console.log(e);
                     }
                     else{
-                        res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"});
+                        db.playlists.find({artistID: id}, function(e, playlist){
+                         res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, createModal: "null"});
+                        })        
                     }
                 });
             };
@@ -568,7 +590,7 @@ app.post('/profileUpload', function(req, res){
         id = req.user[0]._id;
     }
     else if(req.user == null){
-       id = req.session.user[0]._id;
+       id = req.session.user._id;
    }
     db.music.save({_id: songs, name: name, artistID:id}, function(e, o){
         if(e){
@@ -580,38 +602,6 @@ app.post('/profileUpload', function(req, res){
         }
     });
 })
-
-app.get('/vidUpdate', function(req, res){
-    console.log(req.body);
-    vid = myS3Account.readPolicy(req.query["id"], 'media.stamp.fm', 60)
-    if(req.session.user == null && req.user == null){
-            res.redirect('/login');
-    }
-    else{
-        var id;
-        if(req.session.user == null){
-            id = req.user[0]._id;
-        }
-        else if(req.user == null){
-            id = req.session.user[0]._id;
-        }
-        db.profiles.findOne({_id: id}, function(e, profile){
-            if(e){
-                console.log(e);
-            }
-            else{
-                db.music.find({artistID: id}, function(e, songs){
-                    if(e){
-                        console.log(e);
-                    }
-                    else{
-                        res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"});
-                    }
-                });
-            };
-        });
-    }
-});
 
 app.get('/reVideo', function(req, res){
     vid = myS3Account.readPolicy(req.body.songID, 'media.stamp.fm', 60);
