@@ -428,7 +428,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       thumbnailHeight: 0,
       params: {},
       clickable: true,
-      acceptedMimeTypes: 'video/mp4, video/ogg, video/webm',
+      acceptedMimeTypes: 'video/mp4, video/ogg, video/webm, video/mov',
       acceptParameter: null,
       enqueueForUpload: true,
       previewsContainer: null,
@@ -564,7 +564,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       success: function(file) {
         $(document).ready(function(){
           $('div#info').addClass("unhidden");
-          $('a#close').click(function(){
+          $('input#submit').click(function(){
             $('div#info').removeClass("unhidden");
           })
         });

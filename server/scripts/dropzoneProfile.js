@@ -564,7 +564,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       success: function(file) {
         $(document).ready(function(){
           $('div#info').addClass("unhidden");
-          $('a#close').click(function(){
+          $('input#songSubmit').click(function(){
             $('div#info').removeClass("unhidden");
           })
         });
