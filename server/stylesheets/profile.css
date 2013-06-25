@@ -71,7 +71,7 @@ display:none;
     max-height: 200px;
     margin-top: 8%;
     margin-left: 0px;
-    width: 100%;
+    margin-bottom: 10px;
 }
 #displayName:hover{
     background-color: rgba(180,7,6,.3);
@@ -192,12 +192,6 @@ overflow : auto;
 #song{
     float: left;
     font-size: 15px;
-    border: 1px solid;
-    border-color: black;
-    width: 100%;    
-    -moz-border-radius:2px;  
-    border-radius: 2px;  
-    -webkit-border-radius: 2px;
 }
 
 #song_name:hover{
@@ -470,3 +464,17 @@ overflow : auto;
     -webkit-border-radius: 5px;
 }
 #createButton:hover { background: rgba(120,7,6,1); }
+
+#feed{
+    position: absolute;
+    background: #FFFFFF;
+    top:100px;
+    right:10px;
+    height: 410px;
+     -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#feed_element{
+    border-bottom: 1px #000 solid;
+}
