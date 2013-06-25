@@ -79,7 +79,7 @@
         <div class="c4" id="videoPlayer" style="float:left">
           <div class="c12 end" id="videoPlayer" style="border:none">
            <center> <video id="vidYo" class="video-js vjs-default-skin" controls width="420" height="264" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
-                <source src="<%=songId%>" type="video/mp4">
+                <source src="<%=songId%>" type="video/mp4" id = "source">
             </video></center>
           </div>   
         </div>
@@ -95,8 +95,8 @@
 	             <table cellspacing="0" cellpadding="1" >
 			<% songs.forEach(function(song){ %>
 			  <tr id="song_name">
-			    <td href="/profile?id=<%=song._id%>"><%= song.name %></td>
-			    <td><img src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
+			    <td><div data-tag ="<%=song._id%>" id= "vidPlay"><%= song.name %></div></td>
+			    <td><img src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;" id = "playlist"></td>
 			  </tr>
 			<% }); %>
 		      </table>  
@@ -258,6 +258,21 @@
            }
         })
      });
+    $('#vidPlay').click(function(event){
+
+      var tag = $(this).attr('data-tag');
+      $.ajax({
+        url: '/vidPlay',
+        type: 'POST',
+        cache: false,
+        data: {video : tag},
+        success: function(data){
+          $('#vidYo').find("#source").attr("src", data.video);
+          $('#vidYo').load();
+          $('#vidYo').get(0).play();
+        }
+      })
+    })
   });
 </script>
 </body>

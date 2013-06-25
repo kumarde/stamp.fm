@@ -441,16 +441,19 @@ app.get('/create', function(req, res){
         res.redirect('/login');
     }
     else{
-        var email;
+        var id;
         if(req.session.user == null){
-            email = req.user[0].email;
+            id = req.user[0]._id;
         }
         else if(req.user == null){
-            email = req.session.user[0].email;
+            id = req.session.user[0]._id;
         }
-        console.log(email);
-        db.users.find({email: email}, function(e, o){
-            console.log(o);
+        db.profiles.find({_id:id}, function(e,o){
+            if(o){
+                res.redirect('/profile');
+            }
+        })
+        db.users.find({_id: id}, function(e, o){
             res.render('CreateProfile', {name: o[0].name});
         })
     } 
@@ -493,22 +496,31 @@ app.get('/profile/:pid', function(req, res){
     var pid = req.params.pid;
     console.log(pid);
     var vid = 0;
-    db.profiles.findOne({_id: pid}, function(e, profile){
+    db.profiles.find({_id: pid}, function(e, profile){
         if(e){
             console.log(e);
-        } else{
+        } else if(!profile){
+            res.render('*');
+        }else{
             console.log(profile);
             db.music.find({artistID: pid}, function(e, songs){
                 if(e){
                     console.log(e);
                 } else{
-                    res.render('profile', {name: profile.name, bio: profile.bio, location: profile.location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"})
+                    res.render('profile', {name: profile[0].name, bio: profile[0].bio, location: profile[0].location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"})
                 }
             })
         }
     })    
 })
 
+app.post('/vidPlay', function(req, res){
+    var temp = req.body.video;
+    console.log(temp);
+    var vid = myS3Account.readPolicy(temp, 'media.stamp.fm', 60);
+    console.log(vid);
+    res.send({video: vid});
+})
 
 app.get('/video/:fname', function( req, res) {
     res.render('video',{vidurl: myS3Account.readPolicy(req.params.fname, 'media.stamp.fm', 60)});
