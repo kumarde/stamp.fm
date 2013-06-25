@@ -49,9 +49,9 @@
       <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
         or<br>
         Use your Email</p><br>
-      <input type = "text" name = "name" id="Name" placeholder="Name" class="name" required oninvalid="this.setCustomValidity('Please Enter a Name')"/><br><br>
-      <input type = "email" name = "email" id="Email" placeholder="Email" class="email" required oninvalid="this.setCustomValidity('Please Enter a Valid Email Address')"/><br><br>
-      <input type = "password" name = "pass" id = "Password" placeholder="Password" class="pass" required/><br><br>
+      <input type = "text" name = "name" id="name" placeholder="Name" class="name" required oninvalid="this.setCustomValidity('Please Enter a Name')"/><br><br>
+      <input type = "email" name = "email" id="email" placeholder="Email" class="email" required oninvalid="this.setCustomValidity('Please Enter a Valid Email Address')"/><br><br>
+      <input type = "password" name = "pass" id = "password" placeholder="Password" class="pass" required/><br><br>
       <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass" required oninput="check(this)"/><br><br>
       <script language='javascript' type='text/javascript'>
       function check(input) {
@@ -116,14 +116,14 @@
       return false;
     });
     $('#createAccount').click(function(event){ 
-     var Name = $('input#Name').val();
-     var email = $('input#Email').val();
-     var password = $('input#Password').val();
+     var name = $('#name').val();
+     var email = $('#email').val();
+     var password = $('#password').val();
      $.ajax({ 
            url: '/signup',
            type: 'POST',
            cache: false, 
-           data: {Name: Name, email: email, password: password},
+           data: {name: name, email: email, password: password},
            success: function(data){
             if(data.error != null){
               alert(data.error);

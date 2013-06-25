@@ -350,7 +350,8 @@ app.post('/login', function(req, res){
 			}
           console.log("You are being redirected home");
           console.log(req.user);
-			    res.send({redirect:'/profile'});
+          console.log(req.session.user);
+		  res.send({redirect:'/profile'});
 		}
 	});
 });
@@ -360,8 +361,9 @@ app.get('/signup', function(req, res){
 });
 
 app.post('/signup', function(req, res){
+    console.log(req.body);
     accountModule.addNewAccount({
-        name    : req.body.Name,
+        name    : req.body.name,
         email   : req.body.email,
         pass    : req.body.password,
     }, function(e, o){
@@ -446,17 +448,10 @@ app.get('/create', function(req, res){
             id = req.user[0]._id;
         }
         else if(req.user == null){
-            id = req.session.user[0]._id;
+            id = req.session.user._id;
         }
-        db.profiles.find({_id:id}, function(e,o){
-            if(o){
-                res.redirect('/profile');
-            }
-        })
-        db.users.find({_id: id}, function(e, o){
-            res.render('CreateProfile', {name: o[0].name});
-        })
-    } 
+        res.render('CreateProfile'); 
+    }
 });
 
 app.post('/create', function(req, res){
@@ -467,7 +462,7 @@ app.post('/create', function(req, res){
         id = req.user[0]._id;
     }
     else if(req.user == null){
-        id = req.session.user[0]._id;
+        id = req.session.user._id;
     }
     upload = new mpu(
         {
@@ -527,7 +522,7 @@ app.get('/video/:fname', function( req, res) {
 });   
 
 app.get('/profile', function(req, res){
-    if(req.session.user == null && req.user == null){
+    if(req.session.user == undefined && req.user == undefined){
             res.redirect('/login');
     }
     else{
@@ -537,11 +532,13 @@ app.get('/profile', function(req, res){
             vid = 0;
         }
         var id;
-        if(req.session.user == null){
+        console.log(req.user);
+        console.log(req.session.user);
+        if(req.session.user == undefined){
             id = req.user[0]._id;
         }
-        else if(req.user == null){
-            id = req.session.user[0]._id;
+        else if(req.user == undefined){
+            id = req.session.user._id;
         }
         db.profiles.findOne({_id: id}, function(e, profile){
             if(e){
