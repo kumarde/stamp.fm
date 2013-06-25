@@ -1,0 +1,212 @@
+<% layout('layout') -%>
+<% script('/scripts/main.js') -%>
+<% stylesheet('/video-js/video-js.css') -%>
+<% script('/video-js/video.js') -%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/gridiculous.css">
+    <link rel="stylesheet" type="text/css" href="/profile.css">
+    <link rel="stylesheet" type="text/css" href="/dropzone.css">
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  
+  <body>
+    <div id="wrapper">
+      <header id="header">
+      <a href="http://www.stamp.fm" style="float:left"><img src="/headerStamp.png"></a>
+      <ul style="float:right">
+      <li>
+      <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
+ 	    </li>
+ 	    <li>
+      <a href="#notReal" style="text-decoration:none" class="nav">AUDITION</a>
+  	  </li>
+  	  <li>
+      <a href="#notReal" style="text-decoration:none" class="nav">BRACKET</a>
+  	  </li>
+      <li>
+      <a href="/logout" style="text-decoration:none" class="nav" id="logOut">Log Out</a>
+      </li>
+   	  </ul>  
+    </header>
+
+    <div id="profileInfo" class="grid wfull" style="color: white">
+      <div class="row">
+        <div class="c10" id="name" style="font-size:40px">
+        <strong><spanName id="displayName" onclick="exchange(this); visibilityName();"><%=name%></spanName></strong>
+        </div>
+	<div class="c2" id="feed" style="overflow:auto;">
+	  <spanFeed>
+	    <table border="0" style="border-collapse:collapse;" cellspacing="0" cellpadding="1" >
+		<% songs.forEach(function(song){ %>
+	  	  <tr id="feed_element">
+      		    <td style="width:300px;color:#000;" href="/profile?id=<%=song._id%>"><%= song.name %></td>
+      		  </tr>
+      		<% }); %>
+	    </table>  
+	  </spanFeed>
+	</div>
+      </div>  
+      <div class="row">
+    	<div class="c3" id="profilePic" style="float:left"><img id="picture" src="<%=imgid%>">
+        </div>
+    	<div class="c8" id="bio" ><span3 style="font-size:25px"><strong><u>Bio:</u> </strong></span3>
+	  <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
+    	</div>	
+      </div>	  
+
+    	<div class="row">
+    		<div class="c2" id="location" style="float:left">
+        <spanLocation id="spanLocation">
+    		<span2 style="font-size: 20px">Location: </span2><span id="displayLocation" onclick="exchange(this); visibilityLocation();"><%=location%></span>
+        </spanLocation>
+    		</div>
+    	</div>	
+    </div>  
+    <div id="music" class="grid wfull" style="color:black">
+      <div class="row">
+        <div class="c4" id="videoPlayer" style="float:left">
+          <div class="c12 end" id="videoPlayer" style="border:none">
+           <center> <video id="vidYo" class="video-js vjs-default-skin" controls width="420" height="264" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+                <source src="<%=songId%>" type="video/mp4" id = "source">
+            </video></center>
+          </div>   
+        </div>
+
+        <div class="c4" id="songList" style="position: center">
+          <center><span id="songListLabel">Songs</span></center>
+          <div id="songContent">
+           <div id="song">
+	      <table cellspacing="0" cellpadding="0" >
+	        <tr>
+	          <td>
+	           <div style=" overflow:auto;">
+	             <table cellspacing="0" cellpadding="1" >
+			<% songs.forEach(function(song){ %>
+			  <tr id="song_name">
+			    <td><div data-tag ="<%=song._id%>" id= "vidPlay"><%= song.name %></div></td>
+			    <td><img src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;" id = "playlist"></td>
+			  </tr>
+			<% }); %>
+		      </table>  
+		    </div>
+		    </td>
+		</tr>
+	      </table>
+            </div> 
+          </div>
+        </div>
+
+        <div class="c4" id="playlist" style="float:right">
+          <center><span id="playlistLabel">Playlists</span></center>
+          <div id="playlistContent"></div>
+        </div>  
+    </div>	
+
+    <div class="row">
+      <div class="c4" id="upload_block" style="float:left">
+        <script src="/dropzoneProfile.js"></script>
+        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data" style="color:#000">
+          <center><span style="font-size: 30px"><strong>Upload Songs to Your Profile</strong></span></center>
+        </form>
+      </div>
+
+    </div>  
+
+  <!-- Modal Window(s) -->
+
+<div id="info" class="modalDialog">
+  <div>
+    <center>
+    <h5 style="color:white">Fill in your Song Information</h5>
+    <div>
+      <form method = "post" id = "profileUpload">
+        <input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName"><br><br>
+       <input type="submit" value="Enter" id = "songSubmit">
+      </form>
+    </div>
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+
+<div id="notReal" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+    <center>
+    <h3 style="color:white">This stage of the competition has not begun yet.<br><br>
+    See you July 25th!</h3>
+
+    <p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
+
+    <ul>
+      <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
+      <li>  <div>
+            <a href="https://twitter.com/stampfm" class="twitter-follow-button" data-show-count="false" data-lang="en"></a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
+    </ul>          
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- FB Like Script-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- End FB Like Script -->
+<script>
+  $(document).ready(function() {
+    $("#profileUpload").submit(function(e){
+      return false;
+    });
+    $('#songSubmit').click(function(event){ 
+     var name = $('#songName').val();
+     $.ajax({ 
+           url: '/profileUpload',
+           type: 'POST',
+           cache: false, 
+           data: {name : name},
+           success: function(data){
+            if(data.msg == "saved"){
+              alert("Your song has been saved!");
+            }
+            if (typeof data.redirect == 'string'){
+              window.location = data.redirect;
+            }
+           }
+        })
+     });
+    $('#vidPlay').click(function(event){
+
+      var tag = $(this).attr('data-tag');
+      $.ajax({
+        url: '/vidPlay',
+        type: 'POST',
+        cache: false,
+        data: {video : tag},
+        success: function(data){
+          $('#vidYo').find("#source").attr("src", data.video);
+          $('#vidYo').load();
+          $('#vidYo').get(0).play();
+        }
+      })
+    })
+  });
+</script>
+</body>
