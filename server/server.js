@@ -490,8 +490,23 @@ app.post('/create', function(req, res){
 });
 
 app.get('/profile/:pid', function(req, res){
-    var id = req.params.pid;
-        
+    var pid = req.params.pid;
+    console.log(pid);
+    var vid = 0;
+    db.profiles.findOne({_id: pid}, function(e, profile){
+        if(e){
+            console.log(e);
+        } else{
+            console.log(profile);
+            db.music.find({artistID: pid}, function(e, songs){
+                if(e){
+                    console.log(e);
+                } else{
+                    res.render('profile', {name: profile.name, bio: profile.bio, location: profile.location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"})
+                }
+            })
+        }
+    })    
 })
 
 
@@ -551,7 +566,7 @@ app.post('/profileUpload', function(req, res){
             console.log(e);
         } else {
             res.send({msg: "saved", songs: o});
-            res.send(redirect:'/')
+            res.send({redirect:'/'})
         }
     });
 })
