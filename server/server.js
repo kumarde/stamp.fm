@@ -431,6 +431,25 @@ app.get('/login', function(req, res){
 	}
 });
 
+app.post('/deleteSong', function(req, res){
+    var id = req.body.id;
+    console.log(id);
+    db.tournament.find({_id: parseInt(id)}, function(e, o){
+        console.log(o);
+        if(e){
+            console.log(e);
+        }
+        else if(o.length > 0){
+            res.send({msg: "no"});
+        }
+        else if(o.length == 0){
+            db.music.remove({_id: parseInt(id)}, function(e, o){});
+            client.deleteFile(songs, function(e, res){});
+            res.send({msg: "yes"})
+        }
+    });
+})
+
 app.post('/login', function(req, res){
 	accountModule.manualLogin(req.body.email, req.body.password, function(e, o){
 		if(!o){
@@ -528,8 +547,6 @@ app.post('/reset-password', function(req, res) {
             }
         })
     });
-
-
 /********************************************LOGIN STUFF DONE*******************************/
 /**************************************TIME TO DO PROFILES***********************************/
 app.get('/create', function(req, res){

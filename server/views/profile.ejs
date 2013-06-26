@@ -107,7 +107,7 @@
 			  <tr id="song_name" style="color:#000">
 			    <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px"><%= song.name %></div></td>
 			    <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
-			    <td><img data-name = "<%=song.name%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
+			    <td><img data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
 			  </tr>
 			<% }); %>
 		      </table>  
@@ -313,6 +313,23 @@
         data: {sid: tag, name: name},
         success: function(data){
           alert(data.name + "was added to your Playlist");
+        }
+      })
+    })
+    $('.deletebutton').click(function(event){
+      var tag = $(this).attr('data-tag');
+      $.ajax({
+        url: '/deleteSong',
+        type: 'POST',
+        cache: false,
+        data: {id: tag},
+        success: function(data){
+          if(data.msg == "yes"){
+            alert("You have successfully deleted this song.");
+          }
+          else if(data.msg == "no"){
+            alert("You cannot delete a video uploaded to the tournament.");
+          }
         }
       })
     })
