@@ -105,8 +105,8 @@
 	             <table cellspacing="0" cellpadding="1" >
 			<% songs.forEach(function(song){ %>
 			  <tr id="song_name">
-			    <td><div data-tag ="<%=song._id%>" id= "vidPlay"><%= song.name %></div></td>
-			    <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" id = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
+			    <td><div data-tag ="<%=song._id%>" class = "vidPlay"><%= song.name %></div></td>
+			    <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
 			  </tr>
 			<% }); %>
 		      </table>  
@@ -286,7 +286,7 @@
            }
         })
      });
-    $('#vidPlay').click(function(event){
+    $('.vidPlay').click(function(event){
       var tag = $(this).attr('data-tag');
       $.ajax({
         url: '/vidPlay',
@@ -300,7 +300,7 @@
         }
       });
     });
-    $('#addPlay').click(function(event){
+    $('.addPlay').click(function(event){
       var tag = $(this).attr('data-tag');
       var name = $(this).attr('data-name');
       console.log(tag);

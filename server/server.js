@@ -618,7 +618,7 @@ app.post('/addPlay', function(req, res){
             id = req.user[0]._id;
     }
     else if(req.user == undefined){
-            id = req.session.user[0]._id;
+            id = req.session.user._id;
     }
     db.playlists.insert({
         _id: req.body.sid,
