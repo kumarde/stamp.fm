@@ -653,7 +653,7 @@ app.get('/profile', function(req, res){
             id = req.user[0]._id;
         }
         else if(req.user == undefined){
-            id = req.session.user[0]._id;
+            id = req.session.user._id;
         }
         db.profiles.findOne({_id: id}, function(e, profile){
             console.log(profile);
