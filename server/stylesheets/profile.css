@@ -50,6 +50,12 @@ body {
     margin-right: 80px;
 }
 
+#header li:hover{
+    background:#FF1100;
+    padding-top:100px;
+    padding-bottom:17px;
+}
+
 #logOut{
     font-size: 20px;
     margin-left: 30px;
@@ -482,3 +488,4 @@ overflow : auto;
 #feed_element{
     border-bottom: 1px #000 solid;
 }
+#header li:hover{background:#FF1100;padding-top:100px;padding-bottom:17px;}
