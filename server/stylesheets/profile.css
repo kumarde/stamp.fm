@@ -189,7 +189,7 @@ overflow : auto;
     max-width: 10%;
     float: right;
 }
-#song{
+#song_name{
     float: left;
     font-size: 15px;
 }

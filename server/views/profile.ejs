@@ -104,8 +104,8 @@
 	           <div style=" overflow:auto;">
 	             <table cellspacing="0" cellpadding="1" >
 			<% songs.forEach(function(song){ %>
-			  <tr id="song_name">
-			    <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:220px"><%= song.name %></div></td>
+			  <tr id="song_name" style="color:#000">
+			    <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px"><%= song.name %></div></td>
 			    <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
 			    <td><img data-name = "<%=song.name%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
 			  </tr>
@@ -127,7 +127,7 @@
           <tr>
             <td>
              <div style=" overflow:auto;">
-               <table cellspacing="0" cellpadding="1" >
+               <table cellspacing="0" cellpadding="1" style="color:#000">
       <% playlist.forEach(function(play){ %>
         <tr id="song_name">
           <td><div data-tag ="<%=play._id%>" id= "vidPlay"><%= play.name %></div></td>
