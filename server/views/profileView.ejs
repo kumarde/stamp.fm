@@ -102,11 +102,29 @@
           </div>
         </div>
 
-        <div class="c4" id="playlist" style="float:right">
+          <div class="c4" id="playlist" style="float:right">
           <center><span id="playlistLabel">Playlists</span></center>
-          <div id="playlistContent"></div>
+          <div id="playlistContent">
+              <div id="song">
+        <table cellspacing="0" cellpadding="0" >
+          <tr>
+            <td>
+             <div style=" overflow:auto;">
+               <table cellspacing="0" cellpadding="1" style="color:#000">
+      <% playlist.forEach(function(play){ %>
+        <tr id="song_name">
+          <td><div data-tag ="<%=play._id%>" class= "vidPlay"><%= play.name %></div></td>
+        </tr>
+        <% }); %>
+          </table>  
+        </div>
+        </td>
+      </tr>
+        </table>
+            </div> 
+          </div>
         </div>  
-    </div>	
+    </div>  
 
     <div class="row">
       <div class="c4" id="upload_block" style="float:left">
@@ -193,7 +211,6 @@
         })
      });
     $('#vidPlay').click(function(event){
-
       var tag = $(this).attr('data-tag');
       $.ajax({
         url: '/vidPlay',

@@ -596,8 +596,10 @@ app.get('/view', function(req, res){
             db.music.find({artistID: pid}, function(e, songs){
                 if(e){
                     console.log(e);
-                } else{
-                    res.render('profileView', {name: profile[0].name, bio: profile[0].bio, location: profile[0].location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, songId: vid, createModal: "null"})
+                }  else{
+                        db.playlists.find({artistID: pid}, function(e, playlist){
+                         res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, createModal: "null"});
+                        })        
                 }
             })
         }
@@ -692,7 +694,7 @@ app.post('/profileUpload', function(req, res){
         if(e){
             console.log(e);
         } else {
-            res.send({msg: "saved", songs: o});
+            res.send({msg: "saved", id: songs, name: name});
             res.send({redirect:'/'})
             ++songs;
         }
