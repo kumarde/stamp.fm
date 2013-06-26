@@ -135,7 +135,6 @@ var accountModule = new AccountModule;
 var emailModule = new EmailModule;
 var uploadModule = new UploadModule;
 var userModule = new UserModule;
-
 var Feed = new FeedModule;
 
 app.get('/feed', function(req, res){
@@ -185,7 +184,7 @@ app.post('/addfeed', function(req, res){
 			id = req.user[0]._id;
 		}
 		else if(req.user == null){
-			id = req.session.user._id;
+			id = req.session.user[0]._id;
 		}
 		Feed.add(id, req.body.type, req.body.data, function(data) {
 			if (data == false)res.send({error: "error"});
@@ -204,7 +203,7 @@ app.post('/feed', function(req, res){
 			id = req.user[0]._id;
 		}
 		else if(req.user == null){
-			id = req.session.user._id;
+			id = req.session.user[0]._id;
 		}
 		
 		Feed.load(req.body.index, function(data) {
@@ -224,7 +223,7 @@ app.post('/follow', function(req,res){
 			id = req.user[0]._id;
 		}
 		else if(req.user == null){
-			id = req.session.user._id;
+			id = req.session.user[0]._id;
 		}
 	Feed.follow(id, req.body.id, function(data) {
 		if ( data == true) res.send("Followed");
@@ -242,7 +241,7 @@ app.post('/followers', function(req,res) {
 			id = req.user[0]._id;
 		}
 		else if(req.user == null){
-			id = req.session.user._id;
+			id = req.session.user[0]._id;
 		}
 	Feed.followers(id, function(data){
 		res.send(data);
@@ -259,7 +258,7 @@ app.post('/following', function(req,res) {
 			id = req.user[0]._id;
 		}
 		else if(req.user == null){
-			id = req.session.user._id;
+			id = req.session.user[0]._id;
 		}
 	Feed.following(id, function(data){
 		res.send(data);
@@ -353,7 +352,7 @@ app.post('/upload', function(req, res){
         id = req.user[0]._id;
     }
     else if(req.user == null){
-        id = req.session.user._id;
+        id = req.session.user[0]._id;
     }
     var genre = req.body.genre.toString();
     var name = req.body.name;
@@ -393,7 +392,7 @@ app.post('/file-upload', function(req, res, next){
                     id = req.user[0]._id;
                  }
                  else if(req.user == null){
-                   id = req.session.user._id;
+                   id = req.session.user[0]._id;
                  }
            }
                 // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
@@ -543,7 +542,7 @@ app.get('/create', function(req, res){
             id = req.user[0]._id;
         }
         else if(req.user == null){
-            id = req.session.user._id;
+            id = req.session.user[0]._id;
         }
         res.render('CreateProfile'); 
     }
@@ -619,7 +618,7 @@ app.post('/addPlay', function(req, res){
             id = req.user[0]._id;
     }
     else if(req.user == undefined){
-            id = req.session.user._id;
+            id = req.session.user[0]._id;
     }
     db.playlists.insert({
         _id: req.body.sid,
@@ -687,7 +686,7 @@ app.post('/profileUpload', function(req, res){
         id = req.user[0]._id;
     }
     else if(req.user == null){
-       id = req.session.user._id;
+       id = req.session.user[0]._id;
    }
     db.music.save({_id: songs, name: name, artistID:id}, function(e, o){
         if(e){
