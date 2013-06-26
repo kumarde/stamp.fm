@@ -164,4 +164,4 @@ background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0
 	vertical-align: bottom;
 	background-color: #FFBB00;
 	top:700px;
-}
+}#header li:hover{background:#FF1100;padding-top:100px;padding-bottom:17px;}
