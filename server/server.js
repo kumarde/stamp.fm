@@ -265,9 +265,11 @@ app.post('/upload', function(req, res){
     db.music.save({_id: songs, name: name, artistID:id});
     db.tournament.findOne({ $and: [{genre: genre}, {artistID: id}]}, function(e,o){
         if(o){
-            res.send({msg:"You have already entered in one video in this genre."});
+            console.log(o);
         } else {
             db.tournament.insert({genre: genre, artistID: id, _id: songs, name: name});
+            db.music.insert({_id: songs, artistID: id, name: name});
+            ++songs;
             res.send({msg: "ok"})
             res.send({redirect:'/upload'});
         }
@@ -455,12 +457,13 @@ app.get('/create', function(req, res){
 app.post('/create', function(req, res){
     console.log(req.files);
     var stream = fs.createReadStream(req.files.picture.path);
+    console.log(req.session.user);
     var id;
     if(req.session.user == undefined){
         id = req.user[0]._id;
     }
     else if(req.user == undefined){
-        id = req.session.user._id;
+        id = req.session.user[0]._id;
     }
     upload = new mpu(
         {
@@ -475,10 +478,7 @@ app.post('/create', function(req, res){
             else{
                 console.log(o);
                 userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), id);
-                //need to actually add something to the profiles collection awkward.
-                db.music.find({accountID: id}, function(e, songs){
-                    res.redirect('/profile');   
-                }); 
+                res.redirect('/profile'); 
             }
         }
     );
@@ -542,6 +542,7 @@ app.get('/video/:fname', function( req, res) {
 });   
 
 app.get('/profile', function(req, res){
+    console.log(req.session.user);
     if(req.session.user == undefined && req.user == undefined){
             res.redirect('/login');
     }
@@ -558,9 +559,10 @@ app.get('/profile', function(req, res){
             id = req.user[0]._id;
         }
         else if(req.user == undefined){
-            id = req.session.user._id;
+            id = req.session.user[0]._id;
         }
         db.profiles.findOne({_id: id}, function(e, profile){
+            console.log(profile);
             if(e){
                 console.log(e);
             }
