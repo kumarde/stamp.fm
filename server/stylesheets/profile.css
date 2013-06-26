@@ -4,13 +4,14 @@ html{
     background-size: cover;
     min-width: 100%;
     min-height: 100%;
+    cursor: default;
 }
 body {
     margin:0;
     padding: 0;
     border: 0;
-    min-width: 1100px;
     min-height:100%;
+    min-width: 1100px;
 }
 #wrapper {
   position: relative;
@@ -195,6 +196,9 @@ overflow : auto;
 }
 
 #song_name:hover{
+    background-color: #A6A6A6;
+}
+#playlist_name:hover{
     background-color: #A6A6A6;
 }
 
@@ -470,7 +474,7 @@ overflow : auto;
     background: #FFFFFF;
     top:100px;
     right:10px;
-    height: 410px;
+    height: 400px;
      -moz-border-radius:5px;  
     border-radius: 5px;  
     -webkit-border-radius: 5px;
