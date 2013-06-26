@@ -145,7 +145,37 @@ app.get('/feed', function(req, res){
 		else res.render('feed');
 });
 
-app.post('/feed/add', function(req, res){
+
+
+app.get('/users', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/login');
+		}
+		else res.render('users');
+});
+
+app.post('/users', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/login');
+		}
+		else {
+			db.users.find(function(err,docs){
+				if (err || !docs)res.send({error: "Could not lookup db"});
+				else res.send(docs);
+			});
+		}
+});
+
+
+app.get('/feed', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/login');
+		}
+		else res.render('feed');
+});
+
+
+app.post('/addfeed', function(req, res){
 
 	if (req.session.user == null && req.user == null) {
 		res.send({redirect:'/login'});
@@ -158,12 +188,13 @@ app.post('/feed/add', function(req, res){
 			id = req.session.user._id;
 		}
 		Feed.add(id, req.body.type, req.body.data, function(data) {
+			if (data == false)res.send({error: "error"});
 			res.send(data);
 		});
 	}
 });
 
-app.post('/feed/load', function(req, res){
+app.post('/feed', function(req, res){
 
 	if (req.session.user == null && req.user == null) {
 		res.send({redirect:'/login'});
@@ -175,10 +206,74 @@ app.post('/feed/load', function(req, res){
 		else if(req.user == null){
 			id = req.session.user._id;
 		}
-
+		
 		Feed.load(req.body.index, function(data) {
-			if ( data == null )res.send({error: "Up to date"});
+			if ( data == false )res.send({error: "Up to date"});
 			else res.send(data);
+		});
+	}
+});
+
+
+app.post('/follow', function(req,res){
+	if (req.session.user == null && req.user == null) {
+		res.send({redirect:'/login'});
+	}
+	else{
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			id = req.session.user._id;
+		}
+	Feed.follow(id, req.body.id, function(data) {
+		if ( data == true) res.send("Followed");
+		else res.send("Failed");
+	});
+	}
+});
+
+app.post('/followers', function(req,res) {
+	if (req.session.user == null && req.user == null) {
+		res.send({redirect:'/login'});
+	}
+	else{
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			id = req.session.user._id;
+		}
+	Feed.followers(id, function(data){
+		res.send(data);
+	});
+	}
+});
+
+app.post('/following', function(req,res) {
+	if (req.session.user == null && req.user == null) {
+		res.send({redirect:'/login'});
+	}
+	else{
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			id = req.session.user._id;
+		}
+	Feed.following(id, function(data){
+		res.send(data);
+	});
+	}
+});
+
+app.post('/profile/data', function(req,res) {
+	if (req.session.user == null && req.user == null) {
+		res.send({redirect:'/login'});
+	}
+	else{
+		Feed.lookup(req.body.id,function(data){
+			res.send(data);
 		});
 	}
 });
