@@ -262,8 +262,10 @@ body {
 }
 
 .modalDialog_temp > div {
-    width: 30%;
-    height: 40%;
+    min-width: 30%;
+    min-height: 40%;
+    max-width: 60%;
+    width: 40%;
     position: relative;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
@@ -287,7 +289,6 @@ body {
 .fb-like{
     float: left;
     margin-left: 15%;
-<<<<<<< HEAD
 }
 
 
