@@ -18,71 +18,49 @@
   
   <body>
     <div id="wrapper">
-      <header id="header">
-      <a href="http://www.stamp.fm" id="logo"><img src="/headerStamp.png"></a>
-      <ul id="prof">  
-        <li>
-       <a href="/profile" class="nav" id="profileLink">
-          <img id="profilePic" src="stampman.png">
-        </a>
-       </li>
-       <li class="account" id="dropdown">
-          <a href="#" class="nav" style="text-decoration:none" onclick="openDropdown()">
-            <img id="settings" src="settings.png"><br>
-        <ul id="dropdownContent" class="dropdownWrapper">
-          <center>
-          <a href="#accountInfo" style="color:white" id="account">  
-          <div id="tophalf">
-          <li id="account">Account</li>
-          </div>
-          </a>
-          <a href="/logout" style="text-decoration:none" id="logOut">
-          <div id="bottomhalf">
-          <li id="logoutLink">Log Out</li>
-          </div>
-          </a>
-          </center>
-        </ul>
-      </a>  
-        </li>
-      </ul>  
 
-      <ul id="links" style="float:right">
-        <li>
-        <a href="/upload" style="text-decoration:none" id="upLink" class="nav">UPLOAD</a>
-      </li>
-      <li>
-        <a href="#notReal" style="text-decoration:none" id="audLink" class="nav">AUDITION</a>
-        </li>
-        <li>
-        <a href="#notReal" style="text-decoration:none" id="brackLink" class="nav">BRACKET</a>
-        </li>
-    </ul>
-    </header>
 
-    <div id="profileInfo" class="grid wfull" style="color: white">
-      <div class="row">
-        <div class="c10" id="name" style="font-size:40px">
-        <strong><spanName id="displayName" onclick="exchange(this); visibilityName();"><%=name%></spanName></strong>
+<div id="profileContent" class="grid wfull">
+
+  <div class="row">
+    <div class="c3" id="songList" style="position: center">
+          <center><span id="songListLabel">Songs</span></center>
+          <div id="songContent">
+           <div id="song">
+             <div style=" overflow:auto;">
+               <table cellspacing="0" cellpadding="1" class = "songnames">
+      <% songs.forEach(function(song){ %>
+        <tr id="song_name" style="color:#000;">
+          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px"><%= song.name %></div></td>
+          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
+          <td><img data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
+        </tr>
+      <% }); %>
+          </table>  
+        </div>
+            </div> 
+          </div>
+        </div>
+
+
+        <center>
+        <div id="name" class="c4">
+
+        <spanName id="displayName" onclick="exchange(this); visibilityName();" style="color:black"><%=name%></spanName>
         <form method = "POST" action = "/changeName">
-          <input id="displayNameEdit" name="editName" class="replace" type="text" value="">
+          <input id="displayNameEdit" name="editName" class="replace" style="font-size:20px" type="text" value="">
           <input type="submit" id="submitNameButton" value="Submit" style="visibility: hidden" onclick="visibilityName(); exchange((document.getElementById('displayNameEdit')));"/>
         </form>
+        <div id="location">
+        <spanLocation id="spanLocation">
+        <span id="displayLocation" onclick="exchange(this); visibilityLocation();"><%=location%></span>
+        </spanLocation>
+        <form method = "POST" action = "/changeLocation">
+          <input id="displayLocationEdit" name="editLocation" style="font-size:10px"class="replace" type="text" value="">
+          <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
+        </form>
         </div>
-	<div class="c2" id="feed" style="overflow:auto;">
-	  <spanFeed>
-	    <table class = "songList" border="0" style="border-collapse:collapse;" cellspacing="0" cellpadding="1" >
-		<% songs.forEach(function(song){ %>
-	  	  <tr id="feed_element">
-      		    <td style="width:300px;color:#000;" href="/profile?id=<%=song._id%>"><%= song.name %></td>
-      	</tr>
-      		<% }); %>
-	    </table>  
-	  </spanFeed>
-	</div>
-      </div>  
-      <div class="row">
-    	<div class="c3" id="profilePic" style="float:left"><img id="picture" src="<%=imgid%>">
+    	<div id="profilePic"><img id="picture" src="<%=imgid%>">
         <input type="file" id="uploadPicture" style="visibility:hidden">  
         <!--Profile Pic Upload Dialog-->    
            <script>
@@ -91,60 +69,33 @@
             });
            </script>
         <!--END Profile Pic Upload Dialog--> 
-        </div>
+        <br>
 
-    	<div class="c8" id="bio" ><span3 style="font-size:25px"><strong><u>Bio:</u> </strong></span3>
+    	<div id="bio" >
 	  <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio">
-          <textarea rows="5" cols="110" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
+          <textarea rows="1" cols="9" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
           <input type="submit" id="submitBioButton" value="Submit" style="visibility: hidden" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
         </form> 
-    	</div>	
-      </div>	  
+      </div>
 
-    	<div class="row">
-    		<div class="c2" id="location" style="float:left">
-        <spanLocation id="spanLocation">
-    		<span2 style="font-size: 20px">Location: </span2><span id="displayLocation" onclick="exchange(this); visibilityLocation();"><%=location%></span>
-        </spanLocation>
-        <form method = "POST" action = "/changeLocation">
-          <input id="displayLocationEdit" name="editLocation" class="replace" type="text" value="">
-          <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
-        </form>
-    		</div>
-    	</div>	
-    </div>  
-    <div id="music" class="grid wfull" style="color:black">
-      <div class="row">
-        <div class="c4" id="videoPlayer" style="float:left">
+        <a href="#" id="fb"><img src="facebookIcon.png" id="fbIcon"></a>
+        <a href="#" id="twit"><img src="twitter.png" id="twitIcon"></a> 
+        <br>
+
+        <div id="video">
           <div class="c12 end" id="videoPlayer" style="border:none">
-           <center> <video id="vidYo" class="video-js vjs-default-skin" controls width="420" height="264" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+           <video id="vidYo" class="video-js vjs-default-skin" controls data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
                 <source src="<%=songId%>" type="video/mp4" id = "source">
-            </video></center>
+            </video>
           </div>   
-        </div>
+         </div> 
+   
+</center>	
 
-        <div class="c4" id="songList" style="position: center">
-          <center><span id="songListLabel">Songs</span></center>
-          <div id="songContent">
-           <div id="song">
-	           <div style=" overflow:auto;">
-	             <table cellspacing="0" cellpadding="1" class = "songnames">
-			<% songs.forEach(function(song){ %>
-			  <tr id="song_name" style="color:#000;">
-			    <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px"><%= song.name %></div></td>
-			    <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
-			    <td><img data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
-			  </tr>
-			<% }); %>
-		      </table>  
-		    </div>
-            </div> 
-          </div>
-        </div>
 
-        <div class="c4" id="playlist" style="float:right">
-          <center><span id="playlistLabel">Playlists</span></center>
+    <div class="c3" id="playlist" style="float:right">
+          <center><span id="playlistLabel">Favorites</span></center>
           <div id="playlistContent">
               <div id="song" style=" overflow:auto;">
         <table cellspacing="0" cellpadding="0" >
@@ -159,9 +110,10 @@
         </table>
             </div> 
           </div>
-        </div>  
-    </div>	
+        </div> 
 
+</div>
+</div>
     <div class="row">
       <div class="c4" id="upload_block" style="float:left">
         <script src="/dropzoneProfile.js"></script>
