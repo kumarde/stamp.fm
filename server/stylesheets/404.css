@@ -55,3 +55,4 @@ body{
     background-color: #000;
     opacity: .8;
 }
+#header li:hover{background:#FF1100;padding-top:100px;padding-bottom:17px;}

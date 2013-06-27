@@ -287,6 +287,7 @@ body {
 .fb-like{
     float: left;
     margin-left: 15%;
+<<<<<<< HEAD
 }
 
 
@@ -353,4 +354,5 @@ body {
 #confirm:hover{
     background-color: rgba(120,7,6,1);    
 }
+#header li:hover{background:#FF1100;padding-top:100px;padding-bottom:17px;}
 
