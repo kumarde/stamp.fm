@@ -392,7 +392,11 @@ app.post('/file-upload', function(req, res, next){
                     id = req.user[0]._id;
                  }
                  else if(req.user == null){
-                   id = req.session.user[0]._id;
+                    if(req.session.user[0] == undefined){
+                        id = req.session.user._id;
+                    } else {
+                        id = req.session.user[0]._id;
+                    }
                  }
            }
                 // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
@@ -431,6 +435,12 @@ app.get('/login', function(req, res){
 	}
 });
 
+app.post('/playDelete', function(req, res){
+    db.playlists.remove({_id: parseInt(req.body.id)}, function(e,o){});
+    res.send({msg: "Deleted"});
+})
+
+
 app.post('/deleteSong', function(req, res){
     var id = req.body.id;
     console.log(id);
@@ -444,6 +454,7 @@ app.post('/deleteSong', function(req, res){
         }
         else if(o.length == 0){
             db.music.remove({_id: parseInt(id)}, function(e, o){});
+            db.playlists.remove({_id: parseInt(id)}, function(e, o){});
             client.deleteFile(songs, function(e, res){});
             res.send({msg: "yes"})
         }
@@ -660,11 +671,7 @@ app.get('/profile', function(req, res){
             res.redirect('/login');
     }
     else{
-        if(req.query["id"]){
-              vid = myS3Account.readPolicy(req.query["id"], 'media.stamp.fm', 60)
-        } else {
-            vid = 0;
-        }
+        var vid = 0;
         var id;
         console.log(req.user);
         console.log(req.session.user);
@@ -672,7 +679,12 @@ app.get('/profile', function(req, res){
             id = req.user[0]._id;
         }
         else if(req.user == undefined){
-            id = req.session.user._id;
+            if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+            }
+            else{
+                id = req.session.user[0]._id;
+            }
         }
         db.profiles.findOne({_id: id}, function(e, profile){
             console.log(profile);
@@ -701,11 +713,15 @@ app.get('/profile', function(req, res){
 app.post('/profileUpload', function(req, res){
     var name = req.body.name;
     var id;
-    if(req.session.user == null){
+    if(req.session.user == undefined){
         id = req.user[0]._id;
     }
-    else if(req.user == null){
-       id = req.session.user[0]._id;
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
    }
     db.music.save({_id: songs, name: name, artistID:id}, function(e, o){
         if(e){
