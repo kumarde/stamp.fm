@@ -779,6 +779,56 @@ app.get('/reVideo', function(req, res){
     res.send({songID: vid});
 })
 
+app.post('/changeName', function(req, res){
+  var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+   }
+   db.profiles.update({_id: id}, {$set: {name: req.body.editName}});
+})
+
+app.post('/changeBio', function(req, res){
+    var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+   }
+   db.profiles.update({_id: id}, {$set: {bio: req.body.editBio}});
+})
+
+app.post('/changeLocation', function(req, res){
+    var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+   }
+   db.profiles.update({_id: id}, {$set: {location: req.body.editLocation}});
+})
+
+
+
+
+
+
 /*****************************************404**************************************************/
 app.get("*", function(req, res){
       res.render('page404');
