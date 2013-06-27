@@ -175,27 +175,22 @@ app.post('/users', function(req, res){
 		}
 });
 
-
-app.get('/feed', function(req, res){
-		if (req.session.user == null && req.user == null) {
-			res.redirect('/login');
-		}
-		else res.render('feed');
-});
-
-
 app.post('/addfeed', function(req, res){
 
 	if (req.session.user == null && req.user == null) {
 		res.send({redirect:'/login'});
 	}
 	else{
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
+if(req.session.user == null){
+                    id = req.user[0]._id;
+                 }
+                 else if(req.user == null){
+                    if(req.session.user[0] == undefined){
+                        id = req.session.user._id;
+                    } else {
+                        id = req.session.user[0]._id;
+                    }
+                 }
 		Feed.add(id, req.body.type, req.body.data, function(data) {
 			if (data == false)res.send({error: "error"});
 			res.send(data);
@@ -209,12 +204,16 @@ app.post('/feed', function(req, res){
 		res.send({redirect:'/login'});
 	}
 	else{
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
+if(req.session.user == null){
+                    id = req.user[0]._id;
+                 }
+                 else if(req.user == null){
+                    if(req.session.user[0] == undefined){
+                        id = req.session.user._id;
+                    } else {
+                        id = req.session.user[0]._id;
+                    }
+                 }
 		
 		Feed.load(req.body.index, function(data) {
 			if ( data == false )res.send({error: "Up to date"});
@@ -230,11 +229,15 @@ app.post('/follow', function(req,res){
 	}
 	else{
 		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
+             id = req.user[0]._id;
+        }
+        else if(req.user == null){
+			if(req.session.user[0] == undefined){
+				id = req.session.user._id;
+			} else {
+				id = req.session.user[0]._id;
+			}
+         }
 	Feed.follow(id, req.body.id, function(data) {
 		if ( data == true) res.send("Followed");
 		else res.send("Failed");
@@ -247,12 +250,16 @@ app.post('/followers', function(req,res) {
 		res.send({redirect:'/login'});
 	}
 	else{
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
+if(req.session.user == null){
+                    id = req.user[0]._id;
+                 }
+                 else if(req.user == null){
+                    if(req.session.user[0] == undefined){
+                        id = req.session.user._id;
+                    } else {
+                        id = req.session.user[0]._id;
+                    }
+                 }
 	Feed.followers(id, function(data){
 		res.send(data);
 	});
@@ -264,12 +271,16 @@ app.post('/following', function(req,res) {
 		res.send({redirect:'/login'});
 	}
 	else{
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
+if(req.session.user == null){
+                    id = req.user[0]._id;
+                 }
+                 else if(req.user == null){
+                    if(req.session.user[0] == undefined){
+                        id = req.session.user._id;
+                    } else {
+                        id = req.session.user[0]._id;
+                    }
+                 }
 	Feed.following(id, function(data){
 		res.send(data);
 	});
@@ -753,6 +764,9 @@ app.post('/profileUpload', function(req, res){
         if(e){
             console.log(e);
         } else {
+			Feed.share(id, {type: 'upload', id: songs, name: name}, function(data){
+				if (data == false)console.log("Share failed");
+			});
             res.send({msg: "saved", id: songs, name: name});
             res.send({redirect:'/'})
             ++songs;

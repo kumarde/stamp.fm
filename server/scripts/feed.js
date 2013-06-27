@@ -82,7 +82,10 @@ $(document).ready(function() {
 						success: function(data){
 							if (typeof data.redirect == 'string' )window.location = data.redirect;
 							else if (typeof data.error == 'string')alert(data.error);
-							else {
+							else {	
+								for ( var i = 0; i < data.shared.length; i++){
+									$('#feed').append('<div> New song upload - '+data.shared[i].name+' by '+data.name+'</div>');
+								}
 								$('#to').append('<div>'+data.name+'</div>');
 							}
 						}
