@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/gridiculous.css">
     <link rel="stylesheet" type="text/css" href="/profile.css">
     <link rel="stylesheet" type="text/css" href="/dropzone.css">
-    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -98,13 +98,10 @@
           <center><span id="songListLabel">Songs</span></center>
           <div id="songContent">
            <div id="song">
-	      <table cellspacing="0" cellpadding="0" >
-	        <tr>
-	          <td>
 	           <div style=" overflow:auto;">
 	             <table cellspacing="0" cellpadding="1" >
 			<% songs.forEach(function(song){ %>
-			  <tr id="song_name" style="color:#000">
+			  <tr id="song_name" style="color:#000;">
 			    <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px"><%= song.name %></div></td>
 			    <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
 			    <td><img data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
@@ -112,9 +109,6 @@
 			<% }); %>
 		      </table>  
 		    </div>
-		    </td>
-		</tr>
-	      </table>
             </div> 
           </div>
         </div>
@@ -122,22 +116,16 @@
         <div class="c4" id="playlist" style="float:right">
           <center><span id="playlistLabel">Playlists</span></center>
           <div id="playlistContent">
-              <div id="song">
+              <div id="song" style=" overflow:auto;">
         <table cellspacing="0" cellpadding="0" >
-          <tr>
-            <td>
-             <div style=" overflow:auto;">
                <table cellspacing="0" cellpadding="1" style="color:#000">
       <% playlist.forEach(function(play){ %>
         <tr id="playlist_name">
-          <td><div data-tag ="<%=play._id%>" id= "vidPlay"><%= play.name %></div></td>
+          <td><div style="width:250px;" data-tag ="<%=play._id%>" id= "vidPlay"><%= play.name %></div></td>
           <td><img data-tag = "<%=play._id%>" class="playdelete" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
         </tr>
         <% }); %>
-          </table>  
-        </div>
-        </td>
-      </tr>
+          </table> 
         </table>
             </div> 
           </div>
