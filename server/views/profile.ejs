@@ -45,11 +45,11 @@
         </div>
 	<div class="c2" id="feed" style="overflow:auto;">
 	  <spanFeed>
-	    <table border="0" style="border-collapse:collapse;" cellspacing="0" cellpadding="1" >
+	    <table class = "songList" border="0" style="border-collapse:collapse;" cellspacing="0" cellpadding="1" >
 		<% songs.forEach(function(song){ %>
 	  	  <tr id="feed_element">
       		    <td style="width:300px;color:#000;" href="/profile?id=<%=song._id%>"><%= song.name %></td>
-      		  </tr>
+      	</tr>
       		<% }); %>
 	    </table>  
 	  </spanFeed>

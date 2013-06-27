@@ -424,7 +424,7 @@ app.post('/file-upload', function(req, res, next){
                     }
                  }
            }
-                // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
+          // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
         }
     ); 
     res.send("back");
@@ -461,10 +461,10 @@ app.get('/login', function(req, res){
 });
 
 app.post('/playDelete', function(req, res){
-    db.playlists.remove({_id: parseInt(req.body.id)}, function(e,o){});
+    var id = req.body.id;
+    db.playlists.remove({_id: id}, function(e,o){});
     res.send({msg: "Deleted"});
 })
-
 
 app.post('/deleteSong', function(req, res){
     var id = req.body.id;
@@ -478,9 +478,9 @@ app.post('/deleteSong', function(req, res){
             res.send({msg: "no"});
         }
         else if(o.length == 0){
-            db.music.remove({_id: parseInt(id)}, function(e, o){});
-            db.playlists.remove({_id: parseInt(id)}, function(e, o){});
-            client.deleteFile(songs, function(e, res){});
+            db.music.remove({_id: parseInt(id)}, function(e, o){})
+            db.playlists.remove({_id: id}, function(e, o){})
+            client.deleteFile(parseInt(id), function(e, res){});
             res.send({msg: "yes"})
         }
     });
@@ -723,12 +723,13 @@ app.get('/profile', function(req, res){
                 id = req.session.user[0]._id;
             }
         }
+        console.log(id);
         db.profiles.findOne({_id: id}, function(e, profile){
             console.log(profile);
             if(e){
                 console.log(e);
             }
-            else if(!profile){
+            else if(profile == undefined){
                 res.redirect('/create');
             }
             else{
