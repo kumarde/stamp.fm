@@ -362,7 +362,11 @@ app.post('/upload', function(req, res){
         id = req.user[0]._id;
     }
     else if(req.user == null){
-        id = req.session.user[0]._id;
+        if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+        } else {
+                id = req.session.user[0]._id;
+        }
     }
     var genre = req.body.genre.toString();
     var name = req.body.name;
@@ -580,7 +584,11 @@ app.get('/create', function(req, res){
             id = req.user[0]._id;
         }
         else if(req.user == null){
-            id = req.session.user[0]._id;
+           if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+            } else {
+                 id = req.session.user[0]._id;
+            }
         }
         res.render('CreateProfile'); 
     }
@@ -595,7 +603,11 @@ app.post('/create', function(req, res){
         id = req.user[0]._id;
     }
     else if(req.user == undefined){
-        id = req.session.user[0]._id;
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else {
+            id = req.session.user[0]._id;
+        }
     }
     upload = new mpu(
         {
@@ -658,7 +670,11 @@ app.post('/addPlay', function(req, res){
             id = req.user[0]._id;
     }
     else if(req.user == undefined){
-            id = req.session.user._id;
+            if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+            } else {
+                id = req.session.user[0]._id;
+            }
     }
     db.playlists.insert({
         _id: req.body.sid,
