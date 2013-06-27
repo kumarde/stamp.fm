@@ -137,6 +137,16 @@ var uploadModule = new UploadModule;
 var userModule = new UserModule;
 var Feed = new FeedModule;
 
+app.get('/searchbar', function(req, res){
+    res.render('searchbar');
+})
+
+app.post('/searchbar', function(req, res){
+    db.users.runCommand("text", {search: req.body.textsearch}, function(e, o){
+        console.log(o);
+    })
+})
+
 app.get('/feed', function(req, res){
 		if (req.session.user == null && req.user == null) {
 			res.redirect('/login');
