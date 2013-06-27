@@ -137,6 +137,16 @@ var uploadModule = new UploadModule;
 var userModule = new UserModule;
 var Feed = new FeedModule;
 
+app.get('/searchbar', function(req, res){
+    res.render('searchbar');
+})
+
+app.post('/searchbar', function(req, res){
+    db.command({text: 'users', search: req.body.textsearch}, function(e, o){
+      console.log(o);
+    })
+})
+
 app.get('/feed', function(req, res){
 		if (req.session.user == null && req.user == null) {
 			res.redirect('/login');
@@ -165,27 +175,22 @@ app.post('/users', function(req, res){
 		}
 });
 
-
-app.get('/feed', function(req, res){
-		if (req.session.user == null && req.user == null) {
-			res.redirect('/login');
-		}
-		else res.render('feed');
-});
-
-
 app.post('/addfeed', function(req, res){
 
 	if (req.session.user == null && req.user == null) {
 		res.send({redirect:'/login'});
 	}
 	else{
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
+if(req.session.user == null){
+                    id = req.user[0]._id;
+                 }
+                 else if(req.user == null){
+                    if(req.session.user[0] == undefined){
+                        id = req.session.user._id;
+                    } else {
+                        id = req.session.user[0]._id;
+                    }
+                 }
 		Feed.add(id, req.body.type, req.body.data, function(data) {
 			if (data == false)res.send({error: "error"});
 			res.send(data);
@@ -199,13 +204,16 @@ app.post('/feed', function(req, res){
 		res.send({redirect:'/login'});
 	}
 	else{
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
-		
+if(req.session.user == null){
+                    id = req.user[0]._id;
+                 }
+                 else if(req.user == null){
+                    if(req.session.user[0] == undefined){
+                        id = req.session.user._id;
+                    } else {
+                        id = req.session.user[0]._id;
+                    }
+                 }
 		Feed.load(req.body.index, function(data) {
 			if ( data == false )res.send({error: "Up to date"});
 			else res.send(data);
@@ -220,11 +228,15 @@ app.post('/follow', function(req,res){
 	}
 	else{
 		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
+             id = req.user[0]._id;
+        }
+        else if(req.user == null){
+			if(req.session.user[0] == undefined){
+				id = req.session.user._id;
+			} else {
+				id = req.session.user[0]._id;
+			}
+         }
 	Feed.follow(id, req.body.id, function(data) {
 		if ( data == true) res.send("Followed");
 		else res.send("Failed");
@@ -237,12 +249,16 @@ app.post('/followers', function(req,res) {
 		res.send({redirect:'/login'});
 	}
 	else{
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
+if(req.session.user == null){
+                    id = req.user[0]._id;
+                 }
+                 else if(req.user == null){
+                    if(req.session.user[0] == undefined){
+                        id = req.session.user._id;
+                    } else {
+                        id = req.session.user[0]._id;
+                    }
+                 }
 	Feed.followers(id, function(data){
 		res.send(data);
 	});
@@ -254,12 +270,16 @@ app.post('/following', function(req,res) {
 		res.send({redirect:'/login'});
 	}
 	else{
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			id = req.session.user[0]._id;
-		}
+if(req.session.user == null){
+                    id = req.user[0]._id;
+                 }
+                 else if(req.user == null){
+                    if(req.session.user[0] == undefined){
+                        id = req.session.user._id;
+                    } else {
+                        id = req.session.user[0]._id;
+                    }
+                 }
 	Feed.following(id, function(data){
 		res.send(data);
 	});
@@ -352,7 +372,11 @@ app.post('/upload', function(req, res){
         id = req.user[0]._id;
     }
     else if(req.user == null){
-        id = req.session.user[0]._id;
+        if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+        } else {
+                id = req.session.user[0]._id;
+        }
     }
     var genre = req.body.genre.toString();
     var name = req.body.name;
@@ -399,7 +423,7 @@ app.post('/file-upload', function(req, res, next){
                     }
                  }
            }
-                // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
+          // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
         }
     ); 
     res.send("back");
@@ -436,10 +460,10 @@ app.get('/login', function(req, res){
 });
 
 app.post('/playDelete', function(req, res){
-    db.playlists.remove({_id: parseInt(req.body.id)}, function(e,o){});
+    var id = req.body.id;
+    db.playlists.remove({_id: id}, function(e,o){});
     res.send({msg: "Deleted"});
 })
-
 
 app.post('/deleteSong', function(req, res){
     var id = req.body.id;
@@ -453,9 +477,9 @@ app.post('/deleteSong', function(req, res){
             res.send({msg: "no"});
         }
         else if(o.length == 0){
-            db.music.remove({_id: parseInt(id)}, function(e, o){});
-            db.playlists.remove({_id: parseInt(id)}, function(e, o){});
-            client.deleteFile(songs, function(e, res){});
+            db.music.remove({_id: parseInt(id)}, function(e, o){})
+            db.playlists.remove({_id: id}, function(e, o){})
+            client.deleteFile(parseInt(id), function(e, res){});
             res.send({msg: "yes"})
         }
     });
@@ -570,7 +594,11 @@ app.get('/create', function(req, res){
             id = req.user[0]._id;
         }
         else if(req.user == null){
-            id = req.session.user[0]._id;
+           if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+            } else {
+                 id = req.session.user[0]._id;
+            }
         }
         res.render('CreateProfile'); 
     }
@@ -585,7 +613,11 @@ app.post('/create', function(req, res){
         id = req.user[0]._id;
     }
     else if(req.user == undefined){
-        id = req.session.user[0]._id;
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else {
+            id = req.session.user[0]._id;
+        }
     }
     upload = new mpu(
         {
@@ -648,7 +680,11 @@ app.post('/addPlay', function(req, res){
             id = req.user[0]._id;
     }
     else if(req.user == undefined){
-            id = req.session.user._id;
+            if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+            } else {
+                id = req.session.user[0]._id;
+            }
     }
     db.playlists.insert({
         _id: req.body.sid,
@@ -686,12 +722,13 @@ app.get('/profile', function(req, res){
                 id = req.session.user[0]._id;
             }
         }
+        console.log(id);
         db.profiles.findOne({_id: id}, function(e, profile){
             console.log(profile);
             if(e){
                 console.log(e);
             }
-            else if(!profile){
+            else if(profile == undefined){
                 res.redirect('/create');
             }
             else{
@@ -727,6 +764,9 @@ app.post('/profileUpload', function(req, res){
         if(e){
             console.log(e);
         } else {
+			Feed.share(id, {type: 'upload', id: songs, name: name}, function(data){
+				if (data == false)console.log("Share failed");
+			});
             res.send({msg: "saved", id: songs, name: name});
             res.send({redirect:'/'})
             ++songs;
@@ -738,6 +778,56 @@ app.get('/reVideo', function(req, res){
     vid = myS3Account.readPolicy(req.body.songID, 'media.stamp.fm', 60);
     res.send({songID: vid});
 })
+
+app.post('/changeName', function(req, res){
+  var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+   }
+   db.profiles.update({_id: id}, {$set: {name: req.body.editName}});
+})
+
+app.post('/changeBio', function(req, res){
+    var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+   }
+   db.profiles.update({_id: id}, {$set: {bio: req.body.editBio}});
+})
+
+app.post('/changeLocation', function(req, res){
+    var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+   }
+   db.profiles.update({_id: id}, {$set: {location: req.body.editLocation}});
+})
+
+
+
+
+
 
 /*****************************************404**************************************************/
 app.get("*", function(req, res){

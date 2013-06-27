@@ -2,6 +2,7 @@ FeedModule = function(){};
 
 var db = require('mongojs').connect("stampfm", ["feed","profiles"]);
 
+
 var numfeeds;
 db.feed.count(function(err, count){
 	numfeeds = count;
@@ -66,5 +67,20 @@ FeedModule.prototype.lookup = function(id, callback) {
 		else callback(p);
 	});
 };
+
+FeedModule.prototype.share = function(id, data, callback){
+	db.profiles.findOne({_id:id}, function(err, p){
+		if (err || !p)callback(false);
+		else {
+			p.shared.push(data);
+			db.profiles.update({_id: id},{$set:{shared: p.shared}},function (err, o){
+					if (err) callback(false);
+					else callback(data);
+			});
+		}	
+	});
+};
+
+
 
 exports.FeedModule = FeedModule;

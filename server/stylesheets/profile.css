@@ -1,6 +1,6 @@
 html{
     background: #FFFFFF no-repeat center center fixed;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Noto Sans', sans-serif;
     background-size: cover;
     min-width: 100%;
     min-height: 100%;
@@ -17,9 +17,11 @@ body {
   position: relative;
   min-height: 400px;
 }
-
+table{
+    overflow-x: hidden;
+}
 #header {
-    min-width: 800px;
+    min-width: 1000px;
     background-color: rgba(180,7,6,1);
     width:100%;
     height: 75px;
@@ -344,7 +346,6 @@ overflow : auto;
 
 .modalDialog {
     position: fixed;
-    font-family: 'Poiret One', cursive;
     top: 0;
     right: 0;
     bottom: 0;
