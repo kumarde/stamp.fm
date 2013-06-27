@@ -631,7 +631,7 @@ app.post('/create', function(req, res){
             }
             else{
                 console.log(o);
-                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), id);
+                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id);
                 res.redirect('/profile'); 
             }
         }
@@ -824,10 +824,11 @@ app.post('/changeLocation', function(req, res){
    db.profiles.update({_id: id}, {$set: {location: req.body.editLocation}});
 })
 
-
-
-
-
+app.post('/updateAccount', function(req, res){
+  if(req.param('email')){
+    db.users.update({_id: id}, {$set: {email: req.param('email')}});
+  }
+})
 
 /*****************************************404**************************************************/
 app.get("*", function(req, res){

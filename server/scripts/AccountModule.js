@@ -63,7 +63,6 @@ AccountModule.prototype.updatePassword = function(email, newPass, callback)
 		}
 	});
 }
-
 /* account lookup methods */
 
 AccountModule.prototype.deleteAccount = function(id, callback)
