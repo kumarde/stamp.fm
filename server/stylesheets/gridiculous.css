@@ -11,7 +11,7 @@
 
 /* =Normalize.css v2.1.0 by Nicolas Gallagher - http://necolas.github.com/normalize.css/
 -------------------------------------------------------------- */
-article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+article,aside,details,figcaption,figure,footer,hgroup,main,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
 [hidden]{display:none}
@@ -60,7 +60,6 @@ table{border-collapse:collapse;border-spacing:0}
 *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
 body{font-size:100%;line-height:1.6875}
 .grid{margin:0 auto;max-width:1200px;width:100%}
-img{max-width:100%;height:auto;display:block;margin-left:auto;margin-right:auto}
 .wfull{width:100%;max-width:100%}
 .w320{max-width:320px}
 .w640{max-width:640px}
@@ -99,4 +98,3 @@ img{max-width:100%;height:auto;display:block;margin-left:auto;margin-right:auto}
 .row .row .c1,.row .row .c2,.row .row .c3,.row .row .c4,.row .row .c5,.row .row .c6,.row .row .c7,.row .row .c8,.row .row .c9,.row .row .c10,.row .row .c11,.row .row .c12{width:100%;margin-bottom:20px}
 .row .row > div:last-child{margin-bottom:0 !important}
 }
-#header li:hover{background:#FF1100;padding-top:100px;padding-bottom:17px;}

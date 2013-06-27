@@ -6,7 +6,6 @@
 <head>
     <title>stamp.fm</title>
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
-    <link rel="stylesheet" type="text/css" href="/gridiculous.css">
     <link rel="stylesheet" type="text/css" href="/createProfile.css">
     <link rel="stylesheet" type="text/css" href="/dropzone.css">
     <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
@@ -34,37 +33,40 @@
    	  </ul>  
     </header>
 
-	<div id="profileSection" class="grid wfull" style="color: white">
-		<div class="row">
-			<div class="c12" id="createPageLabel" style="font-size:40px">
+	<div id="profileSection"  style="color: #000">
+		<br><br>
+		<center>
+		<div  id="createPageLabel" style="font-size:40px">
 				<h1>Create your Profile</h1>
-			</div>	
+		</div>	
+
 		<form method = "POST" enctype = "multipart/form-data">
-		<div class="row">
-			<div class="c3" id="nameCreate" style="font-size:30px">
-			<input type = "text" placeholder = "nickname" name = "name" id= "name" required/>
-			</div>
-		</div>  
-
-		<div class="row">
-    		<div class="c3" id="proPic" style="float:left">
+			<div id="picture">
     			<img id="preview" src="stampman.png"/>
-    			<input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
-    			<div class="c2" id="locationEnter" style="float:left">
-    			<span2 style="font-size: 20px" id="locationLabelCreate">Location: </span2><span id="locationInputCreate"><input type = "text" placeholder = "location" name = "location" id= "locationEnter" required/></span>
-    			</div>
-    		</div>
-    			<div class="c8" id="bioLbl" ><span3 style="font-size:20px"><strong><u>Bio:</u> </strong></span3>
-    			<textarea rows = "19" cols = "110" placeholder = "bio" id = "bioCreate" name = "bio" required/></textarea>
-    			<center><input type = "submit" id="createButton" value = "Click to View Your Profile"><br></center>
-    			</div>
+    			<center><input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)"></center>
+    		</div>	<br>
+    		<div  id="nameCreate">
+				<input style="font-size:20px"type = "text" placeholder = "Band Name" name = "name" id= "name" required/>
+			</div><br>
+			<div id="locationCreate">
+    			<input type = "text" style="font-size:20px" placeholder = "Location" name = "location" id= "locationEnter" required/>
+    		</div><br>
+    		<div  id="fbLink">
+				<input style="font-size:20px" type = "text" placeholder = "Link to Facebook" name = "fb" id= "fbEnter" required/>
+			</div><br>
+			<div id="twitterLink">
+    			<input type = "text" style="font-size:20px" placeholder = "Link to Twitter" name = "twitter" id= "twitterEnter" required/>
+    		</div><br>
+    		<div id="bioCreateDiv">	
+    			<textarea rows = "10" cols = "50" placeholder = "Biography" id = "bioCreate" name = "bio" required/></textarea>
+    		</div>	
+    		<div id="createProfileButton">
+    			<input type = "submit" id="createButton" value = "Click to View Your Profile">
+			</div>
     	</div>
-	
-    </div>
-
-	</form>
-	</div>	
-
+		</form>
+		</div>	
+		</center>
 	</div>
 
 

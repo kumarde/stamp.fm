@@ -46,3 +46,13 @@
           }   
     }
 //END LOCATION invisible to visible
+
+    function openDropdown()
+    {
+      if ( document.getElementById('dropdownContent').style.visibility == 'hidden' ) {
+            document.getElementById('dropdownContent').style.visibility= 'visible';
+          } else {
+            document.getElementById('dropdownContent').style.visibility = 'hidden';
+          }   
+    }
+    

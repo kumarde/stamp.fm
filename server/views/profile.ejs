@@ -19,21 +19,45 @@
   <body>
     <div id="wrapper">
       <header id="header">
-      <a href="http://www.stamp.fm" style="float:left"><img src="/headerStamp.png"></a>
-      <ul style="float:right">
-      <li>
-      <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
- 	    </li>
- 	    <li>
-      <a href="#notReal" style="text-decoration:none" class="nav">AUDITION</a>
-  	  </li>
-  	  <li>
-      <a href="#notReal" style="text-decoration:none" class="nav">BRACKET</a>
-  	  </li>
-      <li>
-      <a href="/logout" style="text-decoration:none" class="nav" id="logOut">Log Out</a>
+      <a href="http://www.stamp.fm" id="logo"><img src="/headerStamp.png"></a>
+      <ul id="prof">  
+        <li>
+       <a href="/profile" class="nav" id="profileLink">
+          <img id="profilePic" src="stampman.png">
+        </a>
+       </li>
+       <li class="account" id="dropdown">
+          <a href="#" class="nav" style="text-decoration:none" onclick="openDropdown()">
+            <img id="settings" src="settings.png"><br>
+        <ul id="dropdownContent" class="dropdownWrapper">
+          <center>
+          <a href="#accountInfo" style="color:white" id="account">  
+          <div id="tophalf">
+          <li id="account">Account</li>
+          </div>
+          </a>
+          <a href="/logout" style="text-decoration:none" id="logOut">
+          <div id="bottomhalf">
+          <li id="logoutLink">Log Out</li>
+          </div>
+          </a>
+          </center>
+        </ul>
+      </a>  
+        </li>
+      </ul>  
+
+      <ul id="links" style="float:right">
+        <li>
+        <a href="/upload" style="text-decoration:none" id="upLink" class="nav">UPLOAD</a>
       </li>
-   	  </ul>  
+      <li>
+        <a href="#notReal" style="text-decoration:none" id="audLink" class="nav">AUDITION</a>
+        </li>
+        <li>
+        <a href="#notReal" style="text-decoration:none" id="brackLink" class="nav">BRACKET</a>
+        </li>
+    </ul>
     </header>
 
     <div id="profileInfo" class="grid wfull" style="color: white">
@@ -249,6 +273,26 @@
             <a href="https://twitter.com/stampfm" class="twitter-follow-button" data-show-count="false" data-lang="en"></a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
     </ul>          
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+
+<div id="accountInfo" class="modalDialog_account">
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+    <center>
+    <h3 style="color:white">Edit Your Account Info</h3>
+    <form id="editAccount">
+      <br>
+      <input type="email" placeholder="Change your Email Address" id="editEmail"><br><br><br>
+      <input type="password" placeholder="Change your Password" id="password"><br><br>
+      <input type="password" placeholder="Confirm New Password" id="passwordConfirm"><br><br><br>
+      <input type="submit" value="Confirm" id="confirm">
+    </form>         
     </center>
   </div>
 </div>
