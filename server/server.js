@@ -142,8 +142,8 @@ app.get('/searchbar', function(req, res){
 })
 
 app.post('/searchbar', function(req, res){
-    db.users.runCommand("text", {search: req.body.textsearch}, function(e, o){
-        console.log(o);
+    db.command({text: 'users', search: req.body.textsearch}, function(e, o){
+      console.log(o);
     })
 })
 
@@ -214,7 +214,6 @@ if(req.session.user == null){
                         id = req.session.user[0]._id;
                     }
                  }
-		
 		Feed.load(req.body.index, function(data) {
 			if ( data == false )res.send({error: "Up to date"});
 			else res.send(data);
