@@ -78,8 +78,8 @@ body {
     border: 1px solid;
     position: center;
     border-color: #000;
-    max-height: 90%;
-    max-width: 90%;
+    max-height: 20%;
+    max-width: 20%;
 }
 #createButton{
     background-color: rgba(180,7,6,1);
