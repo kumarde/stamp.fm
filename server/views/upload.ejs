@@ -60,6 +60,7 @@
 			    <option class="genreChoice" id="international">international</option>
 			    <option class="genreChoice" id="folk">folk</option>
 			 </select>
+       <input type = "checkbox" id = "explicit" name = "explicit"> Is this song explicit?
 			 </center>
         <input type="submit" value="Enter" id = "submit">
       </form>
@@ -132,19 +133,20 @@
     $('#submit').click(function(event){ 
      var name = $('#songName').val();
      var genre = $('#genre').val();
-     //var myDropzone = new Dropzone('#myDrop');
-     console.log(name);
-     console.log(genre);
+     var explicit = 0;
+     if($('#explicit').is(":checked")){
+      explicit = 1;
+     }
      $.ajax({ 
            url: '/upload',
            type: 'POST',
            cache: false, 
-           data: {name: name, genre: genre},
+           data: {name: name, genre: genre, explicit: explicit},
            success: function(data){
             if(data.msg != "ok"){
               alert(data.msg);
             } else {
-              alert("We have recieved your video!")
+              alert("We have recieved your video!");
             }
             if (typeof data.redirect == 'string'){
               window.location = data.redirect;

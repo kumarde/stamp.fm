@@ -388,13 +388,13 @@ app.post('/upload', function(req, res){
     }
     var genre = req.body.genre.toString();
     var name = req.body.name;
-    db.music.save({_id: songs, name: name, artistID:id});
+    db.music.save({_id: songs, name: name, artistID:id, explicit: req.body.expicit});
     db.tournament.findOne({ $and: [{genre: genre}, {artistID: id}]}, function(e,o){
         if(o){
             client.deleteFile(songs, function(e, res){});
             res.send({msg: "You have already entered a video in that Genre"});
         } else {
-            db.tournament.insert({genre: genre, artistID: id, _id: songs, name: name});
+            db.tournament.insert({genre: genre, artistID: id, _id: songs, name: name, explicit: req.body.explicit});
             ++songs;
             res.send({msg: "ok"})
             res.send({redirect:'/upload'});
