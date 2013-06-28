@@ -74,7 +74,7 @@ $(document).ready(function() {
 								followingarray.push(prof);
 								$('#'+followingid).append('<div>'+prof.name+'</div>');
 								for ( var j = 0; j < prof.shared.length; j++){
-									var $feedentry = $('<div> New song upload - '+prof.shared[j].name+' by '+prof.name+'</div>');
+									var $feedentry = $('<div id="feedElement">'+prof.name+' Uploaded a New Song ('+prof.shared[j].name+')'+'</div>');
 									prof.shared[j].element = $feedentry;
 									prof.shared[j].date = new Date(prof.shared[j].date);
 									feedarray.push(prof.shared[j]);
@@ -84,7 +84,7 @@ $(document).ready(function() {
 									feedarray.sort(function(x,y){
 										return y.date - x.date;
 									});
-									for (var k = 0; k < feedarray.length; k++){
+									for (var k = feedarray.length-1; k >= 0; k--){
 										$('#'+feedid).append(feedarray[k].element);
 									}
 								}

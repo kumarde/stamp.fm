@@ -125,6 +125,7 @@ display:none;
     max-width : 100%; 
     max-height : 60px; 
     margin-top: -30px;
+    margin-bottom: 20px;
 }
 #bio:hover{
     background-color: rgba(180,7,6,.3);
@@ -262,7 +263,13 @@ background-image: -webkit-gradient(
     border-radius: 5px;  
     -webkit-border-radius: 5px;
     overflow: auto;
+    font-size: 20px;
 }
+
+#feedElement{
+    border-bottom: 1px solid #000;
+}
+
 #playlist{
     width: 33.3%;
     border: 2px solid;
