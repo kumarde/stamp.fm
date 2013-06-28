@@ -61,7 +61,9 @@
         </form>
         </div>
     	<div id="profilePic"><img id="picture" src="<%=imgid%>">
-        <input type="file" id="uploadPicture" style="visibility:hidden">  
+        <form method = "POST" action = "/changeImage" id = "chImg">
+          <input type="file" id="uploadPicture" data-tag = "<%=imgid%>" style="visibility:hidden">  
+        </form>
         <!--Profile Pic Upload Dialog-->    
            <script>
            $('#picture').click(function() {
@@ -70,6 +72,7 @@
            </script>
         <!--END Profile Pic Upload Dialog--> 
         <br>
+      </div>
 
     	<div id="bio" >
 	  <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
@@ -210,9 +213,7 @@
     <center>
     <h3 style="color:white">This stage of the competition has not begun yet.<br><br>
     See you July 25th!</h3>
-
     <p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
-
     <ul>
       <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
       <li>  <div>

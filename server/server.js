@@ -834,6 +834,38 @@ app.post('/changeLocation', function(req, res){
    res.send({msg: 'ok'});
 })
 
+app.post('/changeImage', function(req, res){
+    console.log(req.files);
+    var stream = fs.createReadStream(req.files.picture.path);
+    var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else {
+            id = req.session.user[0]._id;
+        }
+    }
+    upload = new mpu(
+        {
+            client: picClient,
+            objectName: id.toString(),
+            stream: stream
+        },
+        function(e, o){
+            if(e){
+                res.send(e, 400);
+            }
+            else{
+                console.log(o);
+                res.redirect('/profile');
+            }
+        }
+    );
+})
+
 app.post('/updateAccount', function(req, res){
   if(req.param('email')){
     db.users.update({_id: id}, {$set: {email: req.param('email')}});
