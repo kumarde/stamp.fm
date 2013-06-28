@@ -665,7 +665,7 @@ app.get('/view', function(req, res){
                     console.log(e);
                 }  else{
                         db.playlists.find({artistID: pid}, function(e, playlist){
-                         res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, createModal: "null"});
+                         res.render('profileView', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
                 }
             })
