@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="/gridiculous.css">
     <link rel="stylesheet" type="text/css" href="/profile.css">
     <link rel="stylesheet" type="text/css" href="/dropzone.css">
-    <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -28,12 +27,12 @@
           <div id="songContent">
            <div id="song">
              <div style=" overflow:auto;">
-               <table cellspacing="0" cellpadding="1" class = "songnames">
+               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames">
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000;">
-          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px"><%= song.name %></div></td>
-          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;"></td>
-          <td><img data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
+          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px;"><%= song.name %></div></td>
+          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;"></td>
+          <td><img data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
         </tr>
       <% }); %>
           </table>  

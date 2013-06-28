@@ -8,8 +8,8 @@
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js" type="text/javascript"></script>
 	<script src="/include/ejs_production.js" type="text/javascript"></script>
-    <script src="/include/jquery.ejs.js" type="text/javascript"></script>
-
+  <script src="/include/jquery.ejs.js" type="text/javascript"></script>
+  <link href='http://fonts.googleapis.com/css?family=Advent+Pro|Alef|Titillium+Web' rel='stylesheet' type='text/css'>
     <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -30,11 +30,13 @@
 
 
   <body>
+  <form id = "searchform">
     <header id="header">
 
 <style>
 #header {
     min-width: 1000px;
+    font-family: 'Advent Pro', sans-serif;
     background-color: rgba(180,7,6,.9);
     width:100%;
     height: 40px;
@@ -47,12 +49,20 @@
     -moz-box-shadow:    1px 1px 5px 2px rgba(0,0,0,.3);
     -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,.3);
     box-shadow:         1px 1px 5px 2px rgba(0,0,0,.3);
-
 }
 
 #logoPic{
   max-width: 100%;
   max-height: 100%;
+}
+
+#logoPic #search{
+  display: inline;
+}
+
+#search{
+font-size: 10px;
+  height: 10px;
 }
 
 #header ul{
@@ -96,20 +106,20 @@
 #upload:hover{
   background-color: rgba(0,0,0,.2);
   padding-top: 100%;
-  padding-bottom: 5px;
+  padding-bottom: 7px;
 }
 
 #audition:hover{
   background-color: rgba(0,0,0,.2);
   padding-top: 100%;
-  padding-bottom: 5px;
+  padding-bottom: 7px;
   margin-left: 0px;
 }
 
 #bracket:hover{
   background-color: rgba(0,0,0,.2);
   padding-top: 100%;
-  padding-bottom: 5px;
+  padding-bottom: 7px;
 }
 
 #prof li{
@@ -134,8 +144,8 @@
 }
 
 #settings{
-    max-width: 30%;
-    max-height: 30%;
+    max-width: 50%;
+    max-height: 50%;
     margin-right: 20px;
     margin-bottom: 0px;
 }
@@ -180,7 +190,7 @@
     width: 0;
     height: 0;
     position: absolute;
-    right: 3.9%;
+    right: 3.6%;
     top: 50%;
     margin-top: 20px;
     border-width: 6px 0 6px 6px;
@@ -200,8 +210,10 @@
     color: #FFFFFF;
 }
 </style>
-
+      
       <a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
+      <input type = "search" name = "textsearch" placeholder = "search for name" id = "search">
+      </form>
       <ul id="prof">  
         <li>
        <a href="/profile" class="nav" id="profileLink">
