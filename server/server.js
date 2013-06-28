@@ -658,7 +658,7 @@ app.get('/view', function(req, res){
     }
     console.log(pid);
     var vid = 0;
-    db.profiles.find({_id: pid}, function(e, profile){
+    db.profiles.findOne({_id: pid}, function(e, profile){
         if(e){
             res.send(e, 400);
         }
