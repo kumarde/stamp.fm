@@ -3,6 +3,7 @@
 <% script('profileEdit.js') -%>
 <% stylesheet('/video-js/video-js.css') -%>
 <% script('/video-js/video.js') -%>
+<% script('feed.js') -%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -70,7 +71,6 @@
             });
            </script>
         <!--END Profile Pic Upload Dialog--> 
-        <br>
       </div>
 
     	<div id="bio" >
@@ -90,8 +90,12 @@
            <video id="vidYo" class="video-js vjs-default-skin" controls data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
                 <source src="<%=songId%>" type="video/mp4" id = "source">
             </video>
+            <br>
+            <div id="feed"></div>
           </div>   
+
          </div> 
+</div>
    
 </center>	
 
