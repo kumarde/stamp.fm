@@ -470,7 +470,7 @@ app.get('/login', function(req, res){
 app.post('/playDelete', function(req, res){
     var id = req.body.id;
     db.playlists.remove({_id: id}, function(e,o){});
-    res.send({msg: "Deleted"});
+    res.send({msg: "Deleted", id: req.body.id});
 })
 
 app.post('/deleteSong', function(req, res){
