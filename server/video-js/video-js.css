@@ -1,6 +1,6 @@
 /*!
 Video.js Default Styles (http://videojs.com)
-Version 4.0.3
+Version 4.0.4
 */
 
 /*
@@ -48,12 +48,13 @@ body.vjs-full-window {
   position: fixed;
   overflow: hidden;
   z-index: 1000;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  right: 0 !important;
   width: 100% !important;
   height: 100% !important;
+  position: absolute !important;
   _position: absolute; /* IE6 Full-window (underscore hack) */
 }
 .video-js:-webkit-full-screen {
@@ -160,7 +161,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 }
 
 .vjs-default-skin {
-  color: #ccc;
+  color: #FFFFFF;
 }
 
 /* Slider - used for Volume bar and Seek bar */
@@ -336,7 +337,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   left: 0;
   height: 0.5em;
 
-  background: #66A8CC
+  background: #FF0000
     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAP0lEQVQIHWWMAQoAIAgDR/QJ/Ub//04+w7ZICBwcOg5FZi5iBB82AGzixEglJrd4TVK5XUJpskSTEvpdFzX9AB2pGziSQcvAAAAAAElFTkSuQmCC)
     -50% 0 repeat;
 }
@@ -425,7 +426,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
     Also using a paralax effect to make the lines move backwards.
       The -50% left position makes that happen.
   */
-  background: #66A8CC
+  background: #FF0000
     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAP0lEQVQIHWWMAQoAIAgDR/QJ/Ub//04+w7ZICBwcOg5FZi5iBB82AGzixEglJrd4TVK5XUJpskSTEvpdFzX9AB2pGziSQcvAAAAAAElFTkSuQmCC)
     -50% 0 repeat;
 }

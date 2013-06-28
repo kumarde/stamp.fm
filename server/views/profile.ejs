@@ -2,8 +2,8 @@
 <% script('/scripts/main.js') -%>
 <% script('profileEdit.js') -%>
 <% script('users.js') -%>
-<% stylesheet('/video-js/video-js.css') -%>
-<% script('/video-js/video.js') -%>
+<% stylesheet('video-js.css') -%>
+<% script('video.js') -%>
 <% script('feed.js') -%>
 <!DOCTYPE html>
 <html>
@@ -32,7 +32,7 @@
                <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
-          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px;"><%= song.name %></div></td>
+          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:125px;"><%= song.name %></div></td>
           <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;"></td>
           <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
         </tr>
@@ -88,8 +88,8 @@
 
         <div id="video">
           <div class="c12 end" id="videoPlayer" style="border:none">
-           <video id="vidYo" class="video-js vjs-default-skin" controls data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
-                <source src="<%=songId%>" type="video/mp4" id = "source">
+           <video id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+                <source src="" type="video/mp4" id = "source">
             </video>
             <br>
             <div id="feed"></div>
@@ -109,7 +109,7 @@
                <table cellspacing="0" cellpadding="1" style="color:#000" id = "playlistTable">
       <% playlist.forEach(function(play){ %>
         <tr id="playlist_name" class = "p<%=play._id%>">
-          <td><div style="width:250px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
+          <td><div style="width:150px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
           <td><img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
         </tr>
         <% }); %>
@@ -349,9 +349,15 @@
         cache: false,
         data: {video : tag},
         success: function(data){
-          $('#vidYo').find("#source").attr("src", data.video);
-          $('#vidYo').load();
-          $('#vidYo').get(0).play();
+          var $vid_obj = _V_("vidYo");
+	  $vid_obj.ready(function() {
+	    $vid_obj.pause();
+	    $('#vidYo').find("#source").attr("src", data.video);
+	    $(".vjs-big-play-button").show();
+	    $("#vidYo").removeClass("vjs-playing").addClass("vjs-paused");
+	    $vid_obj.load();
+	    $("#div_video_html5_api").show();
+	  });
         }
       });
   }
@@ -415,9 +421,15 @@
   }
 </script>
 </body>
-
-
-    		
+<% script('video.js') -%>    		
+<script>
+  videojs("vidYo", {}, function(){
+  // Player (this) is initialized and ready.
+  });
+</script>
+<script>
+  videojs.options.flash.swf = "video-js.swf"
+</script> 		
 
 
 
