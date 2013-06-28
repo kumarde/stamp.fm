@@ -18,28 +18,6 @@
   </head>
 
 <body style="margin:0;">
-	<header id="header">
-      <a href="http://www.stamp.fm"><img src="/headerStamp.png"></a>
-      <ul style="float:right">
-      <li>
-      <a href="/upload" style="text-decoration:none" id = "Upload" class="nav">UPLOAD</a>
- 	  </li>
- 	  <li>
-      <a href="#notReal" style="text-decoration:none" class="nav">AUDITION</a>
-  	  </li>
-  	  <li>
-      <a href="#notReal" style="text-decoration:none" class="nav">BRACKET</a>
-  	  </li>
-   	  </ul>  
-    </header>
-    <script>
-    $(document).ready(function(){
-      $("#Upload").click(function(event){
-        event.preventDefault();
-        alert("You must log in before you use this feature!");
-      });
-    });
-    </script>
 <div class="blurb">
 <p style="font-size: 50px" class="big">Music lovers worldwide, rejoice.<br>
    Discover or compete.<br>
@@ -51,29 +29,29 @@
 <div class="login">
 <center>
 <div id = "login-container">
-	<form method = "POST" id = "inputFields">
-			<p style="font-size: 30px">Enter Stamp.fm</p>
-			<p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
-				or<br>
-				Sign in with your Email</p><br>
-			<input type = "text" name = "email" id="user-tf" placeholder="Email" class="user" required/><br><br>
-			<input type = "password" name = "pass" id = "pass-tf" placeholder="Password" class="pass" required/><br><br>
-			<input type = "submit" value = "Sign In!" style="float:left" id="signIn"><br><br>
-			<label for = "remember" id = "remember" style="float:left"> Remember Me: </label>
-			<input type = "checkbox" id = "rememberme" checked = "checked" style="float:left"><br><br>
-	</form>
+  <form method = "POST" id = "inputFields">
+      <p style="font-size: 30px">Enter Stamp.fm</p>
+      <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
+        or<br>
+        Sign in with your Email</p><br>
+      <input type = "text" name = "email" id="user-tf" placeholder="Email" class="user" required/><br><br>
+      <input type = "password" name = "pass" id = "pass-tf" placeholder="Password" class="pass" required/><br><br>
+      <input type = "submit" value = "Sign In!" style="float:left" id="signIn"><br><br>
+      <label for = "remember" id = "remember" style="float:left"> Remember Me: </label>
+      <input type = "checkbox" id = "rememberme" checked = "checked" style="float:left"><br><br>
+  </form>
 </div>
 
 <div class = "btm-links">
-	<a href="#forgot" id = "forgot-password" class="link" style="float:left"> Forgot your Password? </a><br>
-	<a href = "/" id = "create-account" class="link" style="float:left"> Create an Account. </a>
+  <a href="#forgot" id = "forgot-password" class="link" style="float:left"> Forgot your Password? </a><br>
+  <a href = "/signup" id = "create-account" class="link" style="float:left"> Create an Account. </a>
 </div>
 </center>
 </div>
 
 <!-- Modal Window(s) -->
 
-<div id="forgot" class="modalDialog">
+<div id="forgot" class="modalDialog_temp">
   <div>
     <a href="#close" title="Close" class="close">X</a>
 
@@ -82,13 +60,37 @@
     <div>
       <form method = "post" action = "/forgot" id = "forgotpass">
         <input type="text" class="enterEmail" placeholder="Email" name = "email"><br><br>
-        <input type="submit" value="Recover Password" id = "recover">
+        <input type="submit" value="Recover Password" id = "recoverPass">
       </form>
     </div>
 </center>
   </div>
 </div>
 
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+
+<div id="upload" class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+    <center>
+    <h5 style="color:white">You must be logged in to use this feature!</h5>
+</center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+<div id="Error" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">Error: Username and Password Combination don't match</h5>
+</center>
+  </div>
+</div>
 <!-- End Modal Window(s) -->
 
 
@@ -115,6 +117,52 @@
 
 <!-- End Modal Window(s) -->
 
+
+<!-- Modal Window(s) -->
+<div id="BadEmail" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">Please Enter a valid Email Address</h5>
+</center>
+  </div>
+</div>
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+<div id="UnFilled" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">Please Fill In All Required Fields</h5>
+</center>
+  </div>
+</div>
+<!-- End Modal Window(s) -->
+
+
+<!-- Modal Window(s) -->
+<div id="recoverError" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">There was an error. Please try again.</h5>
+</center>
+  </div>
+</div>
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+<div id="recoverSuccess" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">You will recieve a reset email shortly.</h5>
+</center>
+  </div>
+</div>
+<!-- End Modal Window(s) -->
+
 <!-- FB Like Script-->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -133,6 +181,20 @@
      var email = $('input#user-tf').val();
      var password = $('input#pass-tf').val();
      var rememberme = $('input#rememberme').is(':checked');
+     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+     if(email == "" || password == ""){
+      $('div#UnFilled').addClass("unhidden");
+        $('a#close').click(function(){
+        $('div#UnFilled').removeClass("unhidden");
+      });
+     }
+      else if (!email.match(re)){
+        $('div#BadEmail').addClass("unhidden");
+        $('a#close').click(function(){
+        $('div#BadEmail').removeClass("unhidden");
+        });
+      }
+      else{
      $.ajax({ 
            url: '/login',
            type: 'POST',
@@ -140,18 +202,22 @@
            data: {email: email, password: password, rememberme: rememberme},
            success: function(data){
             if(data.error != null){
-              alert(data.error);
+              $('div#Error').addClass("unhidden");
+              $('a#close').click(function(){
+                $('div#Error').removeClass("unhidden");
+              })
             }
             if (typeof data.redirect == 'string'){
               window.location = data.redirect;
             }
            }
         })
+      }
      });
-    $('#forgotPass').submit(function(e){
+    $('#forgotpass').submit(function(e){
       return false;
     });
-    $('#recover').click(function(event){
+    $('#recoverPass').click(function(event){
       var email = $('input.enterEmail').val();
       $.ajax({
         url: '/forgot',
@@ -160,9 +226,15 @@
         data: {email: email},
         success: function(data){
           if(data.msg != "ok"){
-            alert("There was an error. Please try again.");
+            $('div#recoverError').addClass("unhidden");
+            $('a#close').click(function(){
+              $('div#recoverError').removeClass("unhidden");
+            })
           } else {
-            alert("You will recieve a reset email shortly.");
+            $('div#recoverSuccess').addClass("unhidden");
+            $('a#close').click(function(){
+              $('div#recoverSuccess').removeClass("unhidden");
+            })
           }
         }
       })

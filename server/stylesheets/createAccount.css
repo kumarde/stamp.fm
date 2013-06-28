@@ -243,4 +243,8 @@ body{
 	float: left;
 	margin-left: 15%;
 }
+.unhidden {
+    opacity:1;
+    pointer-events: auto;
+}
 #header li:hover{background:#FF1100;padding-top:100px;padding-bottom:17px;}

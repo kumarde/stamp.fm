@@ -18,21 +18,6 @@
     </style>
   </head>
 <body>
-  <header id="header">
-      <a href="http://www.stamp.fm"><img src="/headerStamp.png"></a>
-      <ul style="float:right">
-      <li>
-      <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
-    </li>
-    <li>
-      <a href="#notReal" style="text-decoration:none" class="nav">AUDITION</a>
-      </li>
-      <li>
-      <a href="#notReal" style="text-decoration:none" class="nav">BRACKET</a>
-      </li>
-      </ul>  
-    </header>
-
 <div class="blurb">
 <p style="font-size: 50px" class="big">Music lovers worldwide, rejoice.<br>
    Discover or compete.<br>
@@ -49,19 +34,11 @@
       <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
         or<br>
         Use your Email</p><br>
-      <input type = "text" name = "name" id="name" placeholder="Name" class="name" required oninvalid="this.setCustomValidity('Please Enter a Name')"/><br><br>
-      <input type = "email" name = "email" id="email" placeholder="Email" class="email" required oninvalid="this.setCustomValidity('Please Enter a Valid Email Address')"/><br><br>
-      <input type = "password" name = "pass" id = "password" placeholder="Password" class="pass" required/><br><br>
-      <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass" required oninput="check(this)"/><br><br>
+      <input type = "text" name = "name" id="name" placeholder="Name" class="name" oninvalid="this.setCustomValidity('Please Enter a Name')"/><br><br>
+      <input type = "email" name = "email" id="email" placeholder="Email" class="email" oninvalid="this.setCustomValidity('Please Enter a Valid Email Address')"/><br><br>
+      <input type = "password" name = "pass" id = "password" placeholder="Password" class="pass"><br><br>
+      <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass" oninput="check(this)"/><br><br>
       <script language='javascript' type='text/javascript'>
-      function check(input) {
-      if (input.value != document.getElementById('Password').value) {
-        input.setCustomValidity('The two passwords must match.');
-      } else {
-        // input is valid -- reset the error message
-        input.setCustomValidity('');
-   }
-}
 </script>
 
       <label for = "birthday" id = "birthday" style="float:left"> I certify that I am over the age of 13: </label>
@@ -97,7 +74,61 @@
 
 <!-- End Modal Window(s) -->
 
+<!-- Modal Window(s) -->
 
+<div id="upload" class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+    <center>
+    <h5 style="color:white">You must be logged in to use this feature</h5>
+</center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+<!-- Modal Window(s) -->
+<div id="Error" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">E-mail Already Taken</h5>
+</center>
+  </div>
+</div>
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+<div id="UnFilled" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">Please Fill In All Required Fields</h5>
+</center>
+  </div>
+</div>
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+<div id="NoMatch" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">Password and Password Confirmation don't match</h5>
+</center>
+  </div>
+</div>
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+<div id="BadEmail" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">Please Enter a valid Email Address</h5>
+</center>
+  </div>
+</div>
+<!-- End Modal Window(s) -->
 <!-- FB Like Script-->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -119,6 +150,27 @@
      var name = $('#name').val();
      var email = $('#email').val();
      var password = $('#password').val();
+     var passconfirm = $('#PasswordConfirmation').val();
+     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+     if(name == "" || email == "" || password == "" || passconfirm == ""){
+      $('div#UnFilled').addClass("unhidden");
+        $('a#close').click(function(){
+        $('div#UnFilled').removeClass("unhidden");
+      });
+     }
+     else if(password != passconfirm){
+      $('div#NoMatch').addClass("unhidden");
+        $('a#close').click(function(){
+        $('div#NoMatch').removeClass("unhidden");
+      });
+     }
+    else if (!email.match(re)){
+      $('div#BadEmail').addClass("unhidden");
+        $('a#close').click(function(){
+        $('div#BadEmail').removeClass("unhidden");
+      });
+    }
+    else{
      $.ajax({ 
            url: '/signup',
            type: 'POST',
@@ -127,12 +179,17 @@
            success: function(data){
             if(data.error != null){
               alert(data.error);
+              $('div#Error').addClass("unhidden");
+              $('a#close').click(function(){
+                $('div#Error').removeClass("unhidden");
+              });
             }
             if (typeof data.redirect == 'string'){
               window.location = data.redirect;
             }
            }
         })
+      }
      });
   });
 </script>
