@@ -1,6 +1,6 @@
 html{
     background: #FFFFFF no-repeat center center fixed;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Noto Sans', sans-serif;
     background-size: cover;
     min-width: 100%;
     min-height: 100%;
@@ -18,44 +18,8 @@ body {
   min-height: 400px;
 }
 
-#header {
-    min-width: 800px;
-    background-color: rgba(180,7,6,1);
-    width:100%;
-    height: 75px;
-    position: fixed;
-    top: 0;
-    float: left;
-    opacity:0.9;
-    filter:alpha(opacity=90);
-    z-index:99;
-}
-
-#header ul{
-    list-style-type: none;
-}
-
-#header li{
-    display: inline;
-    margin-right: 20px;
-    font-size: 30px;
-}
-
-#header .nav{
-    color: black;
-}
-
-#header h1{
-    margin-left: 80px;
-    margin-right: 80px;
-}
-
-#logOut{
-    font-size: 20px;
-    margin-left: 30px;
-}
 #createProfileLabel{
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 #nameCreate{
@@ -63,6 +27,21 @@ body {
     width: 100%;
 }
 
+#name{
+    width: 20%;
+}
+
+#locationEnter{
+    width: 20%;
+}
+
+#fbEnter{
+    width: 20%;
+}
+
+#twitterEnter{
+    width: 20%;
+}
 
 #bioCreate{
     min-width: 20%;
@@ -96,4 +75,3 @@ body {
 #createButton:hover{
     background-color: rgba(120,7,6,1);
 }
-#header li:hover{background:#FF1100;padding-top:100px;padding-bottom:17px;}

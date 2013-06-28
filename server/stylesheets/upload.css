@@ -1,9 +1,24 @@
 html{
     background: #FFFFFF no-repeat center center fixed;
-    font-family: 'Poiret One', cursive;
+   font-family: 'Noto Sans', sans-serif;
     background-size: cover;
     min-width: 100%;
     min-height: 100%;
+
+        background-image: linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+
+    background-image: -webkit-gradient(
+     linear,
+     left bottom,
+     left top,
+     color-stop(0.2, rgb(255,255,255)),
+     color-stop(0.6, rgb(240,240,240)),
+     color-stop(0.8, rgb(245,245,245))
+    );
 }
 body {
     margin:0;
@@ -12,6 +27,15 @@ body {
     min-width: 400px;
     min-height:100%;
 }
+
+#picture{max-width:100%;height:auto;display:block;margin-left:auto;margin-right:auto}
+
+#upload{
+  background-color: rgba(0,0,0,.3);
+  padding-top: 100%;
+  padding-bottom: 5px;
+}
+
 #wrapper {
   position: relative;
   min-height: 400px;
@@ -230,5 +254,4 @@ body {
 #confirm:hover{
     background-color: rgba(120,7,6,1);    
 }
-#header li:hover{background:#FF1100;padding-top:100px;padding-bottom:17px;}
 
