@@ -536,20 +536,20 @@ app.get('/logout', function(req, res){
 });
 
 app.post('/forgot', function(req, res, next){
-    accountModule.getAccountByEmail(req.param('email'), function(o){
+    accountModule.getAccountByEmail(req.body.email, function(o){
         if(o){
-            res.send('ok', 200);
+            res.send({msg:'ok'});
             var options = emailModule.composeEmail(o);
             emailModule.dispatchResetPasswordLink(options, function(e, m){
                 if(!e){
                     //do nothing
                 } else{
-                    res.send('email-server-error', 400);
+                    res.send({msg: 'email-server-error'}, 400);
                     for(k in e) console.log('error : ', k, e[k]);
                 }
             });
         }   else{
-            res.send('email-not-found', 400);
+            res.send({msg:'email-not-found'}, 400);
         }
     });
 });
@@ -807,6 +807,7 @@ app.post('/changeBio', function(req, res){
         }
    }
    db.profiles.update({_id: id}, {$set: {bio: req.body.editBio}});
+
 })
 
 app.post('/changeLocation', function(req, res){

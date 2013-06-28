@@ -18,8 +18,10 @@ EmailModule.prototype.composeEmail = function(o)
 	console.log(link);
 	var html = "<html><body>";
 		html += "Hi "+o.name+",<br><br>";
-		html += "Your username is :: <b>"+o.user+"</b><br><br>";
-		html += "<a href = "+link+"> Click here to reset</a><br><br>";
+		html += "Your username is :: <b>"+o.email+"</b><br><br>";
+		html += "Copy and Paste this link into your browser to reset Password<br><br>";
+		html += link;
+		html += "<br><br>"
 		html += "Cheers,<br>";
 		html += "<a href='http://twitter.com/stamp.fm'>stamp.fm</a><br><br>";
 		html += "</body></html>";

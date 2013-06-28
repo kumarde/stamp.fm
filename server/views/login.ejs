@@ -80,9 +80,9 @@
     <center>
     <h5 style="color:white">Enter Email to Recover Password</h5>
     <div>
-      <form method = "post" action = "/forgot">
+      <form method = "post" action = "/forgot" id = "forgotpass">
         <input type="text" class="enterEmail" placeholder="Email" name = "email"><br><br>
-        <input type="submit" value="Recover Password">
+        <input type="submit" value="Recover Password" id = "recover">
       </form>
     </div>
 </center>
@@ -148,6 +148,25 @@
            }
         })
      });
+    $('#forgotPass').submit(function(e){
+      return false;
+    });
+    $('#recover').click(function(event){
+      var email = $('input.enterEmail').val();
+      $.ajax({
+        url: '/forgot',
+        type: 'POST',
+        cache: false,
+        data: {email: email},
+        success: function(data){
+          if(data.msg != "ok"){
+            alert("There was an error. Please try again.");
+          } else {
+            alert("You will recieve a reset email shortly.");
+          }
+        }
+      })
+    })
   });
 </script>
 <!-- End FB Like Script -->
