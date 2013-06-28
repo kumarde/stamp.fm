@@ -775,7 +775,6 @@ app.post('/profileUpload', function(req, res){
 				if (data == false)console.log("Share failed");
 			});
             res.send({msg: "saved", id: songs, name: name});
-            res.send({redirect:'/'})
             ++songs;
         }
     });
