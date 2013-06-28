@@ -47,7 +47,7 @@
         <div id="name" class="c4">
 
         <spanName id="displayName" onclick="exchange(this); visibilityName();" style="color:black"><%=name%></spanName>
-        <form method = "POST" action = "/changeName">
+        <form method = "POST" action = "/changeName" id = "chName">
           <input id="displayNameEdit" name="editName" class="replace" style="font-size:20px" type="text" value="">
           <input type="submit" id="submitNameButton" value="Submit" style="visibility: hidden" onclick="visibilityName(); exchange((document.getElementById('displayNameEdit')));"/>
         </form>
@@ -55,7 +55,7 @@
         <spanLocation id="spanLocation">
         <span id="displayLocation" onclick="exchange(this); visibilityLocation();"><%=location%></span>
         </spanLocation>
-        <form method = "POST" action = "/changeLocation">
+        <form method = "POST" action = "/changeLocation" id = "chLoc">
           <input id="displayLocationEdit" name="editLocation" style="font-size:10px"class="replace" type="text" value="">
           <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
         </form>
@@ -73,7 +73,7 @@
 
     	<div id="bio" >
 	  <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
-        <form method = "POST" action = "/changeBio">
+        <form method = "POST" action = "/changeBio" id = "chBio">
           <textarea rows="1" cols="9" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
           <input type="submit" id="submitBioButton" value="Submit" style="visibility: hidden" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
         </form> 
@@ -259,7 +259,6 @@
 <script>
   $(document).ready(function() {
     $("#profileUpload").submit(function(e){
-      console.log("message");
       return false;
     });
     $('#songSubmit').click(function(event){ 
@@ -339,6 +338,42 @@
         }
       });
     });
+    $('#chName').submit(function(event){
+      return false;
+    })
+    $('#submitNameButton').click(function(event){
+      var name = $('#displayNameEdit').val();
+      $.ajax({
+        url: '/changeName',
+        type: 'POST',
+        cache: false,
+        data: {editName: name}
+      })
+    })
+    $('#chBio').submit(function(event){
+      return false;
+    })
+    $('#submitBioButton').click(function(event){
+      var bio = $('#displayBioEdit').val();
+      $.ajax({
+        url: '/changeBio',
+        type: 'POST',
+        cache: false,
+        data: {editBio: bio}
+      })
+    })
+    $('#chLoc').submit(function(event){
+      return false;
+    })
+    $('#submitLocationButton').click(function(event){
+      var loc = $('#displayLocationEdit').val();
+      $.ajax({
+        url: '/changeLocation',
+        type: 'POST',
+        cache: false,
+        data: {editLocation: loc}
+      })
+    })
   });
 </script>
 </body>

@@ -807,7 +807,7 @@ app.post('/changeBio', function(req, res){
         }
    }
    db.profiles.update({_id: id}, {$set: {bio: req.body.editBio}});
-
+   res.send({msg:'ok'});
 })
 
 app.post('/changeLocation', function(req, res){
@@ -823,6 +823,7 @@ app.post('/changeLocation', function(req, res){
         }
    }
    db.profiles.update({_id: id}, {$set: {location: req.body.editLocation}});
+   res.send({msg: 'ok'});
 })
 
 app.post('/updateAccount', function(req, res){
