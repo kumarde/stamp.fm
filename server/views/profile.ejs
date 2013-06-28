@@ -29,12 +29,12 @@
           <div id="songContent">
            <div id="song">
              <div style=" overflow:auto;">
-               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames">
+               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
       <% songs.forEach(function(song){ %>
-        <tr id="song_name" style="color:#000;">
+        <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
           <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px;"><%= song.name %></div></td>
           <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;"></td>
-          <td><img data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
+          <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
         </tr>
       <% }); %>
           </table>  
@@ -106,11 +106,11 @@
           <div id="playlistContent">
               <div id="song" style=" overflow:auto;">
         <table cellspacing="0" cellpadding="0" >
-               <table cellspacing="0" cellpadding="1" style="color:#000">
+               <table cellspacing="0" cellpadding="1" style="color:#000" id = "playlistTable">
       <% playlist.forEach(function(play){ %>
-        <tr id="playlist_name">
+        <tr id="playlist_name" class = "p<%=play._id%>">
           <td><div style="width:250px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
-          <td><img data-tag = "<%=play._id%>" class="playdelete" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
+          <td><img data-tag = "<%=play._id%>" class="playdelete" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
         </tr>
         <% }); %>
           </table> 
@@ -276,6 +276,13 @@
            success: function(data){
             if(data.msg == "saved"){
               alert("Your song has been saved!");
+              var htmlRow = [
+                '<tr id="song_name" class = "'+data.id+'" style="color:#000">',
+          '<td>', '<div data-tag ="'+data.id+'" class = "vidPlay" style="width:200px">'+data.name+'</div>', '</td>',
+          '<td>', '<img data-name = "'+data.name+'" data-tag ="'+data.id+'" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;">', '</td>',
+          '<td>', '<img data-name = "'+data.name+'" data-tag = "'+data.id+'" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);">', '</td>',
+          '</tr>'];
+            $("#songTable").append(htmlRow.join(''));
             }
             if (typeof data.redirect == 'string'){
               window.location = data.redirect;
@@ -283,66 +290,10 @@
            }
         })
      });
-    $('.vidPlay').click(function(event){
-      var tag = $(this).attr('data-tag');
-      $.ajax({
-        url: '/vidPlay',
-        type: 'POST',
-        cache: false,
-        data: {video : tag},
-        success: function(data){
-          $('#vidYo').find("#source").attr("src", data.video);
-          $('#vidYo').load();
-          $('#vidYo').get(0).play();
-        }
-      });
-    });
-    $('.addPlay').click(function(event){
-      var tag = $(this).attr('data-tag');
-      var name = $(this).attr('data-name');
-      console.log(tag);
-      console.log(name);
-      $.ajax({
-        url: '/addPlay',
-        type: 'POST',
-        cache: false,
-        data: {sid: tag, name: name},
-        success: function(data){
-          alert(data.name + "was added to your Playlist");
-        }
-      })
-    })
-    $('.deletebutton').click(function(event){
-      var tag = $(this).attr('data-tag');
-      $.ajax({
-        url: '/deleteSong',
-        type: 'POST',
-        cache: false,
-        data: {id: tag},
-        success: function(data){
-          if(data.msg == "yes"){
-            alert("You have successfully deleted this song.");
-          }
-          else if(data.msg == "no"){
-            alert("You cannot delete a video uploaded to the tournament.");
-          }
-        }
-      })
-    })
-    $('.playdelete').click(function(event){
-      var tag = $(this).attr('data-tag');
-      $.ajax({
-        url: '/playDelete',
-        type: 'POST',
-        cache: false,
-        data: {id: tag},
-        success: function(data){
-          if(data.msg){
-            alert("You have successfully deleted this song from your playlist.");
-          }
-        }
-      });
-    });
+    $('.vidPlay').click(playVideo);
+    $('.addPlay').click(addtoPlaylist);
+    $('.deletebutton').click(deleteSong);
+    $('.playdelete').click(deletefromPlaylist);
     $('#chName').submit(function(event){
       return false;
     })
@@ -380,6 +331,80 @@
       })
     })
   });
+  function playVideo(){
+      var tag = $(this).attr('data-tag');
+      $.ajax({
+        url: '/vidPlay',
+        type: 'POST',
+        cache: false,
+        data: {video : tag},
+        success: function(data){
+          $('#vidYo').find("#source").attr("src", data.video);
+          $('#vidYo').load();
+          $('#vidYo').get(0).play();
+        }
+      });
+  }
+
+  function addtoPlaylist(){
+      var tag = $(this).attr('data-tag');
+      var name = $(this).attr('data-name');
+      console.log(tag);
+      console.log(name);
+      $.ajax({
+        url: '/addPlay',
+        type: 'POST',
+        cache: false,
+        data: {sid: tag, name: name},
+        success: function(data){
+          alert(data.name + "was added to your Playlist");
+          var htmlRow = ['<tr id="playlist_name" class = "p'+data.id+'">',
+          '<td>', '<div style="width:250px;" data-tag ="'+data.id+'" id= "vidPlay">'+data.name+'</div>', '</td>',
+          '<td>', '<img data-tag = "'+data.id+'" class="playdelete" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);">', '</td>','</tr>'];
+          $("#playlistTable").append(htmlRow.join(''));
+        }
+      })
+  }
+
+  function deleteSong(){
+
+      var tag = $(this).attr('data-tag');
+      var name = $(this).attr('data-name');
+      $.ajax({
+        url: '/deleteSong',
+        type: 'POST',
+        cache: false,
+        data: {id: tag, name: name},
+        success: function(data){
+          if(data.msg == "yes"){
+            alert("You have successfully deleted this song.");
+            alert(data.name);
+            alert
+            $("."+data.id).remove();
+            deletefromPlaylist();
+          }
+          else if(data.msg == "no"){
+            alert("You cannot delete a video uploaded to the tournament.");
+          }
+        }
+      })
+  }
+
+  function deletefromPlaylist(){
+      var tag = $(this).attr('data-tag');
+      $.ajax({
+        url: '/playDelete',
+        type: 'POST',
+        cache: false,
+        data: {id: tag},
+        success: function(data){
+          if(data.msg){
+            alert("You have successfully deleted this song from your playlist.");
+            $(".p"+data.id).remove();
+          }
+        }
+      });
+  }
 </script>
 </body>
 

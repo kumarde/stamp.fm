@@ -476,7 +476,7 @@ app.post('/playDelete', function(req, res){
 app.post('/deleteSong', function(req, res){
     var id = req.body.id;
     console.log(id);
-    db.tournament.find({_id: parseInt(id)}, function(e, o){
+    db.tournament.find({_id: id}, function(e, o){
         console.log(o);
         if(e){
             console.log(e);
@@ -488,7 +488,7 @@ app.post('/deleteSong', function(req, res){
             db.music.remove({_id: parseInt(id)}, function(e, o){})
             db.playlists.remove({_id: id}, function(e, o){})
             client.deleteFile(parseInt(id), function(e, res){});
-            res.send({msg: "yes"})
+            res.send({msg: "yes", id: id, name: req.body.name})
         }
     });
 })
@@ -517,7 +517,7 @@ app.get('/', function(req, res){
 	res.render('createAccount', {title: "Signup"});
 });
 
-app.post('/', function(req, res){
+app.post('/signup', function(req, res){
     console.log(req.body);
     accountModule.addNewAccount({
         name    : req.body.name,
@@ -700,7 +700,7 @@ app.post('/addPlay', function(req, res){
     }, function(e, o){
         if(e) res.send(e, 400);
     });
-    res.send({name: req.body.name});
+    res.send({name: req.body.name, id: req.body.sid});
 
 })
 
@@ -716,8 +716,6 @@ app.get('/profile', function(req, res){
     else{
         var vid = 0;
         var id;
-        console.log(req.user);
-        console.log(req.session.user);
         if(req.session.user == undefined){
             id = req.user[0]._id;
         }

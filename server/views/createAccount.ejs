@@ -1,3 +1,4 @@
+<% layout('layout') -%>
 <% script('FormValidation.js') -%>
 <!DOCTYPE html>
 <html>
@@ -8,7 +9,6 @@
     <link href='http://fonts.googleapis.com/css?family=Advent+Pro|Alef|Titillium+Web' rel='stylesheet' type='text/css'>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -48,7 +48,7 @@
 <div class="login">
 <center>
 <div id = "login-container">
-  <form class = "InputFields" id = "inputFields" method = "post">
+  <form method = "POST" class = "InputFields" id = "inputFields" action = "/signup">
       <p style="font-size: 30px">Join Stamp.fm</p>
       <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
         or<br>
@@ -57,16 +57,13 @@
       <input type = "email" name = "email" id="email" placeholder="Email" class="email" oninvalid="this.setCustomValidity('Please Enter a Valid Email Address')"/><br><br>
       <input type = "password" name = "pass" id = "password" placeholder="Password" class="pass"><br><br>
       <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass" oninput="check(this)"/><br><br>
-      <script language='javascript' type='text/javascript'>
-</script>
-
       <label for = "birthday" id = "birthday" style="float:left"> I certify that I am over the age of 13: </label>
       <input type = "checkbox" checked = "checked" style="float:left" required oninvalid="this.setCustomValidity('Please Check the Box to Confirm Your Age')"/><br>
       </center>
       </p>
       <center>
       <input type = "submit" value = "Create Account" style = "float:left" id = "createAccount"><br><br>
-   </form>
+  </form>
 </div>
 </center>
 
@@ -161,7 +158,9 @@
 <!---AJAX page rendering -->
 
 <script>
+  alert('hello');
   $(document).ready(function() {
+    alert('in the document ready');
     $("#inputFields").submit(function(e){
       return false;
     });
@@ -174,7 +173,7 @@
      if(name == "" || email == "" || password == "" || passconfirm == ""){
       $('div#UnFilled').addClass("unhidden");
         $('a#close').click(function(){
-        $('div#UnFilled').removeClass("unhidden");
+          $('div#UnFilled').removeClass("unhidden");
       });
      }
      else if(password != passconfirm){
@@ -189,7 +188,6 @@
         $('div#BadEmail').removeClass("unhidden");
       });
     }
-    else{
      $.ajax({ 
            url: '/signup',
            type: 'POST',
@@ -200,16 +198,15 @@
               alert(data.error);
               $('div#Error').addClass("unhidden");
               $('a#close').click(function(){
-                $('div#Error').removeClass("unhidden");
+                  $('div#Error').removeClass("unhidden");
               });
             }
             if (typeof data.redirect == 'string'){
               window.location = data.redirect;
             }
-           }
+          }
         })
-      }
-     });
+      });
   });
 </script>
 
