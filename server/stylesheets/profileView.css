@@ -1,0 +1,531 @@
+html{
+    background: #FFFFFF no-repeat center center fixed;
+    font-family: 'Advent Pro', sans-serif;
+    background-size: cover;
+    min-width: 100%;
+    min-height: 100%;
+    cursor: default;
+
+    background-image: linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+
+    background-image: -webkit-gradient(
+     linear,
+     left bottom,
+     left top,
+     color-stop(0.2, rgb(255,255,255)),
+     color-stop(0.6, rgb(240,240,240)),
+     color-stop(0.8, rgb(245,245,245))
+    );
+}
+body {
+    margin:0;
+    padding: 0;
+    border: 0;
+    min-width: 1100px;
+    min-height:100%;
+}
+#wrapper {
+  position: relative;
+  min-height: 400px;
+}
+table{
+    overflow-x: hidden;
+}
+
+#profileContent{
+    margin-top: 4%;
+}
+#profilePic{
+    margin-left: 0px;
+}
+
+#picture{
+    border: 5px solid #000;
+}
+
+#name{
+    font-size: 25px;
+    color: black;
+}
+
+#fbIcon{
+    max-height: 50px;
+    max-width: 50px;
+    margin-left: 0%;
+}
+#twitIcon{
+    max-height: 50px;
+    max-width: 50px;
+    margin-left: 0%;
+}
+#name #fbIcon #twitIcon{
+    display: inline;
+}
+#location{
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0%;
+    font-size: 15px;
+}
+#bio{
+    overflow : auto;
+    word-wrap: break-word;
+    font-size: 20px;
+    border : 1px;
+    color : #000; 
+    padding : 4px; 
+    max-width : 100%; 
+    max-height : 75px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#picture{
+    max-width: 70%;
+    max-height: 70%;
+    margin-top: 20px;
+    border: 1px solid;
+    border-color: #FFFFFF;
+    opacity: 1;
+}
+#picture:hover{
+    opacity: .7;
+}
+#music{
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+#video{
+    width: 100%;
+}
+
+#vidYo{
+    width: 100%;
+    min-width: 100%;
+    border: 1px solid rgba(180,7,6,1);
+    -moz-box-shadow:    1px 1px 5px 2px rgba(0,0,0,.5);
+    -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,.5);
+    box-shadow:         1px 1px 5px 2px rgba(0,0,0,.5);
+}
+
+#songList{
+    width: 33.3%;
+    border: 2px solid;
+    margin-top: 0;
+    border-color: rgba(180,7,6,1);
+    -moz-box-shadow:    3px 3px 10px 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,.2);
+    box-shadow:         3px 3px 10px 3px rgba(0,0,0,.2);
+    background-color: rgba(250, 250, 250, .5);
+}
+
+#songListLabel{
+    font-size: 21px;
+}
+
+#songContent{
+margin-top: 0px;
+margin-bottom: 5px;
+border : solid 2px;
+border-color: rgba(180,7,6,1);
+background : #E0E0E0;
+color : #ffffff; 
+padding : 4px; 
+max-width : 100%; 
+height : 90%; 
+overflow : auto; 
+min-height: 700px;
+background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+
+background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(240,240,240)),
+    color-stop(0.6, rgb(235,235,235)),
+    color-stop(0.8, rgb(230,230,230))
+);
+
+}
+
+.vidPlay{
+    margin-right:100px;
+    margin-left: 50px;
+}
+#songName #add{
+    display: inline;
+}
+#add{
+    max-height: 10%;
+    max-width: 10%;
+    float: right;
+}
+#song_name{
+    float: left;
+    font-size: 15px;
+}
+
+#song{
+    width: 100%;
+}
+
+#song_name:hover{
+    background-color: #A6A6A6;
+}
+#playlist_name:hover{
+    background-color: #A6A6A6;
+}
+
+#videoplay{
+    text-decoration: none;
+    color: black;
+    margin-left: 10%;
+    float: left;
+}
+
+#videoplay:hover{
+    text-decoration: underline;
+}
+
+#playlist{
+    width: 33.3%;
+    border: 2px solid;
+    margin-top: 0;
+    border-color: rgba(180,7,6,1);
+    -moz-box-shadow:    -3px 3px 10px 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: -3px 3px 10px 3px rgba(0,0,0,.2);
+    box-shadow:         -3px 3px 10px 3px rgba(0,0,0,.2);
+    background-color: rgba(250, 250, 250, .5);
+}
+
+#playlistLabel{
+    font-size: 21px;
+}
+
+#playlistContent{
+margin-top: 0px;
+margin-bottom: 5px;
+border : solid 2px;
+border-color: rgba(180,7,6,1);
+background : #E0E0E0;
+color : #ffffff; 
+padding : 4px; 
+max-width : 100%; 
+min-height: 700px;
+overflow : auto;
+background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+
+background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(240,240,240)),
+    color-stop(0.6, rgb(235,235,235)),
+    color-stop(0.8, rgb(230,230,230))
+);
+}
+.modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog > div {
+    width: 30%;
+    height: 30%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(0,0,0,1);
+}
+
+.close {
+    background: #000;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: rgba(163,163,163,1); }
+
+.songName{
+    width: 200px;
+    height: 20px;
+    font-size: 15px;
+    -moz-border-radius:4px;  
+    border-radius: 4px;  
+}
+
+#songSubmit{
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    font-size: 30px;
+    height: 50%;
+    width: 30%;
+    border: 0px;
+    min-width: 10%;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#songSubmit:hover { background: rgba(120,7,6,1); }
+
+.unhidden {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_temp {
+    position: fixed;
+    font-family: 'Poiret One', cursive;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog_temp:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_temp > div {
+    min-width: 30%;
+    min-height: 40%;
+    max-width: 60%;
+    width: 40%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(180,7,6,1);
+}
+
+.modalDialog_temp ul{
+    list-style-type: none;
+}
+
+.modalDialog_temp li{
+    display: inline;
+    float: center;
+}
+
+.twitter-follow-button{
+    margin-right: 4%;
+}
+
+.fb-like{
+    float: left;
+    margin-left: 15%;
+}
+
+
+
+
+.modalDialogCreate {
+    position: fixed;
+    font-family: 'Poiret One', cursive;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialogCreate:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialogCreate > div {
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(0,0,0,1);
+}
+
+#createProfileLabel{
+    margin-top: 5%;
+}
+
+#profileSection{
+    width: 90%;
+    height: 90%;
+    max-height: 100%;
+    max-width: 100%;
+    margin-top: 4%;
+    margin-left: 5%;
+}
+
+.modalDialogCreate #nameCreate{
+    margin-top: 0%;
+    margin-left: 2.4%;
+    width: 20.1%;
+}
+#locationEnter{
+    width: 90%;
+    font-size: 20px;
+}
+#locationInputCreate{
+    margin-left: 10%;
+}
+#locationLabelCreate{
+    margin-left: 10%;
+}
+#bioLbl #proPic{
+    display: inline;
+}
+
+#bioCreate{
+    min-width: 20%;
+    margin-top: 0%;
+}
+#pic{
+    margin-left:20%;
+    width: 70%;
+}
+#preview{
+    border: 1px solid;
+    position: center;
+    border-color: #FFFFFF;
+    max-height: 90%;
+    max-width: 90%;
+}
+#createButton{
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    font-size: 60px;
+    height: 100%;
+    width: 80%;
+    border: 0px;
+    min-width: 10%;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#createButton:hover { background: rgba(120,7,6,1); }
+
+#feed{
+    position: absolute;
+    background: #FFFFFF;
+    top:100px;
+    right:10px;
+    height: 400px;
+     -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#feed_element{
+    border-bottom: 1px #000 solid;
+}
+
+.modalDialog_account {
+    position: fixed;
+    font-family: 'Poiret One', cursive;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog_account:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_account > div {
+    width: 40%;
+    height: 50%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(0,0,0,1);
+}
+
+#editEmail{
+    width: 60%;
+    font-size: 20px;
+}
+
+#password{
+    width: 60%;
+    font-size: 20px;
+}
+
+#passwordConfirm{
+    width: 60%;
+    font-size: 20px;
+}
+
+#confirm{
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    font-size: 20px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+
+#confirm:hover{
+    background-color: rgba(120,7,6,1);    
+}
