@@ -651,14 +651,13 @@ app.get('/view', function(req, res){
     if(pid == null){
         res.send('error, you suck');
     }
-    console.log(pid);
     var vid = 0;
     db.profiles.findOne({_id: pid}, function(e, profile){
         if(e){
             res.send(e, 400);
         }
         if(profile == null){
-            res.render('*');
+            res.send(404);
         }else{
             console.log(profile);
             db.music.find({artistID: pid}, function(e, songs){
@@ -746,7 +745,7 @@ app.get('/profile', function(req, res){
                     }
                     else{
                         db.playlists.find({artistID: id}, function(e, playlist){
-                         res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, createModal: "null"});
+                         res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
                     }
                 });
@@ -832,38 +831,6 @@ app.post('/changeLocation', function(req, res){
    }
    db.profiles.update({_id: id}, {$set: {location: req.body.editLocation}});
    res.send({msg: 'ok'});
-})
-
-app.post('/changeImage', function(req, res){
-    console.log(req.files);
-    var stream = fs.createReadStream(req.files.picture.path);
-    var id;
-    if(req.session.user == undefined){
-        id = req.user[0]._id;
-    }
-    else if(req.user == undefined){
-        if(req.session.user[0] == undefined){
-            id = req.session.user._id;
-        } else {
-            id = req.session.user[0]._id;
-        }
-    }
-    upload = new mpu(
-        {
-            client: picClient,
-            objectName: id.toString(),
-            stream: stream
-        },
-        function(e, o){
-            if(e){
-                res.send(e, 400);
-            }
-            else{
-                console.log(o);
-                res.redirect('/profile');
-            }
-        }
-    );
 })
 
 app.post('/updateAccount', function(req, res){
