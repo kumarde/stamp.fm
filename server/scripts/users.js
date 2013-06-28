@@ -17,6 +17,9 @@ $(document).ready(function() {
                     var $div;
                     $('#users').html("");
                     for ( var i = 0; i < data.length; i++ ){
+                    	//$link = "localhost:8888/view?id="+data[i]._id;
+                    	//console.log($link);
+                    	//$a = $('<a href = "localhost:8888/view?id="'+link+'">'+data[i].name+'</a>');
                         $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'</div>');
                         //$div.click(follow);
                         $('#users').append($div);
