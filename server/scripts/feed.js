@@ -1,6 +1,7 @@
 var feednum = 0;
 
-
+var feedarray = [];
+var followingarray = [];
 
 //fill these out to the correct id's to append things to
 var feedid = "feed";
@@ -66,14 +67,27 @@ $(document).ready(function() {
 						type: 'POST',
 						cache: false, 
 						data: {id: data[i]},
-						success: function(data){
-							if (typeof data.redirect == 'string' )window.location = data.redirect;
-							else if (typeof data.error == 'string')alert(data.error);
+						success: function(prof){
+							if (typeof data.redirect == 'string' )window.location = prof.redirect;
+							else if (typeof prof.error == 'string')alert(prof.error);
 							else {	
-								for ( var i = 0; i < data.shared.length; i++){
-									$('#'+feedid).append('<div> New song upload - '+data.shared[i].name+' by '+data.name+'</div>');
+								followingarray.push(prof);
+								$('#'+followingid).append('<div>'+prof.name+'</div>');
+								for ( var j = 0; j < prof.shared.length; j++){
+									var $feedentry = $('<div> New song upload - '+prof.shared[j].name+' by '+prof.name+'</div>');
+									prof.shared[j].element = $feedentry;
+									prof.shared[j].date = new Date(prof.shared[j].date);
+									feedarray.push(prof.shared[j]);
+									//$('#'+feedid).prepend($feedentry);
 								}
-								$('#'+followingid).append('<div>'+data.name+'</div>');
+								if (followingarray.length == data.length){
+									feedarray.sort(function(x,y){
+										return y.date - x.date;
+									});
+									for (var k = 0; k < feedarray.length; k++){
+										$('#'+feedid).append(feedarray[k].element);
+									}
+								}
 							}
 						}
 
