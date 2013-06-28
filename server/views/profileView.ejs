@@ -1,5 +1,6 @@
 <% layout('layout') -%>
 <% script('/scripts/main.js') -%>
+<% script('profileEdit.js') -%>
 <% stylesheet('/video-js/video-js.css') -%>
 <% script('/video-js/video.js') -%>
 <!DOCTYPE html>
@@ -10,149 +11,89 @@
     <link rel="stylesheet" type="text/css" href="/gridiculous.css">
     <link rel="stylesheet" type="text/css" href="/profile.css">
     <link rel="stylesheet" type="text/css" href="/dropzone.css">
-    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   
   <body>
     <div id="wrapper">
-      <header id="header">
-      <a href="http://www.stamp.fm" style="float:left"><img src="/headerStamp.png"></a>
-      <ul style="float:right">
-      <li>
-      <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
- 	    </li>
- 	    <li>
-      <a href="#notReal" style="text-decoration:none" class="nav">AUDITION</a>
-  	  </li>
-  	  <li>
-      <a href="#notReal" style="text-decoration:none" class="nav">BRACKET</a>
-  	  </li>
-      <li>
-      <a href="/logout" style="text-decoration:none" class="nav" id="logOut">Log Out</a>
-      </li>
-   	  </ul>  
-    </header>
 
-    <div id="profileInfo" class="grid wfull" style="color: white">
-      <div class="row">
-        <div class="c10" id="name" style="font-size:40px">
-        <strong><spanName id="displayName" onclick="exchange(this); visibilityName();"><%=name%></spanName></strong>
-        </div>
-	<div class="c2" id="feed" style="overflow:auto;">
-	  <spanFeed>
-	    <table border="0" style="border-collapse:collapse;" cellspacing="0" cellpadding="1" >
-		<% songs.forEach(function(song){ %>
-	  	  <tr id="feed_element">
-      		    <td style="width:300px;color:#000;" href="/profile?id=<%=song._id%>"><%= song.name %></td>
-      		  </tr>
-      		<% }); %>
-	    </table>  
-	  </spanFeed>
-	</div>
-      </div>  
-      <div class="row">
-    	<div class="c3" id="profilePic" style="float:left"><img id="picture" src="<%=imgid%>">
-        </div>
-    	<div class="c8" id="bio" ><span3 style="font-size:25px"><strong><u>Bio:</u> </strong></span3>
-	  <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
-    	</div>	
-      </div>	  
 
-    	<div class="row">
-    		<div class="c2" id="location" style="float:left">
-        <spanLocation id="spanLocation">
-    		<span2 style="font-size: 20px">Location: </span2><span id="displayLocation" onclick="exchange(this); visibilityLocation();"><%=location%></span>
-        </spanLocation>
-    		</div>
-    	</div>	
-    </div>  
-    <div id="music" class="grid wfull" style="color:black">
-      <div class="row">
-        <div class="c4" id="videoPlayer" style="float:left">
-          <div class="c12 end" id="videoPlayer" style="border:none">
-           <center> <video id="vidYo" class="video-js vjs-default-skin" controls width="420" height="264" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
-                <source src="<%=songId%>" type="video/mp4" id = "source">
-            </video></center>
-          </div>   
-        </div>
+<div id="profileContent" class="grid wfull">
 
-        <div class="c4" id="songList" style="position: center">
+  <div class="row">
+    <div class="c3" id="songList" style="position: center">
           <center><span id="songListLabel">Songs</span></center>
           <div id="songContent">
            <div id="song">
-	      <table cellspacing="0" cellpadding="0" >
-	        <tr>
-	          <td>
-	           <div style=" overflow:auto;">
-	             <table cellspacing="0" cellpadding="1" >
-			<% songs.forEach(function(song){ %>
-			  <tr id="song_name">
-			    <td><div data-tag ="<%=song._id%>" id= "vidPlay"><%= song.name %></div></td>
-			    <td><img src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;" id = "playlist"></td>
-			  </tr>
-			<% }); %>
-		      </table>  
-		    </div>
-		    </td>
-		</tr>
-	      </table>
+             <div style=" overflow:auto;">
+               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames">
+      <% songs.forEach(function(song){ %>
+        <tr id="song_name" style="color:#000;">
+          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px;"><%= song.name %></div></td>
+          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;"></td>
+          <td><img data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
+        </tr>
+      <% }); %>
+          </table>  
+        </div>
             </div> 
           </div>
         </div>
 
-          <div class="c4" id="playlist" style="float:right">
-          <center><span id="playlistLabel">Playlists</span></center>
+
+        <center>
+        <div id="name" class="c4">
+
+        <spanName id="displayName" style="color:black"><%=name%></spanName>
+        <div id="location">
+        <spanLocation id="spanLocation">
+        <span id="displayLocation"><%=location%></span>
+        </spanLocation>
+        </div>
+      <div id="profilePic"><img id="picture" src="<%=imgid%>">
+        <br>
+      </div>
+
+      <div id="bio" >
+    <spanBio id="displayBio"><%=bio%></spanBio>
+      </div>
+
+        <a href="#" id="fb"><img src="facebookIcon.png" id="fbIcon"></a>
+        <a href="#" id="twit"><img src="twitter.png" id="twitIcon"></a> 
+        <br>
+
+        <div id="video">
+          <div class="c12 end" id="videoPlayer" style="border:none">
+           <video id="vidYo" class="video-js vjs-default-skin" controls data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+                <source src="<%=songId%>" type="video/mp4" id = "source">
+            </video>
+          </div>   
+         </div> 
+   
+</center> 
+
+
+    <div class="c3" id="playlist" style="float:right">
+          <center><span id="playlistLabel">Favorites</span></center>
           <div id="playlistContent">
-              <div id="song">
+              <div id="song" style=" overflow:auto;">
         <table cellspacing="0" cellpadding="0" >
-          <tr>
-            <td>
-             <div style=" overflow:auto;">
                <table cellspacing="0" cellpadding="1" style="color:#000">
       <% playlist.forEach(function(play){ %>
-        <tr id="song_name">
-          <td><div data-tag ="<%=play._id%>" class= "vidPlay"><%= play.name %></div></td>
+        <tr id="playlist_name">
+          <td><div style="width:250px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
+          <td><img data-tag = "<%=play._id%>" class="playdelete" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
         </tr>
         <% }); %>
-          </table>  
-        </div>
-        </td>
-      </tr>
+          </table> 
         </table>
             </div> 
           </div>
-        </div>  
-    </div>  
+        </div> 
 
-    <div class="row">
-      <div class="c4" id="upload_block" style="float:left">
-        <script src="/dropzoneProfile.js"></script>
-        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data" style="color:#000">
-          <center><span style="font-size: 30px"><strong>Upload Songs to Your Profile</strong></span></center>
-        </form>
-      </div>
-
-    </div>  
-
-  <!-- Modal Window(s) -->
-
-<div id="info" class="modalDialog">
-  <div>
-    <center>
-    <h5 style="color:white">Fill in your Song Information</h5>
-    <div>
-      <form method = "post" id = "profileUpload">
-        <input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName"><br><br>
-       <input type="submit" value="Enter" id = "songSubmit">
-      </form>
-    </div>
-    </center>
-  </div>
 </div>
-
-<!-- End Modal Window(s) -->
+</div>
 
 <!-- Modal Window(s) -->
 
@@ -162,15 +103,33 @@
     <center>
     <h3 style="color:white">This stage of the competition has not begun yet.<br><br>
     See you July 25th!</h3>
-
     <p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
-
     <ul>
       <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
       <li>  <div>
             <a href="https://twitter.com/stampfm" class="twitter-follow-button" data-show-count="false" data-lang="en"></a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
     </ul>          
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+
+<div id="accountInfo" class="modalDialog_account">
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+    <center>
+    <h3 style="color:white">Edit Your Account Info</h3>
+    <form id="editAccount" method = "POST" action = "/updateAccount">
+      <br>
+      <input type="email" name = "email" placeholder="Change your Email Address" id="editEmail"><br><br><br>
+      <input type="password" name = "pass" placeholder="Change your Password" id="password"><br><br>
+      <input type="password" placeholder="Confirm New Password" id="passwordConfirm"><br><br><br>
+      <input type="submit" value="Confirm" id="confirm">
+    </form>         
     </center>
   </div>
 </div>
@@ -210,7 +169,7 @@
            }
         })
      });
-    $('#vidPlay').click(function(event){
+    $('.vidPlay').click(function(event){
       var tag = $(this).attr('data-tag');
       $.ajax({
         url: '/vidPlay',
@@ -222,8 +181,91 @@
           $('#vidYo').load();
           $('#vidYo').get(0).play();
         }
+      });
+    });
+    $('.addPlay').click(function(event){
+      var tag = $(this).attr('data-tag');
+      var name = $(this).attr('data-name');
+      console.log(tag);
+      console.log(name);
+      $.ajax({
+        url: '/addPlay',
+        type: 'POST',
+        cache: false,
+        data: {sid: tag, name: name},
+        success: function(data){
+          alert(data.name + "was added to your Playlist");
+        }
+      })
+    })
+    $('.deletebutton').click(function(event){
+      var tag = $(this).attr('data-tag');
+      $.ajax({
+        url: '/deleteSong',
+        type: 'POST',
+        cache: false,
+        data: {id: tag},
+        success: function(data){
+          if(data.msg == "yes"){
+            alert("You have successfully deleted this song.");
+          }
+          else if(data.msg == "no"){
+            alert("You cannot delete a video uploaded to the tournament.");
+          }
+        }
+      })
+    })
+    $('.playdelete').click(function(event){
+      var tag = $(this).attr('data-tag');
+      $.ajax({
+        url: '/playDelete',
+        type: 'POST',
+        cache: false,
+        data: {id: tag},
+        success: function(data){
+          if(data.msg){
+            alert("You have successfully deleted this song from your playlist.");
+          }
+        }
+      });
+    });
+    $('#chName').submit(function(event){
+      return false;
+    })
+    $('#submitNameButton').click(function(event){
+      var name = $('#displayNameEdit').val();
+      $.ajax({
+        url: '/changeName',
+        type: 'POST',
+        cache: false,
+        data: {editName: name}
+      })
+    })
+    $('#chBio').submit(function(event){
+      return false;
+    })
+    $('#submitBioButton').click(function(event){
+      var bio = $('#displayBioEdit').val();
+      $.ajax({
+        url: '/changeBio',
+        type: 'POST',
+        cache: false,
+        data: {editBio: bio}
+      })
+    })
+    $('#chLoc').submit(function(event){
+      return false;
+    })
+    $('#submitLocationButton').click(function(event){
+      var loc = $('#displayLocationEdit').val();
+      $.ajax({
+        url: '/changeLocation',
+        type: 'POST',
+        cache: false,
+        data: {editLocation: loc}
       })
     })
   });
 </script>
 </body>
+
