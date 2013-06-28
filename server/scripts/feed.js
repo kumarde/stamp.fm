@@ -1,26 +1,13 @@
 var feednum = 0;
 
+
+
+//fill these out to the correct id's to append things to
+var feedid = "feed";
+var followersid = "from";
+var followingid = "to";
+
 $(document).ready(function() {
-
-    $("#feedform").submit(function(e){
-      return false;
-    });
-
-    $('#post').click(function(){  
-     $.ajax({ 
-           url: '/addfeed',
-           type: 'POST',
-           cache: false, 
-           data: { type: "message", data: {text: $('#message').val(), url: ""}},
-           success: function(data){
-            if (typeof data.redirect == 'string' )window.location = data.redirect;
-			else console.log(data.text);
-           }
-        });
-     });
-
-
-	feed();
 	followers();
 	following();
 	
@@ -51,7 +38,7 @@ $(document).ready(function() {
 								if (typeof data.redirect == 'string' )window.location = data.redirect;
 								else if (typeof data.error == 'string')alert(data.error);
 								else {
-									$('#from').append('<div>'+data.name+'</div>');
+									$('#'+followersid).append('<div>'+data.name+'</div>');
 								}
 							}
 
@@ -84,9 +71,9 @@ $(document).ready(function() {
 							else if (typeof data.error == 'string')alert(data.error);
 							else {	
 								for ( var i = 0; i < data.shared.length; i++){
-									$('#feed').append('<div> New song upload - '+data.shared[i].name+' by '+data.name+'</div>');
+									$('#'+feedid).append('<div> New song upload - '+data.shared[i].name+' by '+data.name+'</div>');
 								}
-								$('#to').append('<div>'+data.name+'</div>');
+								$('#'+followingid).append('<div>'+data.name+'</div>');
 							}
 						}
 
@@ -98,8 +85,8 @@ $(document).ready(function() {
 		
 	}
 	
-	function feed() {
-	   /* $.ajaxSetup({
+	/*function feed() {
+	    $.ajaxSetup({
             cache: false,
 			data: {id: feednum},
             beforeSend: function() {
@@ -122,7 +109,7 @@ $(document).ready(function() {
 				}
 				}
 			}
-        });*/
+        });
 			$.ajax({ 
 				url: '/feed',
 				type: 'POST',
@@ -162,5 +149,20 @@ $(document).ready(function() {
       
 	}
 
-	
+	    $("#feedform").submit(function(e){
+      return false;
+    });
+
+    $('#post').click(function(){  
+     $.ajax({ 
+           url: '/addfeed',
+           type: 'POST',
+           cache: false, 
+           data: { type: "message", data: {text: $('#message').val(), url: ""}},
+           success: function(data){
+            if (typeof data.redirect == 'string' )window.location = data.redirect;
+			else console.log(data.text);
+           }
+        });
+     });*/
 

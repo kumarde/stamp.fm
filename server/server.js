@@ -513,11 +513,11 @@ app.post('/login', function(req, res){
 	});
 });
 
-app.get('/signup', function(req, res){
+app.get('/', function(req, res){
 	res.render('createAccount', {title: "Signup"});
 });
 
-app.post('/signup', function(req, res){
+app.post('/', function(req, res){
     console.log(req.body);
     accountModule.addNewAccount({
         name    : req.body.name,
