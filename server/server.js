@@ -137,6 +137,14 @@ var uploadModule = new UploadModule;
 var userModule = new UserModule;
 var Feed = new FeedModule;
 
+app.post('/namesearch', function(req,res){
+    db.users.find({name: { $regex: '^'+req.body.search}},function(err,o){console.log(o);
+        if (err || !o)res.send({error:"Cannot find"});
+        else res.send(o);
+    });
+});
+
+
 app.get('/searchbar', function(req, res){
     res.render('searchbar');
 })
@@ -383,10 +391,10 @@ app.post('/upload', function(req, res){
     db.music.save({_id: songs, name: name, artistID:id});
     db.tournament.findOne({ $and: [{genre: genre}, {artistID: id}]}, function(e,o){
         if(o){
-            console.log(o);
+            client.deleteFile(songs, function(e, res){});
+            res.send({msg: "You have already entered a video in that Genre"});
         } else {
             db.tournament.insert({genre: genre, artistID: id, _id: songs, name: name});
-            db.music.insert({_id: songs, artistID: id, name: name});
             ++songs;
             res.send({msg: "ok"})
             res.send({redirect:'/upload'});
