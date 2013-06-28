@@ -1,6 +1,5 @@
 <% layout('layout') -%>
 <% script('/scripts/main.js') -%>
-<% script('profileEdit.js') -%>
 <% stylesheet('/video-js/video-js.css') -%>
 <% script('/video-js/video.js') -%>
 <!DOCTYPE html>
@@ -9,7 +8,7 @@
     <title>stamp.fm</title>
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
     <link rel="stylesheet" type="text/css" href="/gridiculous.css">
-    <link rel="stylesheet" type="text/css" href="/profile.css">
+    <link rel="stylesheet" type="text/css" href="/profileView.css">
     <link rel="stylesheet" type="text/css" href="/dropzone.css">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,21 +45,22 @@
         <div id="name" class="c4">
 
         <spanName id="displayName" style="color:black"><%=name%></spanName>
+
         <div id="location">
         <spanLocation id="spanLocation">
         <span id="displayLocation"><%=location%></span>
         </spanLocation>
         </div>
       <div id="profilePic"><img id="picture" src="<%=imgid%>">
-        <br>
+
       </div>
 
       <div id="bio" >
     <spanBio id="displayBio"><%=bio%></spanBio>
       </div>
 
-        <a href="#" id="fb"><img src="facebookIcon.png" id="fbIcon"></a>
-        <a href="#" id="twit"><img src="twitter.png" id="twitIcon"></a> 
+        <a href="<%=facebook%>" id="fb"><img src="facebookIcon.png" id="fbIcon"></a>
+        <a href="<%=twitter%>" id="twit"><img src="twitter.png" id="twitIcon"></a> 
         <br>
 
         <div id="video">
@@ -94,6 +94,93 @@
 
 </div>
 </div>
+    <div class="row">
+      <div class="c4" id="upload_block" style="float:left">
+        <script src="/dropzoneProfile.js"></script>
+        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data" style="color:#000">
+          <center><span style="font-size: 30px"><strong>Upload Songs to Your Profile</strong></span></center>
+        </form>
+      </div>
+
+    </div>  
+
+<!-- Modal Window(s) -->
+
+<div id="<%=createModal%>" class="modalDialogCreate">
+    <div id="profileSection" class="grid wfull" style="color: white">
+    <div class="row">
+      <div class="c12" id="createPageLabel" style="font-size:30px">
+        <h1>Create your Profile</h1>
+      </div>  
+    <form method = "POST" action = "/create" enctype = "multipart/form-data">
+    <div class="row">
+      <div class="c3" id="nameCreate" style="font-size:20px">
+      <input type = "text" placeholder = "name" name = "name" id= "name" required/>
+      </div>
+    </div>  
+
+    <div class="row">
+        <div class="c3" id="proPic" style="float:left">
+          <img id="preview" src="stampman.png"/>
+          <input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
+          <div class="c2" id="locationEnter" style="float:left">
+          <span2 style="font-size: 15px" id="locationLabelCreate">Location: </span2><span id="locationInputCreate"><input type = "text" placeholder = "location" name = "location" id= "locationEnter" required/></span>
+          </div>
+        </div>
+          <div class="c8" id="bioLbl" ><span3 style="font-size:15px"><strong><u>Bio:</u> </strong></span3>
+          <textarea rows = "15" cols = "110" placeholder = "bio" id = "bioCreate" name = "bio" required/></textarea>
+          <center><a href="/profile" title="Submit" class="submitProfileButton" id="submitProf"><input href="#close" title="Submit" class="submitProfile" type = "submit" id="createButton" value = "Click to View Your Profile"><br></center></a>
+          </div>
+    </div>
+
+  </form>
+  </div>  
+
+  </div>
+
+
+
+<script type="text/javascript">      
+  function previewImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        //the only jQuery line.  All else is the File API.
+        $('#preview').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('#create').show();
+  });
+
+</script>
+<!-- End Modal Window(s) -->
+
+
+  <!-- Modal Window(s) -->
+
+<div id="info" class="modalDialog">
+  <div>
+    <center>
+    <h5 style="color:white">Fill in your Song Information</h5>
+    <div>
+      <form method = "POST" id = "profileUpload">
+        <input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName"><br><br>
+       <input type="submit" value="Enter" id = "songSubmit">
+      </form>
+    </div>
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
 
 <!-- Modal Window(s) -->
 
