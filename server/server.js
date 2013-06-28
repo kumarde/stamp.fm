@@ -138,6 +138,11 @@ var userModule = new UserModule;
 var Feed = new FeedModule;
 
 app.post('/namesearch', function(req,res){
+    db.users.find({name : 1}, function(e, o){
+      console.log(o);
+    })
+
+
     db.users.find({name: { $regex: '^'+req.body.search}},function(err,o){console.log(o);
         if (err || !o)res.send({error:"Cannot find"});
         else res.send(o);

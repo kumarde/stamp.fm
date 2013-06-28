@@ -1,7 +1,32 @@
 $(document).ready(function() {
 	users();
-	
+	$('#search').keyup(search);
 });
+	 function search() {
+        var str = $('#search').val();
+        if (str!=""){
+            $.ajax({ 
+                url: '/namesearch',
+                type: 'POST',
+                cache: false, 
+                data: {search: str},
+                success: function(data){
+                if (typeof data.redirect == 'string' )window.location = data.redirect;
+                else if (typeof data.error == 'string' )alert(data.error);
+                else {
+                    var $div;
+                    $('#users').html("");
+                    for ( var i = 0; i < data.length; i++ ){
+                        $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'</div>');
+                        //$div.click(follow);
+                        $('#users').append($div);
+                        }
+                    }
+                }
+            });        
+            }
+            else $('#users').html("");
+    }
 
 
 	function users() {
