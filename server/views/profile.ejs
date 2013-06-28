@@ -102,7 +102,7 @@
                <table cellspacing="0" cellpadding="1" style="color:#000">
       <% playlist.forEach(function(play){ %>
         <tr id="playlist_name">
-          <td><div style="width:250px;" data-tag ="<%=play._id%>" id= "vidPlay"><%= play.name %></div></td>
+          <td><div style="width:250px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
           <td><img data-tag = "<%=play._id%>" class="playdelete" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:40px;width:50px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
         </tr>
         <% }); %>
