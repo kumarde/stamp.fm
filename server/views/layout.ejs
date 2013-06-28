@@ -65,8 +65,20 @@ form { margin: 0px; padding: 0px; }
 #search{
   margin-left: 50px;
   font-size: 15px;
+  width: 150px;
   position: fixed;
   margin-top: 10px;
+}
+
+#users{
+margin-top: 0px;
+z-index:500;
+background-color: #FFFFFF;
+border: 1px solid rgba(180,7,6,.9);
+width:150px;
+position:fixed;
+margin-left: 150px;
+margin-top: -15px;
 }
 
 #header ul{
@@ -217,6 +229,7 @@ form { margin: 0px; padding: 0px; }
       
       <a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
       <input type = "search" name = "textsearch" placeholder = "search for name" id = "search">
+      <div id = "users"></div>
       </form>
 
       <ul id="prof">  
@@ -258,6 +271,7 @@ form { margin: 0px; padding: 0px; }
         </li>
     </ul>
     </header>
+
     <section>
       <%-body -%>
     </section>
