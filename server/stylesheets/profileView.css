@@ -48,6 +48,10 @@ table{
     color: black;
 }
 
+#displayName{
+    font-weight: bold;
+}
+
 #name #interaction{
     display: inline;
 }
@@ -62,6 +66,7 @@ table{
 #fbIcon{
     max-height: 30px;
     max-width: 30px;
+    background:none;
 }
 #stampFollow{
     max-height: 50px;
@@ -71,6 +76,9 @@ table{
 #twitIcon{
     max-height: 30px;
     max-width: 30px;
+}
+#fbIcon:hover{
+    background-color: rgba(180,7,6,1);
 }
 #followingLink{
     border: 1px solid #000;
@@ -133,6 +141,10 @@ table{
     -moz-border-radius:5px;  
     border-radius: 5px;  
     -webkit-border-radius: 5px;
+}
+
+#picture:hover{
+    opacity: .7;
 }
 
 #music{
@@ -611,4 +623,46 @@ border-radius: 10px;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
     background: rgba(180,7,6,1);
+}
+
+
+
+.modalDialog_pic {
+    position: fixed;
+    font-family: 'Alef', sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog_pic:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_pic > div {
+    min-width: 40%;
+    min-height: 40%;
+    max-width: 60%;
+    width: 40%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px;
+    background: rgba(180,7,6,.3);
+}
+
+
+#largePicture{
+    padding: 5px 5px 5px 5px;
+    max-width: 100%;
+    max-height: 100%;
 }
