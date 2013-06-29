@@ -1,6 +1,6 @@
 html{
     background: #FFFFFF no-repeat center center fixed;
-    font-family: 'Advent Pro', sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     background-size: cover;
     min-width: 100%;
     min-height: 100%;
@@ -92,7 +92,7 @@ display:none;
 }
 
 #followingLink:hover{
-    background-color: grey;
+    color: rgba(180,7,6,1);
 }
 
 #followersLink{
@@ -109,7 +109,11 @@ display:none;
 }
 
 #followersLink:hover{
-    background-color: grey;
+    color: rgba(180,7,6,1);
+}
+
+#displayName{
+    font-weight: bold;
 }
 
 #displayName:hover{
@@ -313,11 +317,15 @@ border-radius: 10px;
     border-radius: 5px;  
     -webkit-border-radius: 5px;
     overflow: auto;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 #feedElement{
     border-bottom: 1px solid #000;
+}
+
+#feedElement:hover{
+    background-color: rgba(163,163,163,.3);
 }
 
 #playlist{

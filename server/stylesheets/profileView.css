@@ -1,6 +1,6 @@
 html{
     background: #FFFFFF no-repeat center center fixed;
-    font-family: 'Advent Pro', sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     background-size: cover;
     min-width: 100%;
     min-height: 100%;
@@ -86,7 +86,7 @@ table{
 }
 
 #followingLink:hover{
-    background-color: grey;
+    color: rgba(180,7,6,1);
 }
 
 #followersLink{
@@ -103,7 +103,7 @@ table{
 }
 
 #followersLink:hover{
-    background-color: grey;
+    color: rgba(180,7,6,1);
 }
 #location{
     width: 100%;
