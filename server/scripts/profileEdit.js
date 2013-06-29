@@ -55,4 +55,3 @@
             document.getElementById('dropdownContent').style.visibility = 'hidden';
           }   
     }
-    
