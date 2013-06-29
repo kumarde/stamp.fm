@@ -43,27 +43,67 @@ table{
     margin-left: 0px;
 }
 
-#picture{
-    border: 5px solid #000;
-}
-
 #name{
     font-size: 25px;
     color: black;
 }
 
+#name #interaction{
+    display: inline;
+}
+
+#interaction{
+    list-style-type: none;
+}
+#interaction li{
+    display: inline;
+}
+
 #fbIcon{
+    max-height: 30px;
+    max-width: 30px;
+}
+#stampFollow{
     max-height: 50px;
     max-width: 50px;
     margin-left: 0%;
 }
 #twitIcon{
-    max-height: 50px;
-    max-width: 50px;
-    margin-left: 0%;
+    max-height: 30px;
+    max-width: 30px;
 }
-#name #fbIcon #twitIcon{
-    display: inline;
+#followingLink{
+    border: 1px solid #000;
+    color: #000;
+    padding-left: 2%;
+    padding-right: 2%; 
+    margin-left: 5%;
+    float: left;
+    text-decoration: none;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+
+#followingLink:hover{
+    background-color: grey;
+}
+
+#followersLink{
+    border: 1px solid #000;
+    color: #000;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-right: 5%;
+    float: right;
+    text-decoration: none;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+
+#followersLink:hover{
+    background-color: grey;
 }
 #location{
     width: 100%;
@@ -81,15 +121,18 @@ table{
     max-width : 100%; 
     max-height : 75px; 
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: -30px;
 }
 #picture{
     max-width: 70%;
     max-height: 70%;
     margin-top: 20px;
     border: 1px solid;
-    border-color: #FFFFFF;
+    border-color: rgba(180, 7, 6, 1);
     opacity: 1;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
 }
 
 #music{
@@ -102,6 +145,7 @@ table{
 }
 
 #vidYo{
+    margin-top: -30px;
     width: 100%;
     min-width: 100%;
     border: 1px solid rgba(180,7,6,1);
@@ -322,60 +366,6 @@ border-radius: 10px;
     pointer-events: auto;
 }
 
-.modalDialog_temp {
-    position: fixed;
-    font-family: 'Poiret One', cursive;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 99999;
-    opacity:0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
-}
-
-.modalDialog_temp:target {
-    opacity:1;
-    pointer-events: auto;
-}
-
-.modalDialog_temp > div {
-    min-width: 30%;
-    min-height: 40%;
-    max-width: 60%;
-    width: 40%;
-    position: relative;
-    margin: 10% auto;
-    padding: 5px 20px 13px 20px;
-    border-radius: 10px;
-    background: rgba(180,7,6,1);
-}
-
-.modalDialog_temp ul{
-    list-style-type: none;
-}
-
-.modalDialog_temp li{
-    display: inline;
-    float: center;
-}
-
-.twitter-follow-button{
-    margin-right: 4%;
-}
-
-.fb-like{
-    float: left;
-    margin-left: 15%;
-}
-
-
-
-
 .modalDialogCreate {
     position: fixed;
     font-family: 'Poiret One', cursive;
@@ -510,7 +500,7 @@ border-radius: 10px;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
-    background: rgba(0,0,0,1);
+    background: rgba(180,7,6,1);
 }
 
 #editEmail{
@@ -529,7 +519,7 @@ border-radius: 10px;
 }
 
 #confirm{
-    background-color: rgba(180,7,6,1);
+    background-color: rgba(0,0,0,1);
     color: #FFFFFF;
     font-size: 20px;
     border: 0px;
@@ -539,5 +529,86 @@ border-radius: 10px;
 }
 
 #confirm:hover{
-    background-color: rgba(120,7,6,1);    
+    background-color: rgba(163,163,163,1);    
+}
+
+
+
+
+
+
+
+.modalDialog_follow #to{
+    height: 200px;
+    max-height: 200px;
+    max-width: 70%;
+    overflow: auto;
+    background-image: linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+
+    background-image: -webkit-gradient(
+     linear,
+     left bottom,
+     left top,
+     color-stop(0.2, rgb(255,255,255)),
+     color-stop(0.6, rgb(240,240,240)),
+     color-stop(0.8, rgb(245,245,245))
+    ); 
+}
+
+.modalDialog_follow #from{
+    height: 200px;
+    max-height: 200px;
+    max-width: 70%;
+    overflow: auto;
+    background-image: linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+
+    background-image: -webkit-gradient(
+     linear,
+     left bottom,
+     left top,
+     color-stop(0.2, rgb(255,255,255)),
+     color-stop(0.6, rgb(240,240,240)),
+     color-stop(0.8, rgb(245,245,245))
+    ); 
+}
+
+.modalDialog_follow {
+    position: fixed;
+    font-family: 'Alef', sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog_follow:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_follow > div {
+    min-width: 30%;
+    min-height: 40%;
+    max-width: 60%;
+    width: 40%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(180,7,6,1);
 }

@@ -82,9 +82,15 @@
         </form> 
       </div>
 
-        <a href="<%=facebook%>" id="fb"><img src="facebookIcon.png" id="fbIcon"></a>
-        <a href="<%=twitter%>" id="twit"><img src="twitter.png" id="twitIcon"></a> 
-        <br>
+        <ul id="interaction">
+        <center>
+        <a href="#followingList" id="followingLink"><li><div id="following" style="font-size:15px"><strong>Following</strong><br>#</div></li></a>
+        <a href="<%=facebook%>" id="fb"><li><img src="facebookIcon.png" id="fbIcon"></li></a>
+        <a href="<%=facebook%>" id="stamp"><li><img src="facebookIcon.png" id="stampFollow"></li></a>
+        <a href="<%=twitter%>" id="twit"><li><img src="twitter.png" id="twitIcon"></li></a> 
+        <a href="#followersList" id="followersLink"><li><div id="followers" style="font-size:15px"><strong>Followers</strong><br>#</div></li></a>
+        </center>
+        </ul>
 
         <div id="video">
           <div class="c12 end" id="videoPlayer" style="border:none">
@@ -211,27 +217,6 @@
 
 <!-- Modal Window(s) -->
 
-<div id="notReal" class="modalDialog_temp">
-  <div>
-    <a href="#close" title="Close" class="close">X</a>
-    <center>
-    <h3 style="color:white">This stage of the competition has not begun yet.<br><br>
-    See you July 25th!</h3>
-    <p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
-    <ul>
-      <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
-      <li>  <div>
-            <a href="https://twitter.com/stampfm" class="twitter-follow-button" data-show-count="false" data-lang="en"></a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
-    </ul>          
-    </center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-
 <div id="accountInfo" class="modalDialog_account">
   <div>
     <a href="#close" title="Close" class="close">X</a>
@@ -244,6 +229,34 @@
       <input type="password" placeholder="Confirm New Password" id="passwordConfirm"><br><br><br>
       <input type="submit" value="Confirm" id="confirm">
     </form>         
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+
+<div id="followingList" class="modalDialog_follow">
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+    <center>
+    <h3 style="color:white">Who you are Following</h3>    
+    <div id="to"></div>   
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+
+<div id="followersList" class="modalDialog_follow">
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+    <center>
+    <h3 style="color:white">Who's Following You</h3>    
+    <div id="from"></div>   
     </center>
   </div>
 </div>

@@ -9,6 +9,7 @@ var followersid = "from";
 var followingid = "to";
 
 $(document).ready(function() {
+	
 	followers();
 	following();
 	

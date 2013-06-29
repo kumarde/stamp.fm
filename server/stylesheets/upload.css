@@ -138,63 +138,6 @@ body {
     pointer-events: auto;
 }
 
-
-.modalDialog_temp {
-    position: fixed;
-    font-family: 'Poiret One', cursive;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 99999;
-    opacity:0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
-}
-
-.modalDialog_temp:target {
-    opacity:1;
-    pointer-events: auto;
-}
-
-.modalDialog_temp > div {
-    min-width: 30%;
-    min-height: 40%;
-    max-width: 60%;
-    width: 40%;
-    position: relative;
-    margin: 10% auto;
-    padding: 5px 20px 13px 20px;
-    border-radius: 10px;
-    background: rgba(180,7,6,1);
-}
-
-.modalDialog_temp ul{
-    list-style-type: none;
-}
-
-.modalDialog_temp li{
-    display: inline;
-    float: center;
-}
-
-.twitter-follow-button{
-    margin-right: 4%;
-}
-
-.fb-like{
-    float: left;
-    margin-left: 15%;
-}
-
-
-
-
-
-
 .modalDialog_account {
     position: fixed;
     font-family: 'Poiret One', cursive;
@@ -218,12 +161,12 @@ body {
 
 .modalDialog_account > div {
     width: 40%;
-    height: 40%;
+    height: 50%;
     position: relative;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
-    background: rgba(0,0,0,1);
+    background: rgba(180,7,6,1);
 }
 
 #editEmail{
@@ -242,7 +185,7 @@ body {
 }
 
 #confirm{
-    background-color: rgba(180,7,6,1);
+    background-color: rgba(0,0,0,1);
     color: #FFFFFF;
     font-size: 20px;
     border: 0px;
@@ -252,6 +195,6 @@ body {
 }
 
 #confirm:hover{
-    background-color: rgba(120,7,6,1);    
+    background-color: rgba(163,163,163,1);    
 }
 
