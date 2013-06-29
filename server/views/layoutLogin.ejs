@@ -1,0 +1,263 @@
+<% script('users.js') -%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Stamp.fm Music Voting</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js" type="text/javascript"></script>
+	<script src="/include/ejs_production.js" type="text/javascript"></script>
+  <script src="/include/jquery.ejs.js" type="text/javascript"></script>
+
+  <link href='http://fonts.googleapis.com/css?family=Advent+Pro|Alef|Titillium+Web' rel='stylesheet' type='text/css'>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39245626-1']);
+  _gaq.push(['_setDomainName', 'stamp.fm']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+	
+    <%-scripts%>
+    <%-stylesheets%>
+
+
+  <body>
+  <form id = "searchform" autocomplete="off">
+    <header id="header">
+
+<style>
+#header {
+    min-width: 1000px;
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    background-color: rgba(180,7,6,.9);
+    width:100%;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    float: left;
+    opacity:1;
+    filter:alpha(opacity=90);
+    z-index:99;
+    -moz-box-shadow:    1px 1px 5px 2px rgba(0,0,0,.3);
+    -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,.3);
+    box-shadow:         1px 1px 5px 2px rgba(0,0,0,.3);
+}
+form { margin: 0px; padding: 0px; }
+#logoPic{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#logoPic #search{
+  display: inline;
+}
+
+#search{
+  width: 150px;
+  margin-left: 50px;
+  font-size: 15px;
+  position: fixed;
+  margin-top: 10px;
+}
+
+#users{
+z-index:500;
+background-color: rgba(0,0,0,.8);
+color: #FFFFFF;
+border: 0px solid rgba(180,7,6,.9);
+width:150px;
+position:fixed;
+margin-left: 150px;
+margin-top: -15px;
+max-height: 300px;
+overflow: auto;
+}
+
+#header ul{
+    list-style-type: none;
+}
+
+#links{
+    margin-top: 8px;
+    float: right;
+}
+
+#header li{
+    display: inline;
+    font-size: 20px;
+}
+
+#upLink{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+#audLink{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+#brackLink{
+  padding-left: 25px;
+  padding-right: 25px; 
+}
+
+#upload:hover{
+  background-color: rgba(0,0,0,.2);
+  padding-top: 100%;
+  padding-bottom: 9px;
+}
+
+#audition:hover{
+  background-color: rgba(0,0,0,.2);
+  padding-top: 100%;
+  padding-bottom: 9px;
+  margin-left: 0px;
+}
+
+#bracket:hover{
+  background-color: rgba(0,0,0,.2);
+  padding-top: 100%;
+  padding-bottom: 9px;
+}
+
+#create:hover{
+  background-color: rgba(0,0,0,.2);
+  padding-top: 100%;
+  padding-bottom: 9px;
+}
+
+#header .nav{
+    color: black;
+    margin-top: 0px;
+}
+
+.login{
+    position: relative;
+    background: rgba(0,0,0,.8);
+    float: right;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 2%;
+    border: 3px solid rgba(0,0,0,0.1);
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+    color: white;
+    height: 480px;
+}
+</style>
+
+      <a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
+      <input type = "search" name = "textsearch" placeholder = "search for name" id = "search">
+      <div id = "users"></div>
+      </form>
+      <ul id="links">
+        <li id="upload">
+        <a href="/upload" style="text-decoration:none" id="upLink" class="nav">Upload</a>
+        </li>
+        <li id="audition">
+        <a href="#notReal" style="text-decoration:none" id="audLink" class="nav">Audition</a>
+        </li>
+        <li id="bracket">
+        <a href="#notReal" style="text-decoration:none" id="brackLink" class="nav">Bracket</a>
+        </li> 
+        <li id="create">
+        <a href="/" style="text-decoration:none; margin-right:25px; margin-left: 25px" id="createLink" class="nav">Create Account</a>
+        </li>  
+    </ul>
+    </header>
+
+    <section>
+      <%-body -%>
+    </section>
+    <footer>
+      <%-blocks.footer%>
+    </footer>
+
+
+
+<!-- Modal Window(s) -->
+<style>
+.modalDialog_temp {
+    position: fixed;
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog_temp:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_temp > div {
+    min-width: 30%;
+    min-height: 40%;
+    max-width: 60%;
+    width: 40%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(180,7,6,1);
+}
+
+.modalDialog_temp ul{
+    list-style-type: none;
+}
+
+.modalDialog_temp li{
+    display: inline;
+    float: center;
+}
+
+.twitter-follow-button{
+    margin-right: 4%;
+}
+
+.fb-like{
+    float: left;
+    margin-left: 15%;
+}
+</style>
+
+<div id="notReal" class="modalDialog_temp">
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+    <center>
+    <h3 style="color:white">This stage of the competition has not begun yet.<br><br>
+    See you July 25th!</h3>
+    <p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
+    <ul>
+      <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
+      <li>  <div>
+            <a href="https://twitter.com/stampfm" class="twitter-follow-button" data-show-count="false" data-lang="en"></a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
+    </ul>          
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+  </body>
+</html>

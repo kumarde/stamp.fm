@@ -1,3 +1,4 @@
+<% layout('layoutLogin') -%>
 <% script('users.js') -%>
 <!DOCTYPE html>
 <html>
@@ -18,23 +19,6 @@
   </head>
 
 <body style="margin:0;">
-   <form id = "searchform">
-    <header id="header">
-      <a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
-      <input type = "search" name = "textsearch" placeholder = "search for name" id = "search">
-      </form>
-      <ul id="links">
-        <li id="upload">
-        <a href="/upload" style="text-decoration:none" id="upLink" class="nav">UPLOAD</a>
-        </li>
-        <li id="audition">
-        <a href="#notReal" style="text-decoration:none" id="audLink" class="nav">AUDITION</a>
-        </li>
-        <li id="bracket">
-        <a href="#notReal" style="text-decoration:none" id="brackLink" class="nav">BRACKET</a>
-        </li> 
-    </ul>
-    </header>
 <div id = "users"></div>
 
 <div class="blurb">
