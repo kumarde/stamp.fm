@@ -83,6 +83,7 @@ app.configure(function(){
         callbackURL: "http://localhost:8888/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
+            console.log(profile);
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
                         flag = true;
@@ -441,7 +442,7 @@ app.post('/file-upload', function(req, res, next){
 
 /*******************************LOGIN STUFF HERE******************************************/
 /*FACEBOOK AUTH*/
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'read_friendlists']}));
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', { successRedirect: '/profile',
                                         failureRedirect: '/login'}));
