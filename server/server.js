@@ -427,6 +427,7 @@ app.post('/upload', function(req, res){
     });
 })
 
+
 app.post('/file-upload', function(req, res, next){
     var stream = fs.createReadStream(req.files.file.path);
     var id;
@@ -434,7 +435,8 @@ app.post('/file-upload', function(req, res, next){
         {
             client: client,
             objectName: songs.toString(), // Amazon S3 object name
-            stream: stream
+            stream: stream,
+			headers: {"Content-Type":req.files.file.type}
         },
             // Callback handler
         function(err, obj) {
@@ -460,7 +462,6 @@ app.post('/file-upload', function(req, res, next){
     ); 
     res.send("back");
 });
-
 /************************************END UPLOAD TO THE TOURNAMENT****************************************/
 
 
