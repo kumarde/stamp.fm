@@ -86,9 +86,12 @@ app.configure(function(){
         function(accessToken, refreshToken, profile, done){
             graph.setAccessToken(accessToken);
             console.log(profile);
-            graph.get(profile._json.id, function(e, o){
-              console.log("this one");
-              console.log(o);
+            graph.get('/'+profile._json.id+"?fields=friends", function(e, o){
+              for(var id in o.friends){
+                if(o.friends.hasOwnProperty(id)){
+                  console.log(id +" -> "+ o.friends[id]);
+                }
+              }
             })
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
@@ -448,7 +451,7 @@ app.post('/file-upload', function(req, res, next){
 
 /*******************************LOGIN STUFF HERE******************************************/
 /*FACEBOOK AUTH*/
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'read_friendlists']}));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'read_friendlists', 'friends_status']}));
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', { successRedirect: '/profile',
                                         failureRedirect: '/login'}));
@@ -726,7 +729,6 @@ app.post('/addPlay', function(req, res){
         if(e) res.send(e, 400);
     });
     res.send({name: req.body.name, id: req.body.sid});
-
 })
 
 app.get('/video/:fname', function( req, res) {
