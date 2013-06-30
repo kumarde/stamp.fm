@@ -181,12 +181,13 @@ overflow: auto;
     max-height: 90%;
     max-width: 90%;
     margin-left: 0px;
+    border: 1px solid #FFFFFF;
 }
 
 #settings{
     max-width: 50%;
     max-height: 50%;
-    margin-right: 20px;
+    margin-right: 2%;
     margin-bottom: 0px;
 }
 
@@ -196,6 +197,7 @@ overflow: auto;
 }
 
 #dropdownContent{
+        margin-top: -5px;
         list-style-type: none;
         background-color: #000;
         width: 110px;
@@ -223,21 +225,6 @@ overflow: auto;
     background-color: rgba(180,7,6,1);
 }
 
-.dropdownWrapper:after{
-    content: "";
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 3.6%;
-    top: 50%;
-    margin-top: 20px;
-    border-width: 6px 0 6px 6px;
-    border-style: solid;
-    border-color: transparent #000; 
-    -webkit-transform: rotate(-90deg); 
-    -moz-transform: rotate(-90deg);   
-}
-
 #logOut{
     text-decoration: none;
     color: #FFFFFF;
@@ -257,7 +244,7 @@ overflow: auto;
       <ul id="prof">  
         <li>
        <a href="/profile" class="nav" id="profileLink">
-          <img id="profilePic" src="stampman.png" style="height:35px;">
+          <img id="profilePic" src="<%=imgid%>" style="height:35px;">
         </a>
        </li>
        <li class="account" id="dropdown">

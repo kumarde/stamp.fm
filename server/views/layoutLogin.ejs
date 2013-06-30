@@ -32,10 +32,17 @@
 
 
   <body>
-  <form id = "searchform" autocomplete="off">
     <header id="header">
 
 <style>
+@font-face {
+  font-family: 'Conv_HelveticaNeueLTStd-Lt';
+  src: url('fonts/HelveticaNeueLTStd-Lt.eot');
+  src: local('☺'), url('fonts/HelveticaNeueLTStd-Lt.woff') format('woff'), url('fonts/HelveticaNeueLTStd-Lt.ttf') format('truetype'), url('fonts/HelveticaNeueLTStd-Lt.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
     margin:0;
     padding: 0;
@@ -166,8 +173,6 @@ overflow: auto;
 </style>
 
       <a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
-      <input type = "search" name = "textsearch" placeholder = "search for name" id = "search">
-      <div id = "users"></div>
       </form>
       <ul id="links">
         <li id="upload">

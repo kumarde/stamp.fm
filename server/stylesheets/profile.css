@@ -38,7 +38,7 @@ display:none;
 #profileContent{
     margin-top: 4%;
 }
-#profilePic{
+#profilePicture{
     margin-left: 0px;
 }
 
@@ -111,13 +111,14 @@ display:none;
 
 #displayName{
     font-weight: bold;
+    margin-bottom: 0px;
 }
 
 #displayName:hover{
     background-color: rgba(180,7,6,.3);
 }
 #displayNameEdit{
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     width: 100%;
 }
 #submitNameButton{
@@ -134,7 +135,7 @@ display:none;
 }
 #location{
     width: 100%;
-    margin-top: -30px;
+    margin-top: -40px;
     margin-left: 0%;
     font-size: 15px;
 }
@@ -167,7 +168,7 @@ display:none;
     max-width : 100%; 
     max-height : 50px; 
     margin-top: -30px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 #bio:hover{
     background-color: rgba(180,7,6,.3);
