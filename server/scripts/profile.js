@@ -89,6 +89,7 @@ $(document).ready(function() {
           }
         })
     });*/      
+
   function playVideo(){
       var tag = $(this).attr('data-tag');
       $.ajax({
