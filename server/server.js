@@ -489,6 +489,13 @@ app.post('/feedback', function(req,res){
     emailModule.dispatchFeedback(options, function(e,m){
         if(e) console.log(e);
     })
+    var responseOptions = emailModule.composeResponse({
+        name: name,
+        email: email
+    });
+    emailModule.dispatchResponse(responseOptions, function(e,m){
+        if(e) console.log(e);
+    })
     res.send({msg:"ok"})
 });
 

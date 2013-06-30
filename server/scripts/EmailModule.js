@@ -19,7 +19,7 @@ EmailModule.prototype.composeFeedback = function(o)
 	var mailOptions = {
 		from: o.email,
 		to: "kumarde@umich.edu",
-		subject: "Feedback from "+o.name,
+		subject: o.category,
 		text: "Stamp.fm Feedback",
 		html: html
 	}
@@ -29,10 +29,23 @@ EmailModule.prototype.composeFeedback = function(o)
 EmailModule.prototype.composeResponse = function(o)
 {
 	var html = "<html><body>";
-		html += "Dear "+ o.name + ",<br>";
-		html += "Thank you for your "+ o.category+" .<br><br>"
-		html += "We appreciate all the support here at Stamp.fm!";
-		html += "</body></html>";
+		html += "Hi "+ o.name + ",<br><br>";
+		html += "Thank you for your feedback! We pride ourselves on getting back to you ";
+		html += "within 24 hours via email or phone. <br><br>We are constantly improving our service";
+		html += "and it is because of people like you. <br><br>";
+		html += "Thanks again,<br><br>";
+		html += "Omar M. Hashwi<br>";
+		html += "omar@stamp.fm<br>";
+		html += "President & CEO";
+
+	var mailOptions = {
+		from: "Stamp.fm <omar@stamp.fm>",
+		to: o.email,
+		subject: "Feedback helps us Grow",
+		text: "Feedback is very well appreciated.",
+		html: html
+	}
+	return mailOptions;
 }
 
 EmailModule.prototype.composeEmail = function(o)
@@ -56,6 +69,13 @@ EmailModule.prototype.composeEmail = function(o)
 		html: html
 	}
 	return mailOptions;
+}
+
+EmailModule.prototype.dispatchResponse = function(o, callback){
+	smtpTransport.sendMail(o, function(e, res){
+		if(e) console.log(e);
+		else console.log("message sent!");
+	})
 }
 
 EmailModule.prototype.dispatchFeedback = function(o, callback){
