@@ -93,8 +93,8 @@ $(document).ready(function() {
 			data: { id: event.target.id},
 			success: function(data){
 			if (typeof data.redirect == 'string' )window.location = data.redirect;
-			else if (typeof data.error == 'string')alert(data.error);
-			else alert(data);
+			else if (typeof data.error == 'string')console.log(data.error);
+			else console.log(data);
 			}
 		});
 	}
