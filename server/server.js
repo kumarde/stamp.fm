@@ -7,6 +7,7 @@ var flash = require('connect-flash')
   , field = form.field
   , passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
+  , graph = require('fbgraph')
   , fs = require('fs')
   , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists"]);
 
@@ -83,7 +84,12 @@ app.configure(function(){
         callbackURL: "http://localhost:8888/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
+            graph.setAccessToken(accessToken);
             console.log(profile);
+            graph.get(profile._json.id, function(e, o){
+              console.log("this one");
+              console.log(o);
+            })
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
                         flag = true;
