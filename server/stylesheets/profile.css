@@ -21,13 +21,6 @@ html{
      color-stop(0.8, rgb(245,245,245))
     );
 }
-body {
-    margin:0;
-    padding: 0;
-    border: 0;
-    min-width: 1100px;
-    min-height:100%;
-}
 #wrapper {
   position: relative;
   min-height: 400px;
@@ -68,6 +61,8 @@ display:none;
 #fbIcon{
     max-height: 30px;
     max-width: 30px;
+    margin-left: 0%;
+    margin-right: 0%;
 }
 #stampFollow{
     max-height: 50px;
@@ -77,6 +72,8 @@ display:none;
 #twitIcon{
     max-height: 30px;
     max-width: 30px;
+    margin-right: 0%;
+    margin-left: 0%;
 }
 #followingLink{
     border: 1px solid #000;
@@ -170,7 +167,7 @@ display:none;
     max-width : 100%; 
     max-height : 50px; 
     margin-top: -30px;
-    margin-bottom: -30px;
+    margin-bottom: 0px;
 }
 #bio:hover{
     background-color: rgba(180,7,6,.3);

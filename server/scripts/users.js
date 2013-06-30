@@ -20,7 +20,7 @@ $(document).ready(function() {
                     	//$link = "localhost:8888/view?id="+data[i]._id;
                     	//console.log($link);
                     	//$a = $('<a href = "localhost:8888/view?id="'+link+'">'+data[i].name+'</a>');
-                        $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'</div>');
+                        $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'<img src="facebookIcon.png" id="followButton" style="float:right"></div>');
                         $div.click(follow);
                         $('#users').append($div);
                         }

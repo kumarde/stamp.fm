@@ -36,6 +36,13 @@
     <header id="header">
 
 <style>
+body {
+    margin:0;
+    padding: 0;
+    border: 0;
+    min-width: 1150px;
+    min-height:100%;
+}
 #header {
     min-width: 1000px;
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Titilium-Web", Arial, "Lucida Grande", sans-serif; 
@@ -81,6 +88,21 @@ margin-left: 150px;
 margin-top: -15px;
 max-height: 300px;
 overflow: auto;
+}
+
+.user:hover{
+  background-color: rgba(180,7,6,.8);
+}
+
+#followButton{
+  max-width: 20px;
+  max-height: 20px;
+  margin-right: 0px;
+  margin-top: 3px;
+  -moz-border-radius:100px;  
+  border-radius: 100px;  
+  -webkit-border-radius: 100px;
+  background-color:#FFFFFF; 
 }
 
 #header ul{
@@ -174,8 +196,7 @@ overflow: auto;
 }
 
 #dropdownContent{
-        float: right; 
-        list-style: none;
+        list-style-type: none;
         background-color: #000;
         width: 110px;
         border: 1px solid #FFFFFF;
