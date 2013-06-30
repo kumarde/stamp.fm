@@ -385,24 +385,93 @@ overflow: auto;
 <!-- Modal Window(s) -->
 <div id="contact" class="modalDialog_temp" style="text-align:center">
   <style>
+  .modalDialog_feedback {
+    position: fixed;
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    visibility: hidden;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog_feedback:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_feedback > div {
+    min-width: 30%;
+    min-height: 40%;
+    max-width: 60%;
+    width: 40%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(180,7,6,1);
+}
+
   textarea{
     height: 200px;
-    width: 500px;
+    width: 400px;
   }
   label{
-    margin-left: 10px;
     color: #FFFFFF;
+    padding: 5px;
+    background-color: rgba(180,7,6,1);
   }
+  .radio{
+    display: none;
+  }
+  #feedbacksubmit{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    font-size: 15px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+
+#feedbacksubmit:hover{
+    background-color: rgba(163,163,163,1);    
+}
+
+.hidden{
+  opacity: 0;
+}
   </style>
+  <script>
+  function highlight(radio){
+    radio.style.backgroundColor="#000";
+}
+
+  function NO(radio){
+    radio.style.backgroundColor="rgba(180,7,6,1)";
+  }
+
+  </script>
   <div>
     <a href="#close" title="Close" class="close">X</a>
     <h3 style="color:white">Give us Some Feedback!</h3>
-    <form id = "feedback">
-      <label><input type="radio" name="feedback" value="Idea" id="ideaRadio">Idea</label>
-      <label><input type="radio" name="feedback" value="Problem" id="problemRadio">Problem</label>
-      <label><input type="radio" name="feedback" value="Comment" id="commentRadio">Comment</label>
-      <textarea id="feedbackMessage" name = "feedbackname"></textarea>
-      <input type = "submit" id = "feedbacksubmit">
+    <form method = "POST" action = "/feedback" id = "feedback">
+
+      <label id = "ideaz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio">Idea</label>
+      <label id="probz" onclick="highlight(this); NO((document.getElementById('ideaz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Problem" id="problemRadio" class="radio">Problem</label>
+      <label id="commentz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('ideaz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Comment" id="commentRadio" class="radio">Comment</label>
+      <label id="questionz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('ideaz')));"><input type="radio" name="feedback" value="Question" id="questionRadio" class="radio">Question</label>
+
+      <textarea id="feedbackMessage" name = "feedbackname"></textarea><br>
+      <input href="#close" type = "submit" id = "feedbacksubmit" onclick="window.location='#close';">
+      <script>
+
+      </script>
     </form>        
   </div>
 </div>
