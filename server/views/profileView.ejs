@@ -2,9 +2,10 @@
 <% script('/scripts/main.js') -%>
 <% script('profileEdit.js') -%>
 <% script('users.js') -%>
-<% stylesheet('/video-js/video-js.css') -%>
-<% script('/video-js/video.js') -%>
+<% stylesheet('video-js.css') -%>
+<% script('video.js') -%>
 <% script('view.js') -%>
+<% script('profileView.js') -%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,7 +33,7 @@
                <table cellspacing="0" cellpadding="1" cellpadding class = "songnames">
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000;">
-          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:200px;"><%= song.name %></div></td>
+          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:120px;"><%= song.name %></div></td>
           <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;"></td>
         </tr>
       <% }); %>
@@ -71,10 +72,13 @@
 
         <div id="video">
           <div class="c12 end" id="videoPlayer" style="border:none">
-           <video id="vidYo" class="video-js vjs-default-skin" controls data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
-                <source src="<%=songId%>" type="video/mp4" id = "source">
+           <video id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+                <source src="" type="video/mp4" id = "source">
             </video>
+            <br>
+            <div id="feed"></div>
           </div>   
+
          </div> 
    
 </center> 
@@ -230,126 +234,6 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- End FB Like Script -->
-<script>
-  $(document).ready(function() {
-    $("#profileUpload").submit(function(e){
-      return false;
-    });
-    $('#songSubmit').click(function(event){ 
-     var name = $('#songName').val();
-     $.ajax({ 
-           url: '/profileUpload',
-           type: 'POST',
-           cache: false, 
-           data: {name : name},
-           success: function(data){
-            if(data.msg == "saved"){
-              alert("Your song has been saved!");
-            }
-            if (typeof data.redirect == 'string'){
-              window.location = data.redirect;
-            }
-           }
-        })
-     });
-    $('.vidPlay').click(function(event){
-      var tag = $(this).attr('data-tag');
-      $.ajax({
-        url: '/vidPlay',
-        type: 'POST',
-        cache: false,
-        data: {video : tag},
-        success: function(data){
-          $('#vidYo').find("#source").attr("src", data.video);
-          $('#vidYo').load();
-          $('#vidYo').get(0).play();
-        }
-      });
-    });
-    $('.addPlay').click(function(event){
-      var tag = $(this).attr('data-tag');
-      var name = $(this).attr('data-name');
-      console.log(tag);
-      console.log(name);
-      $.ajax({
-        url: '/addPlay',
-        type: 'POST',
-        cache: false,
-        data: {sid: tag, name: name},
-        success: function(data){
-          alert(data.name + "was added to your Playlist");
-        }
-      })
-    })
-    $('.deletebutton').click(function(event){
-      var tag = $(this).attr('data-tag');
-      $.ajax({
-        url: '/deleteSong',
-        type: 'POST',
-        cache: false,
-        data: {id: tag},
-        success: function(data){
-          if(data.msg == "yes"){
-            alert("You have successfully deleted this song.");
-          }
-          else if(data.msg == "no"){
-            alert("You cannot delete a video uploaded to the tournament.");
-          }
-        }
-      })
-    })
-    $('.playdelete').click(function(event){
-      var tag = $(this).attr('data-tag');
-      $.ajax({
-        url: '/playDelete',
-        type: 'POST',
-        cache: false,
-        data: {id: tag},
-        success: function(data){
-          if(data.msg){
-            alert("You have successfully deleted this song from your playlist.");
-          }
-        }
-      });
-    });
-    $('#chName').submit(function(event){
-      return false;
-    })
-    $('#submitNameButton').click(function(event){
-      var name = $('#displayNameEdit').val();
-      $.ajax({
-        url: '/changeName',
-        type: 'POST',
-        cache: false,
-        data: {editName: name}
-      })
-    })
-    $('#chBio').submit(function(event){
-      return false;
-    })
-    $('#submitBioButton').click(function(event){
-      var bio = $('#displayBioEdit').val();
-      $.ajax({
-        url: '/changeBio',
-        type: 'POST',
-        cache: false,
-        data: {editBio: bio}
-      })
-    })
-    $('#chLoc').submit(function(event){
-      return false;
-    })
-    $('#submitLocationButton').click(function(event){
-      var loc = $('#displayLocationEdit').val();
-      $.ajax({
-        url: '/changeLocation',
-        type: 'POST',
-        cache: false,
-        data: {editLocation: loc}
-      })
-    })
-  });
-</script>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -360,4 +244,10 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 </body>
-
+<% script('video.js') -%>    		
+<script>
+  videojs("vidYo", {}, function(){
+  // Player (this) is initialized and ready.
+  });
+</script>
+<script>
