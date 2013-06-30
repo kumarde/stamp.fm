@@ -384,18 +384,22 @@ overflow: auto;
 <!-- Modal Window(s) -->
 <div id="contact" class="modalDialog_temp" style="text-align:center">
   <style>
-
+  textarea{
+    height: 200px;
+    width: 500px;
+  }
+  label{
+    margin-left: 10px;
+    color: #FFFFFF;
+  }
   </style>
   <div>
     <a href="#close" title="Close" class="close">X</a>
-    <h3 style="color:white">Edit Your Account Info</h3>
-    <form id="editAccount" method = "POST" action = "/updateAccount">
-      <br>
-      <input type="email" name = "email" placeholder="Change your Email Address" id="editEmail"><br><br>
-      <input type="password" name = "pass" placeholder="Change your Password" id="password"><br><br>
-      <input type="password" placeholder="Confirm New Password" id="passwordConfirm"><br><br>
-      <input type="submit" value="Confirm" id="confirm">
-    </form>         
+    <h3 style="color:white">Give us Some Feedback!</h3>
+    <label><input type="radio" name="feedback" value="Idea" id="ideaRadio">Idea</label>
+    <label><input type="radio" name="feedback" value="Problem" id="problemRadio">Problem</label>
+    <label><input type="radio" name="feedback" value="Comment" id="commentRadio">Comment</label>
+    <textarea id="feedbackMessage"></textarea>        
   </div>
 </div>
 
