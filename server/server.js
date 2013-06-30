@@ -97,9 +97,6 @@ app.configure(function(){
             graph.setAccessToken(accessToken);
             console.log(profile);
             var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
-            graph.fql(query, function(err, res){
-              console.log(res);
-            })
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
                         flag = true;
@@ -110,6 +107,10 @@ app.configure(function(){
                 }
                 else{
                     db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')});
+                    db.profiles.save({_id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Bio", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: []});
+                    graph.fql(query, function(err, res){
+                      console.log(res);
+                    })
                     return done(null, user);
                 }
             });
