@@ -474,71 +474,14 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 /* Big Play Button (at start)
 ---------------------------------------------------------*/
 .vjs-default-skin .vjs-big-play-button {
-  display: block;
-  z-index: 2;
-  position: absolute;
-  top: 2em;
-  left: 2em;
-  width: 12.0em;
-  height: 8.0em;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  opacity: 1;
 
-  /* Need a slightly gray bg so it can be seen on black backgrounds */
-  background-color: rgb(40, 40, 40);
-  background-color: rgba(7, 40, 50, 0.7);
-
-  border: 0.3em solid rgb(50, 50, 50);
-  border-color: rgba(255, 255, 255, 0.25);
-
-  -webkit-border-radius: 25px;
-     -moz-border-radius: 25px;
-          border-radius: 25px;
-
-  -webkit-box-shadow: 0px 0px 1em rgba(255, 255, 255, 0.25);
-     -moz-box-shadow: 0px 0px 1em rgba(255, 255, 255, 0.25);
-          box-shadow: 0px 0px 1em rgba(255, 255, 255, 0.25);
-
-  -webkit-transition: border 0.4s, -webkit-box-shadow 0.4s, -webkit-transform 0.4s;
-     -moz-transition: border 0.4s,    -moz-box-shadow 0.4s,    -moz-transform 0.4s;
-       -o-transition: border 0.4s,      -o-box-shadow 0.4s,      -o-transform 0.4s;
-          transition: border 0.4s,         box-shadow 0.4s,         transform 0.4s;
 }
 
 .vjs-default-skin:hover .vjs-big-play-button,
 .vjs-default-skin .vjs-big-play-button:focus {
-  outline: 0;
-  border-color: rgb(255, 255, 255);
-  border-color: rgba(255, 255, 255, 1);
-  /* IE8 needs a non-glow hover state */
-  background-color: rgb(80, 80, 80);
-  background-color: rgba(50, 50, 50, 0.75);
-
-  -webkit-box-shadow: 0 0 3em #fff;
-     -moz-box-shadow: 0 0 3em #fff;
-          box-shadow: 0 0 3em #fff;
-
-  -webkit-transition: border 0s, -webkit-box-shadow 0s, -webkit-transform 0s;
-     -moz-transition: border 0s,    -moz-box-shadow 0s,    -moz-transform 0s;
-       -o-transition: border 0s,      -o-box-shadow 0s,      -o-transform 0s;
-          transition: border 0s,         box-shadow 0s,         transform 0s;
 }
 
 .vjs-default-skin .vjs-big-play-button:before {
-  content: "\e001"; /* Play icon */
-  font-family: VideoJS;
-  font-size: 3em;
-  line-height: 2.66;
-  text-shadow: 0.05em 0.05em 0.1em #000;
-  text-align: center; /* Needed for IE8 */
-
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 /* Loading Spinner
@@ -546,7 +489,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 .vjs-loading-spinner {
   display: none;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
 
   font-size: 5em;
@@ -567,22 +510,22 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 }
 
 .vjs-default-skin .vjs-loading-spinner:before {
-  content: "\e00a"; /* Loading spinner icon */
+  content: url('/spinning_treble.png');
   font-family: VideoJS;
 
   position: absolute;
-  width: 1em;
-  height: 1em;
   text-align: center;
   text-shadow: 0em 0em 0.1em #000;
+  transform-origin:50% 80%;
+  -ms-transform-origin:50% 80%;
+  -webkit-transform-origin:50% 80%;
 }
 
 /* Add a gradient to the spinner by overlaying another copy.
    Text gradient plus a text shadow doesn't work
    and `background-clip: text` only works in Webkit. */
 .vjs-default-skin .vjs-loading-spinner:after {
-  content: "\e00a"; /* Loading spinner icon */
-  font-family: VideoJS;
+  content: url('/spinning_treble.png'); /* Loading spinner icon */
 
   position: absolute;
   width: 1em;
