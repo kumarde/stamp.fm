@@ -107,7 +107,7 @@ app.configure(function(){
             graph.fql(query, function(err, res){
               for(var id in res.data){
                 console.log(res.data[id].uid);
-                Feed.follow(profile.id, res.data[id].uid, function(data) {});
+                Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data) {});
               }
             });
             db.users.findOne({_id: profile.id}, function(err, user){
