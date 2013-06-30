@@ -68,6 +68,16 @@ app.configure(function(){
     app.engine('html', require('ejs').renderFile);
     app.use(app.router);
 
+
+  var TestModule =  require('./scripts/testModule.js').TestModule;
+  var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
+  var AccountModule = require('./scripts/AccountModule.js').AccountModule;
+  var EmailModule = require('./scripts/EmailModule.js').EmailModule;
+  var UploadModule = require('./scripts/UploadModule.js').UploadModule;
+  var UserModule = require('./scripts/UserModule.js').UserModule;
+  var FeedModule = require('./scripts/FeedModule.js').FeedModule;
+
+
     passport.serializeUser(function(user, done){
         done(null, user._id);
     });
@@ -86,12 +96,9 @@ app.configure(function(){
         function(accessToken, refreshToken, profile, done){
             graph.setAccessToken(accessToken);
             console.log(profile);
-            graph.get('/'+profile._json.id+"?fields=friends", function(e, o){
-              for(var id in o.friends){
-                if(o.friends.hasOwnProperty(id)){
-                  console.log(id +" -> "+ o.friends[id]);
-                }
-              }
+            var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
+            graph.fql(query, function(err, res){
+              console.log(res);
             })
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
@@ -109,16 +116,6 @@ app.configure(function(){
         }
     ));
 });
-
-/*INSTANTIATE MODULES*/
-
-var TestModule =  require('./scripts/testModule.js').TestModule;
-var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
-var AccountModule = require('./scripts/AccountModule.js').AccountModule;
-var EmailModule = require('./scripts/EmailModule.js').EmailModule;
-var UploadModule = require('./scripts/UploadModule.js').UploadModule;
-var UserModule = require('./scripts/UserModule.js').UserModule;
-var FeedModule = require('./scripts/FeedModule.js').FeedModule;
 
 /*****************algorithm*****************/
 
@@ -476,32 +473,6 @@ app.get('/login', function(req, res){
 	}
 });
 
-app.post('/playDelete', function(req, res){
-    var id = req.body.id;
-    db.playlists.remove({_id: id}, function(e,o){});
-    res.send({msg: "Deleted", id: req.body.id});
-})
-
-app.post('/deleteSong', function(req, res){
-    var sid = req.body.id;
-    console.log(id);
-    db.tournament.find({_id: parseInt(sid)}, function(e, o){
-        console.log(o);
-        if(e){
-            console.log(e);
-        }
-        else if(o.length > 0){
-            res.send({msg: "no"});
-        }
-        else if(o.length == 0){
-            db.music.remove({_id: parseInt(sid)}, function(e, o){})
-            db.playlists.remove({_id: sid}, function(e, o){})
-            client.deleteFile(parseInt(sid), function(e, res){});
-            res.send({msg: "yes", id: sid, name: req.body.name})
-        }
-    });
-})
-
 app.post('/login', function(req, res){
 	accountModule.manualLogin(req.body.email, req.body.password, function(e, o){
 		if(!o){
@@ -855,6 +826,32 @@ app.post('/changeLocation', function(req, res){
    }
    db.profiles.update({_id: id}, {$set: {location: req.body.editLocation}});
    res.send({msg: 'ok'});
+})
+
+app.post('/playDelete', function(req, res){
+    var id = req.body.id;
+    db.playlists.remove({_id: id}, function(e,o){});
+    res.send({msg: "Deleted", id: req.body.id});
+})
+
+app.post('/deleteSong', function(req, res){
+    var sid = req.body.id;
+    console.log(id);
+    db.tournament.find({_id: parseInt(sid)}, function(e, o){
+        console.log(o);
+        if(e){
+            console.log(e);
+        }
+        else if(o.length > 0){
+            res.send({msg: "no"});
+        }
+        else if(o.length == 0){
+            db.music.remove({_id: parseInt(sid)}, function(e, o){})
+            db.playlists.remove({_id: sid}, function(e, o){})
+            client.deleteFile(parseInt(sid), function(e, res){});
+            res.send({msg: "yes", id: sid, name: req.body.name})
+        }
+    });
 })
 
 /*****************************************404**************************************************/
