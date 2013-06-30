@@ -70,9 +70,7 @@ table{
     max-height: 30px;
     max-width: 30px;
 }
-#fbIcon:hover{
-    background-color: rgba(180,7,6,1);
-}
+
 #followingLink{
     border: 1px solid #000;
     color: #000;
@@ -122,7 +120,7 @@ table{
     max-width : 100%; 
     max-height : 75px; 
     margin-top: 20px;
-    margin-bottom: -30px;
+    margin-bottom: 0px;
 }
 #picture{
     max-width: 70%;

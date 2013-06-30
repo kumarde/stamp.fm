@@ -16,19 +16,19 @@ $(document).ready(function() {
 	
 });	
 					
-						
-
-
+					
 	function followers() {
 	
 		 $.ajax({ 
 			   url: '/followers',
 			   type: 'POST',
 			   cache: false, 
+			   data: {id: "self"},
 			   success: function(data){
 				if (typeof data.redirect == 'string' )window.location = data.redirect;
 				else if (typeof data.error == 'string')alert(data.error);
 				else {
+					$('#followers').append(data.length);
 					for ( var i = 0; i < data.length;i++ ){
 						
 						$.ajax({ 
@@ -57,10 +57,12 @@ $(document).ready(function() {
 			url: '/following',
            type: 'POST',
            cache: false, 
+		   data: {id: "self"},
            success: function(data){
             if (typeof data.redirect == 'string' )window.location = data.redirect;
 			else if (typeof data.error == 'string')alert(data.error);
 			else {
+				$('#following').append(data.length);
 				for ( var i = 0; i < data.length;i++ ){
 					
 					$.ajax({ 

@@ -71,8 +71,8 @@ width:100px;
 min-height: 30px;
 text-align: center;
 position:fixed;
-margin-left: 95.5%;
-margin-top: 40%;
+right:-2em;
+top:50%;
 -webkit-transform: rotate(90deg);
 -moz-transform: rotate(90deg);
 }
@@ -302,10 +302,40 @@ overflow: auto;
 
     <section>
       <%-body -%>
-    </section>
-    <footer>
-      <%-blocks.footer%>
+      <div id="footer">
+      <ul>
+	<li>&copy Copyright 2013 Stamp.fm All Rights Reserved</li>
+	<li class="non-copyright"><a>faq</a></li>
+	<li class="non-copyright"><a>terms &amp conditions</a></li>
+	<li class="non-copyright"><a>privacy policy</a></li>
+	<li class="non-copyright"><a>contact</a></li>
+	<li class="non-copyright"><a>blog</a></li>
+	<li><div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
+	<li><a href="http://twitter.com/stampfm" class="twitter-follow-button"  data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+      </ul>
+    </div>
+    <style>
+      #footer{
+	font-size:12px;
+	color:#000000;
+	cursor:default;
+	width:100%;
+	height:30px;
+	min-width:1000px;
+      }
+      #footer ul{
+	list-style-type:none;
+      }
+      #footer li{
+	float:left;
+	padding-right:3%;
+      }
+      #footer .non-copyright:hover{
+	color:#FF0000;
+      }
+    </style>
     </footer>
+    </section>
 
 
 
@@ -462,7 +492,7 @@ overflow: auto;
     <h3 style="color:white">Give us Some Feedback!</h3>
     <form method = "POST" action = "/feedback" id = "feedback">
 
-      <label id = "ideaz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio">Idea</label>
+      <label style="background-color:black" id = "ideaz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio" checked>Idea</label>
       <label id="probz" onclick="highlight(this); NO((document.getElementById('ideaz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Problem" id="problemRadio" class="radio">Problem</label>
       <label id="commentz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('ideaz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Comment" id="commentRadio" class="radio">Comment</label>
       <label id="questionz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('ideaz')));"><input type="radio" name="feedback" value="Question" id="questionRadio" class="radio">Question</label>
