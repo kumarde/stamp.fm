@@ -1,6 +1,6 @@
 html{
     background: #FFFFFF no-repeat center center fixed;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Source Sans Pro', sans-serif;
     background-size: cover;
     min-width: 100%;
     min-height: 100%;
@@ -80,7 +80,7 @@ body {
 
 .modalDialog {
     position: fixed;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",'Source Sans Pro', sans-serif; 
     top: 0;
     right: 0;
     bottom: 0;
