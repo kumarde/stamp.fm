@@ -464,7 +464,32 @@ app.post('/file-upload', function(req, res, next){
     res.send("back");
 });
 /************************************END UPLOAD TO THE TOURNAMENT****************************************/
-
+/**************************************FEEDBACK ROUTES***************************************/
+app.post('/feedback', function(req,res){
+  var email, name;
+    if(req.session.user == null){
+      email = req.user[0].email;
+      name = req.user[0].name;
+    }
+    else if(req.user == null){
+        if(req.session.user[0] == undefined){
+              email = req.session.user.email;
+              name = req.session.user.name;
+        } else {
+            email = req.session.user[0].email;
+            name = req.session.user[0].name;
+        }
+    }
+    var options = emailModule.composeFeedback({
+        name: name,
+        email: email,
+        feedback: req.body.feedback,
+        category: req.body.category
+    });
+    emailModule.dispatchFeedback(options, function(e,m){
+        if(e) console.log(e);
+    })
+});
 
 /*******************************LOGIN STUFF HERE******************************************/
 /*FACEBOOK AUTH*/

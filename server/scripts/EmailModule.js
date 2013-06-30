@@ -8,14 +8,28 @@ var smtpTransport = nodemailer.createTransport("SMTP", {
 	}
 });
 
+EmailModule.prototype.composeFeedback = function(o)
+{
+	var html = "<html><body>";
+		html += "User "+o.name+" sent feedback: "
+		html += o.feedback;
+		html += "<br><br> In the "+o.category+ " category";
+		html += "</body></html>"
+
+	var mailOptions = {
+		from: "User:"+ o.email,
+		to: "kumarde@umich.edu",
+		subject: "Feedback from"+o.name,
+		text: "Stamp.fm Feedback",
+		html: html
+	}
+	return mailOptions;
+}
+
 EmailModule.prototype.composeEmail = function(o)
 {
 	var link = "localhost:8880/reset-password?e="+o.email+"&p="+o.pass;
 	var a = "<a href = "+link+"> Click here to reset</a><br><br>";
-	console.log(a);
-	console.log(o.email);
-	console.log(o.pass);
-	console.log(link);
 	var html = "<html><body>";
 		html += "Hi "+o.name+",<br><br>";
 		html += "Your username is :: <b>"+o.email+"</b><br><br>";
@@ -29,10 +43,20 @@ EmailModule.prototype.composeEmail = function(o)
 		from:"Stamp.fm <debug12@gmail.com>",
 		to: o.email,
 		subject: "Password Reset",
-		text: "Hello World!",
+		text: "Your Stamp.fm password reset.",
 		html: html
 	}
 	return mailOptions;
+}
+
+EmailModule.prototype.dispatchFeedback = function(o, callback){
+	smtpTransport.sendMail(o, function(e, res){
+		if(e){
+			console.log(e);
+		} else {
+			console.log("message sent");
+		}
+	});
 }
 
 EmailModule.prototype.dispatchResetPasswordLink = function(o, callback){

@@ -1,4 +1,5 @@
 <% script('users.js') -%>
+<% script('feedback.js') -%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -400,7 +401,7 @@ overflow: auto;
       <label><input type="radio" name="feedback" value="Idea" id="ideaRadio">Idea</label>
       <label><input type="radio" name="feedback" value="Problem" id="problemRadio">Problem</label>
       <label><input type="radio" name="feedback" value="Comment" id="commentRadio">Comment</label>
-      <textarea id="feedbackMessage"></textarea>
+      <textarea id="feedbackMessage" name = "feedbackname"></textarea>
       <input type = "submit" id = "feedbacksubmit">
     </form>        
   </div>
