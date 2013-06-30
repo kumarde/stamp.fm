@@ -287,7 +287,11 @@ if(req.session.user == null){
                         id = req.session.user[0]._id;
                     }
                  }
-	Feed.followers(id, function(data){
+				 
+	var nid;
+	if (req.body.id == "self")nid = id;
+	else nid = req.body.id;
+	Feed.followers(nid, function(data){
 		res.send(data);
 	});
 	}
@@ -308,7 +312,11 @@ if(req.session.user == null){
                         id = req.session.user[0]._id;
                     }
                  }
-	Feed.following(id, function(data){
+	var nid;
+	if (req.body.id == "self")nid = id;
+	else nid = req.body.id;
+	
+	Feed.following(nid, function(data){
 		res.send(data);
 	});
 	}
@@ -706,13 +714,12 @@ app.get('/view', function(req, res){
         if(profile == null){
             res.send(404);
         }else{
-            console.log(profile);
             db.music.find({artistID: pid}, function(e, songs){
                 if(e){
                     console.log(e);
                 }  else{
                         db.playlists.find({artistID: pid}, function(e, playlist){
-                         res.render('profileView', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
+                         res.render('profileView', {id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
                 }
             })

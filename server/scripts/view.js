@@ -7,23 +7,27 @@ var followingarray = [];
 var feedid = "feed";
 var followersid = "from";
 var followingid = "to";
+var pid;
 
 $(document).ready(function() {
 	
+	pid = $('#profileContent').attr('data-tag');
 	followers();
 	following();
 	
 	
 });	
 					
-					
+						
+
+
 	function followers() {
 	
 		 $.ajax({ 
 			   url: '/followers',
 			   type: 'POST',
 			   cache: false, 
-			   data: {id: "self"},
+			   data: {id: pid},
 			   success: function(data){
 				if (typeof data.redirect == 'string' )window.location = data.redirect;
 				else if (typeof data.error == 'string')alert(data.error);
@@ -57,7 +61,7 @@ $(document).ready(function() {
 			url: '/following',
            type: 'POST',
            cache: false, 
-		   data: {id: "self"},
+		   data: {id: pid},
            success: function(data){
             if (typeof data.redirect == 'string' )window.location = data.redirect;
 			else if (typeof data.error == 'string')alert(data.error);
