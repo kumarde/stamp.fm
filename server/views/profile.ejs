@@ -407,7 +407,6 @@
         success: function(data){
           if(data.msg == "yes"){
             alert("You have successfully deleted this song.");
-            alert(data.name);
             $("."+data.id).remove();
             $("#"+data.id).trigger("click");
           }

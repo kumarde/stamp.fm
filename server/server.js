@@ -633,9 +633,7 @@ app.get('/create', function(req, res){
 });
 
 app.post('/create', function(req, res){
-    console.log(req.files);
     var stream = fs.createReadStream(req.files.picture.path);
-    console.log(req.session.user);
     var id;
     if(req.session.user == undefined){
         id = req.user[0]._id;
