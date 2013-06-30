@@ -289,7 +289,6 @@
            data: {name : name},
            success: function(data){
             if(data.msg == "saved"){
-              alert("Your song has been saved!");
           var $tr = $('<tr id="song_name" class = "'+data.id+'" style="color:#000"></tr>');
           var $td1 = $('<td></td>');
           var $td2 = $('<td></td>');
@@ -387,21 +386,19 @@
         cache: false,
         data: {sid: tag, name: name},
         success: function(data){
-          alert(data.name + " was added to your Playlist");
           /*var htmlRow = ['<tr id="playlist_name" class = "p'+data.id+'">',
           '<td>', '<div style="width:250px;" data-tag ="'+data.id+'" id= "vidPlay">'+data.name+'</div>', '</td>',
           '<td>', '<img data-tag = "'+data.id+'" class="playdelete" id = "'+data.id+'" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);">', '</td>','</tr>'];*/
           var $trp = $('<tr id="playlist_name" class = "p'+data.id+'"></tr>');
           var $td1p = $('<td></td>');
           var $td2p = $('<td></td>');
-          var $divp = $('<div style="width:150px;" data-tag ="'+data.id+'" id= "vidPlay">'+data.name+'</div>');
+          var $divp = $('<div style="width:150px;" data-tag ="'+data.id+'" class= "vidPlay">'+data.name+'</div>');
           var $imgp = $('<img data-tag = "'+data.id+'" class="playdelete" id = "'+data.id+'" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);">');
 
-          //$divp.click(playVideo);
-          //$img1p.click(deletefromPlaylist);
-           alert("This happens");
-          $td1p.append($div);
-          $td2p.append($img1);
+          $divp.click(playVideo);
+          $imgp.click(deletefromPlaylist);
+          $td1p.append($divp);
+          $td2p.append($imgp);
           $trp.append($td1p);
           $trp.append($td2p);
           $("#playlistTable").append($trp);
@@ -419,7 +416,6 @@
         data: {id: tag, name: name},
         success: function(data){
           if(data.msg == "yes"){
-            alert("You have successfully deleted this song.");
             $("."+data.id).remove();
             $("#"+data.id).trigger("click");
           }
@@ -439,7 +435,6 @@
         data: {id: tag},
         success: function(data){
           if(data.msg){
-            alert("You have successfully deleted this song from your playlist.");
             $(".p"+data.id).remove();
           }
         }
