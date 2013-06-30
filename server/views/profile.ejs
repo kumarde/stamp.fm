@@ -65,13 +65,17 @@
         </div>
     	<div id="profilePicture"><img id="picture" src="<%=imgid%>" data-tag="<%=id%>">
         <form method = "POST" action = "/changeImage" id = "chImg">
-          <input type="file" id="uploadPicture" data-tag = "<%=imgid%>" style="visibility:hidden">  
+          <input type="file" onchange ="alertyou()" id="uploadPicture" data-tag = "<%=imgid%>" style="visibility:hidden">  
         </form>
         <!--Profile Pic Upload Dialog-->    
            <script>
            $('#picture').click(function() {
              $('#uploadPicture').click();
             });
+
+           function alertyou(){
+            $('#chImg').submit();
+           }
            </script>
         <!--END Profile Pic Upload Dialog--> 
       </div>

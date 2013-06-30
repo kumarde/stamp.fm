@@ -76,8 +76,7 @@ $(document).ready(function() {
       })
     })
   });
-    $('#uploadPicture').change(function(){
-        $('#chImg').submit(function(event){
+    /*$('#chImg').submit(function(event){
         event.preventDefault();
         var imgid = $('#picture').attr('data-tag');
         $.ajax({
@@ -89,8 +88,7 @@ $(document).ready(function() {
             $('#picture').attr('src') = data.id;
           }
         })
-      })      
-    });
+    });*/      
   function playVideo(){
       var tag = $(this).attr('data-tag');
       $.ajax({
