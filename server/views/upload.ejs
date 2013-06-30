@@ -45,47 +45,28 @@
     <h5 style="color:white">Fill in your Song Information</h5>
     <div>
       <form method = "post" id = "songInfo">
-        <input type="text" class="songName" placeholder="Song Name" id = "songName"><br><br>
+        <input type="text" class="songName" placeholder="Song Name" id = "songName"><br>
         <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
         <center>
         <select name="genre" form="songInfo" id = "genre">
-        	<option class="genreChoice" id="country">country</option>
-			    <option class="genreChoice" id="pop">pop</option>
-			    <option class="genreChoice" id="alternative">alternative</option>
-			    <option class="genreChoice" id="rap">rap</option>
-			    <option class="genreChoice" id="rnb">rnb</option>
-			    <option class="genreChoice" id="instrumental">instrumental</option>
-			    <option class="genreChoice" id="hardrock">hardrock</option>
+        	<option class="genreChoice" id="country">Country</option>
+			    <option class="genreChoice" id="pop">Pop</option>
+			    <option class="genreChoice" id="alternative">Alternative</option>
+			    <option class="genreChoice" id="rap">Rap</option>
+			    <option class="genreChoice" id="rnb">RnB</option>
+			    <option class="genreChoice" id="instrumental">Instrumental</option>
+			    <option class="genreChoice" id="hardrock">Hardrock</option>
 			    <option class="genreChoice" id="EDM">EDM</option>
-			    <option class="genreChoice" id="international">international</option>
-			    <option class="genreChoice" id="folk">folk</option>
-			 </select>
-       <input type = "checkbox" id = "explicit" name = "explicit"> Is this song explicit?
+			    <option class="genreChoice" id="international">International</option>
+			    <option class="genreChoice" id="folk">Folk</option>
+			 </select><br><br>
+       <input type = "checkbox" id = "explicit" name = "explicit"><span  style="color:#FFFFFF"> Is this song explicit?</span>
 			 </center>
+			 <br>
         <input type="submit" value="Enter" id = "submit">
       </form>
     </div>
 </center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-
-<div id="accountInfo" class="modalDialog_account">
-  <div>
-    <a href="#close" title="Close" class="close">X</a>
-    <center>
-    <h3 style="color:white">Edit Your Account Info</h3>
-		<form id="editAccount">
-			<br>
-			<input type="email" placeholder="Change your Email Address" id="editEmail"><br><br><br>
-			<input type="password" placeholder="Change your Password" id="password"><br><br>
-			<input type="password" placeholder="Confirm New Password" id="passwordConfirm"><br><br><br>
-			<input type="submit" value="Confirm" id="confirm">
-		</form>	        
-    </center>
   </div>
 </div>
 
