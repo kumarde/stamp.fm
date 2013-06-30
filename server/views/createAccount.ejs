@@ -33,12 +33,12 @@
       <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
         or<br>
         Use your Email</p><br>
-      <input type = "text" name = "name" id="name" placeholder="Name" class="name" oninvalid="this.setCustomValidity('Please Enter a Name')"/><br><br>
-      <input type = "email" name = "email" id="email" placeholder="Email" class="email" oninvalid="this.setCustomValidity('Please Enter a Valid Email Address')"/><br><br>
+      <input type = "text" name = "name" id="name" placeholder="Name" class="name"><br><br>
+      <input type = "text" name = "email" id="email" placeholder="Email" class="email"><br><br>
       <input type = "password" name = "pass" id = "password" placeholder="Password" class="pass"><br><br>
-      <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass" oninput="check(this)"/><br><br>
+      <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass"><br><br>
       <label for = "birthday" id = "birthday" style="float:left"> I certify that I am over the age of 13: </label>
-      <input type = "checkbox" checked = "checked" style="float:left" required oninvalid="this.setCustomValidity('Please Check the Box to Confirm Your Age')"/><br>
+      <input type = "checkbox" checked = "checked" style="float:left"><br>
       </center>
       </p>
       <center>
@@ -82,6 +82,7 @@
 </div>
 
 <!-- End Modal Window(s) -->
+
 <!-- Modal Window(s) -->
 <div id="Error" class="modalDialog_temp">
   <div>
@@ -125,6 +126,7 @@
   </div>
 </div>
 <!-- End Modal Window(s) -->
+
 <!-- FB Like Script-->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -134,6 +136,7 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+<!-- End FB Like Script -->
 
 <!---AJAX page rendering -->
 
@@ -166,8 +169,9 @@
         $('div#BadEmail').removeClass("unhidden");
       });
     }
+    else{
      $.ajax({ 
-           url: '/signup',
+           url: '/',
            type: 'POST',
            cache: false, 
            data: {name: name, email: email, password: password},
@@ -184,11 +188,9 @@
             }
           }
         })
+       }
       });
   });
 </script>
-
-<!-- End FB Like Script -->
-
 </body>
 </html>

@@ -428,7 +428,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       thumbnailHeight: 0,
       params: {},
       clickable: true,
-      acceptedMimeTypes: 'video/mp4, video/ogg, video/webm, application/x-shockwave-flash',
+      acceptedMimeTypes: 'video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-msvideo, application/x-mpegURL, video/MP2T, video/x-flv, video/3gpp, application/x-shockwave-flash',
       acceptParameter: null,
       enqueueForUpload: true,
       previewsContainer: null,
