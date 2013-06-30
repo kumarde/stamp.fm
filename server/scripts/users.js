@@ -3,6 +3,7 @@ $(document).ready(function() {
 	$('#search').keyup(search);
 });
 	 function search() {
+		$('#users').html("");
         var str = $('#search').val();
         if (str!=""){
             $.ajax({ 
@@ -47,9 +48,7 @@ $(document).ready(function() {
                     }
                 }
             });        
-            }else{
-		$('#users').html("");
-	    }
+            }
     }
 
 
