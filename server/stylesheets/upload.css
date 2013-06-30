@@ -1,6 +1,6 @@
 html{
     background: #FFFFFF no-repeat center center fixed;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Source Sans Pro', sans-serif;
     background-size: cover;
     min-width: 100%;
     min-height: 100%;
@@ -80,7 +80,7 @@ body {
 
 .modalDialog {
     position: fixed;
-    font-family: 'Poiret One', cursive;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",'Source Sans Pro', sans-serif; 
     top: 0;
     right: 0;
     bottom: 0;
@@ -102,6 +102,20 @@ body {
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
     background: rgba(180,7,6,1);
+}
+
+#submit{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    font-size: 20px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+
+#submit:hover{
+    background-color: rgba(163,163,163,1);    
 }
 
 .close {
@@ -137,64 +151,3 @@ body {
     opacity:1;
     pointer-events: auto;
 }
-
-.modalDialog_account {
-    position: fixed;
-    font-family: 'Poiret One', cursive;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 99999;
-    opacity:0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
-}
-
-.modalDialog_account:target {
-    opacity:1;
-    pointer-events: auto;
-}
-
-.modalDialog_account > div {
-    width: 40%;
-    height: 50%;
-    position: relative;
-    margin: 10% auto;
-    padding: 5px 20px 13px 20px;
-    border-radius: 10px;
-    background: rgba(180,7,6,1);
-}
-
-#editEmail{
-    width: 60%;
-    font-size: 20px;
-}
-
-#password{
-    width: 60%;
-    font-size: 20px;
-}
-
-#passwordConfirm{
-    width: 60%;
-    font-size: 20px;
-}
-
-#confirm{
-    background-color: rgba(0,0,0,1);
-    color: #FFFFFF;
-    font-size: 20px;
-    border: 0px;
-    -moz-border-radius:5px;  
-    border-radius: 5px;  
-    -webkit-border-radius: 5px;
-}
-
-#confirm:hover{
-    background-color: rgba(163,163,163,1);    
-}
-

@@ -550,7 +550,7 @@ app.get('/', function(req, res){
 	res.render('createAccount', {title: "Signup"});
 });
 
-app.post('/signup', function(req, res){
+app.post('/', function(req, res){
     console.log(req.body);
     accountModule.addNewAccount({
         name    : req.body.name,
@@ -686,14 +686,9 @@ app.post('/create', function(req, res){
             stream: stream
         },
         function(e, o){
-            if(e){
-                res.send(e, 400);
-            }
-            else{
-                console.log(o);
-                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id);
-                res.redirect('/profile'); 
-            }
+                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id, function(data){
+					res.redirect('/profile');
+				});
         }
     );
 });
