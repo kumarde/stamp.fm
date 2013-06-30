@@ -130,8 +130,6 @@ app.configure(function(){
 
 /*****************algorithm*****************/
 //if collection exists, store variable count == 0;
-
-
 var counter = 0;
 var c = 0;
 var sorted;
