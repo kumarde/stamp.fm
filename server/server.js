@@ -796,7 +796,7 @@ app.get('/profile', function(req, res){
                     }
                     else{
                         db.playlists.find({artistID: id}, function(e, playlist){
-                         res.render('profile', {name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
+                         res.render('profile', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
                     }
                 });
@@ -881,6 +881,32 @@ app.post('/changeLocation', function(req, res){
    }
    db.profiles.update({_id: id}, {$set: {location: req.body.editLocation}});
    res.send({msg: 'ok'});
+})
+
+app.post('/changeImage', function(req, res){
+    console.log(req.files);
+    var stream = fs.createReadStream(req.files.file.path);
+    var pid = req.body.imgid;
+    upload = new mpu(
+        {
+            client: picClient,
+            objectName: pid.toString(), // Amazon S3 object name
+            stream: stream,
+        },
+            // Callback handler
+        function(err, obj) {
+             if(err){
+               console.log(err);
+               res.send(err, 400);
+             }
+            else{
+                 console.log(obj); //for testing purposes print the object
+                 var url = myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60); 
+                res.send({id: url});
+           }
+          // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
+        }
+    );
 })
 
 app.post('/playDelete', function(req, res){
