@@ -492,7 +492,7 @@ overflow: auto;
     <h3 style="color:white">Give us Some Feedback!</h3>
     <form method = "POST" action = "/feedback" id = "feedback">
 
-      <label id = "ideaz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio">Idea</label>
+      <label id = "ideaz" style="background-color:black"onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio" checked="true">Idea</label>
       <label id="probz" onclick="highlight(this); NO((document.getElementById('ideaz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Problem" id="problemRadio" class="radio">Problem</label>
       <label id="commentz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('ideaz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Comment" id="commentRadio" class="radio">Comment</label>
       <label id="questionz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('ideaz')));"><input type="radio" name="feedback" value="Question" id="questionRadio" class="radio">Question</label>
