@@ -489,6 +489,7 @@ app.post('/feedback', function(req,res){
     emailModule.dispatchFeedback(options, function(e,m){
         if(e) console.log(e);
     })
+    res.send({msg:"ok"})
 });
 
 /*******************************LOGIN STUFF HERE******************************************/
