@@ -1,10 +1,10 @@
 EmailModule = function(){};
 var nodemailer = require('nodemailer');
 var smtpTransport = nodemailer.createTransport("SMTP", {
-	service: "Gmail",
+	service: "Godaddy",
 	auth:{
-		user: "debug12@gmail.com",
-		pass: "productteam"
+		user: "omar@stamp.fm",
+		pass: "Brogrammer$1"
 	}
 });
 
@@ -18,7 +18,7 @@ EmailModule.prototype.composeFeedback = function(o)
 
 	var mailOptions = {
 		from: o.email,
-		to: "kumarde@umich.edu",
+		to: "omar@stamp.fm",
 		subject: o.category,
 		text: "Stamp.fm Feedback",
 		html: html
