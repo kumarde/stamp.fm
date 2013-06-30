@@ -14,16 +14,25 @@ EmailModule.prototype.composeFeedback = function(o)
 		html += "User "+o.name+" sent feedback: "
 		html += o.feedback;
 		html += "<br><br> In the "+o.category+ " category";
-		html += "</body></html>"
+		html += "</body></html>";
 
 	var mailOptions = {
-		from: "User:"+ o.email,
+		from: o.email,
 		to: "kumarde@umich.edu",
-		subject: "Feedback from"+o.name,
+		subject: "Feedback from "+o.name,
 		text: "Stamp.fm Feedback",
 		html: html
 	}
 	return mailOptions;
+}
+
+EmailModule.prototype.composeResponse = function(o)
+{
+	var html = "<html><body>";
+		html += "Dear "+ o.name + ",<br>";
+		html += "Thank you for your "+ o.category+" .<br><br>"
+		html += "We appreciate all the support here at Stamp.fm!";
+		html += "</body></html>";
 }
 
 EmailModule.prototype.composeEmail = function(o)

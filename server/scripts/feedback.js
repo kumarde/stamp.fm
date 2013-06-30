@@ -1,7 +1,10 @@
 $(document).ready(function(){
+	alert("jordan");
 	$('#feedback').submit(function(event){
+		alert("stopped");
 		return false;
-	})
+	});
+	
 	$('#feedbacksubmit').click(function(event){
 		var category = $('input:radio[name=feedback]:checked').val();
 		var feedback = $('#feedbackMessage').val();
@@ -9,8 +12,10 @@ $(document).ready(function(){
 			url : '/feedback',
 			type: 'POST',
 			cache: false,
-			data: {category: category, feedback: feedback};
-		})
+			data: {category: category, feedback: feedback},
+			success: function(data){}
+		});
+	});
 
-	})
-})
+
+});
