@@ -50,6 +50,23 @@ AccountModule.prototype.addNewAccount = function(newData, callback)
 		}
 	});
 }
+
+AccountModule.prototype.updateAccount = function(newData, callback)
+{
+	db.users.findOne({email:newData.email}, function(e, o){
+		o.email 	= newData.email;
+		if (newData.pass == ''){
+			db.users.save(o, {safe: true}, callback);
+		}	else{
+			saltAndHash(newData.pass, function(hash){
+				o.pass = hash;
+				db.users.save(o, {safe: true}, callback);
+			});
+		}
+	});
+}
+
+
 AccountModule.prototype.updatePassword = function(email, newPass, callback)
 {
 	db.users.findOne({email:email}, function(e, o){

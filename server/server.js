@@ -589,6 +589,27 @@ app.post('/reset-password', function(req, res) {
             }
         })
     });
+
+app.post('/updateAccount', function(req, res){
+  if(req.param('email') != undefined){
+    accountModule.updateAccount({
+      email   : req.param('email'),
+      newEmail: req.param('newEmail'),
+      pass    : req.param('pass') 
+    }, function(e,o){
+      if(e){
+        res.send('error-updating-account', 400);
+      } else {
+        req.session.user = o;
+        if(req.cookies.email != undefined && req.cookies.pass != undefined){
+          res.cookie('email', o.email, {maxAge: 900000});
+          res.cookie('pass', o.pass, {maxAge: 900000});
+        }
+        res.redirect('/profile');
+      }
+    });
+  }
+})
 /********************************************LOGIN STUFF DONE*******************************/
 /**************************************TIME TO DO PROFILES***********************************/
 app.get('/create', function(req, res){
@@ -827,12 +848,6 @@ app.post('/changeLocation', function(req, res){
    }
    db.profiles.update({_id: id}, {$set: {location: req.body.editLocation}});
    res.send({msg: 'ok'});
-})
-
-app.post('/updateAccount', function(req, res){
-  if(req.param('email')){
-    db.users.update({_id: id}, {$set: {email: req.param('email')}});
-  }
 })
 
 /*****************************************404**************************************************/
