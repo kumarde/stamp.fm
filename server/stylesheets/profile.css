@@ -404,13 +404,14 @@ border-radius: 10px;
 }
 
 .modalDialog > div {
-    width: 30%;
-    height: 30%;
+    min-width: 30%;
+    min-height: 30%;
     position: relative;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
     background: rgba(180,7,6,1);
+    max-width: 30%;
 }
 
 .close {
@@ -440,17 +441,17 @@ border-radius: 10px;
     font-size: 15px;
     -moz-border-radius:4px;  
     border-radius: 4px;  
+    max-width: 50%;
 }
 
 #songSubmit{
     background-color: rgba(0,0,0,1);
     color: #FFFFFF;
     margin-top: 2%;
-    font-size: 30px;
-    height: 50%;
-    width: 30%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
     border: 0px;
-    min-width: 10%;
     -moz-border-radius:5px;  
     border-radius: 5px;  
     -webkit-border-radius: 5px;
@@ -464,7 +465,6 @@ border-radius: 10px;
 
 .modalDialogCreate {
     position: fixed;
-    font-family: 'Poiret One', cursive;
     top: 0;
     right: 0;
     bottom: 0;

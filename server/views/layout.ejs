@@ -60,6 +60,22 @@ body {
     box-shadow:         1px 1px 5px 2px rgba(0,0,0,.3);
 }
 form { margin: 0px; padding: 0px; }
+
+#feedback{
+z-index:500;
+background-color: rgba(0,0,0,.7);
+color: #FFFFFF;
+border: 0px solid rgba(180,7,6,.9);
+width:100px;
+min-height: 30px;
+text-align: center;
+position:fixed;
+margin-left: 95.5%;
+margin-top: 40%;
+-webkit-transform: rotate(90deg);
+-moz-transform: rotate(90deg);
+}
+
 #logoPic{
   max-width: 100%;
   max-height: 100%;
@@ -245,7 +261,7 @@ overflow: auto;
       <ul id="prof">  
         <li>
        <a href="/profile" class="nav" id="profileLink">
-          <img id="profilePic" src="<%=imgid%>" style="height:35px;">
+          <img id="profilePic" src="stampman.png" style="height:35px;">
         </a>
        </li>
        <li class="account" id="dropdown">
@@ -280,6 +296,8 @@ overflow: auto;
         </li>
     </ul>
     </header>
+
+    <a href="#contact" id="feedback" style="float: right">Feedback</a>
 
     <section>
       <%-body -%>
@@ -358,6 +376,26 @@ overflow: auto;
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
     </ul>          
     </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+<div id="contact" class="modalDialog_temp" style="text-align:center">
+  <style>
+
+  </style>
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+    <h3 style="color:white">Edit Your Account Info</h3>
+    <form id="editAccount" method = "POST" action = "/updateAccount">
+      <br>
+      <input type="email" name = "email" placeholder="Change your Email Address" id="editEmail"><br><br>
+      <input type="password" name = "pass" placeholder="Change your Password" id="password"><br><br>
+      <input type="password" placeholder="Confirm New Password" id="passwordConfirm"><br><br>
+      <input type="submit" value="Confirm" id="confirm">
+    </form>         
   </div>
 </div>
 
