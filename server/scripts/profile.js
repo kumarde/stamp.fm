@@ -76,6 +76,20 @@ $(document).ready(function() {
       })
     })
   });
+    /*$('#chImg').submit(function(event){
+        event.preventDefault();
+        var imgid = $('#picture').attr('data-tag');
+        $.ajax({
+          url: '/changeImage',
+          type: 'POST',
+          cache: false,
+          data: {imgid: imgid}
+          success: function(data){
+            $('#picture').attr('src') = data.id;
+          }
+        })
+    });*/      
+
   function playVideo(){
       var tag = $(this).attr('data-tag');
       $.ajax({

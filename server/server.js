@@ -555,6 +555,9 @@ app.post('/login', function(req, res){
 });
 
 app.get('/', function(req, res){
+    if(req.session.user || req.user){
+        res.redirect('/profile');
+    }
 	res.render('createAccount', {title: "Signup"});
 });
 
