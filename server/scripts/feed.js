@@ -75,7 +75,11 @@ $(document).ready(function() {
 								followingarray.push(prof);
 								$('#'+followingid).append('<div>'+prof.name+'</div>');
 								for ( var j = 0; j < prof.shared.length; j++){
-									var $feedentry = $('<div id="feedElement">'+prof.name+' Uploaded a New Song ('+prof.shared[j].name+')'+'</div>');
+									if (prof.shared[j].type == 'upload')var $feedentry = $('<div id="feedElement">'+prof.name+' Uploaded a New Song ('+prof.shared[j].name+')'+'</div>');
+									if (prof.shared[j].type == 'follow')var $feedentry = $('<div id="feedElement">'+prof.name+' Followed '+prof.shared[j].name+'</div>');
+									if (prof.shared[j].type == 'favorite')var $feedentry = $('<div id="feedElement">'+prof.name+' Added a New Favorite ('+prof.shared[j].name+')</div>');
+									if (prof.shared[j].type == 'tournament')var $feedentry = $('<div id="feedElement">'+prof.name+' Entered the Tournament ('+prof.shared[j].name+')'+'</div>');
+									
 									prof.shared[j].element = $feedentry;
 									prof.shared[j].date = new Date(prof.shared[j].date);
 									feedarray.push(prof.shared[j]);
@@ -83,7 +87,7 @@ $(document).ready(function() {
 								}
 								if (followingarray.length == data.length){
 									feedarray.sort(function(x,y){
-										return y.date - x.date;
+										return x.date - y.date;
 									});
 									for (var k = feedarray.length-1; k >= 0; k--){
 										$('#'+feedid).append(feedarray[k].element);
