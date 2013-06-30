@@ -145,7 +145,14 @@ var userModule = new UserModule;
 var Feed = new FeedModule;
 
 app.post('/namesearch', function(req,res){
-    db.users.find({name: { $regex: '^'+req.body.search}},function(err,o){console.log(o);
+    db.users.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){console.log(o);
+        if (err || !o)res.send({error:"Cannot find"});
+        else res.send(o);
+    });
+});
+
+app.post('/bandsearch', function(req,res){
+    db.profiles.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){console.log(o);
         if (err || !o)res.send({error:"Cannot find"});
         else res.send(o);
     });
