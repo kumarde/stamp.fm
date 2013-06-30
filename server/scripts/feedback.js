@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	alert("jordan");
+
 	$('#feedback').submit(function(event){
 		alert("stopped");
 		return false;
