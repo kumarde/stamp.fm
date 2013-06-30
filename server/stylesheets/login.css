@@ -2,7 +2,7 @@ html{
     background: #000 no-repeat center center fixed;
     background-image: url('/login-background.jpg');
     background-size: cover;
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Source Sans Pro', sans-serif;
 }
 
 .login{
