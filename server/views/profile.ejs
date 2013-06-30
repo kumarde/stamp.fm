@@ -32,7 +32,7 @@
                <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
-          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:125px;"><%= song.name %></div></td>
+          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
           <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;"></td>
           <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="http://cdn2.iconfinder.com/data/icons/picons-essentials/71/plus-512.png" style="height:20px;width:25px;float:right;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);"></td>
         </tr>
