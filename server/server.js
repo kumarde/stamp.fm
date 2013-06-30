@@ -21,6 +21,24 @@ var PIC_BUCKET = 'pictures.stamp.fm'
 var knox = require('knox');
 var songs = 0;
 
+
+
+  var TestModule =  require('./scripts/testModule.js').TestModule;
+  var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
+  var AccountModule = require('./scripts/AccountModule.js').AccountModule;
+  var EmailModule = require('./scripts/EmailModule.js').EmailModule;
+  var UploadModule = require('./scripts/UploadModule.js').UploadModule;
+  var UserModule = require('./scripts/UserModule.js').UserModule;
+  var FeedModule = require('./scripts/FeedModule.js').FeedModule;
+
+  var testModule = new TestModule;
+  var auditionModule = new AuditionModule;
+  var accountModule = new AccountModule;
+  var emailModule = new EmailModule;
+  var uploadModule = new UploadModule;
+  var userModule = new UserModule;
+  var Feed = new FeedModule;
+
 /***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
 db.music.count(function(e, count){
     if(count){
@@ -68,16 +86,6 @@ app.configure(function(){
     app.engine('html', require('ejs').renderFile);
     app.use(app.router);
 
-
-  var TestModule =  require('./scripts/testModule.js').TestModule;
-  var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
-  var AccountModule = require('./scripts/AccountModule.js').AccountModule;
-  var EmailModule = require('./scripts/EmailModule.js').EmailModule;
-  var UploadModule = require('./scripts/UploadModule.js').UploadModule;
-  var UserModule = require('./scripts/UserModule.js').UserModule;
-  var FeedModule = require('./scripts/FeedModule.js').FeedModule;
-
-
     passport.serializeUser(function(user, done){
         done(null, user._id);
     });
@@ -95,8 +103,13 @@ app.configure(function(){
         },
         function(accessToken, refreshToken, profile, done){
             graph.setAccessToken(accessToken);
-            console.log(profile);
             var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
+            graph.fql(query, function(err, res){
+              for(var id in res.data){
+                console.log(res.data[id].uid);
+                Feed.follow(id, res.data[id].uid, function(data) {});
+              }
+            });
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
                         flag = true;
@@ -108,9 +121,6 @@ app.configure(function(){
                 else{
                     db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')});
                     db.profiles.save({_id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Bio", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: []});
-                    graph.fql(query, function(err, res){
-                      console.log(res);
-                    })
                     return done(null, user);
                 }
             });
@@ -119,8 +129,9 @@ app.configure(function(){
 });
 
 /*****************algorithm*****************/
-
 //if collection exists, store variable count == 0;
+
+
 var counter = 0;
 var c = 0;
 var sorted;
@@ -136,14 +147,6 @@ db.music.count(function(err, count){
 db.music.find().sort({_id:1}, function(err, rest){
   sorted = rest;
 });
-
-var testModule = new TestModule;
-var auditionModule = new AuditionModule;
-var accountModule = new AccountModule;
-var emailModule = new EmailModule;
-var uploadModule = new UploadModule;
-var userModule = new UserModule;
-var Feed = new FeedModule;
 
 app.post('/namesearch', function(req,res){
     db.users.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){console.log(o);
@@ -427,6 +430,7 @@ app.post('/upload', function(req, res){
     });
 })
 
+
 app.post('/file-upload', function(req, res, next){
     var stream = fs.createReadStream(req.files.file.path);
     var id;
@@ -434,7 +438,8 @@ app.post('/file-upload', function(req, res, next){
         {
             client: client,
             objectName: songs.toString(), // Amazon S3 object name
-            stream: stream
+            stream: stream,
+			headers: {"Content-Type":req.files.file.type}
         },
             // Callback handler
         function(err, obj) {
@@ -460,7 +465,6 @@ app.post('/file-upload', function(req, res, next){
     ); 
     res.send("back");
 });
-
 /************************************END UPLOAD TO THE TOURNAMENT****************************************/
 
 
