@@ -388,19 +388,18 @@ app.post('/upload', function(req, res){
     }
     var genre = req.body.genre.toString();
     var name = req.body.name;
-    db.music.save({_id: songs, name: name, artistID:id, explicit: req.body.expicit});
     db.tournament.findOne({ $and: [{genre: genre}, {artistID: id}]}, function(e,o){
         if(o){
             client.deleteFile(songs, function(e, res){});
             res.send({msg: "You have already entered a video in that Genre"});
         } else {
+            db.music.save({_id: songs, name: name, artistID:id, explicit: req.body.expicit});
             db.tournament.insert({genre: genre, artistID: id, _id: songs, name: name, explicit: req.body.explicit});
             ++songs;
             res.send({msg: "ok"})
             res.send({redirect:'/upload'});
         }
     });
-    ++songs;
 })
 
 app.post('/file-upload', function(req, res, next){
@@ -474,9 +473,9 @@ app.post('/playDelete', function(req, res){
 })
 
 app.post('/deleteSong', function(req, res){
-    var id = req.body.id;
+    var sid = req.body.id;
     console.log(id);
-    db.tournament.find({_id: id}, function(e, o){
+    db.tournament.find({_id: parseInt(sid)}, function(e, o){
         console.log(o);
         if(e){
             console.log(e);
@@ -485,10 +484,10 @@ app.post('/deleteSong', function(req, res){
             res.send({msg: "no"});
         }
         else if(o.length == 0){
-            db.music.remove({_id: parseInt(id)}, function(e, o){})
-            db.playlists.remove({_id: id}, function(e, o){})
-            client.deleteFile(parseInt(id), function(e, res){});
-            res.send({msg: "yes", id: id, name: req.body.name})
+            db.music.remove({_id: parseInt(sid)}, function(e, o){})
+            db.playlists.remove({_id: sid}, function(e, o){})
+            client.deleteFile(parseInt(sid), function(e, res){});
+            res.send({msg: "yes", id: sid, name: req.body.name})
         }
     });
 })
