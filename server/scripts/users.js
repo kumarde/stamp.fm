@@ -1,12 +1,15 @@
 $(document).ready(function() {
-	//users();
 	$('#search').keyup(search);
+	$('#searchform').submit(function(event){
+		event.preventDefault();
+		window.location = "/view?id="+$('#users').children('.user')[0].id;
+	});
 });
 	 function search() {
 		$('#users').html("");
         var str = $('#search').val();
         if (str!=""){
-            $.ajax({ 
+           /* $.ajax({ 
                 url: '/namesearch',
                 type: 'POST',
                 cache: false, 
@@ -20,13 +23,17 @@ $(document).ready(function() {
                     	//$link = "localhost:8888/view?id="+data[i]._id;
                     	//console.log($link);
                     	//$a = $('<a href = "localhost:8888/view?id="'+link+'">'+data[i].name+'</a>');
-                        $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'<img src="facebookIcon.png" id="followButton" style="float:right"></div>');
-                        $div.click(follow);
+                        $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'</div>');
+						$img = $('<img src="facebookIcon.png" id="f'+data[i]._id+'" class="followButton" style="float:right">');
+                        $img.click(follow);
+						$div.click(function(){window.location = "/view?id="+data[i]._id});
+						$div.append($img);
+	
                         $('#users').append($div);
                         }
                     }
                 }
-            });
+            });*/
 	    $.ajax({ 
                 url: '/bandsearch',
                 type: 'POST',
@@ -41,8 +48,14 @@ $(document).ready(function() {
                     	//$link = "localhost:8888/view?id="+data[i]._id;
                     	//console.log($link);
                     	//$a = $('<a href = "localhost:8888/view?id="'+link+'">'+data[i].name+'</a>');
-                        $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'<img src="facebookIcon.png" id="followButton" style="float:right"></div>');
-                        $div.click(follow);
+                        $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'</div>');
+						$img = $('<img src="facebookIcon.png" id="'+data[i]._id+'" class="followButton" style="float:right">');
+                        $img.click(follow);
+						$div.click(function(event){
+							if (!$(event.target).hasClass("user")) return;
+							window.location = "/view?id="+event.target.id;
+						});
+						$div.append($img);
                         $('#users').append($div);
                         }
                     }
