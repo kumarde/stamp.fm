@@ -11,7 +11,7 @@
 	<script src="/include/ejs_production.js" type="text/javascript"></script>
   <script src="/include/jquery.ejs.js" type="text/javascript"></script>
 
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Advent+Pro|Alef|Titillium+Web' rel='stylesheet' type='text/css'>
     <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -45,7 +45,7 @@ body {
 }
 #header {
     min-width: 1000px;
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Source Sans Pro', sans-serif;
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     background-color: rgba(180,7,6,.9);
     width:100%;
     height: 40px;
@@ -169,7 +169,7 @@ overflow: auto;
       </form>
       <ul id="links">
         <li id="upload">
-        <a href="#upload" style="text-decoration:none" id="upLink" class="nav">Upload</a>
+        <a href="/upload" style="text-decoration:none" id="upLink" class="nav">Upload</a>
         </li>
         <li id="audition">
         <a href="#notReal" style="text-decoration:none" id="audLink" class="nav">Audition</a>
@@ -263,86 +263,6 @@ overflow: auto;
   </div>
 </div>
 
-<div id="upload" class="modalDialog_temp">
-  <div>
-    <a href="#close" title="Close" class="close">X</a>
-    <center>
-    <h5 style="color:white">You must be logged in to use this feature</h5>
-</center>
-  </div>
-</div>
 <!-- End Modal Window(s) -->
-
-<script>
-  $(document).ready(function() {
-    $("#inputFields").submit(function(e){
-      return false;
-    });
-    $('#signIn').click(function(event){ 
-     var email = $('input#user-tf').val();
-     var password = $('input#pass-tf').val();
-     var rememberme = $('input#rememberme').is(':checked');
-     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-     if(email == "" || password == ""){
-      alert("this happens!");
-      $('div#UnFilled').addClass("unhidden");
-        $('a#close').click(function(){
-          alert("So does this!!");
-        $('div#UnFilled').removeClass("unhidden");
-      });
-     }
-      else if (!email.match(re)){
-        $('div#BadEmail').addClass("unhidden");
-        $('a#close').click(function(){
-        $('div#BadEmail').removeClass("unhidden");
-        });
-      }
-      else{
-     $.ajax({ 
-           url: '/login',
-           type: 'POST',
-           cache: false, 
-           data: {email: email, password: password, rememberme: rememberme},
-           success: function(data){
-            if(data.error != null){
-              $('div#Error').addClass("unhidden");
-              $('a#close').click(function(){
-                $('div#Error').removeClass("unhidden");
-              })
-            }
-            if (typeof data.redirect == 'string'){
-              window.location = data.redirect;
-            }
-           }
-        })
-      }
-     });
-    $('#forgotpass').submit(function(e){
-      return false;
-    });
-    $('#recoverPass').click(function(event){
-      var email = $('input.enterEmail').val();
-      $.ajax({
-        url: '/forgot',
-        type: 'POST',
-        cache: false,
-        data: {email: email},
-        success: function(data){
-          if(data.msg != "ok"){
-            $('div#recoverError').addClass("unhidden");
-            $('a#close').click(function(){
-              $('div#recoverError').removeClass("unhidden");
-            })
-          } else {
-            $('div#recoverSuccess').addClass("unhidden");
-            $('a#close').click(function(){
-              $('div#recoverSuccess').removeClass("unhidden");
-            })
-          }
-        }
-      })
-    })
-  });
-</script>
   </body>
 </html>
