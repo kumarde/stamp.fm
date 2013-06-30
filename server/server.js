@@ -253,7 +253,11 @@ app.post('/follow', function(req,res){
 			}
          }
 	Feed.follow(id, req.body.id, function(data) {
-		if ( data == true) res.send("Followed");
+		if ( data != false) {res.send("Followed");
+			Feed.share(id, {type: 'follow', id: data.id, name: data.name}, function(data){
+				if (data == false)console.log("Share failed");
+			});
+		}
 		else res.send("Failed");
 	});
 	}
@@ -401,7 +405,13 @@ app.post('/upload', function(req, res){
             res.send({msg: "You have already entered a video in that Genre"});
         } else {
             db.music.save({_id: songs, name: name, artistID:id, explicit: req.body.expicit});
+			Feed.share(id, {type: 'upload', id: songs, name: name}, function(data){
+				if (data == false)console.log("Share failed");
+			});
             db.tournament.insert({genre: genre, artistID: id, _id: songs, name: name, explicit: req.body.explicit});
+			Feed.share(id, {type: 'tournament', id: songs, name: name}, function(data){
+				if (data == false)console.log("Share failed");
+			});
             ++songs;
             res.send({msg: "ok"})
             res.send({redirect:'/upload'});
@@ -448,7 +458,7 @@ app.post('/file-upload', function(req, res, next){
 
 /*******************************LOGIN STUFF HERE******************************************/
 /*FACEBOOK AUTH*/
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'read_friendlists', 'friends_status']}));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'read_friendlists']}));
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', { successRedirect: '/profile',
                                         failureRedirect: '/login'}));
@@ -698,8 +708,15 @@ app.post('/addPlay', function(req, res){
         artistID: id
     }, function(e, o){
         if(e) res.send(e, 400);
+		else{
+			res.send({name: req.body.name, id: req.body.sid});
+			Feed.share(id, {type: 'favorite', id: req.body.sid, name: req.body.name}, function(data){
+				if (data == false)console.log("Share failed");
+			});
+		}
     });
-    res.send({name: req.body.name, id: req.body.sid});
+    
+
 })
 
 app.get('/video/:fname', function( req, res) {

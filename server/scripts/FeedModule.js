@@ -26,21 +26,26 @@ FeedModule.prototype.load = function( index, callback ) {
 };
 
 FeedModule.prototype.follow = function(from, to, callback) {
-	db.profiles.findOne({_id:from}, function(err, f) {
-		if (err || !f) callback(false);
-		else {
-			db.profiles.findOne({_id:to}, function(err, t) {
-				if (err || !t) callback(false);
-				else {
-					f.following.push( to);
-					t.followers.push( from);
-					db.profiles.update({_id:to},{$set:{followers: t.followers}});
-					db.profiles.update({_id:from},{$set:{following: f.following}});
-					callback(true);
-				}
-			});
-		}
-	});
+	if (from == to)callback(false);
+	else{
+		db.profiles.findOne({_id:from}, function(err, f) {
+			if (err || !f) callback(false);
+			else {
+				db.profiles.findOne({_id:to}, function(err, t) {
+					if (err || !t) callback(false);
+					else {
+						if (f.following.indexOf(to) == -1){
+						f.following.push( to);
+						t.followers.push( from);
+						db.profiles.update({_id:to},{$set:{followers: t.followers}});
+						db.profiles.update({_id:from},{$set:{following: f.following}});
+						callback({id:to,name:t.name});
+						}else callback(false);
+					}
+				});
+			}
+		});
+	}
 };
 
 
@@ -72,6 +77,7 @@ FeedModule.prototype.share = function(id, data, callback){
 	db.profiles.findOne({_id:id}, function(err, p){
 		if (err || !p)callback(false);
 		else {
+			data.date = new Date();
 			p.shared.push(data);
 			db.profiles.update({_id: id},{$set:{shared: p.shared}},function (err, o){
 					if (err) callback(false);
