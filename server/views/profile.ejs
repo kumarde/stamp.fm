@@ -63,13 +63,34 @@
           <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
         </form>
         </div>
-    	<div id="profilePicture"><img id="picture" src="<%=imgid%>" data-tag="<%=id%>">
+    	<div id="profilePicture">
+        <img id="preview" src="<%=imgid%>" data-tag="<%=id%>"><br>
+        <input type="submit" id="submitProfPic" value="Submit" onclick="visibilityPicButton();">
         <form method = "POST" action = "/changeImage" id = "chImg">
-          <input type="file" onchange ="alertyou()" id="uploadPicture" data-tag = "<%=imgid%>" style="visibility:hidden">  
+          <input type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="visibility:hidden">  
         </form>
+        <!--Picture Preview-->
+        <script type="text/javascript">      
+        function previewImage(input) {
+          if (input.files && input.files[0]) {
+           var reader = new FileReader();
+            reader.onload = function (e) {
+             //the only jQuery line.  All else is the File API.
+              $('#preview').attr('src', e.target.result);
+           }
+           reader.readAsDataURL(input.files[0]);
+          }
+        }
+        </script>
+        <script>
+        function showSubmit(submit){
+          submit.style.visibility="visible";
+        }
+        </script>
+        <!--End Picture Preview-->
         <!--Profile Pic Upload Dialog-->    
            <script>
-           $('#picture').click(function() {
+           $('#preview').click(function() {
              $('#uploadPicture').click();
             });
 

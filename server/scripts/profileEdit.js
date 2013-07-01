@@ -47,6 +47,18 @@
     }
 //END LOCATION invisible to visible
 
+
+//PICTURE invisible to visible
+    function visibilityPicButton()
+    {
+      if ( document.getElementById('submitProfPic').style.visibility == 'hidden' ) {
+            document.getElementById('submitProfPic').style.visibility= 'visible';
+          } else {
+            document.getElementById('submitProfPic').style.visibility = 'hidden';
+          }   
+    }
+//END PICTURE invisible to visible
+
     function openDropdown()
     {
       if ( document.getElementById('dropdownContent').style.visibility == 'hidden' ) {
