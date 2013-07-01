@@ -352,7 +352,11 @@ overflow: auto;
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0,0,0,0.8);
+    background: url('turtle_ad.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     z-index: 99999;
     opacity:0;
     -webkit-transition: opacity 400ms ease-in;
@@ -375,6 +379,7 @@ overflow: auto;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
+    opacity:.7;
     background: rgba(180,7,6,1);
 }
 
@@ -402,16 +407,17 @@ overflow: auto;
     <a href="#close" title="Close" class="close">X</a>
     <center>
     <h3 style="color:white">This stage of the competition has not begun yet.<br><br>
-    See you July 25th!</h3>
+    See you August 1st!</h3>
     <p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
     <ul>
       <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
       <li>  <div>
             <a href="https://twitter.com/stampfm" class="twitter-follow-button" data-show-count="false" data-lang="en"></a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
-    </ul>          
+    </ul>
     </center>
   </div>
+  <a id="advertisement" href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"></a>
 </div>
 
 <!-- End Modal Window(s) -->
@@ -419,6 +425,12 @@ overflow: auto;
 <!-- Modal Window(s) -->
 <div id="contact" class="modalDialog_temp" style="text-align:center">
   <style>
+  #advertisement{
+    position: absolute;
+    height:100%;
+    width:100%;
+    z-index:9909;
+  }
   .modalDialog_feedback {
     position: fixed;
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
@@ -427,7 +439,7 @@ overflow: auto;
     bottom: 0;
     left: 0;
     background: rgba(0,0,0,0.8);
-    z-index: 99999;
+    z-index: 100;
     visibility: hidden;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
