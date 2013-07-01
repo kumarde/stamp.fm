@@ -106,7 +106,6 @@ app.configure(function(){
             var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
             graph.fql(query, function(err, res){
               for(var id in res.data){
-                console.log(res.data[id].uid);
                 Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data) {});
               }
             });
@@ -160,25 +159,12 @@ app.post('/bandsearch', function(req,res){
     });
 });
 
-
-app.get('/searchbar', function(req, res){
-    res.render('searchbar');
-})
-
-app.post('/searchbar', function(req, res){
-    db.command({text: 'users', search: req.body.textsearch}, function(e, o){
-      console.log(o);
-    })
-})
-
 app.get('/feed', function(req, res){
 		if (req.session.user == null && req.user == null) {
 			res.redirect('/login');
 		}
 		else res.render('feed');
 });
-
-
 
 app.get('/users', function(req, res){
 		if (req.session.user == null && req.user == null) {
@@ -205,7 +191,7 @@ app.post('/addfeed', function(req, res){
 		res.send({redirect:'/login'});
 	}
 	else{
-if(req.session.user == null){
+        if(req.session.user == null){
                     id = req.user[0]._id;
                  }
                  else if(req.user == null){
@@ -375,7 +361,6 @@ app.post('/save', express.bodyParser(), function(req, res){
 });
 
 app.post('/vote', function(req, res){
-    console.log(req.body);
     db.music.update({_id:parseInt(req.body.vid)}, {$inc:{votes:1}}, function(err, count){
       res.send({v1id: sorted[c]._id, v2id: sorted[c+1]._id});
       auditionModule.UpdateDB(c, function(inc, newsort){
@@ -391,8 +376,6 @@ app.post('/vote', function(req, res){
 /*********************************UPLOAD TO THE TOURNAMENT ROUTES ***************************************/
 
 app.get('/upload', function(req, res){
-    console.log(req.session.user);
-    console.log(req.user);
     if(req.session.user == null && req.user == null){
         //tell the user they are not logged in, redirect to login
         res.redirect('/login');
@@ -430,8 +413,7 @@ app.post('/upload', function(req, res){
 				if (data == false)console.log("Share failed");
 			});
             ++songs;
-            res.send({msg: "ok"})
-            res.send({redirect:'/upload'});
+            res.send({msg: "ok", redirect:'/upload'});
         }
     });
 })
@@ -540,15 +522,11 @@ app.post('/login', function(req, res){
             res.send({error: "Error: Username and Password Combination don't match"});
 		} else{
 			req.session.user = o;
-            console.log(o);
 			if(req.body.rememberme == 'true'){
                 console.log("rememberme works!");
 				res.cookie('email', o.email, {maxAge: 900000});
 				res.cookie('pass', o.pass, {maxAge: 900000});
 			}
-          console.log("You are being redirected home");
-          console.log(req.user);
-          console.log(req.session.user);
 		  res.send({redirect:'/profile'});
 		}
 	});
@@ -562,7 +540,6 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function(req, res){
-    console.log(req.body);
     accountModule.addNewAccount({
         name    : req.body.name,
         email   : req.body.email,
@@ -732,9 +709,7 @@ app.get('/view', function(req, res){
 
 app.post('/vidPlay', function(req, res){
     var temp = req.body.video;
-    console.log(temp);
     var vid = myS3Account.readPolicy(temp, 'media.stamp.fm', 60);
-    console.log(vid);
     res.send({video: vid});
 })
 
@@ -763,16 +738,9 @@ app.post('/addPlay', function(req, res){
 			});
 		}
     });
-    
-
-})
-
-app.get('/video/:fname', function( req, res) {
-    res.render('video',{vidurl: myS3Account.readPolicy(req.params.fname, 'media.stamp.fm', 60)});
-});   
+})  
 
 app.get('/profile', function(req, res){
-    console.log(req.session.user);
     if(req.session.user == undefined && req.user == undefined){
             res.redirect('/login');
     }
@@ -790,9 +758,7 @@ app.get('/profile', function(req, res){
                 id = req.session.user[0]._id;
             }
         }
-        console.log(id);
         db.profiles.findOne({_id: id}, function(e, profile){
-            console.log(profile);
             if(e){
                 console.log(e);
             }
@@ -839,11 +805,6 @@ app.post('/profileUpload', function(req, res){
             ++songs;
         }
     });
-})
-
-app.get('/reVideo', function(req, res){
-    vid = myS3Account.readPolicy(req.body.songID, 'media.stamp.fm', 60);
-    res.send({songID: vid});
 })
 
 app.post('/changeName', function(req, res){
