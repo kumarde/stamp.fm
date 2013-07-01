@@ -580,6 +580,9 @@ app.get('/privacy', function(req, res){
 app.get('/faq', function(req, res){
       res.render('faq');
 })
+app.get('/blog', function(req, res){
+      res.render('blog');
+})
 
 app.get('/forgot', function(req ,res, next){
     res.render('forgot', {title: 'Forgot Password?'});
