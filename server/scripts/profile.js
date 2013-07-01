@@ -15,7 +15,7 @@ $(document).ready(function() {
           var $td1 = $('<td></td>');
           var $td2 = $('<td></td>');
           var $td3 = $('<td></td>');
-          var $div = $('<div data-tag ="'+data.id+'" class = "vidPlay" style="width:100px">'+data.name+'</div>');
+          var $div = $('<div data-tag ="'+data.id+'" class = "vidPlay" style="width:150px">'+data.name+'</div>');
           var $img1 = $('<img data-name = "'+data.name+'" data-tag ="'+data.id+'" class = "addPlay" src="favoriteIcon.png" style="height:25px;width:25px;float:right;">');
           var $img2 = $('<img data-name = "'+data.name+'" data-tag = "'+data.id+'" class="deletebutton" src="deleteIcon.png" style="height:25px;width:25px;float:right;">');
           $div.click(playVideo);
