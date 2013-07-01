@@ -110,7 +110,9 @@ app.configure(function(){
               }
             });
             graph.get('/'+profile.id+'?fields=location', function(err, res){
-                db.profiles.update({_id: profile.id}, {$set: {location: res.location.name}});
+                if(res.location.name != undefined){
+                    db.profiles.update({_id: profile.id}, {$set: {location: res.location.name}});
+                }
             })
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
