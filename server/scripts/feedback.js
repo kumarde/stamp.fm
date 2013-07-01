@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	$('#feedback').submit(function(event){
-		alert("stopped");
+		alert("Thank you for your feedback. We love you!");
 		return false;
 	});
 	
