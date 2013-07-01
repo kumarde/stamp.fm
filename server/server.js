@@ -125,7 +125,7 @@ app.configure(function(){
                 }
                 else{
                     db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')});
-                    db.profiles.save({_id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Bio", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: []});
+                    db.profiles.save({_id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Bio", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender});
                     return done(null, user);
                 }
             });
@@ -701,7 +701,10 @@ app.post('/create', function(req, res){
             stream: stream
         },
         function(e, o){
-                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id, function(data){
+                var gender = req.body.gender;
+                var birthday = req.param('month')+req.param('day')+req.param('year');
+                console.log(birthday);
+                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id, gender, birthday, function(data){
 					res.redirect('/profile');
 				});
         }

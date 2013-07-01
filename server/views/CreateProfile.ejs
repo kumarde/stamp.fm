@@ -24,7 +24,7 @@
 				<h1>Create your Profile</h1>
 		</div>	
 
-		<form method = "POST" enctype = "multipart/form-data">
+		<form method = "POST" enctype = "multipart/form-data" name = "profileForm">
 			<div id="picture">
     			<img id="preview" src="stampman.png"/>
     			<center><input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)"></center>
@@ -37,13 +37,13 @@
     		</div><br>
     		<div id="gender">
     			Gender:
-    		 <select name="gender" form="genderInfo" id = "genderDrop">
-        		<option class="genderChoice" id="male">Male</option>
-			    <option class="genderChoice" id="female">Female</option>
+    		 <select name="gender" id = "genderDrop">
+        		<option class="genderChoice" name = "male" id="male">Male</option>
+			    <option class="genderChoice" name = "female" id="female">Female</option>
 			 </select><br><br>
 			</div>
 			<div id="birthday">
-				<input type="text" id="month" placeholder="MM" style="width:3%;"><input type="text" id="day" style="width:3%; margin-left:10px;"placeholder="DD"><input type="text" id="year" style="width:3%;margin-left:10px" placeholder="YYYY">
+				<input type="text" name = "month" id="month" placeholder="MM" style="width:3%;"><input type="text" name = "day" id="day" style="width:3%; margin-left:10px;"placeholder="DD"><input type="text" name = "year" id="year" style="width:3%;margin-left:10px" placeholder="YYYY">
 			</div><br>
     		<div  id="fbLink">
 				<input style="font-size:20px" type = "url" value="http://" placeholder = "Link to Facebook Fan Page" name = "fb" id= "fbEnter"/>
