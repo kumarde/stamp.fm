@@ -69,50 +69,6 @@
 
 <!-- End Modal Window(s) -->
 
-<!-- Modal Window(s) -->
-<div id="Error" class="modalDialog_temp">
-  <div>
-    <a href="#close" title="Close" class="close" id = "close">X</a>
-    <center>
-    <h5 style="color:white">E-mail Already Taken</h5>
-</center>
-  </div>
-</div>
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-<div id="UnFilled" class="modalDialog_temp">
-  <div>
-    <a href="#close" title="Close" class="close" id = "close">X</a>
-    <center>
-    <h5 style="color:white">Please Fill In All Required Fields</h5>
-</center>
-  </div>
-</div>
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-<div id="NoMatch" class="modalDialog_temp">
-  <div>
-    <a href="#close" title="Close" class="close" id = "close">X</a>
-    <center>
-    <h5 style="color:white">Password and Password Confirmation don't match</h5>
-</center>
-  </div>
-</div>
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-<div id="BadEmail" class="modalDialog_temp">
-  <div>
-    <a href="#close" title="Close" class="close" id = "close">X</a>
-    <center>
-    <h5 style="color:white">Please Enter a valid Email Address</h5>
-</center>
-  </div>
-</div>
-<!-- End Modal Window(s) -->
-
 <!-- FB Like Script-->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -139,21 +95,21 @@
      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
      if(name == "" || email == "" || password == "" || passconfirm == ""){
       $('div#UnFilled').addClass("unhidden");
-      alert("Please Fill In All Required Fields");
+      //alert("Please Fill In All Required Fields");
         $('a#close').click(function(){
           $('div#UnFilled').removeClass("unhidden");
       });
      }
      else if(password != passconfirm){
       $('div#NoMatch').addClass("unhidden");
-      alert("Password and Password Confirmation don't match");
+      //alert("Password and Password Confirmation don't match");
         $('a#close').click(function(){
         $('div#NoMatch').removeClass("unhidden");
       });
      }
     else if (!email.match(re)){
       $('div#BadEmail').addClass("unhidden");
-      alert("Please Enter a valid Email Address");
+      //alert("Please Enter a valid Email Address");
         $('a#close').click(function(){
         $('div#BadEmail').removeClass("unhidden");
       });
@@ -166,7 +122,7 @@
            data: {name: name, email: email, password: password},
            success: function(data){
             if(data.error != null){
-              alert(data.error);
+              //alert(data.error);
               $('div#Error').addClass("unhidden");
               $('a#close').click(function(){
                   $('div#Error').removeClass("unhidden");
