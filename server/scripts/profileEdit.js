@@ -63,7 +63,9 @@
     {
       if ( document.getElementById('dropdownContent').style.visibility == 'hidden' ) {
             document.getElementById('dropdownContent').style.visibility= 'visible';
+            document.getElementById('dropdownContent').style.zIndex=999;
           } else {
             document.getElementById('dropdownContent').style.visibility = 'hidden';
+            document.getElementById('dropdownContent').style.zIndex=-1;
           }   
     }

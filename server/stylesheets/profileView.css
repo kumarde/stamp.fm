@@ -171,9 +171,7 @@ table{
 #songList{
     width: 33.3%;
     color: white;
-    border: 2px solid;
     margin-top: 0;
-    border-color: rgba(180,7,6,1);
     -moz-box-shadow:    -3px 3px 10px 3px rgba(0,0,0,.2);
     -webkit-box-shadow: -3px 3px 10px 3px rgba(0,0,0,.2);
     box-shadow:         -3px 3px 10px 3px rgba(0,0,0,.2);
@@ -190,8 +188,6 @@ table{
 #songContent{
 margin-top: 0px;
 margin-bottom: 5px;
-border : solid 2px;
-border-color: rgba(180,7,6,1);
 background : #E0E0E0;
 color : #ffffff; 
 padding : 4px; 
@@ -261,9 +257,7 @@ border-radius: 10px;
 
 #playlist{
     width: 33.3%;
-    border: 2px solid;
     margin-top: 0;
-    border-color: rgba(180,7,6,1);
     -moz-box-shadow:    -3px 3px 10px 3px rgba(0,0,0,.2);
     -webkit-box-shadow: -3px 3px 10px 3px rgba(0,0,0,.2);
     box-shadow:         -3px 3px 10px 3px rgba(0,0,0,.2);
@@ -276,9 +270,7 @@ border-radius: 10px;
 #playlist{
     width: 33.3%;
     color: white;
-    border: 2px solid;
     margin-top: 0;
-    border-color: rgba(180,7,6,1);
     -moz-box-shadow:    -3px 3px 10px 3px rgba(0,0,0,.2);
     -webkit-box-shadow: -3px 3px 10px 3px rgba(0,0,0,.2);
     box-shadow:         -3px 3px 10px 3px rgba(0,0,0,.2);
