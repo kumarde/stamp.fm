@@ -35,12 +35,18 @@ FeedModule.prototype.follow = function(from, to, callback) {
 					if (err || !t) callback(false);
 					else {
 						if (f.following.indexOf(to) == -1){
-						f.following.push( to);
-						t.followers.push( from);
-						db.profiles.update({_id:to},{$set:{followers: t.followers}});
-						db.profiles.update({_id:from},{$set:{following: f.following}});
-						callback({id:to,name:t.name});
-						}else callback(false);
+							f.following.push( to);
+							t.followers.push( from);
+							db.profiles.update({_id:to},{$set:{followers: t.followers}});
+							db.profiles.update({_id:from},{$set:{following: f.following}});
+							callback({id:to,name:t.name});
+						}else {
+							f.following.splice(f.following.indexOf(to), 1);
+							t.followers.splice(t.followers.indexOf(from), 1);
+							db.profiles.update({_id:to},{$set:{followers: t.followers}});
+							db.profiles.update({_id:from},{$set:{following: f.following}});
+							callback(false);
+						}
 					}
 				});
 			}
