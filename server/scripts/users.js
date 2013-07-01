@@ -41,23 +41,25 @@ $(document).ready(function() {
                 data: {search: str},
                 success: function(data){
                 if (typeof data.redirect == 'string' )window.location = data.redirect;
-                else if (typeof data.error == 'string' )alert(data.error);
+                else if (typeof data.error == 'string' )console.log(data.error);
                 else {
                     var $div;
-                    for ( var i = 0; i < data.length; i++ ){
+                    for ( var i = 0; i < data.data.length; i++ ){
                     	//$link = "localhost:8888/view?id="+data[i]._id;
                     	//console.log($link);
                     	//$a = $('<a href = "localhost:8888/view?id="'+link+'">'+data[i].name+'</a>');
-                        $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'</div>');
-						$img = $('<img src="follow.png" id="'+data[i]._id+'" class="followButton" style="float:right">');
-                        $img.click(follow);
-						$div.click(function(event){
-							if (!$(event.target).hasClass("user")) return;
-							window.location = "/view?id="+event.target.id;
-						});
-						$div.append($img);
-                        $('#users').append($div);
-                        }
+						if ( data.data[i]._id != data.id ){
+							$div = $('<div class="user" id="'+data.data[i]._id+'">'+data.data[i].name+'</div>');
+							$img = $('<img src="follow.png" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
+							$img.click(follow);
+							$div.click(function(event){
+								if (!$(event.target).hasClass("user")) return;
+								window.location = "/view?id="+event.target.id;
+							});
+							$div.append($img);
+							$('#users').append($div);
+						}
+                    }
                     }
                 }
             });        

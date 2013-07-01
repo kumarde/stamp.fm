@@ -152,16 +152,26 @@ db.music.find().sort({_id:1}, function(err, rest){
 });
 
 app.post('/namesearch', function(req,res){
-    db.users.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){console.log(o);
+    db.users.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){
         if (err || !o)res.send({error:"Cannot find"});
         else res.send(o);
     });
 });
 
 app.post('/bandsearch', function(req,res){
-    db.profiles.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){console.log(o);
+	if(req.session.user == null){
+        id = req.user[0]._id;
+    }
+    else if(req.user == null){
+		if(req.session.user[0] == undefined){
+		id = req.session.user._id;
+		} else {
+			id = req.session.user[0]._id;
+		}
+	}
+    db.profiles.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){
         if (err || !o)res.send({error:"Cannot find"});
-        else res.send(o);
+        else res.send({data:o, id:id});
     });
 });
 
