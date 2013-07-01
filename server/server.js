@@ -17,7 +17,7 @@ var mpu = require('knox-mpu');
 var S3_KEY = 'AKIAIZQEDQU7GWKOSZ3A';
 var S3_SECRET = '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';
 var S3_BUCKET = 'media.stamp.fm';
-var PIC_BUCKET = 'pictures.stamp.fm'
+var PIC_BUCKET = 'pictures.stamp.fm';
 var knox = require('knox');
 var songs = 0;
 
@@ -742,6 +742,17 @@ app.get('/view', function(req, res){
 
     if ( id == pid) res.redirect('/profile');
     var vid = 0;
+    var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else {
+            id = req.session.user[0]._id;
+        }
+    }
     db.profiles.findOne({_id: pid}, function(e, profile){
         if(e){
             res.send(e, 400);
@@ -754,7 +765,7 @@ app.get('/view', function(req, res){
                     console.log(e);
                 }  else{
                         db.playlists.find({artistID: pid}, function(e, playlist){
-                         res.render('profileView', {id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(pid, PIC_BUCKET, 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
+                         res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, PIC_BUCKET, 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
                 }
             })
