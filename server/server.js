@@ -95,8 +95,8 @@ app.configure(function(){
     });
 
     passport.use(new FacebookStrategy({
-        clientID: "427362497341922",
-        clientSecret: "12e395fc0c5f42b67e58f60894bf66a2",
+        clientID: "126231077587884",
+        clientSecret: "c8905b5e26ce0a513775c4dcfc79bb21",
         callbackURL: "http://localhost:8888/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
@@ -105,13 +105,16 @@ app.configure(function(){
             var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
             graph.fql(query, function(err, res){
               for(var id in res.data){
-                Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data) {});
+                Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data){});
               }
             });
             graph.get('/'+profile.id+'?fields=location', function(err, res){
                 if(res.location != undefined){
                     db.profiles.update({_id: profile.id}, {$set: {location: res.location.name}});
                 }
+            })
+            graph.get('/'+profile.id+'?fields=picture', function(err, res){
+              console.log(res.picture.data.url);
             })
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
