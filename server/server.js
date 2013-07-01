@@ -21,8 +21,6 @@ var PIC_BUCKET = 'pictures.stamp.fm';
 var knox = require('knox');
 var songs = 0;
 
-
-
   var TestModule =  require('./scripts/testModule.js').TestModule;
   var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
   var AccountModule = require('./scripts/AccountModule.js').AccountModule;
