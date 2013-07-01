@@ -516,7 +516,7 @@ app.post('/feedback', function(req,res){
 
 /*******************************LOGIN STUFF HERE******************************************/
 /*FACEBOOK AUTH*/
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_likes', 'user_interests','user_location']}));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_likes', 'user_interests','user_photos','user_location']}));
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', { successRedirect: '/profile',
                                         failureRedirect: '/login'}));
