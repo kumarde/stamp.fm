@@ -109,6 +109,9 @@ app.configure(function(){
                 Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data) {});
               }
             });
+            graph.get('/'+profile.id+'?fields=location', function(err, res){
+                db.profiles.update({_id: profile.id}, {$set: {location: res.location.name}});
+            })
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(user){
                         flag = true;
@@ -491,7 +494,7 @@ app.post('/feedback', function(req,res){
 
 /*******************************LOGIN STUFF HERE******************************************/
 /*FACEBOOK AUTH*/
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'read_friendlists']}));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'read_friendlists', 'user_location']}));
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', { successRedirect: '/profile',
                                         failureRedirect: '/login'}));
@@ -857,14 +860,24 @@ app.post('/changeLocation', function(req, res){
 app.post('/changeImage', function(req, res){
     console.log(req.files);
     var stream = fs.createReadStream(req.files.file.path);
-    var pid = req.body.imgid;
+    var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+    }
     upload = new mpu(
         {
             client: picClient,
-            objectName: pid.toString(), // Amazon S3 object name
+            objectName: id.toString(), // Amazon S3 object name
             stream: stream,
         },
-            // Callback handler
+        // Callback handler
         function(err, obj) {
              if(err){
                console.log(err);
@@ -872,8 +885,8 @@ app.post('/changeImage', function(req, res){
              }
             else{
                  console.log(obj); //for testing purposes print the object
-                 var url = myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60); 
-                res.send({id: url});
+                 var url = myS3Account.readPolicy(id, 'pictures.stamp.fm', 60); 
+                 res.redirect('/profile');
            }
           // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
         }
@@ -888,7 +901,6 @@ app.post('/playDelete', function(req, res){
 
 app.post('/deleteSong', function(req, res){
     var sid = req.body.id;
-    console.log(id);
     db.tournament.find({_id: parseInt(sid)}, function(e, o){
         console.log(o);
         if(e){
