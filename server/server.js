@@ -727,6 +727,18 @@ app.get('/view', function(req, res){
     if(pid == null){
         res.send('error, you suck');
     }
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else {
+            id = req.session.user[0]._id;
+        }
+    }
+
+    if ( id == pid) res.redirect('/profile');
     var vid = 0;
     var id;
     if(req.session.user == undefined){

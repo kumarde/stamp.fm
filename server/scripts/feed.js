@@ -40,7 +40,9 @@ $(document).ready(function() {
 								if (typeof data.redirect == 'string' )window.location = data.redirect;
 								else if (typeof data.error == 'string')alert(data.error);
 								else {
-									$('#'+followersid).append('<div>'+data.name+'</div>');
+									var $div = $('<div id = "'+data._id+'">'+data.name+'</div>');
+									$div.click(redirect);
+								 	$('#'+followersid).append($div);
 								}
 							}
 
@@ -75,7 +77,9 @@ $(document).ready(function() {
 							else if (typeof prof.error == 'string')alert(prof.error);
 							else {	
 								followingarray.push(prof);
-								$('#'+followingid).append('<div>'+prof.name+'</div>');
+								var $div = $('<div id = "'+prof._id+'">'+prof.name+'</div>');
+								$div.click(redirect);
+								 $('#'+followingid).append($div);
 								for ( var j = 0; j < prof.shared.length; j++){
 									if (prof.shared[j].type == 'upload')var $feedentry = $('<div id="feedElement">'+prof.name+' Uploaded a New Song ('+prof.shared[j].name+')'+'</div>');
 									if (prof.shared[j].type == 'follow')var $feedentry = $('<div id="feedElement">'+prof.name+' Followed '+prof.shared[j].name+'</div>');
@@ -105,7 +109,9 @@ $(document).ready(function() {
 		});
 		
 	}
-	
+	function redirect(event){
+		window.location = "/view?id="+event.target.id; 
+	}
 	/*function feed() {
 	    $.ajaxSetup({
             cache: false,
