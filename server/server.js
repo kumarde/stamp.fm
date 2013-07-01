@@ -264,12 +264,12 @@ app.post('/follow', function(req,res){
 			}
          }
 	Feed.follow(id, req.body.id, function(data) {
-		if ( data != false) {res.send("Followed");
+		if ( data != false) {res.send({redirect:'/profile'});
 			Feed.share(id, {type: 'follow', id: data.id, name: data.name}, function(data){
 				if (data == false)console.log("Share failed");
 			});
 		}
-		else res.send("Failed");
+		else res.send({redirect:'/profile'});
 	});
 	}
 });
@@ -408,7 +408,7 @@ app.get('/upload', function(req, res){
                 id = req.session.user[0]._id;
             }
         }
-        res.render('upload', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60)});
+        res.render('upload', {imgid: myS3Account.readPolicy(id, PIC_BUCKET, 60)});
     }
 });
 
@@ -742,7 +742,7 @@ app.get('/view', function(req, res){
                     console.log(e);
                 }  else{
                         db.playlists.find({artistID: pid}, function(e, playlist){
-                         res.render('profileView', {id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(pid, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
+                         res.render('profileView', {id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(pid, PIC_BUCKET, 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
                 }
             })
@@ -752,7 +752,7 @@ app.get('/view', function(req, res){
 
 app.post('/vidPlay', function(req, res){
     var temp = req.body.video;
-    var vid = myS3Account.readPolicy(temp, 'media.stamp.fm', 60);
+    var vid = myS3Account.readPolicy(temp, S3_BUCKET, 60);
     res.send({video: vid});
 })
 
@@ -815,7 +815,7 @@ app.get('/profile', function(req, res){
                     }
                     else{
                         db.playlists.find({artistID: id}, function(e, playlist){
-                         res.render('profile', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
+                         res.render('profile', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, PIC_BUCKET, 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
                     }
                 });
@@ -925,7 +925,7 @@ app.post('/changeImage', function(req, res){
              }
             else{
                  console.log(obj); //for testing purposes print the object
-                 var url = myS3Account.readPolicy(id, 'pictures.stamp.fm', 60); 
+                 var url = myS3Account.readPolicy(id, PIC_BUCKET, 60); 
                  res.redirect('/profile');
            }
           // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
