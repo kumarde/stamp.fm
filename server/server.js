@@ -110,7 +110,7 @@ app.configure(function(){
               }
             });
             graph.get('/'+profile.id+'?fields=location', function(err, res){
-                if(res.location.name != undefined){
+                if(res.location != undefined){
                     db.profiles.update({_id: profile.id}, {$set: {location: res.location.name}});
                 }
             })
