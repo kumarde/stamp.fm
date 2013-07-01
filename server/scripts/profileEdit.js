@@ -63,9 +63,9 @@
     {
       if ( document.getElementById('dropdownContent').style.visibility == 'hidden' ) {
             document.getElementById('dropdownContent').style.visibility= 'visible';
-            document.getElementById('dropdownContent').style.zIndex=999;
+            document.getElementById('playlist').style.zIndex = -99;
           } else {
             document.getElementById('dropdownContent').style.visibility = 'hidden';
-            document.getElementById('dropdownContent').style.zIndex=-1;
+            document.getElementById('playlist').style.zIndex = 99;
           }   
     }
