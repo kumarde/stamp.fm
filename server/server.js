@@ -516,7 +516,7 @@ app.post('/feedback', function(req,res){
 
 /*******************************LOGIN STUFF HERE******************************************/
 /*FACEBOOK AUTH*/
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'read_friendlists', 'user_location']}));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_likes', 'user_interests','user_location']}));
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', { successRedirect: '/profile',
                                         failureRedirect: '/login'}));
@@ -693,7 +693,13 @@ app.get('/create', function(req, res){
 });
 
 app.post('/create', function(req, res){
-    var stream = fs.createReadStream(req.files.picture.path);
+    console.log(req.files);
+    if(req.files.picture.size == 0){
+      var stream = fs.createReadStream('./images/stampman.png');
+    }
+    else{
+      var stream = fs.createReadStream(req.files.picture.path);
+    }
     var id;
     if(req.session.user == undefined){
         id = req.user[0]._id;
