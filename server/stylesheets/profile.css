@@ -48,8 +48,8 @@ display:none;
     max-width: 20%;
 }
 #preview{
-    max-width: 50%;
-    max-height: 50%;
+    max-width: 70%;
+    max-height: 70%;
     margin-top: -10px;
     margin-bottom: 0px;
     border: 1px solid;
@@ -97,17 +97,22 @@ display:none;
 #fbIcon{
     max-height: 30px;
     max-width: 30px;
+    margin-bottom: -10px;    
     margin-left: 0%;
     margin-right: 0%;
 }
 #stampFollow{
-    max-height: 50px;
-    max-width: 50px;
+    height: 30px;
+    width: 70px;
+    max-height: 40px;
+    max-width: 90px;
+    margin-bottom: -10px;
     margin-left: 0%;
 }
 #twitIcon{
     max-height: 30px;
     max-width: 30px;
+    margin-bottom: -10px;    
     margin-right: 0%;
     margin-left: 0%;
 }
@@ -135,6 +140,9 @@ display:none;
     -moz-border-radius:5px;  
     border-radius: 5px;  
     -webkit-border-radius: 5px;
+}
+#followingLink:hover{
+    color: rgba(180,7,6,1);
 }
 
 #followersLink:hover{

@@ -49,7 +49,7 @@ $(document).ready(function() {
                     	//console.log($link);
                     	//$a = $('<a href = "localhost:8888/view?id="'+link+'">'+data[i].name+'</a>');
                         $div = $('<div class="user" id="'+data[i]._id+'">'+data[i].name+'</div>');
-						$img = $('<img src="facebookIcon.png" id="'+data[i]._id+'" class="followButton" style="float:right">');
+						$img = $('<img src="follow.png" id="'+data[i]._id+'" class="followButton" style="float:right">');
                         $img.click(follow);
 						$div.click(function(event){
 							if (!$(event.target).hasClass("user")) return;

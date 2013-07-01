@@ -59,16 +59,24 @@ table{
 #fbIcon{
     max-height: 30px;
     max-width: 30px;
-    background:none;
+    margin-bottom: -10px;    
+    margin-left: 0%;
+    margin-right: 0%;
 }
 #stampFollow{
-    max-height: 50px;
-    max-width: 50px;
+    height: 30px;
+    width: 70px;
+    max-height: 40px;
+    max-width: 90px;
+    margin-bottom: -10px;
     margin-left: 0%;
 }
 #twitIcon{
     max-height: 30px;
     max-width: 30px;
+    margin-bottom: -10px;    
+    margin-right: 0%;
+    margin-left: 0%;
 }
 
 #followingLink{
