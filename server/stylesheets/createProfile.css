@@ -42,6 +42,14 @@ body {
 #twitterEnter{
     width: 20%;
 }
+#fbLikesInput{
+    margin-top: 0px;
+    width: 20%;
+}
+#twitterFollowersInput{
+    margin-top: 0px;
+    width: 20%;
+}
 
 #bioCreate{
     min-width: 20%;
