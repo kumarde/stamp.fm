@@ -102,6 +102,7 @@ app.configure(function(){
         callbackURL: "http://localhost:8888/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
+            console.log(profile);
             graph.setAccessToken(accessToken);
             var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
             graph.fql(query, function(err, res){
@@ -386,7 +387,18 @@ app.get('/upload', function(req, res){
         res.redirect('/login');
     }
     else{
-        res.render('upload');
+        var id;
+        if(req.session.user == null){
+            id = req.user[0]._id;
+        }
+        else if(req.user == null){
+            if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+            } else {
+                id = req.session.user[0]._id;
+            }
+        }
+        res.render('upload', {imgid: myS3Account.readPolicy(id, 'pictures.stamp.fm', 60)});
     }
 });
 
