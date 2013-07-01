@@ -559,6 +559,16 @@ app.post('/', function(req, res){
     });
 });
 
+app.get('/tos', function(req, res){
+      res.render('tos');
+})
+app.get('/privacy', function(req, res){
+      res.render('privacy');
+})
+app.get('/faq', function(req, res){
+      res.render('faq');
+})
+
 app.get('/forgot', function(req ,res, next){
     res.render('forgot', {title: 'Forgot Password?'});
 });
