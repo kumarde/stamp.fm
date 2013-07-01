@@ -14,7 +14,19 @@ $(document).ready(function() {
 	pid = $('#profileContent').attr('data-tag');
 	followers();
 	following();
-	
+		$('#stampFollow').click(function(event) {
+		$.ajax({ 
+			url: '/follow',
+			type: 'POST',
+			cache: false, 
+			data: { id: pid},
+			success: function(data){
+			if (typeof data.redirect == 'string' )window.location = data.redirect;
+			else if (typeof data.error == 'string')console.log(data.error);
+			else console.log(data);
+			}
+		});
+	});
 	
 });	
 					
@@ -110,19 +122,7 @@ $(document).ready(function() {
 		
 	}
 
-	$('#stampFollow').click(function(event) {
-		$.ajax({ 
-			url: '/follow',
-			type: 'POST',
-			cache: false, 
-			data: { id: pid},
-			success: function(data){
-			if (typeof data.redirect == 'string' )window.location = data.redirect;
-			else if (typeof data.error == 'string')console.log(data.error);
-			else console.log(data);
-			}
-		});
-	});
+
 	
 	/*function feed() {
 	    $.ajaxSetup({
