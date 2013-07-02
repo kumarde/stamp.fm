@@ -42,7 +42,7 @@ display:none;
     display: inline;
 }
 #preview{
-    max-height: 250px;
+    max-height: 220px;
     margin: auto;
     border: 1px solid;
     border-color: rgba(180,7,6,1);
@@ -144,11 +144,12 @@ display:none;
 }
 #social{
     float: right;
+    margin-left: -5%;
 }
 
 #followInfo{
     float: left;
-
+    margin-left: -5%;
 }
 
 #followingLink{
