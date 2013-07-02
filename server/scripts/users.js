@@ -4,6 +4,29 @@ $(document).ready(function() {
 		event.preventDefault();
 		window.location = "/view?id="+$('#users').children('.user')[0].id;
 	});
+	
+	var shouldBlur = true;
+
+    $("#search").blur(function() {
+        setTimeout(function() {
+            if (shouldBlur) {
+                $('#users').html("");
+                $("#search").val("");
+            }
+        }, 200);
+    });
+    $(document).click(function(e) {
+        if ($(e.target).is("#users")) {
+            shouldBlur = false;
+        }
+        else {
+            shouldBlur = true;
+            if (!$(e.target).is("#search")) {
+                $('#users').html("");
+                $("#search").val("");
+            }
+        }
+    });
 });
 	 function search() {
 		$('#users').html("");
@@ -50,7 +73,7 @@ $(document).ready(function() {
                     	//$a = $('<a href = "localhost:8888/view?id="'+link+'">'+data[i].name+'</a>');
 						if ( data.data[i]._id != data.id ){
 							$div = $('<div class="user" id="'+data.data[i]._id+'">'+data.data[i].name+'</div>');
-							$img = $('<img src="follow.png" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
+							$img = $('<input type="button" value="follow" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
 							$img.click(follow);
 							$div.click(function(event){
 								if (!$(event.target).hasClass("user")) return;

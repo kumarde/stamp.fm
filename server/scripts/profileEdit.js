@@ -69,3 +69,18 @@
             document.getElementById('playlist').style.zIndex = 99;
           }   
     }
+
+
+//follow/unfollow button changes
+
+function buttonChange(){
+  var element = document.getElementById('stampFollow');
+
+     if (element.value=="follow") element.value = "unfollow";
+      else element.value = "follow"; 
+
+      if(element.style.fontSize=="15px") element.style.fontSize="20px";
+      else element.style.fontSize="15px";
+
+     element.toggleClass('unfollow');
+}

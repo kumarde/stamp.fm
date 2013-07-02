@@ -26,17 +26,30 @@
 <div id="profileContent" class="grid wfull">
 
   <div class="row">
-    <div class="c3" id="songList" style="position: center">
-          <center><span id="songListLabel">Songs</span></center>
+    <div class="c2" id="songList">
+          <center>
+          <span id="songListLabel">Songs</span>
+          <form id="uploadForm"><input type="file" id="uploadSong" style="width:50%;"><input type="submit" value="Upload" style="margin-left:0px;"></form>
+         <script>
+          $("document").ready(function(){
+          $("#uploadSong").change(function() {
+          $('div#info').addClass("unhidden");
+          $('input#songSubmit').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+            });
+          });
+         </script> 
+          </center>
           <div id="songContent">
            <div id="song">
              <div style=" overflow:auto;">
                <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
-          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:150px;"><%= song.name %></div></td>
-          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:25px;width:25px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
-          <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:25px;width:25px;float:right;"></td>
+          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
+          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
+          <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
         </tr>
       <% }); %>
           </table>  
@@ -45,9 +58,8 @@
           </div>
         </div>
 
-<div id = "users" style="float:left"></div>
-        <center>
-        <div id="name" class="c4">
+<div id = "users"></div>
+        <div id="name" class="c5">
 
         <spanName id="displayName" onclick="exchange(this); visibilityName();" style="color:black"><%=name%></spanName>
         <form method = "POST" action = "/changeName" id = "chName">
@@ -63,12 +75,23 @@
           <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
         </form>
         </div>
-    	<div id="profilePicture">
-        <img id="preview" src="<%=imgid%>" data-tag="<%=id%>">
+    	<div id="profilePicture" style="margin:auto">
+        <div id="major" style="margin-left:20px;">
+        <img id="preview" src="<%=imgid%>" data-tag="<%=id%>" style="margin-bottom:auto;margin-top:auto">
+        <ul class="interaction" id="followInfo">
+        <a href="#followingList" id="followingLink"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></a>
+        <li><input type="button" value="follow" id="stampFollow" onclick="buttonChange();"></li><br>
+        <a href="#followersList" id="followersLink"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></a>
+        </ul>
+        <ul class="interaction" id="social">
+        <a href="<%=facebook%>" id="fb"><li><img src="facebookIcon.png" id="fbIcon"></li></a><br>
+        <a href="<%=twitter%>" id="twit"><li><img src="twitter.png" id="twitIcon"></li></a><br> 
         <form method = "POST" action = "/changeImage" id = "chImg" enctype="multipart/form-data">
           <input name = "submit" type="submit" id="submitProfPic" value="Submit" onclick="visibilityPicButton();">
-          <input name = "file" type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="visibility:hidden">  
+          <input name = "file" type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="display:none">  
         </form>
+        </ul>
+      </div>
         <!--Picture Preview-->
         <script type="text/javascript">      
         function previewImage(input) {
@@ -96,8 +119,8 @@
            </script>
         <!--END Profile Pic Upload Dialog--> 
       </div>
-
-    	<div id="bio" >
+<br>
+    <div id="bio" >
 	  <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio" id = "chBio">
           <textarea rows="1" cols="9" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
@@ -105,32 +128,22 @@
         </form> 
       </div>
 
-        <ul id="interaction">
-        <center>
-        <a href="#followingList" id="followingLink"><li><div id="following" style="font-size:15px"><strong>Following</strong><br></div></li></a>
-        <a href="<%=facebook%>" id="fb"><li><img src="facebookIcon.png" id="fbIcon"></li></a>
-        <li><img src="follow.png" id="stampFollow"></li>
-        <a href="<%=twitter%>" id="twit"><li><img src="twitter.png" id="twitIcon"></li></a> 
-        <a href="#followersList" id="followersLink"><li><div id="followers" style="font-size:15px"><strong>Followers</strong><br></div></li></a>
-        </center>
-        </ul>
-
         <div id="video">
           <div class="c12 end" id="videoPlayer" style="border:none">
            <video id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
                 <source src="" type="video/mp4" id = "source">
             </video>
 	    <label style="font-size:14px; background-color:rgba(0,0,0,0);color:#000;">News Feed</label>
-            <div id="feed"></div>
+            <div id="feed" style="margin:auto"></div>
           </div>   
 
          </div> 
 </div>
    
-</center>	
 
 
-    <div class="c3" id="playlist" style="float:right">
+
+    <div class="c2" id="playlist" style="float:right">
           <center><span id="playlistLabel">Favorites</span></center>
           <div id="playlistContent">
               <div id="song" style=" overflow:auto;">
@@ -138,8 +151,8 @@
                <table cellspacing="0" cellpadding="1" style="color:#000" id = "playlistTable">
       <% playlist.forEach(function(play){ %>
         <tr id="playlist_name" class = "p<%=play._id%>">
-          <td><div style="width:150px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
-          <td><img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="favoriteRemove.png" style="height:25px;width:25px;float:right;"></td>
+          <td><div style="width:100px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
+          <td><img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="favoriteRemove.png" style="height:15px;width:15px;float:right;"></td>
         </tr>
         <% }); %>
           </table> 
@@ -229,8 +242,24 @@
     <div>
       <form method = "POST" id = "profileUpload">
         <input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName"><br><br>
-       <input type="submit" value="Enter" id = "songSubmit">
       </form>
+       <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
+        <center>
+        <select name="genre" form="songInfo" id = "genre">
+          <option class="genreChoice" id="country">Country</option>
+          <option class="genreChoice" id="pop">Pop</option>
+          <option class="genreChoice" id="alternative">Alternative</option>
+          <option class="genreChoice" id="rap">Rap</option>
+          <option class="genreChoice" id="rnb">RnB</option>
+          <option class="genreChoice" id="instrumental">Instrumental</option>
+          <option class="genreChoice" id="hardrock">Hardrock</option>
+          <option class="genreChoice" id="EDM">EDM</option>
+          <option class="genreChoice" id="international">International</option>
+          <option class="genreChoice" id="folk">Folk</option>
+       </select><br><br>
+       <span  style="color:#FFFFFF; font-size:15px;">Check if this song is Explicit: </span><input type = "checkbox" id = "explicit" name = "explicit"><br>
+       <span  style="color:#FFFFFF; font-size:15px;"> Check if you want to upload this song to the tournament: </span><input type = "checkbox" id = "tourney" name = "tourney"><br>
+      <input type="submit" value="Enter" id = "songSubmit">
     </div>
     </center>
   </div>
