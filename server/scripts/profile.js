@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    $("#profileUpload").submit(function(e){
+    $("#db-upload").submit(function(e){
       return false;
     });
     $('#songSubmit').click(function(event){ 
      var name = $('#songName').val();
      $.ajax({ 
-           url: '/profileUpload',
+           url: '/db-upload',
            type: 'POST',
            cache: false, 
            data: {name : name},
