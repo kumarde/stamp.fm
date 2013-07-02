@@ -73,7 +73,7 @@ $(document).ready(function() {
                     	//$a = $('<a href = "localhost:8888/view?id="'+link+'">'+data[i].name+'</a>');
 						if ( data.data[i]._id != data.id ){
 							$div = $('<div class="user" id="'+data.data[i]._id+'">'+data.data[i].name+'</div>');
-							$img = $('<img src="follow.png" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
+							$img = $('<input type="button" value="follow" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
 							$img.click(follow);
 							$div.click(function(event){
 								if (!$(event.target).hasClass("user")) return;
