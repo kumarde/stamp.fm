@@ -4,6 +4,29 @@ $(document).ready(function() {
 		event.preventDefault();
 		window.location = "/view?id="+$('#users').children('.user')[0].id;
 	});
+	
+	var shouldBlur = true;
+
+    $("#search").blur(function() {
+        setTimeout(function() {
+            if (shouldBlur) {
+                $('#users').html("");
+                $("#search").val("");
+            }
+        }, 200);
+    });
+    $(document).click(function(e) {
+        if ($(e.target).is("#users")) {
+            shouldBlur = false;
+        }
+        else {
+            shouldBlur = true;
+            if (!$(e.target).is("#search")) {
+                $('#users').html("");
+                $("#search").val("");
+            }
+        }
+    });
 });
 	 function search() {
 		$('#users').html("");
