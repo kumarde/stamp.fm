@@ -41,11 +41,7 @@ var songs = 0;
 db.music.count(function(e, count){
     if(count){
       db.music.find().sort({_id: -1}, function(e, o){
-          if(o[0]._id == 0){
-            songs = 1;
-          }
-          else songs = o[0]._id;
-          console.log(songs);
+        songs = o[0]._id + 1;
       })
     }
     else {
