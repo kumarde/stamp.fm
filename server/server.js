@@ -40,7 +40,9 @@ var songs = 0;
 /***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
 db.music.count(function(e, count){
     if(count){
-        songs = count;
+      db.music.find().sort({_id: -1}, function(e, o){
+          songs = o[0]._id;
+      })
     }
     else {
         songs = 0;
@@ -107,11 +109,6 @@ app.configure(function(){
                 Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data){});
               }
             });
-            graph.get('/'+profile.id+'?fields=location', function(err, res){
-                if(res.location != undefined){
-                    db.profiles.update({_id: profile.id}, {$set: {location: res.location.name}});
-                }
-            })
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(err) return done(err);
                 else if(user == null){
@@ -519,7 +516,7 @@ app.post('/feedback', function(req,res){
 /*FACEBOOK AUTH*/
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_likes', 'user_interests','user_photos','user_location']}));
 app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', {successRedirect: '/profile',
+    passport.authenticate('facebook', {successRedirect: '/create',
                                        failureRedirect: '/login'}));
 
 app.get('/login', function(req, res){
@@ -674,6 +671,8 @@ app.post('/updateAccount', function(req, res){
 /********************************************LOGIN STUFF DONE*******************************/
 /**************************************TIME TO DO PROFILES***********************************/
 app.get('/create', function(req, res){
+    var name = "";
+    var location = "";
     if(req.session.user == null && req.user == null){
         res.redirect('/login');
     }
@@ -681,6 +680,14 @@ app.get('/create', function(req, res){
         var id;
         if(req.session.user == null){
             id = req.user[0]._id;
+            name = req.user[0].name;
+            graph.get('/'+id+'?fields=location', function(err, res){
+                console.log(res.location);
+                if(res.location != undefined){
+                    db.profiles.update({_id: id}, {$set: {location: res.location.name}});
+                    location = res.location.name;
+                }
+            });
         }
         else if(req.user == null){
            if(req.session.user[0] == undefined){
@@ -689,7 +696,7 @@ app.get('/create', function(req, res){
                  id = req.session.user[0]._id;
             }
         }
-        res.render('CreateProfile'); 
+        res.render('CreateProfile', {name: name, location: location}); 
     }
 });
 
@@ -926,7 +933,6 @@ app.post('/changeLocation', function(req, res){
 })
 
 app.post('/changeImage', function(req, res){
-    console.log(req.files);
     var stream = fs.createReadStream(req.files.file.path);
     var id;
     if(req.session.user == undefined){

@@ -30,10 +30,10 @@
     			<center><input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)"></center>
     		</div>	<br>
     		<div  id="nameCreate">
-				<input style="font-size:20px"type = "text" placeholder = "Stage/Band Name" name = "name" id= "name" required/>
+				<input style="font-size:20px"type = "text" placeholder = "Stage/Band Name" value = "<%=name%>" name = "name" id= "name" required/>
 			</div><br>
 			<div id="locationCreate">
-    			<input type = "text" style="font-size:20px" placeholder = "Location (i.e. Ann Arbor, MI)" name = "location" id= "locationEnter" required/>
+    			<input type = "text" style="font-size:20px" placeholder = "Location (i.e. Ann Arbor, MI)" value = "<%=location%>" name = "location" id= "locationEnter" required/>
     		</div><br>
     		<div id="gender">
     			Gender:
