@@ -92,10 +92,18 @@ display:none;
 #fbIcon{
     max-height: 40px;
     max-width: 40px;
-    margin-bottom: -10px;    
+    margin-top: 20px;
+    margin-bottom: 0px;    
     margin-left: 0%;
     margin-right: 0%;
+    -moz-border-radius:100px;  
+    border-radius: 100px;  
+    -webkit-border-radius: 100px;
 }
+#fbIcon:hover{
+    border: 5px solid #000;
+}
+
 #stampFollow{
     font-size: 20px;
     background: url('trebleClef.png');
@@ -185,11 +193,17 @@ td{
     max-width: 40px;
     margin-bottom: -10px;    
     margin-right: 0%;
-    margin-left: 0%;
+    -moz-border-radius:100px;  
+    border-radius: 100px;  
+    -webkit-border-radius: 100px;
 }
+#twitIcon:hover{
+    border: 5px solid #000;
+}
+
 #social{
     float: right;
-    margin-left: -5%;
+    margin:auto;
 }
 
 #followInfo{
