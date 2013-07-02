@@ -24,16 +24,16 @@
 				<h1>Create your Profile</h1>
 		</div>	
 
-		<form method = "POST" enctype = "multipart/form-data" name = "profileForm">
+		<form method = "POST" enctype = "multipart/form-data" id = "createFields" name = "profileForm">
 			<div id="picture">
     			<img id="preview" src="stampman.png"/>
     			<center><input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)"></center>
     		</div>	<br>
     		<div  id="nameCreate">
-				<input style="font-size:20px"type = "text" placeholder = "Stage/Band Name" value = "<%=name%>" name = "name" id= "name" required/>
+				<input style="font-size:20px"type = "text" placeholder = "Stage/Band Name" name = "name" id= "name">
 			</div><br>
 			<div id="locationCreate">
-    			<input type = "text" style="font-size:20px" placeholder = "Location (i.e. Ann Arbor, MI)" value = "<%=location%>" name = "location" id= "locationEnter" required/>
+    			<input type = "text" style="font-size:20px" placeholder = "Location (i.e. Ann Arbor, MI)" value = "<%=location%>" name = "location" id= "locationEnter">
     		</div><br>
     		<div id="gender">
     			Gender:
@@ -46,21 +46,21 @@
 				<input type="text" name = "month" id="month" placeholder="MM" style="width:3%;"><input type="text" name = "day" id="day" style="width:3%; margin-left:10px;"placeholder="DD"><input type="text" name = "year" id="year" style="width:3%;margin-left:10px" placeholder="YYYY">
 			</div><br>
     		<div  id="fbLink">
-				<input style="font-size:20px" type = "url" value="http://" placeholder = "Link to Facebook Fan Page" name = "fb" id= "fbEnter"/>
+				<input style="font-size:20px" type = "text" value="http://" placeholder = "Link to Facebook Fan Page" name = "fb" id= "fbEnter"/>
 				<p style="font-size:10px; margin-top:0px;">Link to a Facebook Fan Page</p>
 			</div><br>
 			<div id="fbLikes">
     			<input type = "text" style="font-size:20px" placeholder = "# of Current Facebook Likes" name = "fbLikes" id= "fbLikesInput"/>
     		</div><br>
 			<div id="twitterLink">
-    			<input type = "url" style="font-size:20px" value="http://" placeholder = "Link to Twitter" name = "twitter" id= "twitterEnter"/>
+    			<input type = "text" style="font-size:20px" value="http://" placeholder = "Link to Twitter" name = "twitter" id= "twitterEnter"/>
     			<p style="font-size:10px; margin-top:0px;">Link to a Twitter Profile</p>
     		</div><br>
     		<div id="twitterFollowers">
     			<input type = "text" style="font-size:20px" placeholder = "# of Current Twitter Followers" name = "twitterFollowers" id= "twitterFollowersInput"/>
     		</div><br>
     		<div id="bioCreateDiv">	
-    			<textarea rows = "10" cols = "50" placeholder = "Biography" id = "bioCreate" name = "bio" required/></textarea>
+    			<textarea rows = "10" cols = "50" placeholder = "Biography" id = "bioCreate" name = "bio" ></textarea>
     		</div>	
     		<div id="createProfileButton">
     			<input type = "submit" id="createButton" value = "Click to View Your Profile">
@@ -84,6 +84,55 @@
       reader.readAsDataURL(input.files[0]);
     }
   }
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#createFields").submit(function(e){
+      return false;
+      });
+      $('#createButton').click(function(event){ 
+        var name = $('input#name').val();
+        var location = $('input#locationEnter').val();
+        var month = $('input#month').val();
+        var day = $('input#day').val();
+        var year = $('input#year').val();
+        var fblikes = $('input#fbLikesInput').val();
+        var twitterlikes = $('input#twitterFollowersInput').val();
+        var fblink = $('input#fbEnter').val();
+        var twitterLink = $('input#twitterEnter').val();
+        var bioCreate = $('textarea#bioCreate').val();
+        var Regex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+     if(name == ""){
+      alert("Please fill in the name field!");
+     }
+     else if(location == ""){
+        alert("Please fill in the location field!");
+     }
+     else if(month == "" || day == "" || year == ""){
+        alert("Please fill in the all the fields for the birthday");
+     }
+     else if (!(fblink == "") && !(Regex.test(fblink))){
+        alert("Please enter a valid url for Facebook Link");
+     }
+     else if(fblikes == "" || isNaN(fblikes)){
+        alert("Please enter a valid number for Facebook Likes");
+     }
+     else if (!(twitterLink == "") && !(Regex.test(twitterLink))){
+        alert("Please enter a valid url for Twitter Link");
+     }
+     else if(twitterlikes == "" || isNaN(twitterlikes)){
+        alert("Please enter a valid number for Twitter Followers");
+     }
+     else if (bioCreate == ""){
+        alert("Please fill in the Bio field");
+     }
+     else{
+        $("#createFields").unbind("submit");
+       }
+     });
+  });
+
 </script>
 </body>
 

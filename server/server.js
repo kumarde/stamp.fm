@@ -391,6 +391,21 @@ app.post('/vote', function(req, res){
 
 /*********************************UPLOAD ROUTES **********************************************/
 app.post('/song-upload', function(req, res){
+  var id;
+  if(req.session.user == null){
+        id = req.user[0]._id;
+        name = req.user[0].name;
+    }
+    else if(req.user == null){
+        if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+                name = req.session.user.name;
+        } else {
+                id = req.session.user[0]._id;
+                name = req.session.user[0].name;
+        }
+  }
+  db.users.update({_id: id}, {$set: {upSong: songs}});
   console.log(songs);
   console.log(req.files);
   var stream = fs.createReadStream(req.files.file.path);
@@ -406,10 +421,11 @@ app.post('/song-upload', function(req, res){
     }
     );
   ++songs;
-  res.send("back");
+  res.send(204);
 });
 
 app.post("/db-upload", function(req, res){
+    console.log("is it going here tho");
     var id;
     var name;
     if(req.session.user == null){
@@ -425,7 +441,11 @@ app.post("/db-upload", function(req, res){
                 name = req.session.user[0].name;
         }
     }
-    db.music.save({_id: songs, name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre});
+    db.users.findOne({_id: id}, function(e, o){
+      var songID = o.upSong;
+      db.music.save({_id: songID,name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre});
+    })
+    
     Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
       if(data == false) console.log("Share failed.");
     });
