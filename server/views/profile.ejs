@@ -29,8 +29,8 @@
     <div class="c2" id="songList">
           <center>
           <span id="songListLabel">Songs</span>
-          <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;"><input type="submit" value="Upload" style="margin-left:0px;"></form>
 <!--Open/Close Modal Script-->
+          <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash"><input type="submit" value="Upload" style="margin-left:0px;"></form>
          <script>
           $("document").ready(function(){
           $("#uploadSong").change(function() {
