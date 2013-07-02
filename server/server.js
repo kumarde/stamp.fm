@@ -262,12 +262,16 @@ app.post('/follow', function(req,res){
 			}
          }
 	Feed.follow(id, req.body.id, function(data) {
-		if ( data != false) {res.send({redirect:'/profile'});
-			Feed.share(id, {type: 'follow', id: data.id, name: data.name}, function(data){
+		if ( data != false)res.send({redirect:'/profile'});
+		else res.send({redirect:'/profile'});
+	});
+	db.profiles.findOne({_id:req.body.id}, function(err,data){
+		if (err || !data)console.log("failed");
+		else {
+		Feed.share(id, {type: 'follow', id: req.body.id, name: data.name}, function(data){
 				if (data == false)console.log("Share failed");
 			});
-		}
-		else res.send({redirect:'/profile'});
+			}
 	});
 	}
 });
@@ -977,7 +981,14 @@ app.post('/deleteSong', function(req, res){
             res.send({msg: "no"});
         }
         else if(o.length == 0){
-            db.music.remove({_id: parseInt(sid)}, function(e, o){})
+            db.music.remove({_id: parseInt(sid)}, function(e, o){
+				if (o) {
+					Feed.share(id, {type: 'delete', id: sid, name: req.body.name}, function(data){
+						if (data == false)console.log("Share failed");
+					});
+				}
+			
+			})
             db.playlists.remove({_id: sid}, function(e, o){})
             client.deleteFile(parseInt(sid), function(e, res){});
             res.send({msg: "yes", id: sid, name: req.body.name})
