@@ -18,18 +18,23 @@ $(document).ready(function() {
           var $td1 = $('<td></td>');
           var $td2 = $('<td></td>');
           var $td3 = $('<td></td>');
+          var $td4 = $('<td></td>');
           var $div = $('<div data-tag ="'+data.id+'" class = "vidPlay" style="width:100px">'+data.name+'</div>');
           var $img1 = $('<img data-name = "'+data.name+'" data-tag ="'+data.id+'" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;">');
           var $img2 = $('<img data-name = "'+data.name+'" data-tag = "'+data.id+'" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;">');
+          var $img3 = $('<input data-name = "'+data.name+'" data-tag = "'+data.id+'" type="button" value="Submit" id="addTourney">');
           $div.click(playVideo);
           $img1.click(addtoPlaylist);
           $img2.click(deleteSong);
+          $img3.click(uploadToTourney);
           $td1.append($div);
           $td2.append($img1);
           $td3.append($img2);
+          $td4.append($img3);
           $tr.append($td1);
           $tr.append($td2);
           $tr.append($td3);
+          $tr.append($td4);
             $("#songTable").append($tr);
             }
             if (typeof data.redirect == 'string'){
@@ -164,4 +169,8 @@ $(document).ready(function() {
           }
         }
       });
+
+   function uploadToTourney(){
+    
+   }   
   }
