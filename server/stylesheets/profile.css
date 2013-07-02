@@ -92,10 +92,18 @@ display:none;
 #fbIcon{
     max-height: 40px;
     max-width: 40px;
-    margin-bottom: -10px;    
+    margin-top: 20px;
+    margin-bottom: 0px;    
     margin-left: 0%;
     margin-right: 0%;
+    -moz-border-radius:100px;  
+    border-radius: 100px;  
+    -webkit-border-radius: 100px;
 }
+#fbIcon:hover{
+    border: 5px solid #000;
+}
+
 #stampFollow{
     font-size: 20px;
     background: url('trebleClef.png');
@@ -185,11 +193,17 @@ td{
     max-width: 40px;
     margin-bottom: -10px;    
     margin-right: 0%;
-    margin-left: 0%;
+    -moz-border-radius:100px;  
+    border-radius: 100px;  
+    -webkit-border-radius: 100px;
 }
+#twitIcon:hover{
+    border: 5px solid #000;
+}
+
 #social{
     float: right;
-    margin-left: -5%;
+    margin:auto;
 }
 
 #followInfo{
@@ -591,6 +605,19 @@ border-radius: 10px;
     -webkit-border-radius: 5px;
 }
 #songSubmit:hover { background: rgba(163,163,163,1); }
+#cancelUpload{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#cancelUpload:hover { background: rgba(163,163,163,1); }
 
 .unhidden {
     opacity:1;

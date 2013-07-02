@@ -29,20 +29,41 @@
     <div class="c2" id="songList">
           <center>
           <span id="songListLabel">Songs</span>
-          <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;" ></form>
+          <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash"></form>
          <script>
           $("document").ready(function(){
             $('#uploadSong').change(function(){
               $('#uploadForm').submit();
             });
           $("#uploadSong").change(function() {
-          $('div#info').addClass("unhidden");
+            $('div#info').addClass("unhidden");
           $('input#songSubmit').click(function(){
             $('div#info').removeClass("unhidden");
           })
             });
           });
          </script> 
+          <script>
+          $("document").ready(function(){
+          $("#uploadSong").change(function() {
+            $('div#info').addClass("unhidden");
+          $('a#closeButton').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+            });
+          });
+         </script>
+          <script>
+          $("document").ready(function(){
+          $("#uploadSong").change(function() {
+            $('div#info').addClass("unhidden");
+          $('input#cancelUpload').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+            });
+          });
+         </script> 
+<!--End Open/Close Modal Script-->
           </center>
           <div id="songContent">
            <div id="song">
@@ -134,7 +155,7 @@
 
         <div id="video">
           <div class="c12 end" id="videoPlayer" style="border:none">
-           <video id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
+           <video height="200px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
                 <source src="" type="video/mp4" id = "source">
             </video>
       <label style="font-size:14px; background-color:rgba(0,0,0,0);color:#000;">News Feed</label>
@@ -144,7 +165,7 @@
          </div> 
 </div>
    
-
+<br>
 
 
     <div class="c2" id="playlist" style="float:right">
@@ -229,10 +250,11 @@
 <!-- End Modal Window(s) -->
 
 
-  <!-- Modal Window(s) -->
+<!-- Modal Window(s) -->
 
 <div id="info" class="modalDialog">
   <div>
+    <a href="#close" title="Close" class="close" id="closeButton" style="color:#FFFFFF">X</a>
     <center>
     <h5 style="color:white">Fill in your Song Information</h5>
     <div>
@@ -255,6 +277,7 @@
        </select><br><br>
        <span  style="color:#FFFFFF; font-size:15px;">Does this song contain explicit content?</span><input type = "checkbox" id = "explicit" name = "explicit"><br>
       <input type="submit" value="Enter" id = "songSubmit">
+      <input type="button" value="Cancel" id = "cancelUpload">
     </div>
     </center>
   </div>
