@@ -41,6 +41,7 @@ var songs = 0;
 db.music.count(function(e, count){
     if(count){
       db.music.find().sort({_id: -1}, function(e, o){
+          console.log(o);
           songs = o[0]._id;
       })
     }
@@ -386,7 +387,26 @@ app.post('/vote', function(req, res){
 })
 
 /*********************************UPLOAD ROUTES **********************************************/
-app.post('/upload', function(req, res){
+app.post('/song-upload', function(req, res){
+  console.log(songs);
+  console.log(req.files);
+  var stream = fs.createReadStream(req.files.file.path);
+  upload = new mpu(
+    {
+      client: client,
+      objectName: songs.toString(),
+      stream: stream,
+      headers: {"Content-Type": req.files.file.type}
+    },
+    function(err, obj){
+      console.log(obj);
+    }
+    );
+  ++songs;
+  res.send("back");
+});
+
+app.post("/db-upload", function(req, res){
     var id;
     var name;
     if(req.session.user == null){
@@ -404,38 +424,11 @@ app.post('/upload', function(req, res){
     }
     db.music.insert({_id: songs, name: req.body.songName, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre});
     Feed.share(id, {type: 'upload', id: songs, name: req.body.songName}, function(data){
-      if (data == false)console.log("Share failed");
+      if(data == false) console.log("Share failed.");
     });
-    ++songs;
-    res.send({msg: 'OK'})
+    res.send("back in black");
 })
 
-
-app.post('/file-upload', function(req, res, next){
-    console.log(req.files);
-    var stream = fs.createReadStream(req.files.file.path);
-    var id;
-    upload = new mpu(
-        {
-            client: client,
-            objectName: songs.toString(), // Amazon S3 object name
-            stream: stream,
-			headers: {"Content-Type":req.files.file.type}
-        },
-            // Callback handler
-        function(err, obj) {
-             if(err){
-               console.log(err);
-               res.send(err, 400);
-             }
-            else{
-                 console.log(obj); //for testing purposes print the object
-           }
-          // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
-        }
-    ); 
-    res.send("back");
-});
 /************************************END UPLOAD TO THE TOURNAMENT****************************************/
 /**************************************FEEDBACK ROUTES***************************************/
 app.post('/feedback', function(req,res){
@@ -818,33 +811,6 @@ app.get('/profile', function(req, res){
         });
     }
 });
-
-app.post('/profileUpload', function(req, res){
-    var name = req.body.name;
-    var id;
-    if(req.session.user == undefined){
-        id = req.user[0]._id;
-    }
-    else if(req.user == undefined){
-        if(req.session.user[0] == undefined){
-            id = req.session.user._id;
-        } else{
-            id = req.session.user[0]._id;
-        }
-   }
-    db.music.save({_id: songs, name: name, artistID:id}, function(e, o){
-        if(e){
-            console.log(e);
-        } else {
-			Feed.share(id, {type: 'upload', id: songs, name: name}, function(data){
-				if (data == false)console.log("Share failed");
-			});
-            res.send({msg: "saved", id: songs, name: name});
-            ++songs;
-        }
-    });
-})
-
 app.post('/changeName', function(req, res){
   var id;
     if(req.session.user == undefined){
