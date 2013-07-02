@@ -29,7 +29,7 @@
     <div class="c2" id="songList">
           <center>
           <span id="songListLabel">Songs</span>
-          <form id="uploadForm"><input type="file" id="uploadSong" style="width:50%;"><input type="submit" value="Upload" style="margin-left:0px;"></form>
+          <form id="uploadForm" action = "/file-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;"><input type="submit" value="Upload" style="margin-left:0px;"></form>
          <script>
           $("document").ready(function(){
           $("#uploadSong").change(function() {
@@ -50,6 +50,7 @@
           <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
           <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
           <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
+          <td><input input type="button" value="Submit" id="addTourney"></td>
         </tr>
       <% }); %>
           </table>  
@@ -75,7 +76,7 @@
           <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
         </form>
         </div>
-    	<div id="profilePicture" style="margin:auto">
+      <div id="profilePicture" style="margin:auto">
         <div id="major" style="margin-left:20px;">
         <img id="preview" src="<%=imgid%>" data-tag="<%=id%>" style="margin-bottom:auto;margin-top:auto">
         <ul class="interaction" id="followInfo">
@@ -121,7 +122,7 @@
       </div>
 <br>
     <div id="bio" >
-	  <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
+    <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio" id = "chBio">
           <textarea rows="1" cols="9" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
           <input type="submit" id="submitBioButton" value="Submit" style="visibility: hidden" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
@@ -133,7 +134,7 @@
            <video id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
                 <source src="" type="video/mp4" id = "source">
             </video>
-	    <label style="font-size:14px; background-color:rgba(0,0,0,0);color:#000;">News Feed</label>
+      <label style="font-size:14px; background-color:rgba(0,0,0,0);color:#000;">News Feed</label>
             <div id="feed" style="margin:auto"></div>
           </div>   
 
@@ -240,7 +241,7 @@
     <center>
     <h5 style="color:white">Fill in your Song Information</h5>
     <div>
-      <form method = "POST" id = "profileUpload">
+      <form method = "POST" id = "profileUpload" action = "/upload">
         <input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName"><br><br>
       </form>
        <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
@@ -258,7 +259,6 @@
           <option class="genreChoice" id="folk">Folk</option>
        </select><br><br>
        <span  style="color:#FFFFFF; font-size:15px;">Does this song contain explicit content?</span><input type = "checkbox" id = "explicit" name = "explicit"><br>
-       <span  style="color:#FFFFFF; font-size:15px;"> Check if you want to upload this song to the tournament: </span><input type = "checkbox" id = "tourney" name = "tourney"><br>
       <input type="submit" value="Enter" id = "songSubmit">
     </div>
     </center>
@@ -307,7 +307,7 @@
 
 <!-- End FB Like Script -->
 </body>
-<% script('video.js') -%>    		
+<% script('video.js') -%>       
 <script>
   videojs("vidYo", {}, function(){
   // Player (this) is initialized and ready.
@@ -315,7 +315,11 @@
 </script>
 <script>
   videojs.options.flash.swf = "video-js.swf"
-</script> 		
+</script>     
+
+
+
+
 
 
 
