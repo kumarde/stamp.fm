@@ -41,8 +41,11 @@ var songs = 0;
 db.music.count(function(e, count){
     if(count){
       db.music.find().sort({_id: -1}, function(e, o){
-          console.log(o);
-          songs = o[0]._id;
+          if(o[0]._id == 0){
+            songs = 1;
+          }
+          else songs = o[0]._id;
+          console.log(songs);
       })
     }
     else {
@@ -422,11 +425,11 @@ app.post("/db-upload", function(req, res){
                 name = req.session.user[0].name;
         }
     }
-    db.music.insert({_id: songs, name: req.body.songName, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre});
-    Feed.share(id, {type: 'upload', id: songs, name: req.body.songName}, function(data){
+    db.music.save({_id: songs, name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre});
+    Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
       if(data == false) console.log("Share failed.");
     });
-    res.send("back in black");
+    res.send({msg: "saved", id: songs, name: req.body.name});
 })
 
 /************************************END UPLOAD TO THE TOURNAMENT****************************************/
