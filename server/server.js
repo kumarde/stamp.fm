@@ -408,16 +408,20 @@ app.get('/upload', function(req, res){
     }
 });
 
-app.post('/upload', function(req, res){
+/*app.post('/upload', function(req, res){
     var id;
+    var name;
     if(req.session.user == null){
         id = req.user[0]._id;
+        name = req.user[0].name;
     }
     else if(req.user == null){
         if(req.session.user[0] == undefined){
                 id = req.session.user._id;
+                name = req.session.user.name;
         } else {
                 id = req.session.user[0]._id;
+                name = req.session.user[0].name;
         }
     }
     var genre = req.body.genre.toString();
@@ -428,17 +432,39 @@ app.post('/upload', function(req, res){
             res.send({msg: "You have already entered a video in that Genre"});
         } else {
             db.music.save({_id: songs, name: name, artistID:id, explicit: req.body.expicit});
-			Feed.share(id, {type: 'upload', id: songs, name: name}, function(data){
-				if (data == false)console.log("Share failed");
-			});
+			      Feed.share(id, {type: 'upload', id: songs, name: name}, function(data){
+				      if (data == false)console.log("Share failed");
+			       });
             db.tournament.insert({genre: genre, artistID: id, _id: songs, name: name, explicit: req.body.explicit});
-			Feed.share(id, {type: 'tournament', id: songs, name: name}, function(data){
-				if (data == false)console.log("Share failed");
-			});
+			      Feed.share(id, {type: 'tournament', id: songs, name: name}, function(data){
+				      if (data == false)console.log("Share failed");
+			      });
             ++songs;
             res.send({msg: "ok", redirect:'/upload'});
         }
     });
+})*/
+
+
+app.post('/upload', function(req, res){
+    var id;
+    var name;
+    if(req.session.user == null){
+        id = req.user[0]._id;
+        name = req.user[0].name;
+    }
+    else if(req.user == null){
+        if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+                name = req.session.user.name;
+        } else {
+                id = req.session.user[0]._id;
+                name = req.session.user[0].name;
+        }
+    }
+    db.music.save({_id: songs, name: req.body.songName, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre});
+    ++songs;
+    res.send({msg: 'OK'})
 })
 
 
