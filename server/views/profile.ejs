@@ -29,9 +29,12 @@
     <div class="c2" id="songList">
           <center>
           <span id="songListLabel">Songs</span>
-          <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;"><input type="submit" value="Upload" style="margin-left:0px;"></form>
+          <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;" ></form>
          <script>
           $("document").ready(function(){
+            $('#uploadSong').change(function(){
+              $('#uploadForm').submit();
+            });
           $("#uploadSong").change(function() {
           $('div#info').addClass("unhidden");
           $('input#songSubmit').click(function(){
