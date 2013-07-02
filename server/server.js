@@ -100,7 +100,6 @@ app.configure(function(){
         callbackURL: "http://localhost:8888/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
-            console.log(profile);
             graph.setAccessToken(accessToken);
             var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
             graph.fql(query, function(err, res){
@@ -113,21 +112,16 @@ app.configure(function(){
                     db.profiles.update({_id: profile.id}, {$set: {location: res.location.name}});
                 }
             })
-            graph.get('/'+profile.id+'?fields=picture', function(err, res){
-              console.log(res.picture.data.url);
-            })
             db.users.findOne({_id: profile.id}, function(err, user){
-                if(user){
-                        flag = true;
-                        return done(null, user);
-                }
-                else if(err){
-                    return done(err);
+                if(err) return done(err);
+                else if(user == null){
+                    db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')}, function(e, userprof){
+                       db.profiles.save({_id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Bio", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender});
+                       return done(null, userprof[0]);
+                    });
                 }
                 else{
-                    db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')});
-                    db.profiles.save({_id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Bio", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender});
-                    return done(null, user);
+                  return done(null, user);
                 }
             });
         }
@@ -218,9 +212,9 @@ app.post('/addfeed', function(req, res){
                         id = req.session.user[0]._id;
                     }
                  }
-		Feed.add(id, req.body.type, req.body.data, function(data) {
-			if (data == false)res.send({error: "error"});
-			res.send(data);
+		  Feed.add(id, req.body.type, req.body.data, function(data) {
+			 if (data == false)res.send({error: "error"});
+			 res.send(data);
 		});
 	}
 });
@@ -255,15 +249,15 @@ app.post('/follow', function(req,res){
 	}
 	else{
 		if(req.session.user == null){
-             id = req.user[0]._id;
-        }
-        else if(req.user == null){
+        id = req.user[0]._id;
+    }
+    else if(req.user == null){
 			if(req.session.user[0] == undefined){
 				id = req.session.user._id;
 			} else {
 				id = req.session.user[0]._id;
 			}
-         }
+    }
 	Feed.follow(id, req.body.id, function(data) {
 		if ( data != false) {res.send({redirect:'/profile'});
 			Feed.share(id, {type: 'follow', id: data.id, name: data.name}, function(data){
@@ -521,8 +515,8 @@ app.post('/feedback', function(req,res){
 /*FACEBOOK AUTH*/
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_likes', 'user_interests','user_photos','user_location']}));
 app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', { successRedirect: '/profile',
-                                        failureRedirect: '/login'}));
+    passport.authenticate('facebook', {successRedirect: '/profile',
+                                       failureRedirect: '/login'}));
 
 app.get('/login', function(req, res){
 	if(req.cookies.user == undefined || req.cookies.pass == undefined){
@@ -746,7 +740,6 @@ app.get('/view', function(req, res){
             id = req.session.user[0]._id;
         }
     }
-
     if ( id == pid) res.redirect('/profile');
     var vid = 0;
     var id;
@@ -815,6 +808,7 @@ app.post('/addPlay', function(req, res){
 
 app.get('/profile', function(req, res){
     if(req.session.user == undefined && req.user == undefined){
+            console.log("this is happening.");
             res.redirect('/login');
     }
     else{
