@@ -242,8 +242,24 @@
     <div>
       <form method = "POST" id = "profileUpload">
         <input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName"><br><br>
-       <input type="submit" value="Enter" id = "songSubmit">
       </form>
+       <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
+        <center>
+        <select name="genre" form="songInfo" id = "genre">
+          <option class="genreChoice" id="country">Country</option>
+          <option class="genreChoice" id="pop">Pop</option>
+          <option class="genreChoice" id="alternative">Alternative</option>
+          <option class="genreChoice" id="rap">Rap</option>
+          <option class="genreChoice" id="rnb">RnB</option>
+          <option class="genreChoice" id="instrumental">Instrumental</option>
+          <option class="genreChoice" id="hardrock">Hardrock</option>
+          <option class="genreChoice" id="EDM">EDM</option>
+          <option class="genreChoice" id="international">International</option>
+          <option class="genreChoice" id="folk">Folk</option>
+       </select><br><br>
+       <span  style="color:#FFFFFF; font-size:15px;">Check if this song is Explicit: </span><input type = "checkbox" id = "explicit" name = "explicit"><br>
+       <span  style="color:#FFFFFF; font-size:15px;"> Check if you want to upload this song to the tournament: </span><input type = "checkbox" id = "tourney" name = "tourney"><br>
+      <input type="submit" value="Enter" id = "songSubmit">
     </div>
     </center>
   </div>
