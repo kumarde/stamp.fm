@@ -15,9 +15,9 @@ $(document).ready(function() {
           var $td1 = $('<td></td>');
           var $td2 = $('<td></td>');
           var $td3 = $('<td></td>');
-          var $div = $('<div data-tag ="'+data.id+'" class = "vidPlay" style="width:150px">'+data.name+'</div>');
-          var $img1 = $('<img data-name = "'+data.name+'" data-tag ="'+data.id+'" class = "addPlay" src="favoriteIcon.png" style="height:25px;width:25px;float:right;">');
-          var $img2 = $('<img data-name = "'+data.name+'" data-tag = "'+data.id+'" class="deletebutton" src="deleteIcon.png" style="height:25px;width:25px;float:right;">');
+          var $div = $('<div data-tag ="'+data.id+'" class = "vidPlay" style="width:100px">'+data.name+'</div>');
+          var $img1 = $('<img data-name = "'+data.name+'" data-tag ="'+data.id+'" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;">');
+          var $img2 = $('<img data-name = "'+data.name+'" data-tag = "'+data.id+'" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;">');
           $div.click(playVideo);
           $img1.click(addtoPlaylist);
           $img2.click(deleteSong);
@@ -114,8 +114,8 @@ $(document).ready(function() {
           var $trp = $('<tr id="playlist_name" class = "p'+data.id+'"></tr>');
           var $td1p = $('<td></td>');
           var $td2p = $('<td></td>');
-          var $divp = $('<div style="width:150px;" data-tag ="'+data.id+'" class= "vidPlay">'+data.name+'</div>');
-          var $imgp = $('<img data-tag = "'+data.id+'" class="playdelete" id = "'+data.id+'" src="favoriteRemove.png" style="height:25px;width:25px;float:right;">');
+          var $divp = $('<div style="width:100px;" data-tag ="'+data.id+'" class= "vidPlay">'+data.name+'</div>');
+          var $imgp = $('<img data-tag = "'+data.id+'" class="playdelete" id = "'+data.id+'" src="favoriteRemove.png" style="height:15px;width:15px;float:right;">');
 
           $divp.click(playVideo);
           $imgp.click(deletefromPlaylist);
