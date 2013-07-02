@@ -40,7 +40,13 @@ var songs = 0;
 /***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
 db.music.count(function(e, count){
     if(count){
-        songs = count;
+      db.music.find().sort({_id: -1}, function(e, o){
+          if(o[0]._id == 0){
+            songs = 1;
+          }
+          else songs = o[0]._id;
+          console.log(songs);
+      })
     }
     else {
         songs = 0;
@@ -107,11 +113,6 @@ app.configure(function(){
                 Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data){});
               }
             });
-            graph.get('/'+profile.id+'?fields=location', function(err, res){
-                if(res.location != undefined){
-                    db.profiles.update({_id: profile.id}, {$set: {location: res.location.name}});
-                }
-            })
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(err) return done(err);
                 else if(user == null){
@@ -388,97 +389,49 @@ app.post('/vote', function(req, res){
     });
 })
 
-/*********************************UPLOAD TO THE TOURNAMENT ROUTES ***************************************/
-
-app.get('/upload', function(req, res){
-    if(req.session.user == null && req.user == null){
-        //tell the user they are not logged in, redirect to login
-        res.redirect('/login');
+/*********************************UPLOAD ROUTES **********************************************/
+app.post('/song-upload', function(req, res){
+  console.log(songs);
+  console.log(req.files);
+  var stream = fs.createReadStream(req.files.file.path);
+  upload = new mpu(
+    {
+      client: client,
+      objectName: songs.toString(),
+      stream: stream,
+      headers: {"Content-Type": req.files.file.type}
+    },
+    function(err, obj){
+      console.log(obj);
     }
-    else{
-        var id;
-        if(req.session.user == null){
-            id = req.user[0]._id;
-        }
-        else if(req.user == null){
-            if(req.session.user[0] == undefined){
-                id = req.session.user._id;
-            } else {
-                id = req.session.user[0]._id;
-            }
-        }
-        res.render('upload', {imgid: myS3Account.readPolicy(id, PIC_BUCKET, 60)});
-    }
+    );
+  ++songs;
+  res.send("back");
 });
 
-app.post('/upload', function(req, res){
+app.post("/db-upload", function(req, res){
     var id;
+    var name;
     if(req.session.user == null){
         id = req.user[0]._id;
+        name = req.user[0].name;
     }
     else if(req.user == null){
         if(req.session.user[0] == undefined){
                 id = req.session.user._id;
+                name = req.session.user.name;
         } else {
                 id = req.session.user[0]._id;
+                name = req.session.user[0].name;
         }
     }
-    var genre = req.body.genre.toString();
-    var name = req.body.name;
-    db.tournament.findOne({ $and: [{genre: genre}, {artistID: id}]}, function(e,o){
-        if(o){
-            client.deleteFile(songs, function(e, res){});
-            res.send({msg: "You have already entered a video in that Genre"});
-        } else {
-            db.music.save({_id: songs, name: name, artistID:id, explicit: req.body.expicit});
-			Feed.share(id, {type: 'upload', id: songs, name: name}, function(data){
-				if (data == false)console.log("Share failed");
-			});
-            db.tournament.insert({genre: genre, artistID: id, _id: songs, name: name, explicit: req.body.explicit});
-			Feed.share(id, {type: 'tournament', id: songs, name: name}, function(data){
-				if (data == false)console.log("Share failed");
-			});
-            ++songs;
-            res.send({msg: "ok", redirect:'/upload'});
-        }
+    db.music.save({_id: songs, name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre});
+    Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
+      if(data == false) console.log("Share failed.");
     });
+    res.send({msg: "saved", id: songs, name: req.body.name});
 })
 
-
-app.post('/file-upload', function(req, res, next){
-    var stream = fs.createReadStream(req.files.file.path);
-    var id;
-    upload = new mpu(
-        {
-            client: client,
-            objectName: songs.toString(), // Amazon S3 object name
-            stream: stream,
-			headers: {"Content-Type":req.files.file.type}
-        },
-            // Callback handler
-        function(err, obj) {
-             if(err){
-               console.log(err);
-               res.send(err, 400);
-             }
-            else{
-                 console.log(obj); //for testing purposes print the object
-                 if(req.session.user == null){
-                    id = req.user[0]._id;
-                 }
-                 else if(req.user == null){
-                    if(req.session.user[0] == undefined){
-                        id = req.session.user._id;
-                    } else {
-                        id = req.session.user[0]._id;
-                    }
-                 }
-           }
-          // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
-        }
-    ); 
-    res.send("back");
-});
 /************************************END UPLOAD TO THE TOURNAMENT****************************************/
 /**************************************FEEDBACK ROUTES***************************************/
 app.post('/feedback', function(req,res){
@@ -519,7 +472,7 @@ app.post('/feedback', function(req,res){
 /*FACEBOOK AUTH*/
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_likes', 'user_interests','user_photos','user_location']}));
 app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', {successRedirect: '/profile',
+    passport.authenticate('facebook', {successRedirect: '/create',
                                        failureRedirect: '/login'}));
 
 app.get('/login', function(req, res){
@@ -674,6 +627,8 @@ app.post('/updateAccount', function(req, res){
 /********************************************LOGIN STUFF DONE*******************************/
 /**************************************TIME TO DO PROFILES***********************************/
 app.get('/create', function(req, res){
+    var name = "";
+    var location = "";
     if(req.session.user == null && req.user == null){
         res.redirect('/login');
     }
@@ -681,6 +636,14 @@ app.get('/create', function(req, res){
         var id;
         if(req.session.user == null){
             id = req.user[0]._id;
+            name = req.user[0].name;
+            graph.get('/'+id+'?fields=location', function(err, res){
+                console.log(res.location);
+                if(res.location != undefined){
+                    db.profiles.update({_id: id}, {$set: {location: res.location.name}});
+                    location = res.location.name;
+                }
+            });
         }
         else if(req.user == null){
            if(req.session.user[0] == undefined){
@@ -689,7 +652,7 @@ app.get('/create', function(req, res){
                  id = req.session.user[0]._id;
             }
         }
-        res.render('CreateProfile'); 
+        res.render('CreateProfile', {name: name, location: location}); 
     }
 });
 
@@ -851,33 +814,6 @@ app.get('/profile', function(req, res){
         });
     }
 });
-
-app.post('/profileUpload', function(req, res){
-    var name = req.body.name;
-    var id;
-    if(req.session.user == undefined){
-        id = req.user[0]._id;
-    }
-    else if(req.user == undefined){
-        if(req.session.user[0] == undefined){
-            id = req.session.user._id;
-        } else{
-            id = req.session.user[0]._id;
-        }
-   }
-    db.music.save({_id: songs, name: name, artistID:id}, function(e, o){
-        if(e){
-            console.log(e);
-        } else {
-			Feed.share(id, {type: 'upload', id: songs, name: name}, function(data){
-				if (data == false)console.log("Share failed");
-			});
-            res.send({msg: "saved", id: songs, name: name});
-            ++songs;
-        }
-    });
-})
-
 app.post('/changeName', function(req, res){
   var id;
     if(req.session.user == undefined){
@@ -926,7 +862,6 @@ app.post('/changeLocation', function(req, res){
 })
 
 app.post('/changeImage', function(req, res){
-    console.log(req.files);
     var stream = fs.createReadStream(req.files.file.path);
     var id;
     if(req.session.user == undefined){

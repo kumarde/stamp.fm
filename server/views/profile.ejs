@@ -29,17 +29,39 @@
     <div class="c2" id="songList">
           <center>
           <span id="songListLabel">Songs</span>
-          <form id="uploadForm"><input type="file" id="uploadSong" style="width:50%;"><input type="submit" value="Upload" style="margin-left:0px;"></form>
+<!--Open/Close Modal Script-->
+          <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash"><input type="submit" value="Upload" style="margin-left:0px;"></form>
          <script>
           $("document").ready(function(){
           $("#uploadSong").change(function() {
-          $('div#info').addClass("unhidden");
+            $('div#info').addClass("unhidden");
           $('input#songSubmit').click(function(){
             $('div#info').removeClass("unhidden");
           })
             });
           });
          </script> 
+          <script>
+          $("document").ready(function(){
+          $("#uploadSong").change(function() {
+            $('div#info').addClass("unhidden");
+          $('a#closeButton').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+            });
+          });
+         </script>
+          <script>
+          $("document").ready(function(){
+          $("#uploadSong").change(function() {
+            $('div#info').addClass("unhidden");
+          $('input#cancelUpload').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+            });
+          });
+         </script> 
+<!--End Open/Close Modal Script-->
           </center>
           <div id="songContent">
            <div id="song">
@@ -50,6 +72,7 @@
           <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
           <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
           <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
+          <td><input input type="button" value="Submit" id="addTourney"></td>
         </tr>
       <% }); %>
           </table>  
@@ -75,7 +98,7 @@
           <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
         </form>
         </div>
-    	<div id="profilePicture" style="margin:auto">
+      <div id="profilePicture" style="margin:auto">
         <div id="major" style="margin-left:20px;">
         <img id="preview" src="<%=imgid%>" data-tag="<%=id%>" style="margin-bottom:auto;margin-top:auto">
         <ul class="interaction" id="followInfo">
@@ -121,7 +144,7 @@
       </div>
 <br>
     <div id="bio" >
-	  <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
+    <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio" id = "chBio">
           <textarea rows="1" cols="9" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
           <input type="submit" id="submitBioButton" value="Submit" style="visibility: hidden" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
@@ -130,17 +153,17 @@
 
         <div id="video">
           <div class="c12 end" id="videoPlayer" style="border:none">
-           <video id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash", "other supported tech"]}'>
+           <video height="200px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
                 <source src="" type="video/mp4" id = "source">
             </video>
-	    <label style="font-size:14px; background-color:rgba(0,0,0,0);color:#000;">News Feed</label>
+      <label style="font-size:14px; background-color:rgba(0,0,0,0);color:#000;">News Feed</label>
             <div id="feed" style="margin:auto"></div>
           </div>   
 
          </div> 
 </div>
    
-
+<br>
 
 
     <div class="c2" id="playlist" style="float:right">
@@ -163,14 +186,6 @@
 
 </div>
 </div>
-    <div class="row">
-      <div class="c4" id="upload_block" style="float:left">
-        <script src="/dropzoneProfile.js"></script>
-        <form method = "POST" action="/file-upload" class="dropzone" enctype = "multipart/form-data" style="color:#000">
-          <center><span style="font-size: 30px"><strong>Upload Songs to Your Profile</strong></span></center>
-        </form>
-      </div>
-
     </div>  
 
 <!-- Modal Window(s) -->
@@ -233,14 +248,15 @@
 <!-- End Modal Window(s) -->
 
 
-  <!-- Modal Window(s) -->
+<!-- Modal Window(s) -->
 
 <div id="info" class="modalDialog">
   <div>
+    <a href="#close" title="Close" class="close" id="closeButton" style="color:#FFFFFF">X</a>
     <center>
     <h5 style="color:white">Fill in your Song Information</h5>
     <div>
-      <form method = "POST" id = "profileUpload">
+      <form id = "db-upload" method = "POST" action = "/db-upload">
         <input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName"><br><br>
       </form>
        <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
@@ -257,9 +273,9 @@
           <option class="genreChoice" id="international">International</option>
           <option class="genreChoice" id="folk">Folk</option>
        </select><br><br>
-       <span  style="color:#FFFFFF; font-size:15px;">Check if this song is Explicit: </span><input type = "checkbox" id = "explicit" name = "explicit"><br>
-       <span  style="color:#FFFFFF; font-size:15px;"> Check if you want to upload this song to the tournament: </span><input type = "checkbox" id = "tourney" name = "tourney"><br>
+       <span  style="color:#FFFFFF; font-size:15px;">Does this song contain explicit content?</span><input type = "checkbox" id = "explicit" name = "explicit"><br>
       <input type="submit" value="Enter" id = "songSubmit">
+      <input type="button" value="Cancel" id = "cancelUpload">
     </div>
     </center>
   </div>
@@ -307,7 +323,7 @@
 
 <!-- End FB Like Script -->
 </body>
-<% script('video.js') -%>    		
+<% script('video.js') -%>       
 <script>
   videojs("vidYo", {}, function(){
   // Player (this) is initialized and ready.
@@ -315,7 +331,11 @@
 </script>
 <script>
   videojs.options.flash.swf = "video-js.swf"
-</script> 		
+</script>     
+
+
+
+
 
 
 

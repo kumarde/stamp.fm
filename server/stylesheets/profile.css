@@ -43,6 +43,7 @@ display:none;
 }
 #preview{
     max-height: 220px;
+    max-width: 400px;
     margin: auto;
     border: 1px solid;
     border-color: rgba(180,7,6,1);
@@ -91,10 +92,18 @@ display:none;
 #fbIcon{
     max-height: 40px;
     max-width: 40px;
-    margin-bottom: -10px;    
+    margin-top: 20px;
+    margin-bottom: 0px;    
     margin-left: 0%;
     margin-right: 0%;
+    -moz-border-radius:100px;  
+    border-radius: 100px;  
+    -webkit-border-radius: 100px;
 }
+#fbIcon:hover{
+    border: 5px solid #000;
+}
+
 #stampFollow{
     font-size: 20px;
     background: url('trebleClef.png');
@@ -117,16 +126,17 @@ display:none;
     border-radius: 10px;  
     -webkit-border-radius: 100px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
     -webkit-transition-duration: 0.2s;
     -moz-transition-duration: 0.2s;
     transition-duration: 0.2s;
     } 
 
+
 #stampFollow:hover, #stampFollow:focus{
-    background-color: rgba(120,7,6,1);
+    background-color: rgba(140,7,6,1);
 }
 #stampFollow:active{
     background-image: url('trebleClef.png');
@@ -135,16 +145,65 @@ display:none;
     background: rgba(120,7,6,1);
     border: solid 1px #000;
 }
+
+#addTourney{
+    font-size: 10px;
+    background: url('trebleClef.png');
+    color: white;
+    background-size: 6px; 
+    padding-left: 10px; 
+    margin-bottom: 1px;
+    background-color: rgba(180,7,6,1);
+    background-repeat: no-repeat; 
+    background-position: 7px 2px;  
+    border: none;         
+    cursor: pointer;       
+    height: 15px;
+    width: 50px;    
+    vertical-align: middle;
+    margin-left: 0%;
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 10px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    } 
+
+
+#addTourney:hover, #stampFollow:focus{
+    background-color: rgba(140,7,6,1);
+}
+#addTourney:active{
+    background-image: url('trebleClef.png');
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: rgba(120,7,6,1);
+    border: solid 1px #000;
+}
+td{
+    padding-left: 5px;
+}
 #twitIcon{
     max-height: 40px;
     max-width: 40px;
     margin-bottom: -10px;    
     margin-right: 0%;
-    margin-left: 0%;
+    -moz-border-radius:100px;  
+    border-radius: 100px;  
+    -webkit-border-radius: 100px;
 }
+#twitIcon:hover{
+    border: 5px solid #000;
+}
+
 #social{
     float: right;
-    margin-left: -5%;
+    margin:auto;
 }
 
 #followInfo{
@@ -152,22 +211,17 @@ display:none;
     margin-left: -5%;
 }
 
-#followingLink{
-    color: #000;
-    text-decoration: none;
-    -moz-border-radius:5px;  
-    border-radius: 5px;  
-    -webkit-border-radius: 5px;
-}
 #following:active{
-    color: #FFFFFF;
+    color: #000;
     -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
     box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-    background: rgba(180,7,6,1);
+    background: rgba(255,255,255,1);
     border: solid 1px #000;
 }
 #following{
-    border: 1px solid rgba(180,7,6,1);
+    border: 1px solid rgba(0,0,0,1);
+    color: #FFFFFF;
+    background-color: rgba(180,7,6,1);
     padding: 2px;
     -moz-border-radius:5px;  
     border-radius: 5px;  
@@ -180,10 +234,6 @@ display:none;
     transition-duration: 0.2s;
 }
 
-#followersLink{
-    color: #000;
-    text-decoration: none;
-}
 #followers:active{
     color: #FFFFFF;
     -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
@@ -192,7 +242,9 @@ display:none;
     border: solid 1px #000;
 }
 #followers{
-    border: 1px solid rgba(180,7,6,1);
+    color: #FFFFFF;
+    background-color: rgba(180,7,6,1);
+    border: 1px solid rgba(0,0,0,1);
     padding: 2px;
     -moz-border-radius:5px;  
     border-radius: 5px;  
@@ -205,11 +257,13 @@ display:none;
     transition-duration: 0.2s;
 
 }
-#followingLink:hover{
-    color: rgba(180,7,6,1);
+#following:hover{
+    background: rgba(220,7,6,1);
+    color: rgba(255,255,255,1);
 }
 
-#followersLink:hover{
+#followers:hover{
+    background: rgba(255,255,255,1);
     color: rgba(180,7,6,1);
 }
 
@@ -298,12 +352,11 @@ display:none;
 }
 
 #video{
-    width: 100%;
 }
 
 #vidYo{
-    width: 100%;
-    min-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     border: 1px solid rgba(180,7,6,1);
     -moz-box-shadow:    1px 1px 5px 2px rgba(0,0,0,.5);
     -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,.5);
@@ -377,6 +430,7 @@ border-radius: 10px;
     float: left;
     font-size: 15px;
     padding: 2px;
+    border:0;
 }
 
 #song{
@@ -482,20 +536,6 @@ border-radius: 10px;
 -webkit-border-radius: 10px;
 }
 
-#upload_block{
-    background-color: #FFFFFF;
-    color: white;
-    width: 100%;
-    height: 30%;
-    position: relative;
-    margin-top: 20px;
-    float: left;
-    border-style: solid;
-    border-width:2px;
-    border-color: rgba(180,7,6,1); 
-
-}
-
 .modalDialog {
     position: fixed;
     top: 0;
@@ -565,6 +605,19 @@ border-radius: 10px;
     -webkit-border-radius: 5px;
 }
 #songSubmit:hover { background: rgba(163,163,163,1); }
+#cancelUpload{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#cancelUpload:hover { background: rgba(163,163,163,1); }
 
 .unhidden {
     opacity:1;
@@ -729,4 +782,3 @@ border-radius: 10px;
     border-radius: 10px;
     background: rgba(180,7,6,1);
 }
-
