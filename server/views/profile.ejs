@@ -30,16 +30,38 @@
           <center>
           <span id="songListLabel">Songs</span>
           <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;"><input type="submit" value="Upload" style="margin-left:0px;"></form>
+<!--Open/Close Modal Script-->
          <script>
           $("document").ready(function(){
           $("#uploadSong").change(function() {
-          $('div#info').addClass("unhidden");
+            $('div#info').addClass("unhidden");
           $('input#songSubmit').click(function(){
             $('div#info').removeClass("unhidden");
           })
             });
           });
          </script> 
+          <script>
+          $("document").ready(function(){
+          $("#uploadSong").change(function() {
+            $('div#info').addClass("unhidden");
+          $('a#closeButton').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+            });
+          });
+         </script>
+          <script>
+          $("document").ready(function(){
+          $("#uploadSong").change(function() {
+            $('div#info').addClass("unhidden");
+          $('input#cancelUpload').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+            });
+          });
+         </script> 
+<!--End Open/Close Modal Script-->
           </center>
           <div id="songContent">
            <div id="song">
@@ -226,10 +248,11 @@
 <!-- End Modal Window(s) -->
 
 
-  <!-- Modal Window(s) -->
+<!-- Modal Window(s) -->
 
 <div id="info" class="modalDialog">
   <div>
+    <a href="#close" title="Close" class="close" id="closeButton" style="color:#FFFFFF">X</a>
     <center>
     <h5 style="color:white">Fill in your Song Information</h5>
     <div>
@@ -252,6 +275,7 @@
        </select><br><br>
        <span  style="color:#FFFFFF; font-size:15px;">Does this song contain explicit content?</span><input type = "checkbox" id = "explicit" name = "explicit"><br>
       <input type="submit" value="Enter" id = "songSubmit">
+      <input type="button" value="Cancel" id = "cancelUpload">
     </div>
     </center>
   </div>
