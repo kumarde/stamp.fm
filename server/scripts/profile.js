@@ -2,13 +2,16 @@ $(document).ready(function() {
     $("#db-upload").submit(function(e){
       return false;
     });
-    $('#songSubmit').click(function(event){ 
+    $('#songSubmit').click(function(event){
+      alert("this is submitting the click event");
      var name = $('#songName').val();
+     var explicit = $('#explicit').val();
+     var genre = $('#genre').val();
      $.ajax({ 
            url: '/db-upload',
            type: 'POST',
            cache: false, 
-           data: {name : name},
+           data: {name : name, explicit: explicit, genre: genre},
            success: function(data){
             if(data.msg == "saved"){
           var $tr = $('<tr id="song_name" class = "'+data.id+'" style="color:#000"></tr>');
