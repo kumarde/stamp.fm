@@ -106,7 +106,13 @@ app.configure(function(){
             var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
             graph.fql(query, function(err, res){
               for(var id in res.data){
-                Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data){});
+                db.users.findOne({_id: res.data[id].uid}, function(e, o){
+                  if(e) console.log(e);
+                  if(o){
+                    Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data){});
+                  }
+                })
+                
               }
             });
             db.users.findOne({_id: profile.id}, function(err, user){
