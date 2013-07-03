@@ -41,11 +41,7 @@ var songs = 0;
 db.music.count(function(e, count){
     if(count){
       db.music.find().sort({_id: -1}, function(e, o){
-          if(o[0]._id == 0){
-            songs = 1;
-          }
-          else songs = o[0]._id;
-          console.log(songs);
+        songs = o[0]._id + 1;
       })
     }
     else {
@@ -406,8 +402,6 @@ app.post('/song-upload', function(req, res){
         }
   }
   db.users.update({_id: id}, {$set: {upSong: songs}});
-  console.log(songs);
-  console.log(req.files);
   var stream = fs.createReadStream(req.files.file.path);
   upload = new mpu(
     {
@@ -425,7 +419,6 @@ app.post('/song-upload', function(req, res){
 });
 
 app.post("/db-upload", function(req, res){
-    console.log("is it going here tho");
     var id;
     var name;
     if(req.session.user == null){
@@ -449,8 +442,37 @@ app.post("/db-upload", function(req, res){
     Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
       if(data == false) console.log("Share failed.");
     });
-    res.send({msg: "saved", id: songs, name: req.body.name});
+    res.send({msg: "saved", id: songs, name: req.body.name, genre: req.body.genre});
 })
+
+
+app.post('/tournament', function(req, res){
+    var id;
+    var name;
+    if(req.session.user == null){
+        id = req.user[0]._id;
+        name = req.user[0].name;
+    }
+    else if(req.user == null){
+        if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+                name = req.session.user.name;
+        } else {
+                id = req.session.user[0]._id;
+                name = req.session.user[0].name;
+        }
+    }
+    db.tournament.findOne({$and: [{genre: req.body.genre}, {artistID: id}]}, function(e, o){
+      if(e) console.log(e);
+      if(o){
+        res.send({msg: "no"});
+      }
+      if(!o){
+        db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name});
+        res.send({msg: "yes"});
+      }
+    })
+});
 
 /************************************END UPLOAD TO THE TOURNAMENT****************************************/
 /**************************************FEEDBACK ROUTES***************************************/

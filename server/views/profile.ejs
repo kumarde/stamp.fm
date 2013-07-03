@@ -126,37 +126,22 @@
           });
          </script> 
 <!--End Open/Close Modal Script-->
-
-    <div id="song">
-      <div style=" overflow:auto;">
-        <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
-          <% songs.forEach(function(song){ %>
-          <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
-            <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
-            <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
-            <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
-            <td><input input type="button" value="Submit" id="addTourney"></td>
-          </tr>
-          <% }); %>
-        <script>
-          $("document").ready(function(){
-            $('#addTourney').click(function(){
-              $('div#youSure').addClass("unhidden");
-            });
-          $("input#noThanks").click(function() {
-            $('div#youSure').removeClass("unhidden");
-          $('input#enterTourney').click(function(){
-            $('div#youSure').removeClass("unhidden");
-          })
-            });
-          });
-        </script> 
-        </table>  
-      </div>
-    </div> 
-  </div>
-
-</div>
+      <div id="song">
+             <div style=" overflow:auto;">
+               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
+      <% songs.forEach(function(song){ %>
+        <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
+          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
+          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
+          <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
+          <td><input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="Submit" class="addTourney"></td>
+        </tr>
+      <% }); %>
+          </table>  
+        </div>
+            </div> 
+          </div>
+        </div>
 
 
 <div id = "users"></div>
