@@ -72,8 +72,10 @@ body {
         left: 30%;
     }
 }
-#picture{
+#preview{
     margin: 5px;
+    width: 218px;
+    height: 197px;
 }
 #bioCreateDiv{
     position: relative;
