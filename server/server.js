@@ -686,10 +686,9 @@ app.get('/create', function(req, res){
             id = req.user[0]._id;
             name = req.user[0].name;
             graph.get('/'+id+'?fields=location', function(err, res){
-                console.log(res.location);
                 if(res.location != undefined){
-                    db.profiles.update({_id: id}, {$set: {location: res.location.name}});
                     location = res.location.name;
+                    db.profiles.update({_id: id}, {$set: {location: res.location.name}});
                 }
             });
         }
