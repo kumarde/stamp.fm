@@ -1,75 +1,71 @@
 <% layout('layoutProfileCreate') -%>
 <% script('/scripts/main.js') -%>
 <% script('profileEdit.js') -%>
-<% stylesheet('/video-js/video-js.css') -%>
-<% script('/video-js/video.js') -%>
 <html>
 <head>
     <title>stamp.fm</title>
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
-    <link rel="stylesheet" type="text/css" href="/gridiculous.css">
     <link rel="stylesheet" type="text/css" href="/createProfile.css">
-    <link rel="stylesheet" type="text/css" href="/dropzone.css">
     <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-	<div id="wrapper">
-
-	<div id="profileSection"  style="color: #000">
-		<center>
-		<div  id="createPageLabel" style="font-size:40px">
-				<h1>Create your Profile</h1>
-		</div>	
-
-		<form method = "POST" enctype = "multipart/form-data" id = "createFields" name = "profileForm">
-			<div id="picture">
-    			<img id="preview" src="stampman.png"/>
-    			<center><input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)"></center>
-    		</div>	<br>
-    		<div  id="nameCreate">
-				<input style="font-size:20px"type = "text" placeholder = "Stage/Band Name" name = "name" id= "name">
-			</div><br>
-			<div id="locationCreate">
-    			<input type = "text" style="font-size:20px" placeholder = "Location (i.e. Ann Arbor, MI)" value = "<%=location%>" name = "location" id= "locationEnter" required>
-    		</div><br>
-    		<div id="gender">
-    			Gender:
-    		 <select name="gender" id = "genderDrop">
-        		<option class="genderChoice" name = "male" id="male">Male</option>
-			    <option class="genderChoice" name = "female" id="female">Female</option>
-			 </select><br><br>
-			</div>
-			<div id="birthday">
-				<input type="text" name = "month" id="month" placeholder="MM" style="width:3%;"><input type="text" name = "day" id="day" style="width:3%; margin-left:10px;"placeholder="DD"><input type="text" name = "year" id="year" style="width:3%;margin-left:10px" placeholder="YYYY">
-			</div><br>
-    		<div  id="fbLink">
-				<input style="font-size:20px" type = "text" value="http://" placeholder = "Link to Facebook Fan Page" name = "fb" id= "fbEnter"/>
-				<p style="font-size:10px; margin-top:0px;">Link to a Facebook Fan Page</p>
-			</div><br>
-			<div id="fbLikes">
-    			<input type = "text" style="font-size:20px" placeholder = "# of Current Facebook Likes" name = "fbLikes" id= "fbLikesInput"/>
-    		</div><br>
-			<div id="twitterLink">
-    			<input type = "text" style="font-size:20px" value="http://" placeholder = "Link to Twitter" name = "twitter" id= "twitterEnter"/>
-    			<p style="font-size:10px; margin-top:0px;">Link to a Twitter Profile</p>
-    		</div><br>
-    		<div id="twitterFollowers">
-    			<input type = "text" style="font-size:20px" placeholder = "# of Current Twitter Followers" name = "twitterFollowers" id= "twitterFollowersInput"/>
-    		</div><br>
-    		<div id="bioCreateDiv">	
-    			<textarea rows = "10" cols = "50" placeholder = "Biography" id = "bioCreate" name = "bio" ></textarea>
-    		</div>	
-    		<div id="createProfileButton">
-    			<input type = "submit" id="createButton" value = "Click to View Your Profile">
-			</div>
+    <div id="wrapper">
+    <div id="profileSection"  style="color: #000">
+	<div  id="createPageLabel" style="font-size:40px;">
+	    <center><h1>Create your Profile</h1></center>
+	</div>	
+	<form method = "POST" enctype = "multipart/form-data" id = "createFields" name = "profileForm">
+	    <div id="band_info">
+		<div id="picture">
+		    <img id="preview" src="stampman.png"/>
+		    <br>
+		    <input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
+		</div>
+		<div id="bioCreateDiv">	
+		    <input type = "text" size="28" placeholder = "Tagline" id = "bioCreate" name = "" style="font-size:20px"></input>
+		</div>
+		<div id="nameCreate">
+		    <input style="font-size:20px" size="28" type = "text" placeholder = "Personal/Stage/Band Name" name = "name" id= "name">
+		</div>
+		<div id="locationCreate">
+		    <input type = "text" size="28" style="font-size:20px" placeholder = "Location (i.e. Ann Arbor, MI)" value = "<%=location%>" name = "location" id= "locationEnter">
+		</div>
+	    </div>
+	    <div id="social_media">
+		<div  id="fbLink">
+		    <span style="font-size:20px;">Link to a Facebook Fan Page</span>
+		    <input style="font-size:20px" size="28" type = "text" value="http://facebook.com/" placeholder = "Link to Facebook Fan Page" name = "fb" id= "fbEnter"/>
+		</div>
+		<div id="fbLikes">
+		    <input type = "text" size="28" style="font-size:20px" placeholder = "# of Current Facebook Likes" name = "fbLikes" id= "fbLikesInput"/>
+		</div>
+		<div id="twitterLink">
+		    <span style="font-size:20px;">Link to a Twitter Profile</span>
+		    <input type = "text" size="28" style="font-size:20px" value="http://twitter.com/" placeholder = "Link to Twitter" name = "twitter" id= "twitterEnter"/>
+		</div>
+		<div id="twitterFollowers">
+		    <input type = "text" size="28" style="font-size:20px" placeholder = "# of Current Twitter Followers" name = "twitterFollowers" id= "twitterFollowersInput"/>
+		</div>
+		<div id="gender">
+		    Gender:
+		    <select name="gender" id = "genderDrop">
+		        <option class="genderChoice" name = "male" id="male">Male</option>
+		        <option class="genderChoice" name = "female" id="female">Female</option>
+		    </select>
+		</div>
+		<div id="birthday">
+		    Birth Date:<input type="text" maxlength="2" name = "month" id="month" placeholder="MM" size="2"><input type="text" maxlength="2" name = "day" id="day" placeholder="DD" size="2"><input  maxlength="4" type="text" name = "year" id="year" placeholder="YYYY" size="4">
+		</div>
+	    </div>
+    	    <div id="createProfileButton">
+    		<input type = "submit" id="createButton" value = "Click to View Your Profile">
+	    </div>
     	</div>
-		</form>
-		</div>	
-		</center>
-	</div>
+	</form>
+    </div>	
+    </div>
 
 
 

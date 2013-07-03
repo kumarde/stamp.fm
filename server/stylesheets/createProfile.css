@@ -1,78 +1,53 @@
 html{
     background: #FFFFFF no-repeat center center fixed;
     font-family: 'Noto Sans', sans-serif;
-    background-size: cover;
-    min-width: 100%;
-    min-height: 100%;
 }
 body {
     margin:0;
     padding: 0;
     border: 0;
-    min-width: 1100px;
-    min-height:100%;
-    overflow: auto;
 }
-#wrapper {
-  position: relative;
-  min-height: 400px;
+#wrapper{
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 800px;
 }
-
-#createProfileLabel{
-    margin-top: 10%;
+#band_info{
+    float: left;
+    height: 235px;
+    width: 530px;
+    margin: 10px;
+    background-color: rgba(200,200,200,.8);
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+    -moz-box-shadow:    3px 3px 5px 6px #999;
+    -webkit-box-shadow: 3px 3px 5px 6px #999;
+    box-shadow:         3px 3px 5px 6px #999;
 }
-
-#nameCreate{
-    margin-top: 0%;
-    width: 100%;
+#social_media{
+    padding-left: 20px;
+    padding-top: 10px; 
+    float: right;
+    height: 260px;
+    width: 320px;
+    margin: 10px;
+    background-color: rgba(200,200,200,.8);
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+    -moz-box-shadow:    3px 3px 5px 6px #999;
+    -webkit-box-shadow: 3px 3px 5px 6px #999;
+    box-shadow:         3px 3px 5px 6px #999;
 }
-
-#name{
-    width: 20%;
-}
-
-#locationEnter{
-    width: 20%;
-}
-
-#fbEnter{
-    width: 20%;
-}
-
-#twitterEnter{
-    width: 20%;
-}
-#fbLikesInput{
-    margin-top: 0px;
-    width: 20%;
-}
-#twitterFollowersInput{
-    margin-top: 0px;
-    width: 20%;
-}
-
-#bioCreate{
-    min-width: 20%;
-    margin-top: 0%;
-    font-size: 20px;
-}
-
-#pic{
-    margin-left:45%;
-    width: 70%;
-}
-#preview{
-    border: 1px solid;
-    position: center;
-    border-color: #000;
-    max-height: 20%;
-    max-width: 20%;
+#createProfileButton{
+    float: left;
+    margin: 10px;
 }
 #createButton{
     background-color: rgba(180,7,6,1);
     color: #FFFFFF;
-    margin-top: 2%;
-    margin-bottom: 2%;
     font-size: 20px;
     height: 50px;
     border: none;
@@ -80,6 +55,46 @@ body {
     border-radius: 5px;  
     -webkit-border-radius: 5px;
 }
-#createButton:hover{
-    background-color: rgba(120,7,6,1);
+@media only screen and (max-width: 1020px) {
+    #band_info{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+    }
+    #social_media{
+        margin-top: 20px;
+	float:none;
+	margin-left: auto;
+	margin-right: auto;
+    }
+    #createProfileButton{
+        position: relative;
+        left: 30%;
+    }
+}
+#picture{
+    margin: 5px;
+}
+#bioCreateDiv{
+    position: relative;
+    left: 230px;
+    bottom: 80px;
+}
+#nameCreate{
+    position: relative;
+    left: 230px;
+    bottom: 240px;
+}
+#locationCreate{
+    position: relative;
+    left: 230px;
+    bottom:210px;
+}
+#gender{
+    margin-left: auto;
+    margin-right: auto;
+}
+#birthday{
+    margin-left: auto;
+    margin-right: auto;
 }
