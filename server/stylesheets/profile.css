@@ -28,9 +28,6 @@ table{
     overflow-x: hidden;
 }
 
-
-
-
 .replace {
 display:none;
 }
@@ -71,7 +68,7 @@ display:none;
 }
 
 #name{
-    width: 50%;
+    width: 55%;
     font-size: 25px;
     color: black;
     text-align: center;
@@ -258,13 +255,13 @@ td{
 
 }
 #following:hover{
-    background: rgba(220,7,6,1);
+    background: rgba(210,7,6,1);
     color: rgba(255,255,255,1);
 }
 
 #followers:hover{
-    background: rgba(255,255,255,1);
-    color: rgba(180,7,6,1);
+    background: rgba(210,7,6,1);
+    color: rgba(255,255,255,1);
 }
 
 #displayName{
@@ -346,6 +343,43 @@ td{
 #submitBioButton:hover{
     background-color: rgba(120,7,6,1);
 }
+
+#videoplay{
+    text-decoration: none;
+    color: black;
+    margin-left: 10%;
+    float: left;
+}
+
+#videoplay:hover{
+    text-decoration: underline;
+}
+
+#feed{
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: -58px; 
+    width:20%; 
+    height: 710px;
+    border: 1px solid rgba(180,7,6,1);
+    -moz-box-shadow:    3px 5px 10px 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,.2);
+    box-shadow:         3px 3px 10px 3px rgba(0,0,0,.2);
+    overflow: auto;
+    font-size: 15px;
+}
+
+#feedElement{
+    border-bottom: 1px solid #000;
+}
+
+#feedElement:hover{
+    background-color: rgba(163,163,163,.3);
+}
+
+
+
+
 #music{
     width: 100%;
     background-color: #FFFFFF;
@@ -363,61 +397,10 @@ td{
     box-shadow:         1px 1px 5px 2px rgba(0,0,0,.5);
 }
 
-#songList{
-    width: 25%;
-    color: white;
-    margin-top: 0;
-    -moz-box-shadow:    3px 3px 10px 3px rgba(0,0,0,.2);
-    -webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,.2);
-    box-shadow:         3px 3px 10px 3px rgba(0,0,0,.2);
-    background-color: rgba(0, 0, 0, .8);
-    -moz-border-radius:10px;  
-    border-radius: 10px;  
-    -webkit-border-radius: 10px;
-}
-
-#songListLabel{
-    font-size: 21px;
-}
-#songListLabel #uploadForm{
-    display: inline;
-}
-#uploadForm{
-    font-size: 10px;
-}
-
-#songContent{
-margin-top: 0px;
-margin-bottom: 5px;
-background : #E0E0E0;
-color : #ffffff; 
-padding : 4px; 
-max-width : 100%; 
-height : 90%; 
-overflow : auto; 
-min-height: 630px;
-background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-
-background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.2, rgb(240,240,240)),
-    color-stop(0.6, rgb(235,235,235)),
-    color-stop(0.8, rgb(230,230,230))
-);
--moz-border-radius:10px;  
-border-radius: 10px;  
--webkit-border-radius: 10px;
-}
-
 .vidPlay{
     margin-right:100px;
 }
+
 #songName #add{
     display: inline;
 }
@@ -445,6 +428,68 @@ border-radius: 10px;
     cursor: pointer;
     text-decoration: underline;
 }
+
+
+#tabs{
+    width: 25%;
+    color: white;
+    margin-top: 0;
+    -moz-box-shadow:    3px 3px 10px 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,.2);
+    box-shadow:         3px 3px 10px 3px rgba(0,0,0,.2);
+    background-color: rgba(0, 0, 0, .8);
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 10px;
+}
+
+#listName{
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 5px;
+}
+
+#listName a:focus {
+    outline: 4px;
+}
+
+#listName li{
+    margin: auto;
+    padding-top: 9px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 11px;
+    margin-left:10%;
+    display: inline;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#listName li:hover{
+    background-color: rgba(180,7,6,.9)
+}
+
+.highlightTab{
+    background-color: rgba(180,7,6,.8);
+}
+#songListLabel{
+    font-size: 20px;
+    color: #FFFFFF;
+}
+#songListLabel:target{
+    background-color: red;
+}
+#songListLabel #uploadForm{
+    display: inline;
+}
+#uploadForm{
+    font-size: 10px;
+}
+
+
 #playlist_name{
     float: left;
     font-size: 15px;
@@ -459,82 +504,107 @@ border-radius: 10px;
     text-decoration: underline;
 }
 
-#videoplay{
-    text-decoration: none;
-    color: black;
-    margin-left: 10%;
-    float: left;
-}
-
-#videoplay:hover{
-    text-decoration: underline;
-}
-
-#feed{
-    position: absolute;
-    height: 45%;
-    width: 95%;
-    border: 1px solid rgba(180,7,6,1);
-     -moz-border-radius:5px;  
-    border-radius: 5px;  
-    -webkit-border-radius: 5px;
-    overflow: auto;
-    font-size: 15px;
-}
-
-#feedElement{
-    border-bottom: 1px solid #000;
-}
-
-#feedElement:hover{
-    background-color: rgba(163,163,163,.3);
-}
-
-#playlist{
-    width: 25%;
-    color: white;
-    margin-top: 0;
-    z-index:0;
-    -moz-box-shadow:    -3px 3px 10px 3px rgba(0,0,0,.2);
-    -webkit-box-shadow: -3px 3px 10px 3px rgba(0,0,0,.2);
-    box-shadow:         -3px 3px 10px 3px rgba(0,0,0,.2);
-    background-color: rgba(0, 0, 0, .8);
-    -moz-border-radius:10px;  
-    border-radius: 10px;  
-    -webkit-border-radius: 10px;
-}
-
 #playlistLabel{
-    font-size: 21px;
+    font-size: 20px;
+    color: #FFFFFF;
 }
 
 #playlistContent{
-margin-top: 0px;
-margin-bottom: 5px;
-background : #E0E0E0;
-color : #ffffff; 
-padding : 4px; 
-max-width : 100%; 
-min-height: 630px;
-overflow : auto;
-background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-
-background-image: -webkit-gradient(
+    margin-top: 0px;
+    margin-bottom: 5px;
+    background : #E0E0E0;
+    color : #ffffff; 
+    padding : 4px; 
+    max-width : 100%; 
+    min-height:610px;
+    overflow : auto;
+    background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
     color-stop(0.2, rgb(240,240,240)),
     color-stop(0.6, rgb(235,235,235)),
     color-stop(0.8, rgb(230,230,230))
-);
--moz-border-radius:10px;  
-border-radius: 10px;  
--webkit-border-radius: 10px;
+    );
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 10px;
 }
+
+#songContent{
+    display: none;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    background : #E0E0E0;
+    color : #ffffff; 
+    padding : 4px; 
+    max-width : 100%; 
+    min-height: 610px;
+    overflow : auto;
+    background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(240,240,240)),
+    color-stop(0.6, rgb(235,235,235)),
+    color-stop(0.8, rgb(230,230,230))
+    );
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 10px;
+}
+
+
+#uploadFigurehead{
+    font-size: 15px;
+    color: #FFFFFF;
+    border: none;         
+    cursor: pointer;       
+    background-color: rgba(180,7,6,1);
+    border: solid 1px rgba(0,0,0,.5);
+    vertical-align: middle;
+    max-height: 40px;
+    max-width: 90px;
+    margin: auto;
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 100px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#uploadFigurehead:hover, #uploadFigurehead:focus{
+    background-color: rgba(140,7,6,1);
+}
+#uploadFigurehead:active{
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: rgba(120,7,6,1);
+    border: solid 1px #000;
+}
+
+
+
+
+
+
+
 
 .modalDialog {
     position: fixed;
@@ -782,3 +852,31 @@ border-radius: 10px;
     border-radius: 10px;
     background: rgba(180,7,6,1);
 }
+
+#enterTourney{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#enterTourney:hover { background: rgba(163,163,163,1); }
+
+#noThanks{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#noThanks:hover { background: rgba(163,163,163,1); }

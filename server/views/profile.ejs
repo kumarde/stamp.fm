@@ -17,6 +17,14 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+  <script>
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+  </script>
   </head>
   
   <body>
@@ -26,10 +34,64 @@
 <div id="profileContent" class="grid wfull">
 
   <div class="row">
-    <div class="c2" id="songList">
-          <center>
-          <span id="songListLabel">Songs</span>
-          <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="width:50%;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash"></form>
+      <div class="c2" id="tabs">
+
+        <ul id="listName">
+          <li id="favButton" class="highlightTab"><a href="#playlistContent" id="playlistLabel">Favorites</a></li>
+          <li id="songButton"><a href="#songContent" id="songListLabel">Songs</a></li>
+
+          <script>
+          $("document").ready(function(){
+          $("li#songButton").click(function() {
+            $('li#favButton').removeClass("highlightTab");
+          $('li#favButton').click(function(){
+            $('li#favButton').addClass("highlightTab");
+          })
+            });
+          });          
+          </script>
+          <script>
+          $("document").ready(function(){
+          $("li#songButton").click(function() {
+            $('li#songButton').addClass("highlightTab");
+          $('li#favButton').click(function(){
+            $('li#songButton').removeClass("highlightTab");
+          })
+            });
+          });          
+          </script>          
+        </ul>
+  
+
+
+  <div id="playlistContent">
+    <div id="song" style=" overflow:auto;">
+      <table cellspacing="0" cellpadding="0" >
+        <table cellspacing="0" cellpadding="1" style="color:#000" id = "playlistTable">
+          <% playlist.forEach(function(play){ %>
+          <tr id="playlist_name" class = "p<%=play._id%>">
+            <td><div style="width:100px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
+            <td><img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="favoriteRemove.png" style="height:15px;width:15px;float:right;"></td>
+          </tr>
+          <% }); %>
+        </table> 
+      </table>
+    </div> 
+  </div>    
+
+
+  <div id="songContent">
+
+    <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash">
+    <input type="button" value="Upload" id="uploadFigurehead">
+    </form>
+      <!--upload button click dialog-->
+          <script>
+           $('#uploadFigurehead').click(function() {
+             $('#uploadSong').click();
+            });
+           </script>
+      <!--END click dialog-->     
          <script>
           $("document").ready(function(){
             $('#uploadSong').change(function(){
@@ -64,24 +126,38 @@
           });
          </script> 
 <!--End Open/Close Modal Script-->
-          </center>
-          <div id="songContent">
-           <div id="song">
-             <div style=" overflow:auto;">
-               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
-      <% songs.forEach(function(song){ %>
-        <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
-          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
-          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
-          <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
-          <td><input input type="button" value="Submit" id="addTourney"></td>
-        </tr>
-      <% }); %>
-          </table>  
-        </div>
-            </div> 
-          </div>
-        </div>
+
+    <div id="song">
+      <div style=" overflow:auto;">
+        <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
+          <% songs.forEach(function(song){ %>
+          <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
+            <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
+            <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
+            <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
+            <td><input input type="button" value="Submit" id="addTourney"></td>
+          </tr>
+          <% }); %>
+        <script>
+          $("document").ready(function(){
+            $('#addTourney').click(function(){
+              $('div#youSure').addClass("unhidden");
+            });
+          $("input#noThanks").click(function() {
+            $('div#youSure').removeClass("unhidden");
+          $('input#enterTourney').click(function(){
+            $('div#youSure').removeClass("unhidden");
+          })
+            });
+          });
+        </script> 
+        </table>  
+      </div>
+    </div> 
+  </div>
+
+</div>
+
 
 <div id = "users"></div>
         <div id="name" class="c5">
@@ -155,41 +231,19 @@
 
         <div id="video">
           <div class="c12 end" id="videoPlayer" style="border:none">
-           <video height="200px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
+           <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
                 <source src="" type="video/mp4" id = "source">
             </video>
-      <label style="font-size:14px; background-color:rgba(0,0,0,0);color:#000;">News Feed</label>
-            <div id="feed" style="margin:auto"></div>
           </div>   
 
          </div> 
 </div>
-   
-<br>
-
-
-    <div class="c2" id="playlist" style="float:right">
-          <center><span id="playlistLabel">Favorites</span></center>
-          <div id="playlistContent">
-              <div id="song" style=" overflow:auto;">
-        <table cellspacing="0" cellpadding="0" >
-               <table cellspacing="0" cellpadding="1" style="color:#000" id = "playlistTable">
-      <% playlist.forEach(function(play){ %>
-        <tr id="playlist_name" class = "p<%=play._id%>">
-          <td><div style="width:100px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
-          <td><img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="favoriteRemove.png" style="height:15px;width:15px;float:right;"></td>
-        </tr>
-        <% }); %>
-          </table> 
-        </table>
-            </div> 
-          </div>
-        </div> 
-
+   <div class="c2" id="feed" style="float:right"></div>
 </div>
 </div>
-    </div>  
+</div> 
 
+</div>
 <!-- Modal Window(s) -->
 
 <div id="<%=createModal%>" class="modalDialogCreate">
@@ -307,6 +361,32 @@
     <center>
     <h3 style="color:white">Who's Following You</h3>    
     <div id="from"></div>   
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+
+<div id="youSure" class="modalDialog">
+  <div>
+    <center>
+    <h3 style="color:white">Are you sure you want to enter this song to the tournament?</h3>    
+    <input type="submit" value="Yes" id = "enterTourney">
+    <input type="button" value="No" id = "noThanks">
+    </center>
+  </div>
+</div>
+
+<!-- End Modal Window(s) -->
+
+<!-- Modal Window(s) -->
+
+<div id="congrats" class="modalDialog">
+  <div>
+    <center>
+    <h3 style="color:white">Congratulations! <br> You're song has been successfully added to the tournament!</h3>    
     </center>
   </div>
 </div>
