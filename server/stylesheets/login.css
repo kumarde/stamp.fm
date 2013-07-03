@@ -6,7 +6,6 @@ html{
 }
 
 .login{
-	position: relative;
 	background: rgba(0,0,0,.8);
     float: right;
     margin-left: 1%;
