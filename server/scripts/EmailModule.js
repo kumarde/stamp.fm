@@ -3,8 +3,8 @@ var nodemailer = require('nodemailer');
 var smtpTransport = nodemailer.createTransport("SMTP", {
 	service: "Gmail",
 	auth:{
-		user: "omarhashwi@gmail.com",
-		pass: "Brogrammer$1"
+		user: "contactstampfm@gmail.com",
+		pass: "thestampfmteam"
 	}
 });
 
@@ -18,7 +18,7 @@ EmailModule.prototype.composeFeedback = function(o)
 
 	var mailOptions = {
 		from: o.email,
-		to: "omarhashwi@gmail.com",
+		to: "contactstampfm@gmail.com",
 		cc: o.email,
 		subject: o.category,
 		text: "Stamp.fm Feedback",

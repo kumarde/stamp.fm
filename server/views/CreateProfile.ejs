@@ -19,15 +19,15 @@
 	<form method = "POST" enctype = "multipart/form-data" id = "createFields" name = "profileForm">
 	    <div id="band_info">
 		<div id="picture">
-		    <img id="preview" src="stampman.png"/>
+		    <img id="preview" src="<%=imgsrc%>"/>
 		    <br>
 		    <input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
 		</div>
 		<div id="bioCreateDiv">	
-		    <input type = "text" size="28" placeholder = "Tagline" id = "bioCreate" name = "" style="font-size:20px"></input>
+		    <input type = "text" size="28" name = "bio" placeholder = "Tagline" id = "bioCreate" name = "" style="font-size:20px"></input>
 		</div>
 		<div id="nameCreate">
-		    <input style="font-size:20px" size="28" type = "text" placeholder = "Personal/Stage/Band Name" name = "name" id= "name">
+		    <input style="font-size:20px" size="28" type = "text" placeholder = "Personal/Stage/Band Name" value = "<%=name%>" name = "name" id= "name">
 		</div>
 		<div id="locationCreate">
 		    <input type = "text" size="28" style="font-size:20px" placeholder = "Location (i.e. Ann Arbor, MI)" value = "<%=location%>" name = "location" id= "locationEnter">
