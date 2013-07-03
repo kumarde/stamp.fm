@@ -3,9 +3,9 @@ UserModule = function(){};
 var db = require('mongojs').connect("stampfm", ["profiles"])
 
 //take bio, take their name, basic information
-UserModule.prototype.updateDB = function(name, location, bio, fb, twit, id, gender, birthday, callback)
+UserModule.prototype.updateDB = function(name, location, bio, fb, twit, id, gender, birthday, url, callback)
 {
-	db.profiles.save({_id: id, name: name, location: location, bio: bio, facebook: fb, twitter: twit, following: [], followers: [], shared: []}, function(e,o){
+	db.profiles.save({url: url, _id: id, name: name, location: location, bio: bio, facebook: fb, twitter: twit, following: [], followers: [], shared: []}, function(e,o){
 		callback(true);
 	});
 }

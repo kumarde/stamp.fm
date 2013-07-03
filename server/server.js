@@ -49,8 +49,6 @@ db.music.count(function(e, count){
     }
 });
 /**********************ON SERVER STARTUP SONGS WILL BE 0 AND WILL INCREMENT WHENEVER UPDATED**/
-
-
 var flag = false; 
 
 var client = knox.createClient({
@@ -102,6 +100,7 @@ app.configure(function(){
         callbackURL: "http://localhost:8888/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
+            console.log(profile);
             graph.setAccessToken(accessToken);
             var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
             graph.fql(query, function(err, res){
@@ -112,14 +111,13 @@ app.configure(function(){
                     Feed.follow(profile.id.toString(), res.data[id].uid.toString(), function(data){});
                   }
                 })
-                
               }
             });
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(err) return done(err);
                 else if(user == null){
                     db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')}, function(e, userprof){
-                       db.profiles.save({_id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Tagline", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender});
+                       db.profiles.save({url: "", _id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Tagline", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender});
                        return done(null, userprof[0]);
                     });
                 }
@@ -427,6 +425,7 @@ app.post('/song-upload', function(req, res){
 app.post("/db-upload", function(req, res){
     var id;
     var name;
+    var songID;
     if(req.session.user == null){
         id = req.user[0]._id;
         name = req.user[0].name;
@@ -441,18 +440,18 @@ app.post("/db-upload", function(req, res){
         }
     }
     db.users.findOne({_id: id}, function(e, o){
-      var songID = o.upSong;
+      songID = o.upSong;
       db.music.save({_id: songID,name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre, inTourney: "Submit"});
+      Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
+        if(data == false) console.log("Share failed.");
+      });
+      res.send({msg: "saved", id: songID, name: req.body.name, genre: req.body.genre});
     })
-    
-    Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
-      if(data == false) console.log("Share failed.");
-    });
-    res.send({msg: "saved", id: songs, name: req.body.name, genre: req.body.genre});
 })
 
 
 app.post('/tournament', function(req, res){
+    console.log(req.body.id);
     var id;
     var name;
     if(req.session.user == null){
@@ -731,9 +730,9 @@ app.post('/create', function(req, res){
         function(e, o){
                 var gender = req.body.gender;
                 var birthday = req.param('month')+req.param('day')+req.param('year');
-                console.log(birthday);
-                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id, gender, birthday, function(data){
-					res.redirect('/profile');
+                var url = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id, gender, birthday, url, function(data){
+					      res.redirect('/profile');
 				});
         }
     );
@@ -853,7 +852,7 @@ app.get('/profile', function(req, res){
                     }
                     else{
                         db.playlists.find({artistID: id}, function(e, playlist){
-                         res.render('profile', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, PIC_BUCKET, 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
+                         res.render('profile', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: profile.url, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
                     }
                 });
