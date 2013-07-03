@@ -119,7 +119,7 @@ app.configure(function(){
                 if(err) return done(err);
                 else if(user == null){
                     db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')}, function(e, userprof){
-                       db.profiles.save({_id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Bio", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender});
+                       db.profiles.save({_id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Tagline", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender});
                        return done(null, userprof[0]);
                     });
                 }
@@ -442,7 +442,7 @@ app.post("/db-upload", function(req, res){
     }
     db.users.findOne({_id: id}, function(e, o){
       var songID = o.upSong;
-      db.music.save({_id: songID,name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre});
+      db.music.save({_id: songID,name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre, inTourney: "Submit"});
     })
     
     Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
@@ -474,6 +474,7 @@ app.post('/tournament', function(req, res){
         res.send({msg: "no"});
       }
       if(!o){
+        db.music.update({_id: parseInt(req.body.id)}, {$set: {inTourney: "Submitted"}});
         db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name});
         res.send({msg: "yes"});
       }
@@ -520,7 +521,7 @@ app.post('/feedback', function(req,res){
 /*FACEBOOK AUTH*/
 app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_likes', 'user_interests','user_photos','user_location']}));
 app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', {successRedirect: '/create',
+    passport.authenticate('facebook', {successRedirect: '/profile',
                                        failureRedirect: '/login'}));
 
 app.get('/login', function(req, res){
@@ -550,7 +551,6 @@ app.post('/login', function(req, res){
 		} else{
 			req.session.user = o;
 			if(req.body.rememberme == 'true'){
-                console.log("rememberme works!");
 				res.cookie('email', o.email, {maxAge: 900000});
 				res.cookie('pass', o.pass, {maxAge: 900000});
 			}
