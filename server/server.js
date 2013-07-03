@@ -485,6 +485,7 @@ app.post('/tournament', function(req, res){
 app.post('/feedback', function(req,res){
   var email, name;
     if(req.session.user == null){
+      console.log(req.user);
       email = req.user[0].email;
       name = req.user[0].name;
     }
