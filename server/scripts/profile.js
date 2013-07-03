@@ -22,7 +22,7 @@ $(document).ready(function() {
           var $div = $('<div data-tag ="'+data.id+'" class = "vidPlay" style="width:100px">'+data.name+'</div>');
           var $img1 = $('<img data-name = "'+data.name+'" data-tag ="'+data.id+'" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;">');
           var $img2 = $('<img data-name = "'+data.name+'" data-tag = "'+data.id+'" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;">');
-          var $img3 = $('<input data-name = "'+data.name+'" data-tag = "'+data.id+'" type="button" value="Submit" id="addTourney">');
+          var $img3 = $('<input data-genre = "'+data.genre+'" data-name = "'+data.name+'" data-tag = "'+data.id+'" type="button" value="Submit" class="addTourney">');
           $div.click(playVideo);
           $img1.click(addtoPlaylist);
           $img2.click(deleteSong);
@@ -47,6 +47,7 @@ $(document).ready(function() {
     $('.addPlay').click(addtoPlaylist);
     $('.deletebutton').click(deleteSong);
     $('.playdelete').click(deletefromPlaylist);
+    $('.addTourney').click(uploadToTourney);
     $('#chName').submit(function(event){
       return false;
     })
@@ -169,8 +170,23 @@ $(document).ready(function() {
           }
         }
       });
-
+   }
    function uploadToTourney(){
-    
+      var name = $(this).attr('data-name');
+      var sid = $(this).attr('data-tag');
+      var genre = $(this).attr('data-genre');
+      $.ajax({
+        url: '/tournament',
+        type: 'POST',
+        cache: false,
+        data: {name: name, id: sid, genre: genre},
+        success: function(data){
+            if(data.msg == "no"){
+              alert("Song is already in the database.");
+            }
+            else{
+              alert("Congrats! Your song is in!");
+            }
+        }
+      })
    }   
-  }

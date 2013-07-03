@@ -74,7 +74,7 @@
           <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
           <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
           <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
-          <td><input input type="button" value="Submit" id="addTourney"></td>
+          <td><input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="Submit" class="addTourney"></td>
         </tr>
       <% }); %>
           </table>  

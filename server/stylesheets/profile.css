@@ -146,7 +146,7 @@ display:none;
     border: solid 1px #000;
 }
 
-#addTourney{
+.addTourney{
     font-size: 10px;
     background: url('trebleClef.png');
     color: white;
