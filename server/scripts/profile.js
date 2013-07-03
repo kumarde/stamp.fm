@@ -182,7 +182,7 @@ $(document).ready(function() {
         data: {name: name, id: sid, genre: genre},
         success: function(data){
             if(data.msg == "no"){
-              alert("Song is already in the database.");
+              alert("You cannot enter two songs in the same genre.");
             }
             else{
               alert("Congrats! Your song is in!");
