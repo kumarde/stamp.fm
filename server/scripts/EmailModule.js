@@ -42,7 +42,7 @@ EmailModule.prototype.composeResponse = function(o)
 	var mailOptions = {
 		from: "Stamp.fm <omar@stamp.fm>",
 		to: o.email,
-		subject: "Feedback helps us Grow",
+		subject: "Feedback Helps Us Grow",
 		text: "Feedback is very well appreciated.",
 		html: html
 	}
