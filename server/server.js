@@ -1,6 +1,6 @@
 var flash = require('connect-flash')
   , express = require('express')
-  , engine = require('ejs-locals')
+  , engine = require('ejs-locals') //////
   , form  = require('express-form')
   , moment = require('moment')
   , http = require('http')
@@ -39,6 +39,7 @@ var songs = 0;
 
 /***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
 db.music.count(function(e, count){
+    console.log(count);
     if(count){
       db.music.find().sort({_id: -1}, function(e, o){
         songs = o[0]._id + 1;
@@ -172,21 +173,21 @@ app.post('/bandsearch', function(req,res){
 
 app.get('/feed', function(req, res){
 		if (req.session.user == null && req.user == null) {
-			res.redirect('/login');
+			res.redirect('/');
 		}
 		else res.render('feed');
 });
 
 app.get('/users', function(req, res){
 		if (req.session.user == null && req.user == null) {
-			res.redirect('/login');
+			res.redirect('/');
 		}
 		else res.render('users');
 });
 
 app.post('/users', function(req, res){
 		if (req.session.user == null && req.user == null) {
-			res.redirect('/login');
+			res.redirect('/');
 		}
 		else {
 			db.users.find(function(err,docs){
@@ -199,7 +200,7 @@ app.post('/users', function(req, res){
 app.post('/addfeed', function(req, res){
 
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
         if(req.session.user == null){
@@ -222,7 +223,7 @@ app.post('/addfeed', function(req, res){
 app.post('/feed', function(req, res){
 
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 if(req.session.user == null){
@@ -245,7 +246,7 @@ if(req.session.user == null){
 
 app.post('/follow', function(req,res){
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 		if(req.session.user == null){
@@ -275,7 +276,7 @@ app.post('/follow', function(req,res){
 
 app.post('/followers', function(req,res) {
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 if(req.session.user == null){
@@ -300,7 +301,7 @@ if(req.session.user == null){
 
 app.post('/following', function(req,res) {
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 if(req.session.user == null){
@@ -325,7 +326,7 @@ if(req.session.user == null){
 
 app.post('/profile/data', function(req,res) {
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 		Feed.lookup(req.body.id,function(data){
@@ -523,26 +524,6 @@ app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {successRedirect: '/create',
                                        failureRedirect: '/login'}));
 
-app.get('/login', function(req, res){
-	if(req.cookies.user == undefined || req.cookies.pass == undefined){
-        if(req.session.user == null && req.user == null){
-		  res.render('login', {title: 'Hello - Please login To Your Account', error: "hello"});
-        }
-        else{
-            res.redirect('/upload');
-        }
-	}else{
-		accountModule.autoLogin(req.param('user'), req.param('pass'), function(o){
-			if(o != null){
-				req.session.user = o;
-				res.redirect('/upload');
-			} else{
-				res.render('login', {title: "Hello - Please Login to your Account", error:"hello"});
-			}
-		});
-	}
-});
-
 app.post('/login', function(req, res){
 	accountModule.manualLogin(req.body.email, req.body.password, function(e, o){
 		if(!o){
@@ -600,7 +581,7 @@ app.get('/forgot', function(req ,res, next){
 app.get('/logout', function(req, res){
     req.logout();
     req.session.destroy();
-    res.redirect('/login');
+    res.redirect('/');
 });
 
 app.post('/forgot', function(req, res, next){
@@ -677,7 +658,7 @@ app.get('/create', function(req, res){
     var name = "";
     var location = "";
     if(req.session.user == null && req.user == null){
-        res.redirect('/login');
+        res.redirect('/');
     }
     else{
         var id;
@@ -832,7 +813,7 @@ app.post('/addPlay', function(req, res){
 
 app.get('/profile', function(req, res){
     if(req.session.user == undefined && req.user == undefined){
-            res.redirect('/login');
+            res.redirect('/');
     }
     else{
         var vid = 0;

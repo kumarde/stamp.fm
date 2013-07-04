@@ -14,6 +14,7 @@ $(document).ready(function() {
 	pid = $('#profileContent').attr('data-tag');
 	followers();
 	following();
+	feedfollowing();
 		$('#stampFollow').click(function(event) {
 		$.ajax({ 
 			url: '/follow',
@@ -110,6 +111,61 @@ function redirect(event){
 		window.location = "/view?id="+event.target.id; 
 	}
 	
+	
+		function feedfollowing() {
+		$.ajax({ 
+			url: '/following',
+           type: 'POST',
+           cache: false, 
+		   data: {id: "self"},
+           success: function(data){
+            if (typeof data.redirect == 'string' )window.location = data.redirect;
+			else if (typeof data.error == 'string')alert(data.error);
+			else {
+				for ( var i = 0; i < data.length;i++ ){
+					
+					$.ajax({ 
+						url: '/profile/data',
+						type: 'POST',
+						cache: false, 
+						data: {id: data[i]},
+						success: function(prof){
+							if (typeof data.redirect == 'string' )window.location = prof.redirect;
+							else if (typeof prof.error == 'string')alert(prof.error);
+							else {	
+								followingarray.push(prof);
+								var $div = $('<div id = "'+prof._id+'">'+prof.name+'</div>');
+								$div.click(redirect);
+								 $('#'+followingid).append($div);
+								for ( var j = 0; j < prof.shared.length; j++){
+									if (prof.shared[j].type == 'upload')var $feedentry = $('<div id="feedElement">'+prof.name+' Uploaded a New Song ('+prof.shared[j].name+')'+'</div>');
+									if (prof.shared[j].type == 'follow')var $feedentry = $('<div id="feedElement">'+prof.name+' Followed '+prof.shared[j].name+'</div>');
+									if (prof.shared[j].type == 'favorite')var $feedentry = $('<div id="feedElement">'+prof.name+' Added a New Favorite ('+prof.shared[j].name+')</div>');
+									if (prof.shared[j].type == 'tournament')var $feedentry = $('<div id="feedElement">'+prof.name+' Entered the Tournament ('+prof.shared[j].name+')'+'</div>');
+									if (prof.shared[j].type == 'delete')var $feedentry = $('<div id="feedElement">'+prof.name+' Deleted a Song ('+prof.shared[j].name+')'+'</div>');
+									
+									prof.shared[j].element = $feedentry;
+									prof.shared[j].date = new Date(prof.shared[j].date);
+									feedarray.push(prof.shared[j]);
+									//$('#'+feedid).prepend($feedentry);
+								}
+								if (followingarray.length == data.length){
+									feedarray.sort(function(x,y){
+										return x.date - y.date;
+									});
+									for (var k = feedarray.length-1; k >= 0; k--){
+										$('#'+feedid).append(feedarray[k].element);
+									}
+								}
+							}
+						}
+
+					});
+				}
+			}
+			}
+		});
+		}
 	/*function feed() {
 	    $.ajaxSetup({
             cache: false,

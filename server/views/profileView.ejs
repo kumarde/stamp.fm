@@ -4,7 +4,7 @@
 <% script('users.js') -%>
 <% stylesheet('video-js.css') -%>
 <% script('video.js') -%>
-<% script('feed.js') -%>
+<% script('view.js') -%>
 <% script('profile.js') -%>
 <% script('view.js') -%>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
     <div id="wrapper">
 
 
-<div id="profileContent" class="grid wfull">
+<div data-tag="<%=id%>" id="profileContent" class="grid wfull">
 
   <div class="row">
       <div class="c2" id="tabs">

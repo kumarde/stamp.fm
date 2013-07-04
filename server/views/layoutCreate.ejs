@@ -147,20 +147,133 @@ overflow: auto;
     margin-top: 0px;
 }
 
+#forgot-password {
+    font-size: 10px;
+	vertical-align:top;
+}
+
+#remember {
+    font-size: 10px;
+}
+#rememberme {
+	position:relative;
+	vertical-align:top;
+	margin-top:-13px;
+	margin-left:75px;
+}
+
+#column {
+	margin-right:5px;
+	float:left;
+}
+
+
+#emaili{
+	vertical-align:top;
+	margin-top:2px;
+}
+
+#passi{
+	vertical-align:top;
+	margin-top:2px;
+}
 </style>
 
       <a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
       </form>
       <ul id="links">
-        <li id="audition">
-        <a href="#notReal" style="text-decoration:none" id="audLink" class="nav">Elimination</a>
+		<form method = "POST" id = "loginform">
+		<li id="info">
+		<div id="column">
+		 <div id = "forgot-password" > Forgot your Password?</div>
+		 <div id = "remember" > Remember Me: </div>
+		 <input type = "checkbox" id = "rememberme" checked = "checked" >
+      
+		</div>
+		</li>
+        <li id="mail">
+        <input type = "text" name = "email" id="emaili" placeholder="Email" class="em">
         </li>
-        <li id="bracket">
-        <a href="#notReal" style="text-decoration:none" id="brackLink" class="nav">Finals</a>
+        <li id="pass">
+        <input type = "password" name = "pass" id = "passi" placeholder="Password" class="ps">
         </li> 
         <li id="login">
-        <a href="/login" style="text-decoration:none; margin-right:25px; margin-left: 25px" id="loginLink" class="nav">Log In</a>
+		<!--<input type = "submit" value = "Log In" class="nav" id="loginLink" style="text-decoration:none; margin-right:25px; margin-left: 25px">-->
+        <a style="text-decoration:none; margin-right:25px; margin-left: 25px" id="loginLink" class="nav">Log In</a>
+
+		<script>
+  $(document).ready(function() {
+  
+    $("#loginform").submit(function(e){
+      return false;
+    });
+    $('#loginLink').click(function(event){ 
+     var email = $('input#emaili').val();
+     var password = $('input#passi').val();
+     var rememberme = $('input#rememberme').is(':checked');
+     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+     if(email == "" || password == ""){
+      $('div#UnFilled').addClass("unhidden");
+        $('a#close').click(function(){
+        $('div#UnFilled').removeClass("unhidden");
+      });
+     }
+      else if (!email.match(re)){
+        $('div#BadEmail').addClass("unhidden");
+        $('a#close').click(function(){
+        $('div#BadEmail').removeClass("unhidden");
+        });
+      }
+      else{
+     $.ajax({ 
+           url: '/login',
+           type: 'POST',
+           cache: false, 
+           data: {email: email, password: password, rememberme: rememberme},
+           success: function(data){
+            if(data.error != null){
+              $('div#lError').addClass("unhidden");
+              $('a#close').click(function(){
+                $('div#lError').removeClass("unhidden");
+              })
+            }
+            if (typeof data.redirect == 'string'){
+              window.location = data.redirect;
+            }
+           }
+        })
+      }
+     });
+    $('#forgotpass').submit(function(e){
+      return false;
+    });
+    $('#recoverPass').click(function(event){
+      var email = $('input.enterEmail').val();
+      $.ajax({
+        url: '/forgot',
+        type: 'POST',
+        cache: false,
+        data: {email: email},
+        success: function(data){
+          if(data.msg != "ok"){
+            $('div#recoverError').addClass("unhidden");
+            $('a#close').click(function(){
+              $('div#recoverError').removeClass("unhidden");
+            })
+          } else {
+            $('div#recoverSuccess').addClass("unhidden");
+            $('a#close').click(function(){
+              $('div#recoverSuccess').removeClass("unhidden");
+            })
+          }
+        }
+      })
+    })
+  });
+  
+  </script>
         </li>  
+		</form>
     </ul>
     </header>
 

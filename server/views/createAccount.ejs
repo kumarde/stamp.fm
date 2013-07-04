@@ -38,8 +38,8 @@
       <input type = "text" name = "email" id="email" placeholder="Email" class="email"><br><br>
       <input type = "password" name = "pass" id = "password" placeholder="Password" class="pass"><br><br>
       <input type = "password" name = "pass-confirm" id = "PasswordConfirmation" placeholder="Confirm Password" class="pass"><br><br>
-      <label for = "birthday" id = "birthday" style="float:left">I certify that I am over the age of 14 and if I'm an artist, I do not have a manager: <input type = "checkbox"></label>
-      <br>
+      <label for = "birthday" id = "birthday" style="float:left">I certify that I am over the age of 14<br>and if I'm an artist, I do not have a manager: </label>
+      <br><input type = "checkbox" checked = "checked" style="float:left"><br>
       </center>
       </p>
       <input type = "submit" value = "Create Account" style = "float:left" id = "createAccount"><br><br>
@@ -64,6 +64,16 @@
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
     </ul>          
     </center>
+  </div>
+</div>
+
+
+<div id="lError" class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close" id = "close">X</a>
+    <center>
+    <h5 style="color:white">Error: Username and Password Combination don't match</h5>
+</center>
   </div>
 </div>
 
@@ -93,6 +103,7 @@
      var password = $('#password').val();
      var passconfirm = $('#PasswordConfirmation').val();
      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	 
      if(name == "" || email == "" || password == "" || passconfirm == ""){
       $('div#UnFilled').addClass("unhidden");
       //alert("Please Fill In All Required Fields");

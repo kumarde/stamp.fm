@@ -3,7 +3,7 @@ var forever = require('forever-monitor');
 var child = new(forever.Monitor)('server.js',{
 	max: 3,
 	silent: true,
-	options:[]
+	options:[{'watch': true, 'watchIgnoreDotFiles': null, 'watchIgnorePatterns': null, 'watchDirectory':'.'}] //watch = true?
 });
 
 child.on('exit', function(){
