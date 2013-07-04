@@ -96,33 +96,17 @@
           $("document").ready(function(){
             $('#uploadSong').change(function(){
               $('#uploadForm').submit();
+              $('div#info').addClass("unhidden");
             });
-          $("#uploadSong").change(function() {
-            $('div#info').addClass("unhidden");
           $('input#songSubmit').click(function(){
             $('div#info').removeClass("unhidden");
           })
-            });
-          });
-         </script> 
-          <script>
-          $("document").ready(function(){
-          $("#uploadSong").change(function() {
-            $('div#info').addClass("unhidden");
           $('a#closeButton').click(function(){
             $('div#info').removeClass("unhidden");
           })
-            });
-          });
-         </script>
-          <script>
-          $("document").ready(function(){
-          $("#uploadSong").change(function() {
-            $('div#info').addClass("unhidden");
           $('input#cancelUpload').click(function(){
             $('div#info').removeClass("unhidden");
           })
-            });
           });
          </script> 
 <!--End Open/Close Modal Script-->
