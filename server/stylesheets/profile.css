@@ -39,9 +39,9 @@ display:none;
     display: inline;
 }
 #preview{
+    margin: auto;
     max-height: 220px;
     max-width: 400px;
-    margin: auto;
     border: 1px solid;
     border-color: rgba(180,7,6,1);
     opacity: 1;
@@ -121,9 +121,9 @@ display:none;
     border-radius: 10px;  
     -webkit-border-radius: 100px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-    -webkit-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 2px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 8px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 8px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 8px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
     -webkit-transition-duration: 0.2s;
     -moz-transition-duration: 0.2s;
     transition-duration: 0.2s;
@@ -190,12 +190,11 @@ td{
 
 #social{
     float: right;
-    margin-left: -10%;
+    margin-left: -8%;
 }
 
 #followInfo{
     float: left;
-    margin-left: -5%;
 }
 
 #following:active{
@@ -304,8 +303,7 @@ td{
     background-color: rgba(120,7,6,1);
 }
 #bio{
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     text-align:center; 
     overflow : auto;
     word-wrap: break-word;
@@ -315,8 +313,6 @@ td{
     padding : 4px; 
     max-width : 50%; 
     max-height : 30px; 
-    margin-top: -50px;
-    margin-bottom: 10px;
 }
 #bio:hover{
     background-color: rgba(180,7,6,.3);
