@@ -11,7 +11,7 @@ body {
     width:90%;
     margin-left: auto;
     margin-right: auto;
-    height: 800px;
+    height: 500px;
 }
 #band_info{
     float: left;
@@ -42,8 +42,7 @@ body {
     box-shadow:         3px 3px 5px 6px #999;
 }
 #createProfileButton{
-    float: left;
-    margin: 10px;
+    margin: 50px;
 }
 #createButton{
     background-color: rgba(180,7,6,1);
@@ -67,9 +66,8 @@ body {
 	margin-left: auto;
 	margin-right: auto;
     }
-    #createProfileButton{
-        position: relative;
-        left: 30%;
+    #wrapper{
+        height: 700px;
     }
 }
 #preview{
