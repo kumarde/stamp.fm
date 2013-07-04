@@ -440,6 +440,7 @@ app.post("/db-upload", function(req, res){
         }
     }
     db.users.findOne({_id: id}, function(e, o){
+      console.log(o);
       songID = o.upSong;
       db.music.save({_id: songID,name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre, inTourney: "Submit"});
       Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
@@ -771,7 +772,17 @@ app.get('/view', function(req, res){
                     console.log(e);
                 }  else{
                         db.playlists.find({artistID: pid}, function(e, playlist){
-                         res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: myS3Account.readPolicy(id, PIC_BUCKET, 60), songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
+                          db.profiles.findOne({_id: id}, function(e, self){
+                            var imgurl;
+                          if(self.changedPic === "true" || self.changedPic === "none"){
+                            imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+                          }
+                          else{
+                            imgurl = self.url;
+                          }
+                         res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
+                          })
+                          
                         })        
                 }
             })
