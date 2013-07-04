@@ -727,6 +727,7 @@ app.post('/create', function(req, res){
         }
     }
     if(req.files.picture.size == 0){
+      db.profiles.update({_id: id}, {$set: {changedPic: "none"}});
       var stream = fs.createReadStream('./images/stampman.png');
     }
     else{
@@ -740,6 +741,7 @@ app.post('/create', function(req, res){
             stream: stream
         },
         function(e, o){
+                console.log(o);
                 var gender = req.body.gender;
                 var birthday = req.param('month')+req.param('day')+req.param('year');
                 userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id, gender, birthday, function(data){
@@ -863,8 +865,9 @@ app.get('/profile', function(req, res){
                     else{
                          db.playlists.find({artistID: id}, function(e, playlist){
                           var imgurl;
-                          if(profile.changedPic === "true"){
+                          if(profile.changedPic === "true" || profile.changedPic === "none"){
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+                            console.log(imgurl);
                           }
                           else{
                             imgurl = profile.url;
