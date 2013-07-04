@@ -100,7 +100,6 @@ app.configure(function(){
         callbackURL: "http://localhost:8888/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
-            console.log(profile);
             graph.setAccessToken(accessToken);
             var query = 'SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1';
             graph.fql(query, function(err, res){
@@ -709,19 +708,13 @@ app.get('/create', function(req, res){
             } else {
                  id = req.session.user[0]._id;
             }
+             db.profiles.save({_id: id, name: "", location: "Click to change Location", bio: "Click to change Tagline", facebook: "", twitter: "", following: [], followers: [], shared: [], gender: ""});
             res.render('CreateProfile', {name: name, location: location, imgsrc: "stampman.png"}); 
         }
     }
 });
 
 app.post('/create', function(req, res){
-    console.log(req.files);
-    if(req.files.picture.size == 0){
-      var stream = fs.createReadStream('./images/stampman.png');
-    }
-    else{
-      var stream = fs.createReadStream(req.files.picture.path);
-    }
     var id;
     if(req.session.user == undefined){
         id = req.user[0]._id;
@@ -733,6 +726,13 @@ app.post('/create', function(req, res){
             id = req.session.user[0]._id;
         }
     }
+    if(req.files.picture.size == 0){
+      var stream = fs.createReadStream('./images/stampman.png');
+    }
+    else{
+      db.profiles.update({_id: id}, {$set: {changedPic: "true"}});
+      var stream = fs.createReadStream(req.files.picture.path);
+    }
     upload = new mpu(
         {
             client: picClient,
@@ -742,8 +742,7 @@ app.post('/create', function(req, res){
         function(e, o){
                 var gender = req.body.gender;
                 var birthday = req.param('month')+req.param('day')+req.param('year');
-                var url = myS3Account.readPolicy(id, PIC_BUCKET, 60);
-                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id, gender, birthday, url, function(data){
+                userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id, gender, birthday, function(data){
 					      res.redirect('/profile');
 				});
         }
@@ -864,10 +863,11 @@ app.get('/profile', function(req, res){
                     else{
                          db.playlists.find({artistID: id}, function(e, playlist){
                           var imgurl;
-                          if(profile.url != ""){
+                          if(profile.changedPic === "true"){
+                            imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+                          }
+                          else{
                             imgurl = profile.url;
-                          } else {
-                            imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60)
                           }
                          res.render('profile', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
@@ -937,6 +937,7 @@ app.post('/changeImage', function(req, res){
             id = req.session.user[0]._id;
         }
     }
+    db.profiles.update({_id: id}, {$set: {changedPic: "true"}});
     upload = new mpu(
         {
             client: picClient,
