@@ -1,6 +1,6 @@
 var flash = require('connect-flash')
   , express = require('express')
-  , engine = require('ejs-locals')
+  , engine = require('ejs-locals') //////
   , form  = require('express-form')
   , moment = require('moment')
   , http = require('http')
@@ -39,6 +39,7 @@ var songs = 0;
 
 /***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
 db.music.count(function(e, count){
+    console.log(count);
     if(count){
       db.music.find().sort({_id: -1}, function(e, o){
         songs = o[0]._id + 1;
