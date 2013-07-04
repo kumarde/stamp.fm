@@ -94,7 +94,7 @@
 
 
 <div id = "users"></div>
-        <div id="name" class="c5" style="margin:auto;">
+        <div id="name" class="c5">
 
         <spanName id="displayName" style="color:black"><%=name%></spanName>
         <div id="location">
@@ -110,17 +110,17 @@
         <a href="#followersList" id="followersLink"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></a>
         </ul>
         <ul class="interaction" id="social" >
-        <li><div class="fb-like" id="fbIcon" data-href="<%=facebook%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial"></div></li><br>
-        <li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+        <li><div class="fb-like" id="fbIcon" data-href="<%=facebook%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li><br>
+        <a href="<%=twitter%>" id="twit" target="_blank"><li><img src="twitter.png" id="twitIcon"></li></a><br> 
+        <!--<li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>-->
         </ul>
-
-      <div id="bio">
-    <spanBio id="displayBio"><%=bio%></spanBio>
-      </div>
       </div>
 <br>
 
         <div id="video">
+                <div id="bio">
+                  <spanBio id="displayBio"><%=bio%></spanBio>
+                </div>
           <div class="c12 end" id="videoPlayer" style="border:none">
            <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
                 <source src="" type="video/mp4" id = "source">

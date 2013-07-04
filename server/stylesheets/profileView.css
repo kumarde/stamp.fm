@@ -32,6 +32,7 @@ table{
     margin-top: 4%;
 }
 #preview{
+    margin:auto; 
     max-height: 220px;
     max-width: 400px;
     border: 1px solid;
@@ -46,7 +47,7 @@ table{
     opacity: .7;
 }
 #name{
-    margin: auto;
+    margin:auto; 
     width: 55%;
     font-size: 25px;
     color: black;
@@ -60,7 +61,6 @@ table{
 
 .interaction{
     list-style-type: none;
-    margin: auto;
 }
 .interaction li{
     display: inline;
@@ -125,16 +125,21 @@ td{
 }
 #twitIcon{
     max-height: 40px;
-    max-width: 40px;   
+    max-width: 40px;
+    margin-bottom: -10px;    
     margin-right: 0%;
     -moz-border-radius:100px;  
     border-radius: 100px;  
     -webkit-border-radius: 100px;
 }
+#twitIcon:hover{
+    border: 5px solid #000;
+}
 
 #social{
     float: right;
-    margin-right: 8%;
+    margin: auto;
+    margin-right: 5%;
 }
 
 #followInfo{
@@ -207,7 +212,8 @@ td{
     font-size: 15px;
 }
 #bio{
-    margin-left: 25%;
+    margin-left: auto;
+    margin-right: auto;
     text-align:center; 
     overflow : auto;
     word-wrap: break-word;
@@ -215,6 +221,8 @@ td{
     border : 1px;
     color : #000; 
     padding : 4px; 
+    margin-bottom: 10px;
+    margin-top: -40px;
     max-width : 50%; 
     max-height : 30px;
 }

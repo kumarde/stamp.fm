@@ -153,8 +153,8 @@
         <a href="#followersList" id="followersLink"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></a>
         </ul>
         <ul class="interaction" id="social">
-        <li><div class="fb-like" id="fbIcon" data-href="<%=facebook%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial"></div></li><br>
-        <li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+        <li><div class="fb-like" id="fbIcon" data-href="<%=facebook%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li><br>
+        <a href="<%=twitter%>" id="twit" target="_blank"><li><img src="twitter.png" id="twitIcon"></li></a><br> 
         <form method = "POST" action = "/changeImage" id = "chImg" enctype="multipart/form-data">
           <input name = "submit" type="submit" id="submitProfPic" value="Submit" onclick="visibilityPicButton();">
           <input name = "file" type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="display:none">  
@@ -187,17 +187,17 @@
            </script>
         <!--END Profile Pic Upload Dialog--> 
 
-            <div id="bio" >
+      </div>
+<br>
+
+        <div id="video">
+                      <div id="bio" >
     <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio" id = "chBio">
           <input type="text" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
           <input type="submit" id="submitBioButton" value="Submit" style="visibility: hidden" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
         </form> 
       </div>
-      </div>
-<br>
-
-        <div id="video">
           <div class="c12 end" id="videoPlayer" style="border:none">
            <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
                 <source src="" type="video/mp4" id = "source">
