@@ -967,7 +967,8 @@ app.post('/playDelete', function(req, res){
 
 app.post('/deleteSong', function(req, res){
     var sid = req.body.id;
-    db.tournament.find({_id: parseInt(sid)}, function(e, o){
+    console.log(req.body.id);
+    db.tournament.find({_id: sid}, function(e, o){
         console.log(o);
         if(e){
             console.log(e);
@@ -982,7 +983,6 @@ app.post('/deleteSong', function(req, res){
 						if (data == false)console.log("Share failed");
 					});
 				}
-			
 			})
             db.playlists.remove({_id: sid}, function(e, o){})
             client.deleteFile(parseInt(sid), function(e, res){});
