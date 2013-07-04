@@ -173,21 +173,21 @@ app.post('/bandsearch', function(req,res){
 
 app.get('/feed', function(req, res){
 		if (req.session.user == null && req.user == null) {
-			res.redirect('/login');
+			res.redirect('/');
 		}
 		else res.render('feed');
 });
 
 app.get('/users', function(req, res){
 		if (req.session.user == null && req.user == null) {
-			res.redirect('/login');
+			res.redirect('/');
 		}
 		else res.render('users');
 });
 
 app.post('/users', function(req, res){
 		if (req.session.user == null && req.user == null) {
-			res.redirect('/login');
+			res.redirect('/');
 		}
 		else {
 			db.users.find(function(err,docs){
@@ -200,7 +200,7 @@ app.post('/users', function(req, res){
 app.post('/addfeed', function(req, res){
 
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
         if(req.session.user == null){
@@ -223,7 +223,7 @@ app.post('/addfeed', function(req, res){
 app.post('/feed', function(req, res){
 
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 if(req.session.user == null){
@@ -246,7 +246,7 @@ if(req.session.user == null){
 
 app.post('/follow', function(req,res){
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 		if(req.session.user == null){
@@ -276,7 +276,7 @@ app.post('/follow', function(req,res){
 
 app.post('/followers', function(req,res) {
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 if(req.session.user == null){
@@ -301,7 +301,7 @@ if(req.session.user == null){
 
 app.post('/following', function(req,res) {
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 if(req.session.user == null){
@@ -326,7 +326,7 @@ if(req.session.user == null){
 
 app.post('/profile/data', function(req,res) {
 	if (req.session.user == null && req.user == null) {
-		res.send({redirect:'/login'});
+		res.send({redirect:'/'});
 	}
 	else{
 		Feed.lookup(req.body.id,function(data){
@@ -524,26 +524,6 @@ app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {successRedirect: '/create',
                                        failureRedirect: '/login'}));
 
-app.get('/login', function(req, res){
-	if(req.cookies.user == undefined || req.cookies.pass == undefined){
-        if(req.session.user == null && req.user == null){
-		  res.render('login', {title: 'Hello - Please login To Your Account', error: "hello"});
-        }
-        else{
-            res.redirect('/upload');
-        }
-	}else{
-		accountModule.autoLogin(req.param('user'), req.param('pass'), function(o){
-			if(o != null){
-				req.session.user = o;
-				res.redirect('/upload');
-			} else{
-				res.render('login', {title: "Hello - Please Login to your Account", error:"hello"});
-			}
-		});
-	}
-});
-
 app.post('/login', function(req, res){
 	accountModule.manualLogin(req.body.email, req.body.password, function(e, o){
 		if(!o){
@@ -601,7 +581,7 @@ app.get('/forgot', function(req ,res, next){
 app.get('/logout', function(req, res){
     req.logout();
     req.session.destroy();
-    res.redirect('/login');
+    res.redirect('/');
 });
 
 app.post('/forgot', function(req, res, next){
@@ -678,7 +658,7 @@ app.get('/create', function(req, res){
     var name = "";
     var location = "";
     if(req.session.user == null && req.user == null){
-        res.redirect('/login');
+        res.redirect('/');
     }
     else{
         var id;
@@ -728,7 +708,6 @@ app.post('/create', function(req, res){
         }
     }
     if(req.files.picture.size == 0){
-      db.profiles.update({_id: id}, {$set: {changedPic: "none"}});
       var stream = fs.createReadStream('./images/stampman.png');
     }
     else{
@@ -742,7 +721,6 @@ app.post('/create', function(req, res){
             stream: stream
         },
         function(e, o){
-                console.log(o);
                 var gender = req.body.gender;
                 var birthday = req.param('month')+req.param('day')+req.param('year');
                 userModule.updateDB(req.param('name'), req.param('location'), req.param('bio'), req.param('fb'), req.param('twitter'), id, gender, birthday, function(data){
@@ -835,7 +813,7 @@ app.post('/addPlay', function(req, res){
 
 app.get('/profile', function(req, res){
     if(req.session.user == undefined && req.user == undefined){
-            res.redirect('/login');
+            res.redirect('/');
     }
     else{
         var vid = 0;
@@ -866,9 +844,8 @@ app.get('/profile', function(req, res){
                     else{
                          db.playlists.find({artistID: id}, function(e, playlist){
                           var imgurl;
-                          if(profile.changedPic === "true" || profile.changedPic === "none"){
+                          if(profile.changedPic === "true"){
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
-                            console.log(imgurl);
                           }
                           else{
                             imgurl = profile.url;
