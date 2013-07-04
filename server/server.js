@@ -708,6 +708,7 @@ app.post('/create', function(req, res){
         }
     }
     if(req.files.picture.size == 0){
+      db.profiles.update({_id: id}, {$set: {changedPic: "none"}});
       var stream = fs.createReadStream('./images/stampman.png');
     }
     else{
@@ -844,7 +845,7 @@ app.get('/profile', function(req, res){
                     else{
                          db.playlists.find({artistID: id}, function(e, playlist){
                           var imgurl;
-                          if(profile.changedPic === "true"){
+                          if(profile.changedPic === "true" || profile.changedPic === "none"){
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
                           else{
