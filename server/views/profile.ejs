@@ -154,8 +154,8 @@
         <a href="#followersList" id="followersLink"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></a>
         </ul>
         <ul class="interaction" id="social">
-        <a href="<%=facebook%>" id="fb"><li><img src="facebookIcon.png" id="fbIcon"></li></a><br>
-        <a href="<%=twitter%>" id="twit"><li><img src="twitter.png" id="twitIcon"></li></a><br> 
+        <li><div class="fb-like" id="fbIcon" data-href="<%=facebook%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial"></div></li><br>
+        <li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
         <form method = "POST" action = "/changeImage" id = "chImg" enctype="multipart/form-data">
           <input name = "submit" type="submit" id="submitProfPic" value="Submit" onclick="visibilityPicButton();">
           <input name = "file" type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="display:none">  
@@ -193,7 +193,7 @@
     <div id="bio" >
     <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio" id = "chBio">
-          <textarea rows="1" cols="9" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
+          <input type="text" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
           <input type="submit" id="submitBioButton" value="Submit" style="visibility: hidden" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
         </form> 
       </div>
