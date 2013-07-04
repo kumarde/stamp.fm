@@ -446,7 +446,8 @@ app.post("/db-upload", function(req, res){
       Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
         if(data == false) console.log("Share failed.");
       });
-      res.send({msg: "saved", id: songID, name: req.body.name, genre: req.body.genre});
+      res.send({redirect:'/profile'});
+      //res.send({msg: "saved", id: songID, name: req.body.name, genre: req.body.genre});
     })
 })
 
