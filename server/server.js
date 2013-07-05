@@ -262,7 +262,8 @@ app.post('/unfollow', function(req, res){
     Feed.unfollow(id, req.body.id, function(data){
       res.send({redirect:'/profile'});
     });
-})
+  }
+});
 
 app.post('/follow', function(req,res){
 	if (req.session.user == null && req.user == null) {
