@@ -37,6 +37,15 @@ FeedModule.prototype.follow = function(from, to, callback) {
 	}
 };
 
+FeedModule.prototype.unfollow = function(from, to, callback){
+	if(from == to)callback(false);
+	else{
+		db.profiles.update({_id: from}, {$pull: {following: to}});
+		db.profiles.update({_id: to}, {$pull: {followers: from}});
+		callback(true);
+	}
+};
+
 
 FeedModule.prototype.followers = function(id, callback) {
 	db.profiles.findOne({_id:id}, function(err, p) {

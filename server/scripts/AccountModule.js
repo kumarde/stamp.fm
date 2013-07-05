@@ -45,7 +45,7 @@ AccountModule.prototype.addNewAccount = function(newData, callback)
 				newData.pass = hash;
 				// append date stamp when record was created //
 				newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-				db.users.insert(newData, {safe: true}, callback);
+				db.users.insert(newData, callback);
 			});
 		}
 	});

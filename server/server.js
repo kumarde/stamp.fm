@@ -1,10 +1,11 @@
 var flash = require('connect-flash')
   , express = require('express')
-  , engine = require('ejs-locals') //////
+  , engine = require('ejs-locals')
   , form  = require('express-form')
-  , moment = require('moment')
+  , moment = require('moment') //hey omar what up
   , http = require('http')
-  , field = form.field
+  , ObjectID = require('mongodb').ObjectID
+  , field = form.field 
   , passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
   , graph = require('fbgraph')
@@ -570,12 +571,16 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function(req, res){
+    var objectId = new ObjectID();
     accountModule.addNewAccount({
+        _id     : objectId.valueOf().toString(),
         name    : req.body.name,
         email   : req.body.email,
-        pass    : req.body.password,
-    }, function(e, o){
+        pass    : req.body.password
+    }, function(e, o, k){
+        console.log(o);
         if (e){
+            console.log(e);
             res.send({error: "Error: Username already exists"});
         }   else{
             req.session.user = o;
@@ -720,6 +725,8 @@ app.get('/create', function(req, res){
 
 app.post('/create', function(req, res){
     var id;
+    console.log(req.user);
+    console.log(req.session.user);
     if(req.session.user == undefined){
         id = req.user[0]._id;
     }
@@ -849,6 +856,8 @@ app.post('/addPlay', function(req, res){
 })  
 
 app.get('/profile', function(req, res){
+    console.log(req.user);
+    console.log(req.session.user);
     if(req.session.user == undefined && req.user == undefined){
             res.redirect('/');
     }
