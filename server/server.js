@@ -178,6 +178,7 @@ app.get('/feed', function(req, res){
 		else res.render('feed');
 });
 
+
 app.get('/users', function(req, res){
 		if (req.session.user == null && req.user == null) {
 			res.redirect('/');
@@ -243,6 +244,25 @@ if(req.session.user == null){
 	}
 });
 
+app.post('/unfollow', function(req, res){
+    if (req.session.user == null && req.user == null) {
+    res.send({redirect:'/'});
+  }
+  else{
+    if(req.session.user == null){
+        id = req.user[0]._id;
+    }
+    else if(req.user == null){
+      if(req.session.user[0] == undefined){
+        id = req.session.user._id;
+      } else {
+        id = req.session.user[0]._id;
+      }
+    }
+    Feed.unfollow(id, req.body.id, function(data){
+      res.send({redirect:'/profile'});
+    });
+})
 
 app.post('/follow', function(req,res){
 	if (req.session.user == null && req.user == null) {
