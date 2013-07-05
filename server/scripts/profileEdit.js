@@ -81,3 +81,11 @@ function buttonChange(){
 
      element.toggleClass('unfollow');
 }
+
+//submit to tourney button change
+function tourneyButtonChange(){
+  var element = document.getElementById('tourneyAdd');
+
+     if (element.value=="Submit") element.value = "Submitted";
+      else element.value = "Submit"; 
+}
