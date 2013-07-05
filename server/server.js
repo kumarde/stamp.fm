@@ -774,16 +774,19 @@ app.get('/view', function(req, res){
                 }  else{
                         db.playlists.find({artistID: pid}, function(e, playlist){
                           db.profiles.findOne({_id: id}, function(e, self){
-                            var imgurl;
+                          var imgurl;
+                          console.log(self.url);
                           if(self.changedPic === "true" || self.changedPic === "none"){
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
-                          else{
+                          if(self.url){
                             imgurl = self.url;
+                          }
+                          else{
+                            imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
                          res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                           })
-                          
                         })        
                 }
             })
@@ -857,11 +860,15 @@ app.get('/profile', function(req, res){
                     else{
                          db.playlists.find({artistID: id}, function(e, playlist){
                           var imgurl;
+                          console.log(profile.url);
                           if(profile.changedPic === "true" || profile.changedPic === "none"){
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
-                          else{
+                          if(profile.url){
                             imgurl = profile.url;
+                          }
+                          else{
+                            imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
                          res.render('profile', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
                         })        
