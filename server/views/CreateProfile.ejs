@@ -105,23 +105,17 @@ $(document).ready(function() {
      else if(location == ""){
         alert("Please fill in the location field!");
      }
-     else if(month == "" || day == "" || year == ""){
-        alert("Please fill in the all the fields for the birthday");
+	 else if (bioCreate == ""){
+        alert("Please fill in the tagline field");
      }
      else if (!(fblink == "") && !(Regex.test(fblink))){
         alert("Please enter a valid url for Facebook Link");
      }
-     else if(fblikes == "" || isNaN(fblikes)){
-        alert("Please enter a valid number for Facebook Likes");
-     }
      else if (!(twitterLink == "") && !(Regex.test(twitterLink))){
         alert("Please enter a valid url for Twitter Link");
      }
-     else if(twitterlikes == "" || isNaN(twitterlikes)){
-        alert("Please enter a valid number for Twitter Followers");
-     }
-     else if (bioCreate == ""){
-        alert("Please fill in the Bio field");
+	 else if(month == "" || day == "" || year == ""){
+        alert("Please fill in the all the fields for the birthday");
      }
      else{
         $("#createFields").unbind("submit");
@@ -133,3 +127,9 @@ $(document).ready(function() {
 </body>
 
 </html>
+
+
+
+<% stylesheet('modals.css') -%>
+<%-partial('modals', ["'NOP'"]) %>
+

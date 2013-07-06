@@ -32,8 +32,9 @@
 
 
   <body>
-    <header id="header">
 
+	
+	
 <style>
 body {
     margin:0;
@@ -102,20 +103,7 @@ overflow: auto;
     font-size: 20px;
 }
 
-#upLink{
-  padding-left: 25px;
-  padding-right: 25px;
-}
 
-#audLink{
-  padding-left: 25px;
-  padding-right: 25px;
-}
-
-#brackLink{
-  padding-left: 25px;
-  padding-right: 25px; 
-}
 
 #upload:hover{
   background-color: rgba(0,0,0,.2);
@@ -145,9 +133,11 @@ overflow: auto;
 #header .nav{
     color: black;
     margin-top: 0px;
+	cursor: hand; 
+	cursor: pointer;
 }
 
-#forgot-password {
+#forgotb {
     font-size: 10px;
 	vertical-align:top;
 }
@@ -177,321 +167,27 @@ overflow: auto;
 	vertical-align:top;
 	margin-top:2px;
 }
+
+
+
 </style>
 
-      <a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
-      </form>
-      <ul id="links">
-		<form method = "POST" id = "loginform">
-		<li id="info">
-		<div id="column">
-		 <div id = "forgot-password" > Forgot your Password?</div>
-		 <div id = "remember" > Remember Me: </div>
-		 <input type = "checkbox" id = "rememberme" checked = "checked" >
-      
-		</div>
-		</li>
-        <li id="mail">
-        <input type = "text" name = "email" id="emaili" placeholder="Email" class="em">
-        </li>
-        <li id="pass">
-        <input type = "password" name = "pass" id = "passi" placeholder="Password" class="ps">
-        </li> 
-        <li id="login">
-		<!--<input type = "submit" value = "Log In" class="nav" id="loginLink" style="text-decoration:none; margin-right:25px; margin-left: 25px">-->
-        <a style="text-decoration:none; margin-right:25px; margin-left: 25px" id="loginLink" class="nav">Log In</a>
 
-		<script>
-  $(document).ready(function() {
-  
-    $("#loginform").submit(function(e){
-      return false;
-    });
-    $('#loginLink').click(function(event){ 
-     var email = $('input#emaili').val();
-     var password = $('input#passi').val();
-     var rememberme = $('input#rememberme').is(':checked');
-     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-     if(email == "" || password == ""){
-      $('div#UnFilled').addClass("unhidden");
-        $('a#close').click(function(){
-        $('div#UnFilled').removeClass("unhidden");
-      });
-     }
-      else if (!email.match(re)){
-        $('div#BadEmail').addClass("unhidden");
-        $('a#close').click(function(){
-        $('div#BadEmail').removeClass("unhidden");
-        });
-      }
-      else{
-     $.ajax({ 
-           url: '/login',
-           type: 'POST',
-           cache: false, 
-           data: {email: email, password: password, rememberme: rememberme},
-           success: function(data){
-            if(data.error != null){
-              $('div#lError').addClass("unhidden");
-              $('a#close').click(function(){
-                $('div#lError').removeClass("unhidden");
-              })
-            }
-            if (typeof data.redirect == 'string'){
-              window.location = data.redirect;
-            }
-           }
-        })
-      }
-     });
-    $('#forgotpass').submit(function(e){
-      return false;
-    });
-    $('#recoverPass').click(function(event){
-      var email = $('input.enterEmail').val();
-      $.ajax({
-        url: '/forgot',
-        type: 'POST',
-        cache: false,
-        data: {email: email},
-        success: function(data){
-          if(data.msg != "ok"){
-            $('div#recoverError').addClass("unhidden");
-            $('a#close').click(function(){
-              $('div#recoverError').removeClass("unhidden");
-            })
-          } else {
-            $('div#recoverSuccess').addClass("unhidden");
-            $('a#close').click(function(){
-              $('div#recoverSuccess').removeClass("unhidden");
-            })
-          }
-        }
-      })
-    })
-  });
-  
-  </script>
-        </li>  
-		</form>
-    </ul>
-    </header>
+	<%- partial('header',["0001"]) %>
+	
 
     <section>
       <%-body -%>
-      <div id="footer">
-      <ul>
-	<ul>
-	<li>&copy Copyright 2013 Stamp.fm All Rights Reserved</li>
-	<li class="non-copyright"><a href="/faq">FAQ</a></li>
-	<li class="non-copyright"><a href="/tos">Terms</a></li>
-	<li class="non-copyright"><a href="/privacy">Privacy</a></li>
-	<li class="non-copyright"><a>Contact</a></li>
-	<li class="non-copyright"><a href="/blog">Blog</a></li>
-	<li><div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
-	<li><a href="http://twitter.com/stampfm" class="twitter-follow-button"  data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
-      </ul>
-    </div>
-    <style>
-      a:visited {color:#FFFFFF;}
-      a:link {color: #FFFFFF; text-decoration: none; }
-      a:active {color: #FFFFFF; text-decoration: none; }
-      #footer{
-	font-size:12px;
-	color:#FFFFFF;
-	cursor:default;
-	width:100%;
-	height:30px;
-      }
-      #footer ul{
-	list-style-type:none;
-      }
-      #footer li{
-	margin-top:100px;
-	float:left;
-	padding-right:3%;
-      }
-      #footer a:hover{
-	color:#FF0000;
-      }
-      @media only screen and (max-width: 999px){
-	#footer li{
-	  margin-top:0;
-	  padding-right:1%;
-	}
-      }
-    </style>
+	  
+	  
+
+	  <%-partial('footer',["0"]) %>
+
+
     </footer>
     </section>
 
 
-
-<!-- Modal Window(s) -->
-<style>
-.modalDialog_temp {
-    position: fixed;
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 99999;
-    opacity:0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
-}
-
-.modalDialog_temp:target {
-    opacity:1;
-    pointer-events: auto;
-}
-
-.modalDialog_temp > div {
-    min-width: 30%;
-    min-height: 40%;
-    max-width: 60%;
-    width: 40%;
-    position: relative;
-    margin: 10% auto;
-    padding: 5px 20px 13px 20px;
-    border-radius: 10px;
-    background: rgba(180,7,6,1);
-}
-
-.modalDialog_temp ul{
-    list-style-type: none;
-}
-
-.modalDialog_temp li{
-    display: inline;
-    float: center;
-}
-
-.twitter-follow-button{
-    margin-right: 4%;
-}
-
-.fb-like{
-    float: left;
-    margin-left: 15%;
-}
-#advertisement{
-    position: absolute;
-    height:100%;
-    width:100%;
-    z-index:9909;
-  }
-.modalDialog {
-  position: fixed;
-  font-family: 'Poiret One', cursive;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 99999;
-  opacity:0;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-}
-
-.modalDialog > div {
-  width: 20%;
-  height: 20%;
-  position: relative;
-  margin: 10% auto;
-  padding: 5px 20px 13px 20px;
-  border-radius: 10px;
-  background: rgba(180,7,6,1);
-}
-.unhidden {
-    opacity:1;
-    pointer-events: auto;
-}
-
-</style>
-
-<div id="notReal" class="modalDialog_temp">
-  <div>
-    <a href="#close" title="Close" class="close">X</a>
-    <center>
-    <h3 style="color:white">This stage of the competition has not begun yet.<br><br>
-    See you August 1st!</h3>
-    <p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
-    <ul>
-      <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
-      <li>  <div>
-            <a href="https://twitter.com/stampfm" class="twitter-follow-button" data-show-count="false" data-lang="en"></a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
-    </ul>          
-    </center>
-  </div>
-  <a id="advertisement" href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"></a>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-
-<div id="Upload" class="modalDialog">
-  <div>
-    <a href="#close" title="Close" class="close">X</a>
-    <center>
-    <h5 style="color:white">You must be logged in to use this feature!</h5>
-</center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-<div id="Error" class="modalDialog">
-  <div>
-    <a href="#close" title="Close" class="close" id = "close">X</a>
-    <center>
-    <h5 style="color:white">E-mail Already Taken</h5>
-</center>
-  </div>
-</div>
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-<div id="UnFilled" class="modalDialog">
-  <div>
-    <a href="#close" title="Close" class="close" id = "close">X</a>
-    <center>
-    <h5 style="color:white">Please Fill In All Required Fields</h5>
-</center>
-  </div>
-</div>
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-<div id="NoMatch" class="modalDialog">
-  <div>
-    <a href="#close" title="Close" class="close" id = "close">X</a>
-    <center>
-    <h5 style="color:white">Password and Password Confirmation don't match</h5>
-</center>
-  </div>
-</div>
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-<div id="BadEmail" class="modalDialog">
-  <div>
-    <a href="#close" title="Close" class="close" id = "close">X</a>
-    <center>
-    <h5 style="color:white">Please Enter a valid Email Address</h5>
-</center>
-  </div>
-</div>
-<!-- End Modal Window(s) -->
 
   </body>
 </html>

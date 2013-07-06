@@ -30,11 +30,9 @@
 	
     <%-scripts%>
     <%-stylesheets%>
+ 
+ <body>
 
-
-  <body>
-  <form id = "searchform" autocomplete="off">
-    <header id="header">
 
 <style>
 body {
@@ -62,7 +60,7 @@ body {
 }
 form { margin: 0px; padding: 0px; }
 
-#feedbackLink{
+#feedbackb{
 z-index:500;
 background-color: rgba(180,7,6,.7);
 color: #FFFFFF;
@@ -89,7 +87,7 @@ top:96%;
   font-size: 15px;
   width: 250px;
   position: fixed;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 #users{
@@ -180,14 +178,9 @@ overflow: auto;
   padding-right: 25px;
 }
 
-#audLink{
+#notrealb{
   padding-left: 25px;
   padding-right: 25px;
-}
-
-#brackLink{
-  padding-left: 25px;
-  padding-right: 25px; 
 }
 
 #upload:hover{
@@ -218,6 +211,8 @@ overflow: auto;
 #header .nav{
     color: black;
     margin-top: 0px;
+	cursor: hand; 
+	cursor: pointer;
 }
 
 #profileLink{
@@ -282,141 +277,8 @@ overflow: auto;
     text-decoration: none;
     color: #FFFFFF;
 }
-</style>
-      
-      <a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
-      <input type = "search" name = "textsearch" placeholder = "search for name" id = "search">
-      <div id = "users"></div>
-      </form>
-
-      <ul id="prof">  
-        <li>
-       <a href="/profile" class="nav" id="profileLink">
-          <img id="profilePic" src="<%=imgid%>" style="height:35px;">
-        </a>
-       </li>
-       <li class="account" id="dropdown">
-          <a href="#" class="nav" style="text-decoration:none" onclick="openDropdown()">
-            <img id="settings" src="settings.png" style="height:20px;"><br>
-        <ul id="dropdownContent" style="visibility:hidden" class="dropdownWrapper">
-          <a href="#accountInfo" style="color:white" id="account">  
-          <div id="tophalf">
-          <li id="account">Account</li>
-          </div>
-          </a>
-          <a href="/logout" style="text-decoration:none" id="logOut">
-          <div id="bottomhalf">
-          <li id="logoutLink">Log Out</li>
-          </div>
-          </a>
-
-        </ul>
-      </a>  
-        </li>
-      </ul>  
-
-      <ul id="links">
-        <li id="audition">
-        <a href="#notReal" style="text-decoration:none" id="audLink" class="nav">Elimination</a>
-        </li>
-        <li id="bracket">
-        <a href="#notReal" style="text-decoration:none" id="brackLink" class="nav">Finals</a>
-        </li>
-    </ul>
-    </header>
-
-    <a href="#contact" id="feedbackLink" style="float: right">Feedback</a>
-
-    <section>
-      <%-body -%>
-      <div id="footer">
-      <ul>
-	<li>&copy Copyright 2013 Stamp.fm All Rights Reserved</li>
-	<li class="non-copyright"><a href="/faq">FAQ</a></li>
-	<li class="non-copyright"><a href="/tos">Terms</a></li>
-	<li class="non-copyright"><a href="/privacy">Privacy</a></li>
-	<li class="non-copyright"><a>Contact</a></li>
-	<li class="non-copyright"><a href="/blog">Blog</a></li>
-	<li><div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
-	<li><a href="http://twitter.com/stampfm" class="twitter-follow-button"  data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
-      </ul>
-    </div>
-    <style>
-      a:visited {color:#000000;}
-      a:link {color: #000000; text-decoration: none; }
-      a:active {color: #000000; text-decoration: none; }
-      #footer{
-	font-size:12px;
-	color:#000000;
-	cursor:default;
-	width:100%;
-	height:30px;
-      }
-      #footer ul{
-	list-style-type:none;
-      }
-      #footer li{
-	margin-top:100px;
-	float:left;
-	padding-right:3%;
-      }
-      #footer a:hover{
-	color:#FF0000;
-      }
-    </style>
-    </footer>
-    </section>
 
 
-
-<!-- Modal Window(s) -->
-<style>
-.modalDialog_temp {
-    position: fixed;
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: url('turtle_ad.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    z-index: 99999;
-    opacity:0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
-}
-
-.modalDialog_temp:target {
-    opacity:1;
-    pointer-events: auto;
-}
-
-.modalDialog_temp > div {
-    min-width: 30%;
-    min-height: 40%;
-    max-width: 60%;
-    width: 40%;
-    position: relative;
-    margin: 10% auto;
-    padding: 5px 20px 13px 20px;
-    border-radius: 10px;
-    opacity:.7;
-    background: rgba(180,7,6,1);
-}
-
-.modalDialog_temp ul{
-    list-style-type: none;
-}
-
-.modalDialog_temp li{
-    display: inline;
-    float: center;
-}
 
 .twitter-follow-button{
     margin-right: 4%;
@@ -425,187 +287,6 @@ overflow: auto;
 .fb-like{
     float: left;
     margin-left: 15%;
-}
-</style>
-
-<div id="notReal" class="modalDialog_temp">
-  <div>
-    <a href="#close" title="Close" class="close" style="color:#FFFFFF">X</a>
-    <center>
-    <h3 style="color:white">This stage of the competition has not begun yet.<br><br>
-    See you August 1st!</h3>
-    <p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
-    <ul>
-      <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
-      <li>  <div>
-            <a href="https://twitter.com/stampfm" class="twitter-follow-button" data-show-count="false" data-lang="en"></a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></li>
-    </ul>
-    </center>
-  </div>
-  <a id="advertisement" href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"></a>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-<div id="contact" class="modalDialog_temp" style="text-align:center">
-  <style>
-  #advertisement{
-    position: absolute;
-    height:100%;
-    width:100%;
-    z-index:9909;
-  }
-  .modalDialog_feedback {
-    position: fixed;
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 100;
-    visibility: hidden;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
-}
-.modalDialog_feedback:target {
-    opacity:1;
-    pointer-events: auto;
-}
-
-.modalDialog_feedback > div {
-    min-width: 30%;
-    min-height: 40%;
-    max-width: 60%;
-    width: 40%;
-    position: relative;
-    margin: 10% auto;
-    padding: 5px 20px 13px 20px;
-    border-radius: 10px;
-    background: rgba(180,7,6,1);
-}
-.close {
-  background: #000;
-  color: #FFFFFF;
-  line-height: 25px;
-  position: absolute;
-  right: -12px;
-  text-align: center;
-  top: -10px;
-  width: 24px;
-  text-decoration: none;
-  font-weight: bold;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -moz-box-shadow: 1px 1px 3px #000;
-  -webkit-box-shadow: 1px 1px 3px #000;
-  box-shadow: 1px 1px 3px #000;
-}
-
-.close:hover { background: rgba(163,163,163,1); }
-
-  textarea{
-    height: 200px;
-    width: 90%;
-  }
-  label{
-    color: #FFFFFF;
-    padding: 5px;
-    background-color: rgba(180,7,6,1);
-  }
-  .radio{
-    display: none;
-  }
-  #feedbacksubmit{
-    background-color: rgba(0,0,0,1);
-    color: #FFFFFF;
-    font-size: 15px;
-    border: 0px;
-    -moz-border-radius:5px;  
-    border-radius: 5px;  
-    -webkit-border-radius: 5px;
-}
-
-#feedbacksubmit:hover{
-    background-color: rgba(163,163,163,1);    
-}
-
-.hidden{
-  opacity: 0;
-}
-  </style>
-  <script>
-  function highlight(radio){
-    radio.style.backgroundColor="#000";
-}
-
-  function NO(radio){
-    radio.style.backgroundColor="rgba(180,7,6,1)";
-  }
-
-  </script>
-  <div>
-    <a href="#close" title="Close" class="close" style="color:#FFFFFF">X</a>
-    <h3 style="color:white">Give us Some Feedback!</h3>
-    <form method = "POST" action = "/feedback" id = "feedback">
-
-      <label style="background-color:black" id = "ideaz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio" checked>Idea</label>
-      <label id="probz" onclick="highlight(this); NO((document.getElementById('ideaz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Problem" id="problemRadio" class="radio">Problem</label>
-      <label id="commentz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('ideaz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Comment" id="commentRadio" class="radio">Comment</label>
-      <label id="questionz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('ideaz')));"><input type="radio" name="feedback" value="Question" id="questionRadio" class="radio">Question</label>
-
-      <textarea id="feedbackMessage" name = "feedbackname"></textarea><br>
-      <input href="#close" type = "submit" id = "feedbacksubmit" onclick="window.location='#close';">
-      <script>
-
-      </script>
-    </form>        
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-<style>
-.modalDialog_account {
-    position: fixed;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 99999;
-    opacity:0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
-}
-
-.modalDialog_account:target {
-    opacity:1;
-    pointer-events: auto;
-}
-
-.modalDialog_account > div {
-    width: 40%;
-    height: 30%;
-    position: relative;
-    margin: 10% auto;
-    padding: 5px 20px 13px 20px;
-    border-radius: 10px;
-    background: rgba(180,7,6,1);
-}
-
-#editEmail{
-    width: 60%;
-    font-size: 20px;
 }
 
 #password{
@@ -632,21 +313,26 @@ overflow: auto;
     background-color: rgba(163,163,163,1);    
 }
 </style>
+ 
 
-<div id="accountInfo" class="modalDialog_account">
-  <div>
-    <a href="#close" title="Close" class="close" style="color:#FFFFFF">X</a>
-    <center>
-    <h3 style="color:white">Edit Your Account Info</h3>
-    <form id="editAccount">
-      <br>
-      <input type="email" placeholder="Change your Email Address" id="editEmail"><br><br>
-      <input type="submit" value="Confirm" id="confirm">
-    </form>         
-    </center>
-  </div>
-</div>
 
-<!-- End Modal Window(s) -->
+
+
+
+
+	<%-partial('header',["1110"]) %>
+ 
+
+
+    <div id="feedbackb" class="modalbutton" style="float: right">Feedback</div>
+
+    <section>
+      <%-body -%>
+	  
+	  <%-partial('footer',["1"]) %>
+
+	
+    </section>
+
   </body>
 </html>

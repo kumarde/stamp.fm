@@ -136,7 +136,6 @@ function redirect(event){
 								followingarray.push(prof);
 								var $div = $('<div id = "'+prof._id+'">'+prof.name+'</div>');
 								$div.click(redirect);
-								 $('#'+followingid).append($div);
 								for ( var j = 0; j < prof.shared.length; j++){
 									if (prof.shared[j].type == 'upload')var $feedentry = $('<div id="feedElement">'+prof.name+' Uploaded a New Song ('+prof.shared[j].name+')'+'</div>');
 									if (prof.shared[j].type == 'follow')var $feedentry = $('<div id="feedElement">'+prof.name+' Followed '+prof.shared[j].name+'</div>');

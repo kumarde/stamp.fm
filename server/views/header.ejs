@@ -1,0 +1,91 @@
+<form id = "searchform" autocomplete="off">
+
+<header id="header">
+<a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
+
+
+<% if ( header[0] == 1){%>
+	  <input type = "search" name = "textsearch" placeholder = "Search" id = "search">
+      <div id = "users"></div>
+<% } %>
+</form>
+
+
+
+<% if ( header[1] == 1){%>
+<ul id="prof">  
+
+	<li>
+	<a href="/profile" class="nav" id="profileLink">
+	<img id="profilePic" src="<%=imgid%>" style="height:35px;">
+	</a>
+	</li>
+	
+	<li class="account" id="dropdown" >
+		<a class="nav" style="text-decoration:none" onclick="openDropdown()">
+		<img id="settings" src="settings.png" style="height:20px;"><br>
+		
+		<ul id="dropdownContent" style="visibility:hidden" class="dropdownWrapper">
+			<div style="color:white" id="accountinfob" class="modalbutton">  
+			<div id="tophalf">
+			<li id="account">Account</li>
+			</div>
+			</a>
+			</div>
+			
+			<a href="/logout" style="text-decoration:none" id="logOut">
+			<div id="bottomhalf">
+			<li id="logoutLink">Log Out</li>
+			</div>
+			</a>
+		</ul>
+		</a>  
+	</li>
+
+</ul>  
+<% } %>
+
+<% if ( header[2] == 1){%>
+
+<ul id="links">
+	<li id="audition">
+	<a style="text-decoration:none" id="notrealb" class="nav modalbutton">Elimination</a>
+	</li>
+	<li id="bracket">
+	<a style="text-decoration:none" id="notrealb" class="nav modalbutton">Finals</a>
+	</li>
+</ul>
+
+<% } %>
+
+<% if ( header[3] == 1){%>
+      <ul id="links">
+		<form method = "POST" id = "loginform" action="/">
+			<li id="info">
+				<div id="column">
+				 <div id = "forgotb" class="modalbutton"> Forgot your Password?</div>
+				 <div id = "remember" > Remember Me: </div>
+				 <input type = "checkbox" id = "rememberme" checked = "checked" >
+			  
+				</div>
+			</li>
+			<li id="mail">
+				<input type = "text" name = "emaili" id="emaili" placeholder="Email" class="em">
+				</li>
+				<li id="pass">
+				<input type = "password" name = "passi" id = "passi" placeholder="Password" class="ps">
+			</li> 
+				<li id="login" style="">
+				
+				<a style="text-decoration:none; margin-right:25px; margin-left: 25px" id="loginLink" class="nav">Log In
+					<input type = "submit" value = "Log In" class="nav" style="display:none;text-decoration:none; margin-right:25px; margin-left: 25px">
+				</a>
+			</li>  
+		</form>
+    </ul>
+
+<% } %>
+
+
+</header>
+

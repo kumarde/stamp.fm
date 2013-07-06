@@ -1,0 +1,331 @@
+.modalDialog_temp {
+    position: fixed;
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('turtle_ad.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog_temp:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_temp > div {
+    min-width: 30%;
+    min-height: 40%;
+    max-width: 60%;
+    width: 40%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    opacity:.7;
+    background: rgba(180,7,6,1);
+}
+
+.modalDialog_temp ul{
+    list-style-type: none;
+}
+
+.modalDialog_temp li{
+    display: inline;
+    float: center;
+}
+
+.modalDialog_account {
+    position: fixed;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog_account:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_account > div {
+    width: 40%;
+    height: 35%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(180,7,6,1);
+}
+
+#editEmail{
+    width: 60%;
+    font-size: 20px;
+}
+
+
+#advertisement{
+    position: absolute;
+    height:100%;
+    width:100%;
+    z-index:9909;
+  }
+
+  .modalDialog_feedback {
+    position: fixed;
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 100;
+    visibility: hidden;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog_feedback:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_feedback > div {
+    min-width: 30%;
+    min-height: 40%;
+    max-width: 60%;
+    width: 40%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(180,7,6,1);
+}
+.close {
+  background: #000;
+  color: #FFFFFF;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: rgba(163,163,163,1); }
+
+  textarea{
+    height: 200px;
+    width: 90%;
+  }
+  label{
+    color: #FFFFFF;
+    padding: 5px;
+    background-color: rgba(180,7,6,1);
+  }
+  .radio{
+    display: none;
+  }
+  #feedbacksubmit{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    font-size: 15px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+
+#feedbacksubmit:hover{
+    background-color: rgba(163,163,163,1);    
+}
+
+.hidden{
+  opacity: 0;
+}
+
+  
+.modalDialog {
+  position: fixed;
+  font-family: 'Poiret One', cursive;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+
+.modalDialog > div {
+  width: 20%;
+  height: 20%;
+  position: relative;
+  margin: 10% auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 10px;
+  background: rgba(180,7,6,1);
+}
+
+
+
+.modalDialog_upload {
+  position: fixed;
+  font-family: 'Poiret One', cursive;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+
+.modalDialog_upload > div {
+  width: 30%;
+  height: 35%;
+  position: relative;
+  margin: 10% auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 10px;
+  background: rgba(180,7,6,1);
+}
+
+
+
+
+.modalDialog_follow #to{
+    height: 200px;
+    max-height: 200px;
+    max-width: 70%;
+    overflow: auto;
+    background-image: linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+
+    background-image: -webkit-gradient(
+     linear,
+     left bottom,
+     left top,
+     color-stop(0.2, rgb(255,255,255)),
+     color-stop(0.6, rgb(240,240,240)),
+     color-stop(0.8, rgb(245,245,245))
+    ); 
+}
+
+.modalDialog_follow #from{
+    height: 200px;
+    max-height: 200px;
+    max-width: 70%;
+    overflow: auto;
+    background-image: linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+
+    background-image: -webkit-gradient(
+     linear,
+     left bottom,
+     left top,
+     color-stop(0.2, rgb(255,255,255)),
+     color-stop(0.6, rgb(240,240,240)),
+     color-stop(0.8, rgb(245,245,245))
+    ); 
+}
+
+.modalDialog_follow {
+    position: fixed;
+    font-family: 'Alef', sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog_follow:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog_follow > div {
+    min-width: 30%;
+    min-height: 40%;
+    max-width: 60%;
+    width: 40%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: rgba(180,7,6,1);
+}
+
+.unhidden {
+    opacity:1;
+    pointer-events: auto;
+}
+
+
+.close {
+	cursor: hand; 
+	cursor: pointer;
+}
+
+
+
+.modalbutton {
+	cursor: hand; 
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+

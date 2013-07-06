@@ -114,7 +114,9 @@
                <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
-          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
+          <td><div data-tag ="<%=song._id%>" class = "songname" style="width:70px;"><%= song.name %></div></td>
+		  <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
+		  <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
           <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
           <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
           <td><input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="<%=song.inTourney%>" id="tourneyAdd" class="addTourney" onclick="tourneyButtonChange();"></td>
@@ -148,9 +150,9 @@
       <div id="profilePicture" style="margin:auto">
         <img id="preview" src="<%=imgid%>" data-tag="<%=id%>">
         <ul class="interaction" id="followInfo">
-        <a href="#followingList" id="followingLink"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></a>
+        <div id="followinglistb" class="modalbutton"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></div>
         <li><input type="button" value="follow" id="stampFollow" onclick="buttonChange();"></li><br>
-        <a href="#followersList" id="followersLink"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></a>
+        <div id="followerslistb" class="modalbutton"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></div>
         </ul>
         <ul class="interaction" id="social">
         <li><div class="fb-like" id="fbIcon" data-href="<%=facebook%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li><br>
@@ -214,37 +216,6 @@
 </div>
 <!-- Modal Window(s) -->
 
-<div id="<%=createModal%>" class="modalDialogCreate">
-    <div id="profileSection" class="grid wfull" style="color: white">
-    <div class="row">
-      <div class="c12" id="createPageLabel" style="font-size:30px">
-        <h1>Create your Profile</h1>
-      </div>  
-    <form method = "POST" action = "/create" enctype = "multipart/form-data">
-    <div class="row">
-      <div class="c3" id="nameCreate" style="font-size:20px">
-      <input type = "text" placeholder = "name" name = "name" id= "name" required/>
-      </div>
-    </div>  
-
-    <div class="row">
-        <div class="c3" id="proPic" style="float:left">
-          <img id="preview" src="stampman.png"/>
-          <input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
-          <div class="c2" id="locationEnter" style="float:left">
-          <span2 style="font-size: 15px" id="locationLabelCreate">Location: </span2><span id="locationInputCreate"><input type = "text" placeholder = "location" name = "location" id= "locationEnter" required/></span>
-          </div>
-        </div>
-          <div class="c8" id="bioLbl" ><span3 style="font-size:15px"><strong><u>Bio:</u> </strong></span3>
-          <textarea rows = "15" cols = "110" placeholder = "bio" id = "bioCreate" name = "bio" required/></textarea>
-          <center><a href="/profile" title="Submit" class="submitProfileButton" id="submitProf"><input href="#close" title="Submit" class="submitProfile" type = "submit" id="createButton" value = "Click to View Your Profile"><br></center></a>
-          </div>
-    </div>
-
-  </form>
-  </div>  
-
-  </div>
 
 
 
@@ -269,97 +240,8 @@
   });
 
 </script>
-<!-- End Modal Window(s) -->
 
 
-<!-- Modal Window(s) -->
-
-<div id="info" class="modalDialog">
-  <div>
-    <a href="#close" title="Close" class="close" id="closeButton" style="color:#FFFFFF">X</a>
-    <center>
-    <h5 style="color:white">Fill in your Song Information</h5>
-    <div>
-      <form id = "db-upload" method = "POST" action = "/db-upload">
-        <input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName"><br><br>
-      </form>
-       <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
-        <center>
-        <select name="genre" form="songInfo" id = "genre">
-          <option class="genreChoice" id="country">Country</option>
-          <option class="genreChoice" id="pop">Pop</option>
-          <option class="genreChoice" id="alternative">Alternative</option>
-          <option class="genreChoice" id="rap">Rap</option>
-          <option class="genreChoice" id="rnb">RnB</option>
-          <option class="genreChoice" id="instrumental">Instrumental</option>
-          <option class="genreChoice" id="hardrock">Hardrock</option>
-          <option class="genreChoice" id="EDM">EDM</option>
-          <option class="genreChoice" id="international">International</option>
-          <option class="genreChoice" id="folk">Folk</option>
-       </select><br><br>
-       <span  style="color:#FFFFFF; font-size:15px;">Does this song contain explicit content?</span><input type = "checkbox" id = "explicit" name = "explicit"><br>
-      <input type="submit" value="Enter" id = "songSubmit">
-      <input type="button" value="Cancel" id = "cancelUpload">
-    </div>
-    </center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-
-<div id="followingList" class="modalDialog_follow">
-  <div>
-    <a href="#close" title="Close" class="close" style="color:#FFFFFF">X</a>
-    <center>
-    <h3 style="color:white">Who you are Following</h3>    
-    <div id="to"></div>   
-    </center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-
-<div id="followersList" class="modalDialog_follow">
-  <div>
-    <a href="#close" title="Close" class="close" style="color:#FFFFFF">X</a>
-    <center>
-    <h3 style="color:white">Who's Following You</h3>    
-    <div id="from"></div>   
-    </center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-
-<div id="youSure" class="modalDialog">
-  <div>
-    <center>
-    <h3 style="color:white">Are you sure you want to enter this song to the tournament?</h3>    
-    <input type="submit" value="Yes" id = "enterTourney">
-    <input type="button" value="No" id = "noThanks">
-    </center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-
-<div id="congrats" class="modalDialog">
-  <div>
-    <center>
-    <h3 style="color:white">Congratulations! <br> You're song has been successfully added to the tournament!</h3>    
-    </center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
 
 <!-- FB Like Script-->
 <div id="fb-root"></div>
@@ -387,6 +269,8 @@
 
 
 
+<% stylesheet('modals.css') -%>
+<%-partial('modals', ["'IJKLMNOP'"]) %>
 
 
 
