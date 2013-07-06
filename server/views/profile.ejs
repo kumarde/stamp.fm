@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="/dropzone.css">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
@@ -156,7 +156,8 @@
         </ul>
         <ul class="interaction" id="social">
         <li><div class="fb-like" id="fbIcon" data-href="<%=facebook%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li><br>
-        <a href="<%=twitter%>" id="twit" target="_blank"><li><img src="twitter.png" id="twitIcon"></li></a><br> 
+        <!--<a href="<%=twitter%>" id="twit" target="_blank"><li><img src="twitter.png" id="twitIcon"></li>-->
+        <li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li></a><br> 
         <form method = "POST" action = "/changeImage" id = "chImg" enctype="multipart/form-data">
           <input name = "submit" type="submit" id="submitProfPic" value="Submit" onclick="visibilityPicButton();">
           <input name = "file" type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="display:none">  

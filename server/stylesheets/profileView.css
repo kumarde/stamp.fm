@@ -1,6 +1,6 @@
 html{
     background: #FFFFFF no-repeat center center fixed;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Source Sans Pro', sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Arimo', sans-serif;
     min-width: 100%;
     min-height: 100%;
     cursor: default;
@@ -138,8 +138,10 @@ td{
 
 #social{
     float: right;
-    margin: auto;
-    margin-right: 5%;
+    margin-right: auto;
+    margin-top:auto;
+    margin-bottom: auto; 
+    margin-left:-8.5%;
 }
 
 #followInfo{
