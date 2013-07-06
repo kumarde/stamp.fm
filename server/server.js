@@ -807,7 +807,7 @@ app.get('/view', function(req, res){
                           if(self.changedPic === "true" || self.changedPic === "none"){
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
-                          if(self.url){
+                          else if(self.url){
                             imgurl = self.url;
                           }
                           else{
@@ -894,7 +894,7 @@ app.get('/profile', function(req, res){
                           if(profile.changedPic === "true" || profile.changedPic === "none"){
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
-                          if(profile.url){
+                          else if(profile.url){
                             imgurl = profile.url;
                           }
                           else{
