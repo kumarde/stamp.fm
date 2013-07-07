@@ -12,7 +12,6 @@
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
     <link rel="stylesheet" type="text/css" href="/gridiculous.css">
     <link rel="stylesheet" type="text/css" href="/profile.css">
-    <link rel="stylesheet" type="text/css" href="/dropzone.css">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
@@ -194,11 +193,11 @@
 <br>
 
         <div id="video">
-                      <div id="bio" >
+        <div id="bio" >
     <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio" id = "chBio">
-          <input type="text" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
-          <input type="submit" id="submitBioButton" value="Submit" style="visibility: hidden" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
+          <input type="text" id="displayBioEdit" name="editBio" class="replace" value="" style="display:none;">
+          <input type="submit" id="submitBioButton" value="Submit" style="display:none;" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
         </form> 
       </div>
           <div class="c12 end" id="videoPlayer" style="border:none">
@@ -209,7 +208,7 @@
 
          </div> 
 </div>
-   <div class="c2" id="feed" style="float:right"></div>
+   <div class="c2" id="feed" style="float:right"><b><spanLabel id="newsFeedLabel" style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">News Feed</spanLabel></b></div>
 </div>
 </div>
 </div> 

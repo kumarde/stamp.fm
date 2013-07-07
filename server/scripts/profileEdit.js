@@ -28,10 +28,10 @@
 //BIO invisible to visible
     function visibilityBio()
     {
-      if ( document.getElementById('submitBioButton').style.visibility == 'hidden' ) {
-            document.getElementById('submitBioButton').style.visibility= 'visible';
+      if ( document.getElementById('submitBioButton').style.display == 'none' ) {
+            document.getElementById('submitBioButton').style.display= "";
           } else {
-            document.getElementById('submitBioButton').style.visibility = 'hidden';
+            document.getElementById('submitBioButton').style.display = "none";
           }   
     }
 //END BIO invisible to visible
