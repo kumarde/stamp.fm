@@ -98,18 +98,26 @@ html{
     -webkit-border-radius: 5px;
     color: #FFFFFF;
     background-color: #000;
-    opacity: .7;
-    height: 485px;
+    opacity: 0.7;
+    height: 550px;
     width:53%;
 }
+#vidPlayer{
+		position:absolute;
+		float:left;
+		top:18em;
+		z-index:999;
+		margin-left:-12em;
+}
 
-@media only screen and (max-width: 999px) {
+@media only screen and (max-width: 1050px) {
+
     .blurb{
 	float: none;
 	margin-left: auto;
 	margin-right: auto;
 	width:80%;
-	height:400px;
+	height:555px;
     }
     .login{
 	float:none;
@@ -117,6 +125,14 @@ html{
 	margin-right: auto;
 	width:400px;
     }
+	#vidPlayer{
+		position:absolute;
+		float:left;
+		top:16em;
+		z-index:999;
+		margin-left:5em;
+		}
+	
 }
 
 .big{

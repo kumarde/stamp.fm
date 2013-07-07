@@ -245,4 +245,46 @@
 }
 #noThanks:hover { background: rgba(163,163,163,1); }
 
+.stampFollowt{
+font-size: 15px;
+ border: 1px solid rgba(0,0,0,1);
+ background: url('trebleClef.png');
+	color: #FFFFFF;
+    background-size: 9px; 
+    background-color: rgba(180,7,6,1);
+    background-repeat: no-repeat; 
+    background-position: 7px 4px;  
+	cursor: pointer; 
+    height: 30px;  
+    width: 80px;  
+    vertical-align: middle;
+    max-height: 40px;
+    max-width: 90px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 0%;
+	    padding: 2px;
+		padding-left: 20px; 
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
 
+.stampFollowt:hover{
+    background-color: rgba(140,7,6,1);
+}
+
+.stampFollowt:active{
+
+    color: #FFFFFF;
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    border: solid 1px #000;
+	
+}

@@ -38,6 +38,9 @@ var songs = 0;
   var userModule = new UserModule;
   var Feed = new FeedModule;
 
+  
+ db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
+ 
 /***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
 db.music.count(function(e, count){
     console.log(count);
@@ -704,6 +707,7 @@ app.get('/create', function(req, res){
                    db.profiles.update({_id: id}, {$set: {url: respo.picture.data.url}});
                    db.profiles.findOne({_id: id}, function(e, o){
                       location = o.location;
+                      db.playlists.insert({songID: 0, name: "(Stamp Champ) Dan Henig - Don't You Worry Child Cover", artistID: id});
                       res.render('CreateProfile', {name: name, location: location, imgsrc: respo.picture.data.url}); 
                   })
                 });
@@ -717,8 +721,11 @@ app.get('/create', function(req, res){
             } else {
                  id = req.session.user[0]._id;
             }
-             db.profiles.save({_id: id, name: "", location: "Click to change Location", bio: "Click to change Tagline", facebook: "", twitter: "", following: [], followers: [], shared: [], gender: ""});
-            res.render('CreateProfile', {name: name, location: location, imgsrc: "stampman.png"}); 
+             db.profiles.save({_id: id, name: "", location: "Click to change Location", bio: "Click to change Tagline", facebook: "", twitter: "", following: [], followers: [], shared: [], gender: ""}, function(e, o){
+              db.playlists.insert({songID: 0, name: "Stamp Champ Dan Henig - Don't You Worry Child", artistID: id}, function(e, o){
+                res.render('CreateProfile', {name: name, location: location, imgsrc: "stampman.png"}); 
+              }); 
+             });
         }
     }
 });
@@ -796,6 +803,8 @@ app.get('/view', function(req, res){
         if(profile == null){
             res.send(404);
         }else{
+			var follow = 0;
+			 if ( profile.followers.indexOf(id) != -1 )follow = 1;
             db.music.find({artistID: pid}, function(e, songs){
                 if(e){
                     console.log(e);
@@ -804,16 +813,16 @@ app.get('/view', function(req, res){
                           db.profiles.findOne({_id: id}, function(e, self){
                           var imgurl;
                           console.log(self.url);
-                          if(self.changedPic === "true" || self.changedPic === "none"){
-                            imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+                          if(self.url && self.changedPic == "none"){
+                              imgurl = profile.url;
                           }
-                          else if(self.url){
-                            imgurl = self.url;
+                          else if(self.changedPic === "true" || self.changedPic === "none"){
+                            imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
                           else{
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
-                         res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
+                         res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null", follow: follow});
                           })
                         })        
                 }
@@ -841,7 +850,7 @@ app.post('/addPlay', function(req, res){
             }
     }
     db.playlists.insert({
-        _id: req.body.sid,
+        songID: req.body.sid,
         name: req.body.name,
         artistID: id
     }, function(e, o){
@@ -891,11 +900,11 @@ app.get('/profile', function(req, res){
                          db.playlists.find({artistID: id}, function(e, playlist){
                           var imgurl;
                           console.log(profile.url);
-                          if(profile.changedPic === "true" || profile.changedPic === "none"){
-                            imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+                          if(profile.url && profile.changedPic == "none"){
+                              imgurl = profile.url;
                           }
-                          else if(profile.url){
-                            imgurl = profile.url;
+                          else if(profile.changedPic === "true" || profile.changedPic === "none"){
+                            imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
                           else{
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
@@ -992,7 +1001,7 @@ app.post('/changeImage', function(req, res){
 
 app.post('/playDelete', function(req, res){
     var id = req.body.id;
-    db.playlists.remove({_id: id}, function(e,o){});
+    db.playlists.remove({songID: id}, function(e,o){});
     res.send({msg: "Deleted", id: req.body.id});
 })
 
@@ -1015,7 +1024,7 @@ app.post('/deleteSong', function(req, res){
 					});
 				}
 			})
-            db.playlists.remove({_id: sid}, function(e, o){})
+            db.playlists.remove({songID: sid}, function(e, o){})
             client.deleteFile(parseInt(sid), function(e, res){});
             res.send({msg: "yes", id: sid, name: req.body.name})
         }

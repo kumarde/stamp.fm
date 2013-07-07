@@ -12,7 +12,6 @@
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
     <link rel="stylesheet" type="text/css" href="/gridiculous.css">
     <link rel="stylesheet" type="text/css" href="/profile.css">
-    <link rel="stylesheet" type="text/css" href="/dropzone.css">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
@@ -36,62 +35,22 @@
       <div class="c2" id="tabs">
 
         <ul id="listName">
-          <li id="favButton" class="highlightTab"><a href="#playlistContent" id="playlistLabel">Favorites</a></li>
-          <li id="songButton"><a href="#songContent" id="songListLabel">Videos</a></li>
-
-          <script>
-          $("document").ready(function(){
-          $("li#songButton").click(function() {
-            $('li#favButton').removeClass("highlightTab");
-          $('li#favButton').click(function(){
-            $('li#favButton').addClass("highlightTab");
-          })
-            });
-          });          
-          </script>
-          <script>
-          $("document").ready(function(){
-          $("li#songButton").click(function() {
-            $('li#songButton').addClass("highlightTab");
-          $('li#favButton').click(function(){
-            $('li#songButton').removeClass("highlightTab");
-          })
-            });
-          });          
-          </script>          
+		  <li id="songButton" class="highlightTab"><a href="#songContent" id="songListLabel">Videos</a></li>
+          <li id="favButton" ><a href="#playlistContent" id="playlistLabel">Favorites</a></li>
+        
+          
         </ul>
   
-
-
-  <div id="playlistContent">
-    <div id="song" style="margin-top:4px;">
-	<div style=" overflow:auto;">
-        <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
-          <% playlist.forEach(function(play){ %>
-          <tr id="song_name" class = "p<%=play._id%>" >
-            <td><div style="width:100px;cursor:pointer;" data-tag ="<%=play._id%>" class = "songname"><%= play.name %></div></td>
-			<td style="float:right;min-width:40px;margin-top:5px;"><img data-name = "<%=play.name%>" data-tag ="<%=play._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-            <img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="favoriteRemove.png" style="height:15px;width:15px;"></td>
-          </tr>
-          <% }); %>
-        </table> 
-    </div> 
-  </div>    
-</div>
-
   <div id="songContent">
 
     <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash">
     <input type="button" value="Upload" id="uploadFigurehead">
     </form>
 
-	  
-
- 
- 
+	 
       <div id="song" style="margin-top:4px;">
-             <div style=" overflow:auto;">
-               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
+      <div style=" overflow:auto;">
+      <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
           <td><div data-tag ="<%=song._id%>" class = "songname" ><%= song.name %></div></td>
@@ -107,10 +66,45 @@
         </div>
             </div> 
           </div>
+
+
+  <div id="playlistContent">
+    <div id="song" style="margin-top:4px;">
+	<div style=" overflow:auto;">
+        <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
+          <% playlist.forEach(function(play){ %>
+          <tr id="song_name" class = "p<%=play.songID%>" >
+            <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.name %></div></td>
+			<td style="float:right;min-width:40px;margin-top:5px;cursor:pointer;"><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+            <img data-tag = "<%=play.songID%>" class="playdelete" id = "<%=play.songID%>" src="favoriteRemove.png" style="height:15px;width:15px;"></td>
+          </tr>
+          <% }); %>
+        </table> 
+    </div> 
+  </div>    
+</div>
+
+
         </div>
 		
 		
-		
+<script>
+          $("document").ready(function(){
+		  
+		  $("#songButton").trigger('click');
+		  
+          $("li#songButton").click(function() {
+		   $('li#songButton').addClass("highlightTab");
+            $('li#favButton').removeClass("highlightTab");
+          $('li#favButton').click(function(){
+            $('li#favButton').addClass("highlightTab");
+			$('li#songButton').removeClass("highlightTab");
+          })
+            });
+          });          
+          </script>
+        
+
  <script>
           $("document").ready(function(){
             $('#uploadSong').change(function(){
@@ -151,10 +145,10 @@
         </div>
 
       <div id="profilePicture" style="margin:auto">
-        <img id="preview" src="<%=imgid%>" data-tag="<%=id%>" style="margin-right:67px">
+        <img id="preview" src="<%=imgid%>" data-tag="<%=id%>">
         <ul class="interaction" id="followInfo">
         <div id="followinglistb" class="modalbutton"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></div>
-        <li><input type="button" value="follow" id="stampFollow" onclick="buttonChange();"></li><br>
+        <li><input type="button" value="Follow" class="stampFollowt" ></li><br>
         <div id="followerslistb" class="modalbutton"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></div>
         </ul>
         <ul class="interaction" id="social">
@@ -199,22 +193,22 @@
 <br>
 
         <div id="video">
-                      <div id="bio" >
+        <div id="bio" >
     <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio" id = "chBio">
-          <input type="text" id="displayBioEdit" name="editBio" class="replace" value=""></textarea>
-          <input type="submit" id="submitBioButton" value="Submit" style="visibility: hidden" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
+          <input type="text" id="displayBioEdit" name="editBio" class="replace" value="" style="display:none;">
+          <input type="submit" id="submitBioButton" value="Submit" style="display:none;" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
         </form> 
       </div>
           <div class="c12 end" id="videoPlayer" style="border:none">
-           <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
-                <source src="" type="video/mp4" id = "source">
+           <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
+		   <source src="" type="video/mp4" id = "source">
             </video>
           </div>   
 
          </div> 
 </div>
-   <div class="c2" id="feed" style="float:right"></div>
+   <div class="c2" id="feed" style="float:right"><b><spanLabel id="newsFeedLabel" style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">News Feed</spanLabel></b></div>
 </div>
 </div>
 </div> 

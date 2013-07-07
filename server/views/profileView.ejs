@@ -67,10 +67,10 @@
 	<div style=" overflow:auto;">
         <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
           <% playlist.forEach(function(play){ %>
-          <tr id="song_name" class = "p<%=play._id%>" >
-            <td><div style="width:100px;" data-tag ="<%=play._id%>" class = "songname"><%= play.name %></div></td>
-			<td style="float:right;min-width:40px;margin-top:5px;cursor:pointer; "><img data-name = "<%=play.name%>" data-tag ="<%=play._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-            <img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="favoriteRemove.png" style="height:15px;width:15px;"></td>
+          <tr id="song_name" class = "p<%=play.songID%>" >
+            <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.name %></div></td>
+			<td style="float:right;min-width:40px;margin-top:5px;cursor:pointer; "><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+            <img data-tag = "<%=play.songID%>" class="playdelete" id = "<%=play.songID%>" src="favoriteRemove.png" style="height:15px;width:15px;"></td>
           </tr>
           <% }); %>
         </table> 
@@ -113,10 +113,17 @@
 		
 		
       <div id="profilePicture" style="margin:auto">
-        <img id="preview" src="<%=profID%>" data-tag="<%=id%>" style="margin-right:67px">
+        <img id="preview" src="<%=profID%>" data-tag="<%=id%>">
         <ul class="interaction" id="followInfo">
         <div id="followinglistb" class="modalbutton"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></div>
-        <li><input type="button" value="follow" id="stampFollow" onclick="buttonChange();"></li><br>
+		
+        <% if (follow == 0) {%>
+		<li><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li><br>
+		<%} else {%>
+		<li><input type="button" value="Forget" class="stampFollow" id="<%=id%>"></li><br>
+		<%}%>
+		
+		
         <div id="followerslistb" class="modalbutton"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></div>
         </ul>
         <ul class="interaction" id="social" style="margin-right:40px;">
@@ -133,14 +140,14 @@
                   <spanBio id="displayBio"><%=bio%></spanBio>
                 </div>
           <div class="c12 end" id="videoPlayer" style="border:none">
-           <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": "html5", "flash"]}'>
+           <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>
                 <source src="" type="video/mp4" id = "source">
             </video>
           </div>   
 
          </div> 
 </div>
-   <div class="c2" id="feed" style="float:right"></div>
+   <div class="c2" id="feed" style="float:right"><b><spanLabel id="newsFeedLabel" style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">News Feed</spanLabel></b></div>
 </div>
 </div>
 </div> 
