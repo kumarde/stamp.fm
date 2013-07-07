@@ -1,6 +1,6 @@
 var users = {};
 $(document).ready(function() {
-	$('#search').keyup(search);
+	$('#search').keyup(searcher);
 	$('#searchform').submit(function(event){
 		event.preventDefault();
 		window.location = "/view?id="+$('#users').children('.user')[0].id;
@@ -33,12 +33,14 @@ $(document).ready(function() {
         }
     });
 });
-	 function search() {
+	 function searcher() {
 		$('#users').html("");
 		delete users;
 		var users = {};
         var str = $('#search').val();
-        if (str!=""){
+		
+		str  = str.toLowerCase();
+        if (str!="" && str.match(/\W/g) == null){
 	    $.ajax({ 
                 url: '/bandsearch',
                 type: 'POST',
@@ -53,8 +55,15 @@ $(document).ready(function() {
 						if ( !users[data.data[i]] ){
 							if ( data.data[i]._id != data.id ){
 								$div = $('<div class="user" id="'+data.data[i]._id+'">'+data.data[i].name+'</div>');
-								$img = $('<input type="button" value="follow" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
-								$img.click(follow);
+								if (data.data[i].followers.indexOf(data.id) == -1 ){
+									$img = $('<input type="button" value="Follow" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
+									$img.click(follow);
+								}
+								else{
+								$img = $('<input type="button" value="Forget" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
+									$img.click(unfollow);
+								}
+
 								$div.click(function(event){
 									if (!$(event.target).hasClass("user")) return;
 									window.location = "/view?id="+event.target.id;
@@ -66,13 +75,27 @@ $(document).ready(function() {
                     }
                     }
                 }
-            });        
-            }
+            });     
+            }  
     }
 
 	function follow(event) {
 		$.ajax({ 
 			url: '/follow',
+			type: 'POST',
+			cache: false, 
+			data: { id: event.target.id},
+			success: function(data){
+			if (typeof data.redirect == 'string' )window.location = data.redirect;
+			else if (typeof data.error == 'string')console.log(data.error);
+			else console.log(data);
+			}
+		});
+	}
+
+	function unfollow(event) {
+		$.ajax({ 
+			url: '/unfollow',
 			type: 'POST',
 			cache: false, 
 			data: { id: event.target.id},
