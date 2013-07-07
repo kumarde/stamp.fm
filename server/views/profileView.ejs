@@ -63,37 +63,45 @@
 
 
   <div id="playlistContent">
-    <div id="song" style=" overflow:auto;">
-      <table cellspacing="0" cellpadding="0" >
-        <table cellspacing="0" cellpadding="1" style="color:#000" id = "playlistTable">
- <% playlist.forEach(function(play){ %>
-        <tr id="playlist_name">
-          <td><div style="width:100px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
-        </tr>
-        <% }); %>
+    <div id="song" style="margin-top:4px;">
+	<div style=" overflow:auto;">
+        <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
+          <% playlist.forEach(function(play){ %>
+          <tr id="song_name" class = "p<%=play._id%>" >
+            <td><div style="width:100px;" data-tag ="<%=play._id%>" class = "songname"><%= play.name %></div></td>
+			<td style="float:right;min-width:40px;margin-top:5px;cursor:pointer; "><img data-name = "<%=play.name%>" data-tag ="<%=play._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+            <img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="favoriteRemove.png" style="height:15px;width:15px;"></td>
+          </tr>
+          <% }); %>
         </table> 
-      </table>
     </div> 
   </div>    
+</div>
 
 
   <div id="songContent">
-      <div id="song">
+
+
+      <div id="song" style="margin-top:4px;">
              <div style=" overflow:auto;">
-               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
+               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable" style="color:#000;margin-top:21px;">
       <% songs.forEach(function(song){ %>
-        <tr id="song_name" style="color:#000;">
-          <td><div data-tag ="<%=song._id%>" class = "vidPlay" style="width:100px;"><%= song.name %></div></td>
-          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;"></td>
+        <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
+          <td><div data-tag ="<%=song._id%>" class = "songname" ><%= song.name %></div></td>
+		  <td style="float:right;min-width:40px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+		  <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+		  </tr>
       <% }); %>
+			
           </table>  
+
         </div>
             </div> 
           </div>
         </div>
-
-
+		
 <div id = "users"></div>
+
         <div id="name" class="c5">
 
         <spanName id="displayName" style="color:black"><%=name%></spanName>
@@ -102,22 +110,26 @@
         <span id="displayLocation"><%=location%></span>
         </spanLocation>
         </div>
+		
+		
       <div id="profilePicture" style="margin:auto">
-        <a href="#bigPic"><img id="preview" src="<%=profID%>" data-tag="<%=id%>"></a>
+        <img id="preview" src="<%=profID%>" data-tag="<%=id%>" style="margin-right:67px">
         <ul class="interaction" id="followInfo">
-        <a href="#followingList" id="followingLink"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></a>
+        <div id="followinglistb" class="modalbutton"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></div>
         <li><input type="button" value="follow" id="stampFollow" onclick="buttonChange();"></li><br>
-        <a href="#followersList" id="followersLink"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></a>
+        <div id="followerslistb" class="modalbutton"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></div>
         </ul>
-        <ul class="interaction" id="social" >
+        <ul class="interaction" id="social" style="margin-right:40px;">
         <li><div class="fb-like" id="fbIcon" data-href="<%=facebook%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li><br>
-        <li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+        <!--<a href="<%=twitter%>" id="twit" target="_blank"><li><img src="twitter.png" id="twitIcon"></li>-->
+        <li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li></a><br> 
         </ul>
       </div>
 <br>
 
+				
         <div id="video">
-                <div id="bio">
+        <div id="bio" style="margin-right:211px;">
                   <spanBio id="displayBio"><%=bio%></spanBio>
                 </div>
           <div class="c12 end" id="videoPlayer" style="border:none">
@@ -135,46 +147,8 @@
 
 </div>
 
-<!-- Modal Window(s) -->
 
-<div id="bigPic" class="modalDialog">
-  <div>
-    <a href="#close" title="Close" class="close" style="color:#FFFFFF">X</a>
-    <center>
-    <img src="<%=profID%>" id="bigPicture" style="height: 70%; width: 70%;">  
-  </center>
-  </div>
-</div>
 
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-
-<div id="followingList" class="modalDialog_follow">
-  <div>
-    <a href="#close" title="Close" class="close" style="color:#FFFFFF">X</a>
-    <center>
-    <h3 style="color:white">Who <%=name%> is Following</h3>    
-    <div id="to"></div>   
-    </center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
-
-<!-- Modal Window(s) -->
-
-<div id="followersList" class="modalDialog_follow">
-  <div>
-    <a href="#close" title="Close" class="close" style="color:#FFFFFF">X</a>
-    <center>
-    <h3 style="color:white">Who's Following <%=name%></h3>    
-    <div id="from"></div>   
-    </center>
-  </div>
-</div>
-
-<!-- End Modal Window(s) -->
 
 <!-- FB Like Script-->
 <div id="fb-root"></div>
@@ -200,8 +174,5 @@
 
 
 
-
-
-
-
-
+<% stylesheet('modals.css') -%>
+<%-partial('modals', ["'IJNOP'"]) %>

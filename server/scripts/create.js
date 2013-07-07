@@ -9,25 +9,23 @@ $(document).ready(function() {
      var emailconfirm = $('#emailconfirm').val();
      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	 
+	 name = name.replace(/\W/g,"");
+	 var box;
+	 if($("#box").is(':checked'))box = 1;
+	 else box = 0;
      if(name == "" || email == "" || emailconfirm == "" || password == ""){
       $('div#unfilled').addClass("unhidden");
-        $('a#close').click(function(){
-          $('div#unfilled').removeClass("unhidden");
-      });
      }
     else if (!email.match(re)){
       $('div#bademail').addClass("unhidden");
-        $('a#close').click(function(){
-        $('div#bademail').removeClass("unhidden");
-      });
     }
 	else if(email != emailconfirm){
       $('div#nomatch').addClass("unhidden");
-        $('a#close').click(function(){
-        $('div#nomatch').removeClass("unhidden");
-      });
      }
-    else{
+	 else if (box == 0){
+	  $('div#boxerror').addClass("unhidden");
+	}
+	 else{
      $.ajax({ 
            url: '/',
            type: 'POST',
@@ -37,9 +35,7 @@ $(document).ready(function() {
             if(data.error != null){
               //alert(data.error);
               $('div#error').addClass("unhidden");
-              $('a#close').click(function(){
-                  $('div#error').removeClass("unhidden");
-              });
+
             }
             if (typeof data.redirect == 'string'){
               window.location = data.redirect;

@@ -64,34 +64,54 @@
 
 
   <div id="playlistContent">
-    <div id="song" style=" overflow:auto;">
-      <table cellspacing="0" cellpadding="0" >
-        <table cellspacing="0" cellpadding="1" style="color:#000" id = "playlistTable">
+    <div id="song" style="margin-top:4px;">
+	<div style=" overflow:auto;">
+        <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
           <% playlist.forEach(function(play){ %>
-          <tr id="playlist_name" class = "p<%=play._id%>">
-            <td><div style="width:100px;" data-tag ="<%=play._id%>" class = "vidPlay"><%= play.name %></div></td>
-            <td><img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="favoriteRemove.png" style="height:15px;width:15px;float:right;"></td>
+          <tr id="song_name" class = "p<%=play._id%>" >
+            <td><div style="width:100px;cursor:pointer;" data-tag ="<%=play._id%>" class = "songname"><%= play.name %></div></td>
+			<td style="float:right;min-width:40px;margin-top:5px;"><img data-name = "<%=play.name%>" data-tag ="<%=play._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+            <img data-tag = "<%=play._id%>" class="playdelete" id = "<%=play._id%>" src="favoriteRemove.png" style="height:15px;width:15px;"></td>
           </tr>
           <% }); %>
         </table> 
-      </table>
     </div> 
   </div>    
-
+</div>
 
   <div id="songContent">
 
     <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash">
     <input type="button" value="Upload" id="uploadFigurehead">
     </form>
-      <!--upload button click dialog-->
-          <script>
-           $('#uploadFigurehead').click(function() {
-             $('#uploadSong').click();
-            });
-           </script>
-      <!--END click dialog-->     
-         <script>
+
+	  
+
+ 
+ 
+      <div id="song" style="margin-top:4px;">
+             <div style=" overflow:auto;">
+               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
+      <% songs.forEach(function(song){ %>
+        <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
+          <td><div data-tag ="<%=song._id%>" class = "songname" ><%= song.name %></div></td>
+		  <td style="float:right;min-width:120px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+		  <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+		  <img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;">
+		  <input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="<%=song.inTourney%>" id="tourneyAdd" class="addTourney" onclick="tourneyButtonChange();"></td>
+	   </tr>
+      <% }); %>
+			
+          </table>  
+
+        </div>
+            </div> 
+          </div>
+        </div>
+		
+		
+		
+ <script>
           $("document").ready(function(){
             $('#uploadSong').change(function(){
               $('#uploadForm').submit();
@@ -106,28 +126,11 @@
           $('input#cancelUpload').click(function(){
             $('div#info').removeClass("unhidden");
           })
+		  $('#uploadFigurehead').click(function() {
+             $('#uploadSong').click();
+            });
           });
          </script> 
-<!--End Open/Close Modal Script-->
-      <div id="song">
-             <div style=" overflow:auto;">
-               <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
-      <% songs.forEach(function(song){ %>
-        <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
-          <td><div data-tag ="<%=song._id%>" class = "songname" style="width:70px;"><%= song.name %></div></td>
-		  <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
-		  <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
-          <td><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
-          <td><img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;"></td>
-          <td><input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="<%=song.inTourney%>" id="tourneyAdd" class="addTourney" onclick="tourneyButtonChange();"></td>
-        </tr>
-      <% }); %>
-          </table>  
-        </div>
-            </div> 
-          </div>
-        </div>
-
 
 <div id = "users"></div>
         <div id="name" class="c5">
@@ -148,7 +151,7 @@
         </div>
 
       <div id="profilePicture" style="margin:auto">
-        <img id="preview" src="<%=imgid%>" data-tag="<%=id%>">
+        <img id="preview" src="<%=imgid%>" data-tag="<%=id%>" style="margin-right:67px">
         <ul class="interaction" id="followInfo">
         <div id="followinglistb" class="modalbutton"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></div>
         <li><input type="button" value="follow" id="stampFollow" onclick="buttonChange();"></li><br>
@@ -163,6 +166,8 @@
           <input name = "file" type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="display:none">  
         </form>
         </ul>
+		
+		
         <!--Picture Preview-->
         <script type="text/javascript">      
         function previewImage(input) {
@@ -215,8 +220,6 @@
 </div> 
 
 </div>
-<!-- Modal Window(s) -->
-
 
 
 
@@ -271,7 +274,7 @@
 
 
 <% stylesheet('modals.css') -%>
-<%-partial('modals', ["'IJKLMNOP'"]) %>
+<%-partial('modals', ["'IJKLMNOPTU'"]) %>
 
 
 

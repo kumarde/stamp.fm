@@ -80,6 +80,7 @@
 		else if ( type == 'M' ){%>
 			<div id="congrats" class="modalDialog">
 			  <div>
+			  <div class="close" id="closeButton" style="color:#FFFFFF">X</div>
 				<center>
 				<h3 style="color:white">Congratulations! <br> You're song has been successfully added to the tournament!</h3>    
 				</center>
@@ -180,11 +181,62 @@
 			</center>
 		  </div>
 		</div>
-		<% } 
-		
-		}
+		<% }
+	else if ( type == 'R' ){%>
+	
+	<div id="boxerror" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">Please Verify to Our Terms</h5></center></div></div>
 
-		%>
+	<%}
+	else if ( type == 'S' ){%>
+		<div id="bigpic" class="modalDialog">
+		  <div>
+			<div class="close" style="color:#FFFFFF">X</div>
+			<center>
+			<img src="<%=profID%>" id="bigPicture" style="height: 70%; width: 70%;">  
+		  </center>
+		  </div>
+		</div>
+	<% }
+		else if ( type == 'T' ){%>
+		<div id="samesong" class="modalDialog">
+		  <div>
+			<div class="close" style="color:#FFFFFF">X</div>
+			<center>
+			<h3 style="color:white">You cannot enter two videos in the same genre</h3>    
+			</center>
+		  </div>
+		</div>
+	<% }
+	else if ( type == 'U' ){%>
+		<div id="delerror" class="modalDialog">
+		  <div>
+			<div class="close" style="color:#FFFFFF">X</div>
+			<center>
+			<h3 style="color:white">You cannot delete a video uploaded to the tournament</h3>    
+			</center>
+		  </div>
+		</div>
+	<% }
+	else if ( type == 'V' ){%>
+		<div id="proferr" class="modalDialog">
+		  <div>
+			<div class="close" style="color:#FFFFFF">X</div>
+			<center>
+			<div id="proferrdiv" style="color:white"></div>
+			</center>
+		  </div>
+		</div>
+	<% }
+	}
+
+%>
+		
+		
+		
+		
+		
+
+
 
 <script>
 $("document").ready(function(){

@@ -3,10 +3,13 @@ $(document).ready(function() {
       return false;
     });
     $('#songSubmit').click(function(event){
-      alert("this is submitting the click event");
      var name = $('#songName').val();
      var explicit = $('#explicit').val();
      var genre = $('#genre').val();
+	 
+	 name = name.replace(/\W/g,"");
+	 
+	 
      $.ajax({ 
            url: '/db-upload',
            type: 'POST',
@@ -53,6 +56,7 @@ $(document).ready(function() {
     })
     $('#submitNameButton').click(function(event){
       var name = $('#displayNameEdit').val();
+	  name = name.replace(/\W/g,"");
       $.ajax({
         url: '/changeName',
         type: 'POST',
@@ -65,6 +69,7 @@ $(document).ready(function() {
     })
     $('#submitBioButton').click(function(event){
       var bio = $('#displayBioEdit').val();
+	  bio = bio.replace(/\W/g,"");
       $.ajax({
         url: '/changeBio',
         type: 'POST',
@@ -77,6 +82,7 @@ $(document).ready(function() {
     })
     $('#submitLocationButton').click(function(event){
       var loc = $('#displayLocationEdit').val();
+	  loc = loc.replace(/\W/g,"");
       $.ajax({
         url: '/changeLocation',
         type: 'POST',
@@ -151,7 +157,7 @@ $(document).ready(function() {
             $("#"+data.id).trigger("click");
           }
           else if(data.msg == "no"){
-            alert("You cannot delete a video uploaded to the tournament.");
+            $('div#delerror').addClass("unhidden");
           }
         }
       })
@@ -182,10 +188,10 @@ $(document).ready(function() {
         data: {name: name, id: sid, genre: genre},
         success: function(data){
             if(data.msg == "no"){
-              alert("You cannot enter two songs in the same genre.");
+              $('div#samesong').addClass("unhidden");
             }
             else{
-              alert("Congrats! Your song is in!");
+              $('div#congrats').addClass("unhidden");
             }
         }
       })

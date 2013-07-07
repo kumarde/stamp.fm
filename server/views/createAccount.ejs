@@ -41,7 +41,7 @@
 	<div class="login">
 	<center>
 	<div id = "login-container">
-	  <form method = "POST" class = "InputFields" id = "inputFields" action = "/signup">
+	  <form method = "POST" class = "InputFields" id = "inputFields" action = "/">
 		  <p style="font-size: 30px">Join Stamp.fm</p>
 		  <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
 			or<br>
@@ -52,7 +52,7 @@
 		  <input type = "password" name = "pass" id = "password" placeholder="Password" class="pass"><br><br>
 		  
 		  <label for = "birthday" id = "birthday" style="float:left; font-size:15px;">I certify that I am over the age of 14<br>and if I'm an artist, I do not have a manager: </label>
-		  <br><input type = "checkbox" unchecked style="float:left"><br>
+		  <br><input type = "checkbox" id="box" unchecked style="float:left"><br>
 		  <br><span style="font-size:10px;">WE WILL NOT POST ON YOUR FACEBOOK WALL</span><br>
 		  </center>
 		  </p>
@@ -80,6 +80,6 @@
 
 
 <% stylesheet('modals.css') -%>
-<%-partial('modals', ["'ABCDEFGP'"]) %>
+<%-partial('modals', ["'ABCDEFGPR'"]) %>
 
 
