@@ -228,6 +228,29 @@
 		  </div>
 		</div>
 	<% }
+		else if ( type == 'W' ){%>
+		<div id="songdel" class="modalDialog">
+		  <div>
+			<center>
+			<h5 style="color:white">Are you sure?</h5>
+			   <input type="button" class="but" value="Yes" id = "syes">
+			  <input type="button"  class="but" value="No" id = "sno">
+			</center>
+		  </div>
+		</div>
+	<% }
+	else if ( type == 'X' ){%>
+		<div id="playdel" class="modalDialog">
+		  <div>
+			<center>
+			<h5 style="color:white">Are you sure?</h5>
+
+			   <input type="button" class="but" value="Yes" id = "pyes">
+			  <input type="button" class="but" value="No" id = "pno">
+			</center>
+		  </div>
+		</div>
+	<% }
 	}
 
 %>

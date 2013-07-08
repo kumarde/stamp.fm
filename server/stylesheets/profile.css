@@ -215,6 +215,19 @@
 }
 #cancelUpload:hover { background: rgba(163,163,163,1); }
 
+.but{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+.but:hover { background: rgba(163,163,163,1); }
 
 
 #enterTourney{

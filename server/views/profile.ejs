@@ -199,8 +199,8 @@
           <input type="submit" id="submitBioButton" value="Submit" style="display:none;" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
         </form> 
       </div>
-          <div  style="border:none">
-           <video height="300px" width="80%" id="v" controls>           
+          <div class="c12 end" id="videoPlayer" style="border:none">
+           <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
 		   <source src="" type="video/mp4" id = "source">
             </video>
           </div>   
@@ -267,7 +267,7 @@
 
 
 <% stylesheet('modals.css') -%>
-<%-partial('modals', ["'IJKLMNOPTU'"]) %>
+<%-partial('modals', ["'IJKLMNOPTUWX'"]) %>
 
 
 

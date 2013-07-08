@@ -59,8 +59,19 @@ $(document).ready(function() {
 	 
     $('.vidPlay').click(playVideo);
     $('.addPlay').click(addtoPlaylist);
-    $('.deletebutton').click(deleteSong);
-    $('.playdelete').click(deletefromPlaylist);
+    $('.deletebutton').click(function(){ $("#songdel").addClass("unhidden");
+										$("#syes").attr('data-tag',$(this).attr('data-tag'));
+		});
+    $('.playdelete').click(function(){$("#playdel").addClass("unhidden");
+	$("#pyes").attr('data-tag',$(this).attr('data-tag'));
+	
+	});
+	$("#syes").click(deleteSong);
+	$("#pyes").click(deletefromPlaylist);
+	$(".but").click(function(){$("#songdel").removeClass("unhidden");
+								$("#playdel").removeClass("unhidden");
+	});
+	
     $('.addTourney').click(uploadToTourney);
     $('#chName').submit(function(event){
       return false;
@@ -110,9 +121,9 @@ $(document).ready(function() {
         cache: false,
         data: {video : tag},
         success: function(data){
-    	$('#v').find("#source").attr("src", data.video);
-		$('#v').load();
-	/*
+    	/*$('#v').find("#source").attr("src", data.video);
+		$('#v').load();*/
+	
           var $vid_obj = _V_("vidYo");
 	  $vid_obj.ready(function() {
 	    $vid_obj.pause();
@@ -122,7 +133,7 @@ $(document).ready(function() {
 	    $vid_obj.load();
 	    $("#div_video_html5_api").show();
 	  });
-	  */
+	  
         }
       });
   }
