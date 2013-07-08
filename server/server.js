@@ -812,7 +812,7 @@ app.get('/view', function(req, res){
                           var imgurl;
                           console.log(self.url);
                           if(self.url && self.changedPic == "none"){
-                              imgurl = profile.url;
+                              imgurl = self.url;
                           }
                           else if(self.changedPic === "true" || self.changedPic === "none"){
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
