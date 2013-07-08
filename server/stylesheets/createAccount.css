@@ -80,8 +80,11 @@ html{
 }
 
 #birthday{
-    margin-left: 60px;
     max-width: 300px;
+}
+#box{
+	margin-top:10px;
+	margin-left: 75px;
 }
 
 #createAccount{
