@@ -611,7 +611,6 @@ td{
 }
 
 #listName li{
-    margin-left:10%;
     display: inline;
     -webkit-transition-duration: 0.4s;
     -moz-transition-duration: 0.4s;
@@ -623,8 +622,13 @@ td{
 }
 
 #songButton{
+    margin: auto;
     padding-right: 30px;
     border-right: 1px solid #000;
+}
+#favButton{
+    margin-left:10%;
+    margin-right: auto;
 }
 #songListLabel{
     font-size: 20px;
