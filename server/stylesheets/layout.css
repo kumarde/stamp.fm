@@ -525,7 +525,6 @@ td{
 #vidYo{
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid rgba(180,7,6,1);
     -moz-box-shadow:    1px 1px 5px 2px rgba(0,0,0,.5);
     -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,.5);
     box-shadow:         1px 1px 5px 2px rgba(0,0,0,.5);
