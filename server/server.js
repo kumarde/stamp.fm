@@ -120,7 +120,7 @@ app.configure(function(){
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(err) return done(err);
                 else if(user == null){
-                    db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')}, function(e, userprof){
+                    db.users.insert({name:profile._json.name, pass: "4x567676767676767678438xx", _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')}, function(e, userprof){
                        db.profiles.save({url: "", _id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Tagline", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender, isNew: "false"});
                        return done(null, userprof[0]);
                     });
