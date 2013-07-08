@@ -99,15 +99,12 @@ html{
     color: #FFFFFF;
     background-color: #000;
     opacity: 0.7;
-    height: 550px;
+    height: 250px;
     width:53%;
 }
 #vidPlayer{
-		position:absolute;
 		float:left;
-		top:18em;
-		z-index:999;
-		margin-left:-12em;
+		margin-left: 10%;
 }
 
 @media only screen and (max-width: 1050px) {
@@ -117,7 +114,7 @@ html{
 	margin-left: auto;
 	margin-right: auto;
 	width:80%;
-	height:555px;
+	height:255px;
     }
     .login{
 	float:none;
@@ -126,11 +123,8 @@ html{
 	width:400px;
     }
 	#vidPlayer{
-		position:absolute;
-		float:left;
-		top:16em;
-		z-index:999;
-		margin-left:5em;
+		position:relative
+		float:none;
 		}
 	
 }

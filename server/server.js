@@ -430,21 +430,28 @@ app.post('/song-upload', function(req, res){
                 name = req.session.user[0].name;
         }
   }
-  db.users.update({_id: id}, {$set: {upSong: songs}});
+  
+	console.log(req.body);
+  var temp = songs;
+  songs++;
+  
+   db.music.save({_id:temp,name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre, inTourney: "Submit"});
+      Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
+        if(data == false) console.log("Share failed.");
+      });
   var stream = fs.createReadStream(req.files.file.path);
   upload = new mpu(
     {
       client: client,
-      objectName: songs.toString(),
+      objectName: temp.toString(),
       stream: stream,
       headers: {"Content-Type": req.files.file.type}
     },
     function(err, obj){
       console.log(obj);
+	  res.redirect('/profile');
     }
     );
-  ++songs;
-  res.send(204);
 });
 
 app.post("/db-upload", function(req, res){
@@ -464,16 +471,7 @@ app.post("/db-upload", function(req, res){
                 name = req.session.user[0].name;
         }
     }
-    db.users.findOne({_id: id}, function(e, o){
-      console.log(o);
-      songID = o.upSong;
-      db.music.save({_id: songID,name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre, inTourney: "Submit"});
-      Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
-        if(data == false) console.log("Share failed.");
-      });
-      res.send({redirect:'/profile'});
-      //res.send({msg: "saved", id: songID, name: req.body.name, genre: req.body.genre});
-    })
+
 })
 
 

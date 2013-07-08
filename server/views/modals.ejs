@@ -40,9 +40,7 @@
 			<center>
 			<h5 style="color:white">Fill in your Song Information</h5>
 			<div>
-			  <form id = "db-upload" method = "POST" action = "/db-upload">
 				<input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName">
-			  </form>
 			   <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
 				<center>
 				<select name="genre" form="songInfo" id = "genre">
@@ -58,8 +56,11 @@
 				  <option class="genreChoice" id="folk">Folk</option>
 			   </select><br><br>
 			   <span  style="color:#FFFFFF; font-size:15px;">Does this song contain explicit content?</span><input type = "checkbox" id = "explicit" name = "explicit"><br>
-			  <input type="submit" value="Enter" id = "songSubmit">
+			   <input type="button" value="Enter" id = "songSubmit">
 			  <input type="button" value="Cancel" id = "cancelUpload">
+			  <br>
+			  <br>
+			  <div id="holder"></div>
 			</div>
 			</center>
 		  </div>

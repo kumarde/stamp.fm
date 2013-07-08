@@ -1,15 +1,25 @@
 $(document).ready(function() {
-    $("#db-upload").submit(function(e){
-      return false;
-    });
+
     $('#songSubmit').click(function(event){
+		
+	 if ( $('#songName').val() != ""){
+	 
      var name = $('#songName').val();
      var explicit = $('#explicit').val();
      var genre = $('#genre').val();
 	 
 	 name = name.replace(/\W/g,"");
 	 
+	 $("#upname").val(name);
+	 $("#upgenre").val(genre);
+	 $("#upex").val(explicit);
 	 
+	 $('#uploadForm').submit();
+	 $("#songSubmit").css("display","none");
+	 $("#cancelUpload").css("display","none");
+	 $("#holder").html("Please wait your while video uploads")
+	 }
+	 /*
      $.ajax({ 
            url: '/db-upload',
            type: 'POST',
@@ -44,8 +54,9 @@ $(document).ready(function() {
               window.location = data.redirect;
             }
            }
-        })
+        })*/
      });
+	 
     $('.vidPlay').click(playVideo);
     $('.addPlay').click(addtoPlaylist);
     $('.deletebutton').click(deleteSong);

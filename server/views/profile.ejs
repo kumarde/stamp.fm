@@ -44,7 +44,10 @@
   <div id="songContent">
 
     <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash">
-    <input type="button" value="Upload" id="uploadFigurehead">
+    <input type="text" name="name"	style="display:none;" id="upname">
+	<input type="text" name="genre" style="display:none;" id="upgenre">
+	<input type="text" name="explicit" style="display:none;" id="upex">
+	<input type="button" value="Upload" id="uploadFigurehead">
     </form>
 
 	 
@@ -108,12 +111,8 @@
  <script>
           $("document").ready(function(){
             $('#uploadSong').change(function(){
-              $('#uploadForm').submit();
               $('div#info').addClass("unhidden");
             });
-          $('input#songSubmit').click(function(){
-            $('div#info').removeClass("unhidden");
-          })
           $('a#closeButton').click(function(){
             $('div#info').removeClass("unhidden");
           })
