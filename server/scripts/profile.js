@@ -110,6 +110,9 @@ $(document).ready(function() {
         cache: false,
         data: {video : tag},
         success: function(data){
+    	$('#v').find("#source").attr("src", data.video);
+		$('#v').load();
+	/*
           var $vid_obj = _V_("vidYo");
 	  $vid_obj.ready(function() {
 	    $vid_obj.pause();
@@ -119,6 +122,7 @@ $(document).ready(function() {
 	    $vid_obj.load();
 	    $("#div_video_html5_api").show();
 	  });
+	  */
         }
       });
   }
