@@ -8,7 +8,7 @@ $(document).ready(function() {
      var explicit = $('#explicit').val();
      var genre = $('#genre').val();
 	 
-	 name = name.replace(/\W/g,"");
+	 name = name.replace(/\W\s/g,"");
 	 
 	 $("#upname").val(name);
 	 $("#upgenre").val(genre);
@@ -78,7 +78,7 @@ $(document).ready(function() {
     })
     $('#submitNameButton').click(function(event){
       var name = $('#displayNameEdit').val();
-	  name = name.replace(/\W/g,"");
+	  name = name.replace(/\W\s/g,"");
       $.ajax({
         url: '/changeName',
         type: 'POST',
@@ -91,7 +91,7 @@ $(document).ready(function() {
     })
     $('#submitBioButton').click(function(event){
       var bio = $('#displayBioEdit').val();
-	  bio = bio.replace(/\W/g,"");
+	  bio = bio.replace(/\W\s/g,"");
       $.ajax({
         url: '/changeBio',
         type: 'POST',
@@ -104,7 +104,7 @@ $(document).ready(function() {
     })
     $('#submitLocationButton').click(function(event){
       var loc = $('#displayLocationEdit').val();
-	  loc = loc.replace(/\W/g,"");
+	  loc = loc.replace(/\W\s/g,"");
       $.ajax({
         url: '/changeLocation',
         type: 'POST',

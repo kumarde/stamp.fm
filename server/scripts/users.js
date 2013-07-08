@@ -45,7 +45,7 @@ $(document).ready(function() {
         var str = $('#search').val();
 		
 		str  = str.toLowerCase();
-        if (str!="" && str.match(/\W/g) == null){
+        if (str!="" && str.match(/\W\s/g) == null){
 	    $.ajax({ 
                 url: '/bandsearch',
                 type: 'POST',

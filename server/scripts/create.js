@@ -9,7 +9,7 @@ $(document).ready(function() {
      var emailconfirm = $('#emailconfirm').val();
      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	 
-	 name = name.replace(/\W/g,"");
+	 name = name.replace(/\W\s/g,"");
 	 var box;
 	 if($("#box").is(':checked'))box = 1;
 	 else box = 0;

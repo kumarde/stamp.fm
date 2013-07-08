@@ -1,7 +1,7 @@
 var forever = require('forever-monitor');
 
 var child = new(forever.Monitor)('/home/ec2-user/stamp.fm/server/server.js',{
-	max: 1,
+	max: 500,
 	silent: false,
 	watch: true,
 	killTree: true,
@@ -12,6 +12,10 @@ var child = new(forever.Monitor)('/home/ec2-user/stamp.fm/server/server.js',{
 	logFile: '/home/ec2-user/stamp.fm/logs/log.out',
 	outFile: '/home/ec2-user/stamp.fm/logs/out.log',
 	errFile: '/home/ec2-user/stamp.fm/logs/err.log'
+});
+
+child.on('error', function(){
+	child.restart();
 });
 
 child.on('exit', function(){

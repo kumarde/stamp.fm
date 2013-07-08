@@ -17,8 +17,8 @@ var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWO
 var mpu = require('knox-mpu');
 var S3_KEY = 'AKIAIZQEDQU7GWKOSZ3A';
 var S3_SECRET = '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';
-var S3_BUCKET = 'media.stamp.fm';
-var PIC_BUCKET = 'pictures.stamp.fm';
+var S3_BUCKET = 'data.stamp.fm';
+var PIC_BUCKET = 'images.stamp.fm';
 var knox = require('knox');
 var songs = 0;
 
@@ -100,9 +100,9 @@ app.configure(function(){
     });
 
     passport.use(new FacebookStrategy({
-        clientID: "126231077587884",
-        clientSecret: "c8905b5e26ce0a513775c4dcfc79bb21",
-        callbackURL: "http://localhost:8888/auth/facebook/callback"
+        clientID: "427362497341922",
+        clientSecret: "12e395fc0c5f42b67e58f60894bf66a2",
+        callbackURL: "http://www.stamp.fm/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
             graph.setAccessToken(accessToken);
@@ -120,7 +120,7 @@ app.configure(function(){
             db.users.findOne({_id: profile.id}, function(err, user){
                 if(err) return done(err);
                 else if(user == null){
-                    db.users.insert({name:profile._json.name, _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')}, function(e, userprof){
+                    db.users.insert({name:profile._json.name,pass: "4c3alfae7878797x97388xx838skdfj222", _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')}, function(e, userprof){
                        db.profiles.save({url: "", _id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Tagline", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender, isNew: "false"});
                        return done(null, userprof[0]);
                     });
@@ -721,8 +721,11 @@ app.get('/create', function(req, res){
             }
              db.profiles.save({_id: id, name: "", location: "Click to change Location", bio: "Click to change Tagline", facebook: "", twitter: "", following: [], followers: [], shared: [], gender: ""}, function(e, o){
               db.playlists.insert({songID: 0, name: "Stamp Champ Dan Henig - Don't You Worry Child", artistID: id}, function(e, o){
-                res.render('CreateProfile', {name: name, location: location, imgsrc: "stampman.png"}); 
-              }); 
+		db.users.findOne({_id: id}, function(e, carrier){
+			name = carrier.name;
+			res.render('CreateProfile', {name: name, location: location, imgsrc: "stampman.png"});
+		})
+               }); 
              });
         }
     }
@@ -730,6 +733,7 @@ app.get('/create', function(req, res){
 
 app.post('/create', function(req, res){
     var id;
+    var stream;
     console.log(req.user);
     console.log(req.session.user);
     if(req.session.user == undefined){
@@ -744,11 +748,11 @@ app.post('/create', function(req, res){
     }
     if(req.files.picture.size == 0){
       db.profiles.update({_id: id}, {$set: {changedPic: "none"}});
-      var stream = fs.createReadStream('./images/stampman.png');
+      stream = fs.createReadStream('./images/stampman.png');
     }
     else{
       db.profiles.update({_id: id}, {$set: {changedPic: "true"}});
-      var stream = fs.createReadStream(req.files.picture.path);
+      stream = fs.createReadStream(req.files.picture.path);
     }
     upload = new mpu(
         {
@@ -810,9 +814,15 @@ app.get('/view', function(req, res){
                         db.playlists.find({artistID: pid}, function(e, playlist){
                           db.profiles.findOne({_id: id}, function(e, self){
                           var imgurl;
+			  var profurl;
                           console.log(self.url);
-                          if(self.url && self.changedPic == "none"){
-                              imgurl = profile.url;
+                         if(profile.url && profile.changedPic === "none"){
+				profurl = profile.url;	
+			} else{
+				profurl = myS3Account.readPolicy(pid, PIC_BUCKET, 60);
+			} 
+			 if(self.url && self.changedPic == "none"){
+                              imgurl = self.url;
                           }
                           else if(self.changedPic === "true" || self.changedPic === "none"){
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
@@ -820,7 +830,7 @@ app.get('/view', function(req, res){
                           else{
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
-                         res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null", follow: follow});
+                         res.render('profileView', {profID: profurl, id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null", follow: follow});
                           })
                         })        
                 }
