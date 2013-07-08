@@ -16,7 +16,7 @@ body {
 #band_info{
     float: left;
     height: 235px;
-    width: 530px;
+    width: 600px;
     margin: 10px;
     background-color: rgba(200,200,200,.8);
     -moz-border-radius:5px;  
