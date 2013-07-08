@@ -837,6 +837,7 @@ app.post('/vidPlay', function(req, res){
 
 app.post('/addPlay', function(req, res){
     var id;
+    var name;
     if(req.session.user == undefined){
             id = req.user[0]._id;
     }
@@ -847,18 +848,22 @@ app.post('/addPlay', function(req, res){
                 id = req.session.user[0]._id;
             }
     }
-    db.playlists.insert({
+    db.music.findOne({_id: req.body.sid}, function(e, o){
+      name = o.artistName;
+      db.playlists.insert({
         songID: req.body.sid,
         name: req.body.name,
+        artistName: name,
         artistID: id
     }, function(e, o){
         if(e) res.send(e, 400);
-		else{
-			res.send({name: req.body.name, id: req.body.sid});
-			Feed.share(id, {type: 'favorite', id: req.body.sid, name: req.body.name}, function(data){
-				if (data == false)console.log("Share failed");
-			});
-		}
+    else{
+      res.send({name: req.body.name, id: req.body.sid});
+      Feed.share(id, {type: 'favorite', id: req.body.sid, name: req.body.name}, function(data){
+        if (data == false)console.log("Share failed");
+      });
+    }
+    });
     });
 })  
 

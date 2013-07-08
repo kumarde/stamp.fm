@@ -51,14 +51,14 @@ EmailModule.prototype.composeResponse = function(o)
 
 EmailModule.prototype.composeEmail = function(o)
 {
-	var link = "localhost:8880/reset-password?e="+o.email+"&p="+o.pass;
+	var link = "stamp.fm/reset-password?e="+o.email+"&p="+o.pass;
 	var a = "<a href = "+link+"> Click here to reset</a><br><br>";
 	var html = "<html><body>";
 		html += "Hi "+o.name+",<br><br>";
 		html += "Your username is :: <b>"+o.email+"</b><br><br>";
 		html += "Copy and Paste this link into your browser to reset Password<br><br>";
 		html += link;
-		html += "<br><br>"
+		html += "<br><br>";
 		html += "Cheers,<br>";
 		html += "<a href='http://twitter.com/stamp.fm'>stamp.fm</a><br><br>";
 		html += "</body></html>";

@@ -110,7 +110,7 @@ $(document).ready(function() {
         cache: false,
         data: {video : tag},
         success: function(data){
-          var $vid_obj = _V_("vidYo");
+        var $vid_obj = _V_("vidYo");
 	  $vid_obj.ready(function() {
 	    $vid_obj.pause();
 	    $('#vidYo').find("#source").attr("src", data.video);

@@ -17,7 +17,7 @@ html{
     border-radius: 5px;  
     -webkit-border-radius: 5px;
     color: white;
-    height: 540px;
+    height: 580px;
 }
 *:focus {outline: none;}
 
@@ -99,12 +99,12 @@ html{
     color: #FFFFFF;
     background-color: #000;
     opacity: 0.7;
-    height: 250px;
+    height: 600px;
     width:53%;
 }
-#vidPlayer{
-		float:left;
-		margin-left: 10%;
+#start{
+	margin-bottom: 25px;
+	margin-left: 150px;
 }
 
 @media only screen and (max-width: 1050px) {
@@ -114,7 +114,7 @@ html{
 	margin-left: auto;
 	margin-right: auto;
 	width:80%;
-	height:255px;
+	height:600px;
     }
     .login{
 	float:none;
@@ -122,10 +122,9 @@ html{
 	margin-right: auto;
 	width:400px;
     }
-	#vidPlayer{
-		position:relative
-		float:none;
-		}
+	#start{
+		margin-left: 80px;
+	}
 	
 }
 
