@@ -832,6 +832,7 @@ app.get('/view', function(req, res){
 app.post('/vidPlay', function(req, res){
     var temp = req.body.video;
     var vid = myS3Account.readPolicy(temp, S3_BUCKET, 60);
+    console.log(vid);
     res.send({video: vid});
 })
 
@@ -848,7 +849,7 @@ app.post('/addPlay', function(req, res){
                 id = req.session.user[0]._id;
             }
     }
-    db.music.findOne({_id: req.body.sid.toString()}, function(e, o){
+    db.music.findOne({_id: parseInt(req.body.sid)}, function(e, o){
       console.log(o);
       name = o.artistName;
       db.playlists.insert({
