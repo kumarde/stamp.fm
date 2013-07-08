@@ -500,7 +500,19 @@ td{
     margin-top: -58px; 
     width:20%; 
     height: 710px;
-    border: 1px solid rgba(180,7,6,1);
+    background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(240,240,240)),
+    color-stop(0.6, rgb(235,235,235)),
+    color-stop(0.8, rgb(230,230,230))
+    );
     -moz-box-shadow:    3px 5px 10px 3px rgba(0,0,0,.2);
     -webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,.2);
     box-shadow:         3px 3px 10px 3px rgba(0,0,0,.2);
