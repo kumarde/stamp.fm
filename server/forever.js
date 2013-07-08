@@ -1,6 +1,6 @@
 var forever = require('forever-monitor');
 
-var child = new(forever.Monitor)('server.js',{
+var child = new(forever.Monitor)('/home/ec2-user/stamp.fm/server/server.js',{
 	max: 1,
 	silent: false,
 	watch: true,
@@ -8,7 +8,10 @@ var child = new(forever.Monitor)('server.js',{
 	watchIgnoreDotFiles: null,
 	watchIgnorePatterns: null,
 	watchDirectory: __dirname,
-	options: [] //watch = true?
+	options: [], //watch = true?
+	logFile: '/home/ec2-user/stamp.fm/logs/log.out',
+	outFile: '/home/ec2-user/stamp.fm/logs/out.log',
+	errFile: '/home/ec2-user/stamp.fm/logs/err.log'
 });
 
 child.on('exit', function(){
