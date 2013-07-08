@@ -19,7 +19,7 @@
 			<div id="error" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">E-mail Already Taken</h5></center></div></div>
 		<%}	
 		else if ( type == 'F' ){%>
-			<div id="forgot" class="modalDialog"><div><div class="close">X</div><center><h5 style="color:white">Enter Email to Recover Password</h5><div><form method = "post" action = "/forgot" id = "forgotpass"><input type="text" class="enterEmail" placeholder="Email" name = "email"><br><br><input type="submit" value="Recover Password" id = "recoverPass"></form></div></center></div></div>
+			<div id="forgot" class="modalDialog"><div><div class="close">X</div><center><h5 style="color:white">Enter Email to Recover Your Password</h5><div><form method = "post" action = "/forgot" id = "forgotpass"><input type="text" class="enterEmail" placeholder="Email" name = "email"><br><br><input type="submit" class="but" value="Recover" id = "recoverPass"></form></div></center></div></div>
 		<%}
 		else if ( type == 'G' ){%>
 			<div id="recoversuccess" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">You will recieve a reset email shortly</h5></center></div></div>
@@ -244,7 +244,7 @@
 		  <div>
 			<center>
 			<h5 style="color:white">Are you sure?</h5>
-
+			
 			   <input type="button" class="but" value="Yes" id = "pyes">
 			  <input type="button" class="but" value="No" id = "pno">
 			</center>
