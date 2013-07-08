@@ -121,14 +121,7 @@ $(document).ready(function() {
         cache: false,
         data: {video : tag},
         success: function(data){
-<<<<<<< HEAD
         var $vid_obj = _V_("vidYo");
-=======
-    	/*$('#v').find("#source").attr("src", data.video);
-		$('#v').load();*/
-	
-          var $vid_obj = _V_("vidYo");
->>>>>>> f758ff71e59772302623b0065d965a75fb9e8ae9
 	  $vid_obj.ready(function() {
 	    $vid_obj.pause();
 	    $('#vidYo').find("#source").attr("src", data.video);
