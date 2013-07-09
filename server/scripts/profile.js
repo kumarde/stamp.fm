@@ -8,7 +8,7 @@ $(document).ready(function() {
      var explicit = $('#explicit').val();
      var genre = $('#genre').val();
 	 
-	 name = name.replace(/\W\s/g,"");
+	 name = name.replace("[^a-zA-Z0-9 \s]","");
 	 
 	 $("#upname").val(name);
 	 $("#upgenre").val(genre);
@@ -17,49 +17,14 @@ $(document).ready(function() {
 	 $('#uploadForm').submit();
 	 $("#songSubmit").css("display","none");
 	 $("#cancelUpload").css("display","none");
-	 $("#holder").html("Please wait your while video uploads")
+	 $("#holder").html("Please wait your while video uploads");
 	 }
-	 /*
-     $.ajax({ 
-           url: '/db-upload',
-           type: 'POST',
-           cache: false, 
-           data: {name : name, explicit: explicit, genre: genre},
-           success: function(data){
-            if(data.msg == "saved"){
-          var $tr = $('<tr id="song_name" class = "'+data.id+'" style="color:#000"></tr>');
-          var $td1 = $('<td></td>');
-          var $td2 = $('<td></td>');
-          var $td3 = $('<td></td>');
-          var $td4 = $('<td></td>');
-          var $div = $('<div data-tag ="'+data.id+'" class = "vidPlay" style="width:100px">'+data.name+'</div>');
-          var $img1 = $('<img data-name = "'+data.name+'" data-tag ="'+data.id+'" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;float:right;">');
-          var $img2 = $('<img data-name = "'+data.name+'" data-tag = "'+data.id+'" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;float:right;">');
-          var $img3 = $('<input data-genre = "'+data.genre+'" data-name = "'+data.name+'" data-tag = "'+data.id+'" type="button" value="Submit" class="addTourney">');
-          $div.click(playVideo);
-          $img1.click(addtoPlaylist);
-          $img2.click(deleteSong);
-          $img3.click(uploadToTourney);
-          $td1.append($div);
-          $td2.append($img1);
-          $td3.append($img2);
-          $td4.append($img3);
-          $tr.append($td1);
-          $tr.append($td2);
-          $tr.append($td3);
-          $tr.append($td4);
-            $("#songTable").append($tr);
-            }
-            if (typeof data.redirect == 'string'){
-              window.location = data.redirect;
-            }
-           }
-        })*/
-     });
 	 
+     });
+	
     $('.vidPlay').click(playVideo);
     $('.addPlay').click(addtoPlaylist);
-    $('.deletebutton').click(function(){ $("#songdel").addClass("unhidden");
+    $('.deletebutton').click(function(){$("#songdel").addClass("unhidden");
 										$("#syes").attr('data-tag',$(this).attr('data-tag'));
 		});
     $('.playdelete').click(function(){$("#playdel").addClass("unhidden");
@@ -75,44 +40,45 @@ $(document).ready(function() {
     $('.addTourney').click(uploadToTourney);
     $('#chName').submit(function(event){
       return false;
-    })
+    });
     $('#submitNameButton').click(function(event){
       var name = $('#displayNameEdit').val();
-	  name = name.replace(/\W\s/g,"");
+	  name = name.replace("[^a-zA-Z0-9 \s]","");
       $.ajax({
         url: '/changeName',
         type: 'POST',
         cache: false,
         data: {editName: name}
-      })
-    })
+      });
+    });
     $('#chBio').submit(function(event){
       return false;
-    })
+    });
     $('#submitBioButton').click(function(event){
       var bio = $('#displayBioEdit').val();
-	  bio = bio.replace(/\W\s/g,"");
+	  bio = bio.replace("[^a-zA-Z0-9 \s]","");
       $.ajax({
         url: '/changeBio',
         type: 'POST',
         cache: false,
         data: {editBio: bio}
-      })
-    })
+      });
+    });
     $('#chLoc').submit(function(event){
       return false;
-    })
+    });
     $('#submitLocationButton').click(function(event){
       var loc = $('#displayLocationEdit').val();
-	  loc = loc.replace(/\W\s/g,"");
+	  loc = loc.replace("[^a-zA-Z0-9 \s]","");
       $.ajax({
         url: '/changeLocation',
         type: 'POST',
         cache: false,
         data: {editLocation: loc}
-      })
-    })
+      });
+    });
   });
+  
   function playVideo(){
       var tag = $(this).attr('data-tag');
       $.ajax({
@@ -218,4 +184,4 @@ $(document).ready(function() {
             }
         }
       })
-   }   
+	  }

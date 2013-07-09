@@ -100,7 +100,7 @@ $(document).ready(function() {
         var bioCreate = $('textarea#bioCreate').val();
         var Regex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 		
-		name = name.replace(/\W/g,"");
+		name = name.replace("[^a-zA-Z0-9 \s]","");
 		
 		var temp = 0;
 		$("#proferrdiv").html("");
