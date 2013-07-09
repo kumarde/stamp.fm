@@ -123,7 +123,7 @@
     max-width : 50%; 
     max-height : 30px; 
 }
-#bio:hover{
+#displayBio:hover{
     background-color: rgba(180,7,6,.3);
 }
 #submitBioButton{
@@ -150,7 +150,7 @@
 
 
 #uploadFigurehead{
-    font-size: 15px;
+    font-size: 10px;
     color: #FFFFFF;
     border: none;         
     cursor: pointer;       

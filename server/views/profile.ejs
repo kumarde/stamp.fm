@@ -35,27 +35,29 @@
       <div class="c2" id="tabs">
 
         <ul id="listName">
-		  <li id="songButton" class="highlightTab"><a href="#songContent" id="songListLabel" style="color:#FFFFFF;">Videos</a></li>
-          <li id="favButton" ><a href="#playlistContent" id="playlistLabel" style="color:#FFFFFF;">Favorites</a></li>
+		  <li id="songButton"><a href="#songContent" id="songListLabel"><span id="vidColor" class="highlightTab">Videos</span></a></li>
+      <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><span id="favColor">Favorites</span></a></li>
           
           <script>
           $("document").ready(function(){
-          $("li#songButton").click(function() {
-            $('li#favButton').removeClass("highlightTab");
-          $('li#favButton').click(function(){
-            $('li#favButton').addClass("highlightTab");
+            $('a#playlistlabel').click(function(){
+              $('span#favColor').addClass("highlightTab");
+            })
+            $("a#playlistLabel").click(function(){
+              $('span#vidColor').removeClass("highlightTab");
+            })
           })
             });
           });          
           </script>
           <script>
           $("document").ready(function(){
-          $("li#songButton").click(function() {
-            $('li#songButton').addClass("highlightTab");
-          $('li#favButton').click(function(){
-            $('li#songButton').removeClass("highlightTab");
-          })
-            });
+            $('a#playlistlabel').click(function(){
+              $('span#favColor').addClass("highlightTab");
+            })
+            $("a#playlistLabel").click(function(){
+              $('span#vidColor').removeClass("highlightTab");
+            })
           });          
           </script>  
           
@@ -64,19 +66,20 @@
   <div id="songContent">
 
     <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash">
-    <div style = "color: #333333;"> To upload your video, <a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> CLICK HERE </a> to convert it to the WebM format. </div><br>
+    <div style = "color: #333333;"> To upload your video, <a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> CLICK HERE </a> to convert it to the WebM format.
     <input type="text" name="name"	style="display:none;" id="upname">
 	  <input type="text" name="genre" style="display:none;" id="upgenre">
 	  <input type="text" name="explicit" style="display:none;" id="upex">
 	  <input type="button" value="Upload" id="uploadFigurehead">
     </form>
 
+  </div>
 	 
       <div id="song" style="margin-top:4px;">
       <div style=" overflow:auto;">
       <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
       <% songs.forEach(function(song){ %>
-        <tr id="song_name" style="color:#000;" class = "<%=song._id%>">
+        <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
           <td><div data-tag ="<%=song._id%>" class = "songname" ><%= song.name %></div></td>
 		  <td style="float:right;min-width:120px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
 		  <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
@@ -97,7 +100,7 @@
 	<div style=" overflow:auto;">
         <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
           <% playlist.forEach(function(play){ %>
-          <tr id="song_name" class = "p<%=play.songID%>" >
+          <tr id="song_name" style="color:#000; border-bottom:2px solid;" class = "p<%=play.songID%>" >
             <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.name %></div></td>
 			<td style="float:right;min-width:40px;margin-top:5px;cursor:pointer;"><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
             <img data-tag = "<%=play.songID%>" class="playdelete" id = "<%=play.songID%>" src="favoriteRemove.png" style="height:15px;width:15px;"></td>
