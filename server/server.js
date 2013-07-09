@@ -748,7 +748,7 @@ app.post('/create', function(req, res){
     }
     if(req.files.picture.size == 0){
       db.profiles.update({_id: id}, {$set: {changedPic: "none"}});
-      stream = fs.createReadStream('./images/stampman.png');
+      stream = fs.createReadStream('/home/ec2-user/stamp.fm/server/images/stampman.png');
     }
     else{
       db.profiles.update({_id: id}, {$set: {changedPic: "true"}});

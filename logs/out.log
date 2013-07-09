@@ -1,63 +1,35 @@
 Server listening on port 8888
 2
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
+[ { _id: '520257179',
+    date: 'July 8th 2013, 3:01:08 pm',
+    email: 'debug12@gmail.com',
+    name: 'Deepak Kumar',
     pass: 'pass' } ]
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/186620_520257179_587027413_n.jpg
+https://s3.amazonaws.com/data.stamp.fm/0?AWSAccessKeyId=AKIAIZQEDQU7GWKOSZ3A&Expires=1373327226&Signature=msSUDDx8uYUj66YxVBvfoU70gZo%3D
+[ { _id: '757605571',
+    date: 'July 8th 2013, 5:39:29 am',
+    email: 'hashwi@umich.edu',
+    name: 'Omar Hashwi',
     pass: 'pass' } ]
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
-    pass: 'pass' } ]
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/623788_757605571_118052698_n.jpg
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
-    pass: 'pass' } ]
+email-taken
+[ { name: 'Christopher Loechli',
+    pass: '4c3alfae7878797x97388xx838skdfj222',
+    _id: '1169877331',
+    email: 'chrisloechli@gmail.com',
+    date: 'July 8th 2013, 11:50:08 pm' } ]
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
-    pass: 'pass' } ]
+[ { name: 'Christopher Loechli',
+    pass: '4c3alfae7878797x97388xx838skdfj222',
+    _id: '1169877331',
+    email: 'chrisloechli@gmail.com',
+    date: 'July 8th 2013, 11:50:08 pm' } ]
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '100001192749167',
-    date: 'July 8th 2013, 5:24:15 am',
-    email: 'buzzerbeater7@gmail.com',
-    name: 'D.j. Jagannathan',
-    pass: 'pass' } ]
-undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
-    pass: 'pass' } ]
-undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
-    pass: 'pass' } ]
-undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
+https://profile-b.xx.fbcdn.net/hprofile-prn1/565185_1169877331_1231064846_n.jpg
 [ { name: 'Julia Feygin',
     pass: '4c3alfae7878797x97388xx838skdfj222',
     _id: '705966133',
@@ -66,7 +38,35 @@ https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325
 undefined
 https://profile-a.xx.fbcdn.net/hprofile-prn2/276277_705966133_608533399_n.jpg
 https://profile-a.xx.fbcdn.net/hprofile-prn2/276277_705966133_608533399_n.jpg
-https://profile-a.xx.fbcdn.net/hprofile-prn2/276277_705966133_608533399_n.jpg
+[ { _id: '100001192749167',
+    date: 'July 8th 2013, 5:24:15 am',
+    email: 'buzzerbeater7@gmail.com',
+    name: 'D.j. Jagannathan',
+    pass: 'pass' } ]
+undefined
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
+[ { _id: '100001192749167',
+    date: 'July 8th 2013, 5:24:15 am',
+    email: 'buzzerbeater7@gmail.com',
+    name: 'D.j. Jagannathan',
+    pass: 'pass' } ]
+undefined
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
+[ { _id: '100001192749167',
+    date: 'July 8th 2013, 5:24:15 am',
+    email: 'buzzerbeater7@gmail.com',
+    name: 'D.j. Jagannathan',
+    pass: 'pass' } ]
+undefined
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/273588_100001192749167_1598493263_n.jpg
+undefined
+undefined
 [ { _id: '757605571',
     date: 'July 8th 2013, 5:39:29 am',
     email: 'hashwi@umich.edu',
@@ -74,86 +74,73 @@ https://profile-a.xx.fbcdn.net/hprofile-prn2/276277_705966133_608533399_n.jpg
     pass: 'pass' } ]
 undefined
 https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/623788_757605571_118052698_n.jpg
+[ { _id: '757605571',
+    date: 'July 8th 2013, 5:39:29 am',
+    email: 'hashwi@umich.edu',
+    name: 'Omar Hashwi',
+    pass: 'pass' } ]
+undefined
 https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/623788_757605571_118052698_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
-    pass: 'pass' } ]
+[ { _id: '51db54a1b7dd43ac2e000004',
+    name: 'hh',
+    email: 'hh@hh.com',
+    pass: '8kqajkp!ibd40b383a1dd2bd1cfc32459e6c965877',
+    date: 'July 9th 2013, 12:09:05 am' } ]
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
-    pass: 'pass' } ]
+[ { _id: '51db54a1b7dd43ac2e000004',
+    name: 'hh',
+    email: 'hh@hh.com',
+    pass: '8kqajkp!ibd40b383a1dd2bd1cfc32459e6c965877',
+    date: 'July 9th 2013, 12:09:05 am' } ]
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
-    pass: 'pass' } ]
+[ { _id: '51db54a1b7dd43ac2e000004',
+    name: 'hh',
+    email: 'hh@hh.com',
+    pass: '8kqajkp!ibd40b383a1dd2bd1cfc32459e6c965877',
+    date: 'July 9th 2013, 12:09:05 am' } ]
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '630624101',
-    date: 'July 8th 2013, 3:16:20 pm',
-    email: 'kwang682@yahoo.com',
-    name: 'Kristen Wang',
-    pass: 'pass' } ]
-undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
-[ { _id: '51db49559c17d2012e000001',
-    name: 'Adam Santoya',
-    email: 'adamsantoya@gmail.com',
-    pass: '8@efsxgy2da3504bb2c97535a2d469da457fe6797c',
-    date: 'July 8th 2013, 11:20:53 pm' } ]
-undefined
-[ { _id: '51db49559c17d2012e000001',
-    name: 'Adam Santoya',
-    email: 'adamsantoya@gmail.com',
-    pass: '8@efsxgy2da3504bb2c97535a2d469da457fe6797c',
-    date: 'July 8th 2013, 11:20:53 pm' } ]
-undefined
-[ { _id: '51db49559c17d2012e000001',
-    name: 'Adam Santoya',
-    email: 'adamsantoya@gmail.com',
-    pass: '8@efsxgy2da3504bb2c97535a2d469da457fe6797c',
-    date: 'July 8th 2013, 11:20:53 pm' } ]
-undefined
-[ { _id: '520257179',
-    date: 'July 8th 2013, 3:01:08 pm',
-    email: 'debug12@gmail.com',
+[ { _id: '51db57fdb7dd43ac2e000006',
     name: 'Deepak Kumar',
-    pass: 'pass' } ]
+    email: 'baloo@baloo.com',
+    pass: 'd8a2kxbl@64ed64fbbed117307f957aa1c6bb22dcf',
+    date: 'July 9th 2013, 12:23:25 am' } ]
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/186620_520257179_587027413_n.jpg
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/186620_520257179_587027413_n.jpg
-[ { _id: '520257179',
-    date: 'July 8th 2013, 3:01:08 pm',
-    email: 'debug12@gmail.com',
+[ { _id: '51db57fdb7dd43ac2e000006',
     name: 'Deepak Kumar',
+    email: 'baloo@baloo.com',
+    pass: 'd8a2kxbl@64ed64fbbed117307f957aa1c6bb22dcf',
+    date: 'July 9th 2013, 12:23:25 am' } ]
+undefined
+[ { _id: '51db57fdb7dd43ac2e000006',
+    name: 'Deepak Kumar',
+    email: 'baloo@baloo.com',
+    pass: 'd8a2kxbl@64ed64fbbed117307f957aa1c6bb22dcf',
+    date: 'July 9th 2013, 12:23:25 am' } ]
+undefined
+[ { _id: '630624101',
+    date: 'July 8th 2013, 3:16:20 pm',
+    email: 'kwang682@yahoo.com',
+    name: 'Kristen Wang',
     pass: 'pass' } ]
 undefined
-https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/186620_520257179_587027413_n.jpg
+https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/572896_630624101_839594325_n.jpg
+Server listening on port 8888
+2
+[ { _id: '51db5a9a465648082f000001',
+    name: 'Srinath Abburri',
+    email: 'sri@sri.com',
+    pass: 'cf@2gb2d7o6e177b5e2174e05c25e5738913dfa108',
+    date: 'July 9th 2013, 12:34:34 am' } ]
 undefined
-[ { _id: '51db49559c17d2012e000001',
-    name: 'Adam Santoya',
-    email: 'adamsantoya@gmail.com',
-    pass: '8@efsxgy2da3504bb2c97535a2d469da457fe6797c',
-    date: 'July 8th 2013, 11:20:53 pm' } ]
+[ { _id: '51db5a9a465648082f000001',
+    name: 'Srinath Abburri',
+    email: 'sri@sri.com',
+    pass: 'cf@2gb2d7o6e177b5e2174e05c25e5738913dfa108',
+    date: 'July 9th 2013, 12:34:34 am' } ]
 undefined
-[ { _id: '100002438733272',
-    date: 'July 8th 2013, 5:21:58 am',
-    email: 'brainstew53@gmail.com',
-    name: 'Jordan Weichel',
-    pass: 'pass' } ]
+[ { _id: '51db5a9a465648082f000001',
+    name: 'Srinath Abburri',
+    email: 'sri@sri.com',
+    pass: 'cf@2gb2d7o6e177b5e2174e05c25e5738913dfa108',
+    date: 'July 9th 2013, 12:34:34 am' } ]
 undefined
-https://profile-b.xx.fbcdn.net/hprofile-prn2/275269_100002438733272_1017154101_n.jpg
-[ { _id: '100002438733272',
-    date: 'July 8th 2013, 5:21:58 am',
-    email: 'brainstew53@gmail.com',
-    name: 'Jordan Weichel',
-    pass: 'pass' } ]
-undefined
-https://profile-b.xx.fbcdn.net/hprofile-prn2/275269_100002438733272_1017154101_n.jpg
