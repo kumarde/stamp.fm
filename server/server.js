@@ -394,13 +394,6 @@ app.get('/include/views.js', function(req,res,next){
   var stream6 = fs.createReadStream(__direname + '/include/views.js').pipe(res);
 });
 
-app.post('/save', express.bodyParser(), function(req, res){
-  //added a comment
-  	db.music.save({_id: counter++, name:req.body.name, songTitle:req.body.songTitle, votes:0, views:0});
-    console.log(req.body.name);
-    console.log(req.body.songTitle);
-});
-
 app.post('/vote', function(req, res){
     db.music.update({_id:parseInt(req.body.vid)}, {$inc:{votes:1}}, function(err, count){
       res.send({v1id: sorted[c]._id, v2id: sorted[c+1]._id});
@@ -499,7 +492,7 @@ app.post('/tournament', function(req, res){
       }
       if(!o){
         db.music.update({_id: parseInt(req.body.id)}, {$set: {inTourney: "Submitted"}});
-        db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name});
+        db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name, votes: 0; views: 0});
         res.send({msg: "yes"});
       }
     })
