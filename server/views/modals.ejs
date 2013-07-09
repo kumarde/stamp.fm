@@ -55,7 +55,8 @@
 				  <option class="genreChoice" id="international">International</option>
 				  <option class="genreChoice" id="folk">Folk</option>
 			   </select><br><br>
-			   <span  style="color:#FFFFFF; font-size:15px;">Check if this song contains explicit content: </span><input type = "checkbox" id = "explicit" name = "explicit"><br>
+			   <span  style="color:#FFFFFF; font-size:15px;">Check box if video contains explicit content: </span><input type = "checkbox" id = "explicit" name = "explicit"><br>
+			    <!--<span  style="color:#FFFFFF; font-size:15px;">Check box if you are a Michigan resident: </span><input type = "checkbox" id = "explicit" name = "explicit"><br>-->
 			   <input type="button" value="Enter" id = "songSubmit">
 			  <input type="button" value="Cancel" id = "cancelUpload">
 			  <br>
@@ -136,6 +137,7 @@
 				  </script>
 				</form>        
 			  </div>
+			  <a id="advertisement" href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"></a>
 			</div>
 	<%}
 	else if ( type == 'P' ){%>
@@ -166,10 +168,11 @@
 				  </script>
 				</form>        
 			  </div>
+			  <a id="advertisement" href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"></a>
 			</div>
 		<% }
 	else if ( type == 'Q' ){%>
-		<div id="accountinfo" class="modalDialog_account">
+		<div id="tophal" class="modalDialog_account">
 		  <div>
 			<div class="close" style="color:#FFFFFF">X</div>
 			<center>
@@ -189,7 +192,7 @@
 
 	<%}
 	else if ( type == 'S' ){%>
-		<div id="bigpic" class="modalDialog">
+		<div id="previe" class="modalDialog_pic">
 		  <div>
 			<div class="close" style="color:#FFFFFF">X</div>
 			<center>
@@ -219,7 +222,7 @@
 		</div>
 	<% }
 	else if ( type == 'V' ){%>
-		<div id="proferr" class="modalDialog">
+		<div id="proferr" class="modalDialog_prof">
 		  <div>
 			<div class="close" style="color:#FFFFFF">X</div>
 			<center>

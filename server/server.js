@@ -1015,8 +1015,21 @@ app.post('/changeImage', function(req, res){
 })
 
 app.post('/playDelete', function(req, res){
-    var id = req.body.id;
-    db.playlists.remove({songID: id}, function(e,o){});
+   
+   if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+    }
+
+
+    var sid = req.body.id;
+    db.playlists.remove({songID: parseInt(sid), artistID: id});
     res.send({msg: "Deleted", id: req.body.id});
 })
 

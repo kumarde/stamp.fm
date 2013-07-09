@@ -198,6 +198,69 @@
   background: rgba(180,7,6,1);
 }
 
+.modalDialog_pic {
+  position: fixed;
+  font-family: "Arimo";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+
+.modalDialog_pic > div {
+  width: 50%;
+  height: 65%;
+  position: relative;
+  margin: 10% auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 10px;
+  background: rgba(180,7,6,1);
+}
+
+.modalDialog_prof {
+  position: fixed;
+  font-family: "Arimo";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+
+.modalDialog_prof > div {
+  width: 20%;
+  height: 30%;
+  position: relative;
+  margin: 10% auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 10px;
+  background: rgba(180,7,6,1);
+}
+
+@media only screen and (max-width: 1050px) {
+
+
+
+.modalDialog_prof > div {
+  width: 30%;
+  height: 40%;
+
+}
+	
+}
 
 
 .modalDialog_upload {

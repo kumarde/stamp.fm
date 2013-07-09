@@ -114,14 +114,14 @@
 		
 		
       <div id="profilePicture" style="margin:auto">
-        <img id="preview" src="<%=profID%>" data-tag="<%=id%>">
+        <img id="preview" src="<%=profID%>" data-tag="<%=id%>" class="modalbutton">
         <ul class="interaction" id="followInfo">
         <div id="followinglistb" class="modalbutton"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></div>
 		
         <% if (follow == 0) {%>
 		<li><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li><br>
 		<%} else {%>
-		<li><input type="button" value="Forget" class="stampFollow" id="<%=id%>"></li><br>
+		<li><input type="button" value="Unfollow" class="stampFollow" id="<%=id%>"></li><br>
 		<%}%>
 		
 		
@@ -183,4 +183,4 @@
 
 
 <% stylesheet('modals.css') -%>
-<%-partial('modals', ["'IJNOP'"]) %>
+<%-partial('modals', ["'IJNOPQS'"]) %>
