@@ -35,26 +35,26 @@
       <div class="c2" id="tabs">
 
         <ul id="listName">
-          <li id="favButton" class="highlightTab"><a href="#playlistContent" id="playlistLabel" style="color:#FFFFFF;">Favorites</a></li>
-          <li id="songButton"><a href="#songContent" id="songListLabel" style="color:#FFFFFF;">Videos</a></li>
+<li id="songButton"><a href="#songContent" id="songListLabel"><span id="vidColor" class="highlightTab">Videos</span></a></li>
+         <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><span id="favColor">Favorites</span></a></li>
 
           <script>
           $("document").ready(function(){
-          $("li#songButton").click(function() {
-            $('li#favButton').removeClass("highlightTab");
-          $('li#favButton').click(function(){
-            $('li#favButton').addClass("highlightTab");
-          })
+            $('a#playlistLabel').click(function(){
+              $('span#favColor').addClass("highlighTab");
+            });
+            $('a#playlistLabel').click(function(){
+              $('span#vidColor').removeClass("highlightTab");
             });
           });          
           </script>
           <script>
           $("document").ready(function(){
-          $("li#songButton").click(function() {
-            $('li#songButton').addClass("highlightTab");
-          $('li#favButton').click(function(){
-            $('li#songButton').removeClass("highlightTab");
-          })
+            $('a#playlistLabel').click(function(){
+              $('span#favColor').removeClass("highlighTab");
+            });
+            $('a#playlistLabel').click(function(){
+              $('span#vidColor').addClass("highlightTab");
             });
           });          
           </script>          
