@@ -492,7 +492,7 @@ app.post('/tournament', function(req, res){
       }
       if(!o){
         db.music.update({_id: parseInt(req.body.id)}, {$set: {inTourney: "Submitted"}});
-        db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name, votes: 0; views: 0});
+        db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name, votes: 0, views: 0});
         res.send({msg: "yes"});
       }
     })
