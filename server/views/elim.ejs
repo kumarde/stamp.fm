@@ -1,0 +1,85 @@
+<% layout('layoutElim') -%>
+<% script('/scripts/main.js') -%>
+<% stylesheet('video-js.css') -%>
+<% script('video.js') -%>
+<% script('feed.js') -%>
+<% script('profileEdit.js') -%>
+<% script('elim.js') -%>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/gridiculous.css">
+    <!--<link rel="stylesheet" type="text/css" href="/">-->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+ 
+  </head>
+  
+  <body>
+    <div id="wrapper">
+
+
+
+
+
+<div class="c2" id="feed" style="float:right"><b><spanLabel id="newsFeedLabel" style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">News Feed</spanLabel></b></div>
+
+<script type="text/javascript">      
+  function previewImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        //the only jQuery line.  All else is the File API.
+        $('#preview').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('#create').show();
+  });
+
+</script>
+
+
+
+<!-- FB Like Script-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- End FB Like Script -->
+</body>
+<% script('video.js') -%>       
+<script>
+  videojs("vidYo", {}, function(){
+  // Player (this) is initialized and ready.
+  });
+</script>
+<script>
+  videojs.options.flash.swf = "video-js.swf"
+</script>     
+
+
+
+
+
+<% stylesheet('modals.css') -%>
+<%-partial('modals', ["'NOPQ'"]) %>
