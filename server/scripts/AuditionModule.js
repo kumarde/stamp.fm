@@ -8,12 +8,8 @@ db.music.find().sort({_id:1}, function(err, rest){
 });
 
 AuditionModule.prototype.UpdateDB = function(c, callback){
-	db.music.update({_id:sorted[c]._id}, {$inc:{views:1}}, function(err, count){
-
-    });
-    db.music.update({_id:sorted[c+1]._id}, {$inc:{views:1}}, function(err, count){
-
-    });
+	db.music.update({_id:sorted[c]._id}, {$inc:{views:1}}, function(err, count){});
+    db.music.update({_id:sorted[c+1]._id}, {$inc:{views:1}}, function(err, count){});
     //increment the two
     c += 2;
     if(c >= counter){

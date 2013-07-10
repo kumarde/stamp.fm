@@ -10,6 +10,7 @@ var flash = require('connect-flash')
   , FacebookStrategy = require('passport-facebook').Strategy
   , graph = require('fbgraph')
   , fs = require('fs')
+  , dbtest = require('mongojs').connect("test", ["tournament", "locals"])
   , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists"]);
 
 var s3 = require('s3policy');
@@ -19,6 +20,7 @@ var S3_KEY = 'AKIAIZQEDQU7GWKOSZ3A';
 var S3_SECRET = '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';
 var S3_BUCKET = 'media.stamp.fm';
 var PIC_BUCKET = 'pictures.stamp.fm';
+var VID_BUCKET = 'testvids.stamp.fm';
 var knox = require('knox');
 var songs = 0;
 
@@ -38,6 +40,7 @@ var songs = 0;
   var userModule = new UserModule;
   var Feed = new FeedModule;
 
+
   
  db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
  
@@ -53,7 +56,7 @@ db.music.count(function(e, count){
         songs = 0;
     }
 });
-/**********************ON SERVER STARTUP SONGS WILL BE 0 AND WILL INCREMENT WHENEVER UPDATED**/
+/**********************ON SERVER STARTUP SONGS WILL BE WHATEVER IT WAS PREVIOUSLY AND WILL INCREMENT WHENEVER UPDATED**/
 var flag = false; 
 
 var client = knox.createClient({
@@ -133,11 +136,75 @@ app.configure(function(){
     ));
 });
 
-/*****************algorithm*****************/
+/*****************voting algorithm*****************/
 //if collection exists, store variable count == 0;
 var counter = 0;
 var c = 0;
 var sorted;
+
+var cPop = 0;
+var totalPop;
+var pop_array;
+
+dbtest.tournament.find({genre: "Pop"}).sort({votes:-1}, function(e, o){
+  pop_array = o;
+  dbtest.locals.insert({_id: "pop_array", pop_array: pop_array});
+  dbtest.locals.insert({_id: "pop", cPop: cPop});
+  totalPop = pop_array.length;
+});
+
+app.get('/testview', function(req, res){
+  res.render('testview', {imgid: "0", v1id: pop_array[cPop]._id, v2id:pop_array[cPop+1]._id});
+  dbtest.tournament.update({_id: pop_array[cPop]._id}, {$inc:{views: 1}}); //on view, update view
+  dbtest.tournament.update({_id: pop_array[cPop+1]._id}, {$inc: {views:1}}); //on view, update view
+  cPop += 2; //increment cPop so next time someone goes to testView, they see two new people
+  dbtest.locals.update({_id: "pop"}, {$set: {cPop: cPop}}); //insert into locals collection datastore to keeptrack of Pop
+  if(cPop >= totalPop){
+    dbtest.tournament.find({genre: "Pop"}).sort({votes: -1}, function(e, o){
+      console.log(o);
+      pop_array = o;
+      dbtest.locals.update({_id: "pop_array"}, {$set: {pop_array: pop_array}});
+      cPop = 0;
+    });
+  }
+  else if(cPop + 1 === totalPop){
+    dbtest.tournament.update({_id: pop_array[c]._id}, {$inc: {views:1}, $inc: {votes:1}});
+    dbtest.tournament.find({genre: "Pop"}).sort({votes: -1}, function(e, o){
+      console.log(o);
+      pop_array = o;
+      dbtest.locals.update({_id: "pop_array"}, {$set: {pop_array: pop_array}});
+      cPop = 0;
+      dbtest.locals.update({_id: "pop"}, {$set: {cPop: cPop}});
+    });
+  };
+});
+
+app.post('/testvote', function(req, res){
+  dbtest.tournament.update({_id: parseInt(req.body.vid)}, {$inc: {votes:1}});
+  dbtest.tournament.update({_id: pop_array[cPop]._id}, {$inc:{views: 1}}); //on view, update view
+  dbtest.tournament.update({_id: pop_array[cPop+1]._id}, {$inc: {views:1}}); //on view, update view
+  cPop += 2; //increment cPop so next time someone goes to testView, they see two new people
+  dbtest.locals.update({_id: "pop"}, {$set: {cPop: cPop}}); //insert into locals collection datastore to keeptrack of Pop
+  if(cPop >= totalPop){
+    dbtest.tournament.find({genre: "Pop"}).sort({votes: -1}, function(e, o){
+      console.log(o);
+      pop_array = o;
+      dbtest.locals.update({_id: "pop_array"}, {$set: {pop_array: pop_array}});
+      cPop = 0;
+    });
+  }
+  else if(cPop + 1 === totalPop){
+    dbtest.tournament.update({_id: pop_array[c]._id}, {$inc: {views:1}, $inc: {votes:1}});
+    dbtest.tournament.find({genre: "Pop"}).sort({votes: -1}, function(e, o){
+      console.log(o);
+      pop_array = o;
+      dbtest.locals.update({_id: "pop_array"}, {$set: {pop_array: pop_array}});
+      cPop = 0;
+      dbtest.locals.update({_id: "pop"}, {$set: {cPop: cPop}});
+    });
+  }; 
+});
+
 db.music.count(function(err, count){
   if(count == 0){
     counter = 0;
@@ -150,6 +217,37 @@ db.music.count(function(err, count){
 db.music.find().sort({_id:1}, function(err, rest){
   sorted = rest;
 });
+
+
+app.post('/vote', function(req, res){
+    db.music.update({_id:parseInt(req.body.vid)}, {$inc:{votes:1}}, function(err, count){
+      res.send({v1id: sorted[c]._id, v2id: sorted[c+1]._id});
+      auditionModule.UpdateDB(c, function(inc, newsort){
+        if(inc) c += 2;
+        else{
+          sorted = newsort;
+          c = 0;
+        }
+      })
+    });
+})
+
+app.get('/newView', function(req, res, next){
+      res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
+      auditionModule.UpdateDB(c, function(inc, newsort){
+        if(inc) c+=2;
+        else{
+          sorted = newsort;
+          c = 0;
+        }
+    });
+});
+
+
+
+
+/*******************************************/
+
 
 app.post('/namesearch', function(req,res){
     db.users.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){
@@ -360,17 +458,6 @@ app.post('/profile/data', function(req,res) {
 	}
 });
 
-
-app.get('/newView', function(req, res, next){
-      res.render('newview', { v1id: sorted[c]._id, v2id: sorted[c+1]._id} );
-      auditionModule.UpdateDB(c, function(inc, newsort){
-        if(inc) c+=2;
-        else{
-          sorted = newsort;
-          c = 0;
-        }
-    });
-});
 //get for needed files
 app.get('/stylesheets/style.css', function(req,res,next){
   var stream = fs.createReadStream(__dirname + '/stylesheets/style.css').pipe(res);
@@ -393,26 +480,6 @@ app.get('/include/ejs_production.js', function(req,res,next){
 app.get('/include/views.js', function(req,res,next){
   var stream6 = fs.createReadStream(__direname + '/include/views.js').pipe(res);
 });
-
-app.post('/save', express.bodyParser(), function(req, res){
-  //added a comment
-  	db.music.save({_id: counter++, name:req.body.name, songTitle:req.body.songTitle, votes:0, views:0});
-    console.log(req.body.name);
-    console.log(req.body.songTitle);
-});
-
-app.post('/vote', function(req, res){
-    db.music.update({_id:parseInt(req.body.vid)}, {$inc:{votes:1}}, function(err, count){
-      res.send({v1id: sorted[c]._id, v2id: sorted[c+1]._id});
-      auditionModule.UpdateDB(c, function(inc, newsort){
-        if(inc) c += 2;
-        else{
-          sorted = newsort;
-          c = 0;
-        }
-      })
-    });
-})
 
 /*********************************UPLOAD ROUTES **********************************************/
 app.post('/song-upload', function(req, res){
@@ -828,6 +895,14 @@ app.get('/view', function(req, res){
         }
     })    
 })
+
+app.post('/vidPlay2', function(req, res){
+    var temp = req.body.video;
+    var vid = myS3Account.readPolicy(temp, VID_BUCKET, 60);
+    console.log(vid);
+    res.send({video: vid});
+})
+
 
 app.post('/vidPlay', function(req, res){
     var temp = req.body.video;

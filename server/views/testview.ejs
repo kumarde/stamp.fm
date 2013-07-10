@@ -1,0 +1,76 @@
+<% layout('layout') -%>
+<% script('testview.js') -%>
+<% stylesheet('video-js.css') -%>
+<% script('video.js') -%>
+<% script('feed.js') -%>
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title> This is a testview for Videos. </title>
+	</head>
+
+	<body>
+        <br><br><br><br><br>
+		<video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-tag = "<%=v1id%>" data-setup='{"techOrder": ["html5", "flash"]}'> 
+		   <source src="" type="video/mp4" id = "source">
+        </video>
+
+        <input data-tag = "<%=v1id%>" type = "button" id = "enter1" value = "Song1"/>
+        <input data-tag = "<%=v2id%>" type = "button" id = "enter2" value = "Song2"/>
+        <input data-tag = "<%=v1id%>" type = "button" id = "vote1" value = "Vote1"/>
+        <input data-tag = "<%=v2id%>" type = "button" id = "vote2" value = "Vote2"/>
+
+        <script>
+        	$(document).ready(function(){
+        		$('#enter1').click(function(e){
+                    $.ajax({
+                        url: "/vidPlay2",
+                        type: "POST",
+                        cache: false,
+                        data: {video: $(this).attr('data-tag')},
+                        success: function(data){
+                            var $vid_obj = _V_("vidYo");
+                            $vid_obj.ready(function(){
+                                $vid_obj.pause();
+                                $('#vidYo').find('#source').attr('src', data.video);
+                                $('#vidYo').removeClass('vjs-playing').addClass('vjs-paused');
+                                $vid_obj.load();
+                                $('#div_video_html5_api').show();
+                            })
+                        }
+                    })
+                })
+                $('#enter2').click(function(e){
+                    $.ajax({
+                        url: "/vidPlay2",
+                        type: "POST",
+                        cache: false,
+                        data: {video: $(this).attr('data-tag')},
+                        success: function(data){
+                            var $vid_obj = _V_("vidYo");
+                            $vid_obj.ready(function(){
+                                $vid_obj.pause();
+                                $('#vidYo').find('#source').attr('src', data.video);
+                                $('#vidYo').removeClass('vjs-playing').addClass('vjs-paused');
+                                $vid_obj.load();
+                                $('#div_video_html5_api').show();
+                            })
+                        }
+                    })
+                })
+                $('#vote1').click(function(){
+                    $.ajax({
+                        url: "/testvote",
+                        type: "POST",
+                        cache: false,
+                        data: {vid: $(this).attr('data-tag')},
+                        success: function(data){
+
+                        }
+                    })
+                })
+        	})
+        </script>
+    </body>
+</html>
