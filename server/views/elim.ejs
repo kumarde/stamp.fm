@@ -12,7 +12,7 @@
     <title>stamp.fm</title>
     <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
     <link rel="stylesheet" type="text/css" href="/gridiculous.css">
-    <!--<link rel="stylesheet" type="text/css" href="/">-->
+    <link rel="stylesheet" type="text/css" href="/elim.css">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
@@ -25,11 +25,38 @@
   <body>
     <div id="wrapper">
 
+      <div id="video">  
+        <div id="selectSong">
+          <ul id="songOneVote" style="margin-left:20%; margin-bottom:-85px;">
+            <li id="fbVote" style="float:left; margin-top:2px">
+              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a>
+            </li>          
+            <li id="tweetVote"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
+            <li id="ban"><img src="banButton.png" style="height:20px; width:20px;"></li>
+          </ul>  
 
+          <ul id="songTwoVote" style="margin-left:60%;">
+            <li id="fbVote" style="float:left;">
+              <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
+              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a><script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
+              </b:if>
+            </li>          
+            <li id="tweetVote"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
+            <li id="ban"><img src="banButton.png" style="height:20px; width:20px;"></li>
+          </ul>  
 
+          <ul id="selectSongList">
+            <li id="songOne" >Video One</li>
+            <li id="songTwo">Video Two</li>
+          </ul> 
+        </div>
 
-
-<div class="c2" id="feed" style="float:right"><b><spanLabel id="newsFeedLabel" style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">News Feed</spanLabel></b></div>
+        <div class="c12 end" id="videoPlayer" style="border:none">
+           <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
+            <source src="" type="video/mp4" id = "source">
+            </video>
+        </div>   
+    </div> 
 
 <script type="text/javascript">      
   function previewImage(input) {
@@ -77,6 +104,14 @@
   videojs.options.flash.swf = "video-js.swf"
 </script>     
 
+
+<!--Twitter Tweet Script-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<!--End Tweet Script-->
+
+<!--FB Share Script-->
+<script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
+<!--End FB Share Script-->
 
 
 
