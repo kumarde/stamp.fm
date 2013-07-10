@@ -110,7 +110,7 @@
 			</div>
 		<%}
 		else if ( type == 'O' ){%>
-			<div id="feedback" class="modalDialog_temp" style="text-align:center">
+			<div id="feedback" class="modalDialog_temp" >
 			  <script>
 			  function highlight(radio){
 				radio.style.backgroundColor="#000";
@@ -120,15 +120,15 @@
 				}
 
 				</script>
-				<div>
+				<div style="text-align:center">   
 				<div class="close" style="color:#FFFFFF">X</div>
 				<h3 style="color:white">Give us Some Feedback!</h3>
 				<form method = "POST" action = "/feedback" id = "feedback">
 
-				  <label style="background-color:black" id = "ideaz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio" checked>Idea</label>
-				  <label id="probz" onclick="highlight(this); NO((document.getElementById('ideaz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Problem" id="problemRadio" class="radio">Problem</label>
-				  <label id="commentz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('ideaz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Comment" id="commentRadio" class="radio">Comment</label>
-				  <label id="questionz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('ideaz')));"><input type="radio" name="feedback" value="Question" id="questionRadio" class="radio">Question</label>
+				  <label style="background-color:black;cursor: pointer;" id = "ideaz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio" checked>Idea</label>
+				  <label id="probz" style="cursor: pointer;"   onclick="highlight(this); NO((document.getElementById('ideaz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Problem" id="problemRadio" class="radio">Problem</label>
+				  <label id="commentz" style="cursor: pointer;"   onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('ideaz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Comment" id="commentRadio" class="radio">Comment</label>
+				  <label id="questionz" style="cursor: pointer;"   onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('ideaz')));"><input type="radio" name="feedback" value="Question" id="questionRadio" class="radio">Question</label>
 
 				  <textarea id="feedbackMessage" name = "feedbackname"></textarea><br>
 				  <input href="#close" type = "submit" id = "feedbacksubmit" onclick="window.location='#close';">

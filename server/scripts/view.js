@@ -57,7 +57,7 @@ $(document).ready(function() {
 								if (typeof data.redirect == 'string' )window.location = data.redirect;
 								else if (typeof data.error == 'string')alert(data.error);
 								else {
-									var $div = $('<div id = "'+data._id+'">'+data.name+'</div>');
+									var $div = $('<div id = "'+data._id+'" class="accountlink">'+data.name+'</div>');
 									$div.click(redirect);
 								 	$('#'+followersid).append($div);
 								}
@@ -92,7 +92,7 @@ $(document).ready(function() {
 								if (typeof data.redirect == 'string' )window.location = data.redirect;
 								else if (typeof data.error == 'string')alert(data.error);
 								else {
-									var $div = $('<div id = "'+data._id+'">'+data.name+'</div>');
+									var $div = $('<div id = "'+data._id+'" class="accountlink">'+data.name+'</div>');
 									$div.click(redirect);
 								 	$('#'+followingid).append($div);
 								}

@@ -724,3 +724,11 @@ td{
 display:none;
 }
 
+.accountlink:hover{
+    background-color: rgba(163, 163, 163, .3);
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 10px;
+	cursor: pointer;     
+}
+
