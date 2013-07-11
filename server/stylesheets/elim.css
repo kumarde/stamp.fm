@@ -1,0 +1,57 @@
+#selectSongList{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -10px;
+	list-style-type: none;
+	min-width: 60%;
+	width: 67%;
+	font-size: 30px;
+	margin-bottom: 5px;
+}
+
+#selectSongList li{
+	display: inline;
+}
+
+#songOne{
+	margin-left: 10%;
+	margin-right: 20%;
+}
+#songTwo{
+	margin-left: 20%;
+}
+
+
+#songOne:hover{
+	color: rgba(180,7,6,1);
+}
+#selectSong{
+	margin-top: 90px;
+}
+
+#songOneVote{
+	list-style-type: none;
+}
+#songOneVote li{
+	display: inline;
+}
+
+#songTwoVote{
+	list-style-type: none;
+}
+#songTwoVote li{
+	display: inline;
+}
+
+#fbVote{
+	margin-top:2px;
+	margin-right: 2%;
+}
+#twitterVote{
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+#ban{
+	margin-left: 2%;
+}
