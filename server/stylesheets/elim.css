@@ -7,6 +7,8 @@
 	width: 67%;
 	font-size: 30px;
 	margin-bottom: 5px;
+	border: 1px solid rgba(180,7,6,1);
+
 }
 
 #selectSongList li{
@@ -22,6 +24,7 @@
 }
 
 
+
 #songOne:hover{
 	color: rgba(180,7,6,1);
 }
@@ -32,26 +35,68 @@
 #songOneVote{
 	list-style-type: none;
 }
-#songOneVote li{
+#songOneVote #vidYo #songTwoVote{
 	display: inline;
 }
 
 #songTwoVote{
 	list-style-type: none;
 }
-#songTwoVote li{
-	display: inline;
+
+.ui-tooltip {
+	padding: 8px;
+	position: absolute;
+	z-index: 9999;
+	max-width: 300px;
+	-webkit-box-shadow: 0 0 5px #aaa;
+	box-shadow: 0 0 5px #aaa;
+}
+body .ui-tooltip {
+	border-width: 2px rgba(180,7,6,1);
 }
 
-#fbVote{
-	margin-top:2px;
-	margin-right: 2%;
-}
-#twitterVote{
-	margin-left: 2%;
-	margin-right: 2%;
-}
-
-#ban{
-	margin-left: 2%;
-}
+.ui-tooltip, .arrow:after {
+    background: black;
+    border: 2px solid rgba(180,7,6,1);
+  }
+  .ui-tooltip {
+    color: white;
+    border-radius: 0px;
+    font: bold 10px "Helvetica Neue", Sans-Serif;
+    text-transform: uppercase;
+    box-shadow: 0 0 7px #000;
+  }
+  .arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+  }
+  .arrow.top {
+    top: -16px;
+    bottom: auto;
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    tranform: rotate(45deg);
+  }
+  .arrow.top:after {
+    bottom: -20px;
+    top: auto;
+  }

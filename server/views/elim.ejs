@@ -19,6 +19,26 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
+      <script>
+  $(function() {
+    $( document ).tooltip({
+      position: {
+        my: "center bottom-20",
+        at: "center top",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+      }
+    });
+  });
+
+  </script>
+
  
   </head>
   
@@ -27,23 +47,6 @@
 
       <div id="video">  
         <div id="selectSong">
-          <ul id="songOneVote" style="margin-left:20%; margin-bottom:-85px;">
-            <li id="fbVote" style="float:left; margin-top:2px">
-              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a>
-            </li>          
-            <li id="tweetVote"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
-            <li id="ban"><img src="banButton.png" style="height:20px; width:20px;"></li>
-          </ul>  
-
-          <ul id="songTwoVote" style="margin-left:60%;">
-            <li id="fbVote" style="float:left;">
-              <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
-              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a><script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
-              </b:if>
-            </li>          
-            <li id="tweetVote"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
-            <li id="ban"><img src="banButton.png" style="height:20px; width:20px;"></li>
-          </ul>  
 
           <ul id="selectSongList">
             <li id="songOne" >Video One</li>
@@ -52,9 +55,40 @@
         </div>
 
         <div class="c12 end" id="videoPlayer" style="border:none">
+          <ul id="songOneVote" style="float:left; margin-left:5%;">
+            <li id="labelOne">
+              <labelName style="font-size:15px;"><b>Artist One</b></labelName>
+            </li>               
+            <li id="stampVote">
+              <img src="favoriteIcon.png" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;margin-left:10px; margin-right:auto;" title="+1 Vote for Artist One">
+            </li>  
+            <li id="fbVote">
+              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a>
+            </li>          
+            <li id="tweetVote" style="margin-top:20px;"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
+            <li id="ban"><img src="banButton.png" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;margin-left:10px; margin-right:auto;"></li> 
+          </ul>      
+
+          <ul id="songTwoVote" style="float:right; margin-right:7%;">
+            <li id="labelTwo">
+              <labelName style="font-size:15px;"><b>Artist Two</b></labelName>
+            </li>                   
+            <li id="stampVote">
+              <img src="favoriteIcon.png" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;margin-left:10px; margin-right:auto;" title="+1 Vote for Artist Two">
+            </li>             
+            <li id="fbVote">      
+              <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
+              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a><script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
+              </b:if>
+            </li>          
+            <li id="tweetVote" style="margin-top:20px;"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
+            <li id="ban"><img src="banButton.png" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;margin-left:10px; margin-right:auto;"></li>
+          </ul>  
+
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
             <source src="" type="video/mp4" id = "source">
             </video>
+
         </div>   
     </div> 
 
@@ -106,7 +140,7 @@
 
 
 <!--Twitter Tweet Script-->
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="twitterTweet.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <!--End Tweet Script-->
 
 <!--FB Share Script-->
