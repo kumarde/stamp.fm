@@ -181,9 +181,10 @@ app.get('/testview', function(req, res){
 
 app.post('/testvote', function(req, res){
   dbtest.tournament.update({_id: parseInt(req.body.vid)}, {$inc: {votes:1}});
+  res.send({v1id: pop_array[c]._id, v2id: pop_array[c+1]._id})
   dbtest.tournament.update({_id: pop_array[cPop]._id}, {$inc:{views: 1}}); //on view, update view
   dbtest.tournament.update({_id: pop_array[cPop+1]._id}, {$inc: {views:1}}); //on view, update view
-  cPop += 2; //increment cPop so next time someone goes to testView, they see two new people
+  cPop += 2; //increment cPop so next time someone goes to testVote, they see two new people
   dbtest.locals.update({_id: "pop"}, {$set: {cPop: cPop}}); //insert into locals collection datastore to keeptrack of Pop
   if(cPop >= totalPop){
     dbtest.tournament.find({genre: "Pop"}).sort({votes: -1}, function(e, o){

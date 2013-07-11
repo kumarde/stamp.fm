@@ -66,7 +66,24 @@
                         cache: false,
                         data: {vid: $(this).attr('data-tag')},
                         success: function(data){
-
+                            $('#enter1').attr('data-tag') = data.v1id;
+                            $('#enter2').attr('data-tag') = data.v2id;
+                            $(this).attr('data-tag') = data.v1id;
+                            $('#vote2').attr('data-tag') = data.v2id;
+                        }
+                    })
+                })
+                $('#vote2').click(function(){
+                    $.ajax({
+                        url: "/testvote",
+                        type: "POST",
+                        cache: false,
+                        data: {vid: $(this).attr('data-tag')},
+                        success: function(data){
+                            $('#enter1').attr('data-tag') = data.v1id;
+                            $('#enter2').attr('data-tag') = data.v2id;
+                            $(this).attr('data-tag') = data.v2id;
+                            $('#vote1').attr('data-tag') = data.v1id;
                         }
                     })
                 })
