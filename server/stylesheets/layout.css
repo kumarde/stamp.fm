@@ -306,7 +306,8 @@ overflow: auto;
     margin-top: 4%;
 }
 #preview{
-    margin:auto; 
+    margin:auto;
+    height: 220px; 
     max-height: 220px;
     max-width: 400px;
     opacity: 1;

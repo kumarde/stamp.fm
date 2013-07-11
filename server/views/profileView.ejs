@@ -35,8 +35,8 @@
       <div class="c2" id="tabs">
 
         <ul id="listName">
-      <li id="songButton"><a href="#songContent" id="songListLabel"><span id="vidColor" class="highlightTab">Videos</span></a></li>
-          <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><span id="favColor">Favorites</span></a></li>
+      <li id="songButton"><a href="#songContent" id="songListLabel"><span id="vidColor">Videos</span></a></li>
+          <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><span id="favColor" class="highlightTab">Favorites</span></a></li>
           
           <script>
           $("document").ready(function(){
@@ -57,7 +57,12 @@
             $('span#vidColor').addClass("highlightTab");
             });
           });          
-          </script>           
+          </script>
+          <script>
+            $(document).ready(function() { 
+              $("#tabs").tabs({ active: 1 }); 
+            });  
+          </script>              
         </ul>
   
 
@@ -130,14 +135,14 @@
         <!--<a href="<%=twitter%>" id="twit" target="_blank"><li><img src="twitter.png" id="twitIcon"></li>-->
         <li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li></a><br> 
         </ul>
+        <div id="bio">
+          <spanBio id="displayBio"><%=bio%></spanBio>
+        </div>
       </div>
 <br>
 
 				
         <div id="video">
-        <div id="bio">
-                  <spanBio id="displayBio"><%=bio%></spanBio>
-                </div>
           <div class="c12 end" id="videoPlayer" style="border:none">
            <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>
                 <source src="" type="video/mp4" id = "source">
