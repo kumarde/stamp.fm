@@ -807,14 +807,14 @@ app.get('/view', function(req, res){
                         db.playlists.find({artistID: pid}, function(e, playlist){
                           db.profiles.findOne({_id: id}, function(e, self){
                           var imgurl;
-			  var profurl;
+			                    var profurl;
                           console.log(self.url);
-                         if(profile.url && profile.changedPic === "none"){
-				profurl = profile.url;	
-			} else{
-				profurl = myS3Account.readPolicy(pid, PIC_BUCKET, 60);
-			} 
-			 if(self.url && self.changedPic == "none"){
+                         if(profile.url && profile.changedPic == "none"){
+				                      profurl = profile.url;	
+			                   } else{
+				                  profurl = myS3Account.readPolicy(pid, PIC_BUCKET, 60);
+			                   } 
+			                   if(self.url && self.changedPic == "none"){
                               imgurl = self.url;
                           }
                           else if(self.changedPic === "true" || self.changedPic === "none"){
