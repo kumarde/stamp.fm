@@ -181,7 +181,8 @@ app.get('/testview', function(req, res){
 
 app.post('/testvote', function(req, res){
   dbtest.tournament.update({_id: parseInt(req.body.vid)}, {$inc: {votes:1}});
-  res.send({v1id: pop_array[c]._id, v2id: pop_array[c+1]._id})
+  //res.send({v1id: pop_array[c]._id, v2id: pop_array[c+1]._id});
+  console.log("hello!");
   dbtest.tournament.update({_id: pop_array[cPop]._id}, {$inc:{views: 1}}); //on view, update view
   dbtest.tournament.update({_id: pop_array[cPop+1]._id}, {$inc: {views:1}}); //on view, update view
   cPop += 2; //increment cPop so next time someone goes to testVote, they see two new people
@@ -479,7 +480,7 @@ app.get('/include/ejs_production.js', function(req,res,next){
   var stream5 = fs.createReadStream(__dirname + '/include/ejs_production.js').pipe(res);
 });
 app.get('/include/views.js', function(req,res,next){
-  var stream6 = fs.createReadStream(__direname + '/include/views.js').pipe(res);
+  var stream6 = fs.createReadStream(__dirname + '/include/views.js').pipe(res);
 });
 
 /*********************************UPLOAD ROUTES **********************************************/
@@ -498,7 +499,6 @@ app.post('/song-upload', function(req, res){
                 name = req.session.user[0].name;
         }
   }
-  
 	console.log(req.body);
   var temp = songs;
   songs++;
@@ -541,8 +541,6 @@ app.post("/db-upload", function(req, res){
     }
 
 })
-
-
 app.post('/tournament', function(req, res){
     console.log(req.body.id);
     var id;
@@ -1112,7 +1110,7 @@ app.post('/deleteSong', function(req, res){
     });
 })
 
-/*
+
 app.get('/elim', function(req,res){
    if(req.session.user == undefined){
         id = req.user[0]._id;
@@ -1145,7 +1143,7 @@ app.get('/elim', function(req,res){
 	  }
 	res.render('elim', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
        });             
-});*/
+});
 
 
 

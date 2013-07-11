@@ -9,7 +9,6 @@
 	<head>
 		<title> This is a testview for Videos. </title>
 	</head>
-
 	<body>
         <br><br><br><br><br>
 		<video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-tag = "<%=v1id%>" data-setup='{"techOrder": ["html5", "flash"]}'> 
@@ -17,7 +16,9 @@
         </video>
 
         <input data-tag = "<%=v1id%>" type = "button" id = "enter1" value = "Song1"/>
+            <div id = "one"> <%=v1id%> </div>
         <input data-tag = "<%=v2id%>" type = "button" id = "enter2" value = "Song2"/>
+            <div id = "two"> <%=v2id%> </div>
         <input data-tag = "<%=v1id%>" type = "button" id = "vote1" value = "Vote1"/>
         <input data-tag = "<%=v2id%>" type = "button" id = "vote2" value = "Vote2"/>
 
@@ -40,7 +41,7 @@
                             })
                         }
                     })
-                })
+                });
                 $('#enter2').click(function(e){
                     $.ajax({
                         url: "/vidPlay2",
@@ -58,7 +59,7 @@
                             })
                         }
                     })
-                })
+                });
                 $('#vote1').click(function(){
                     $.ajax({
                         url: "/testvote",
@@ -66,13 +67,16 @@
                         cache: false,
                         data: {vid: $(this).attr('data-tag')},
                         success: function(data){
-                            $('#enter1').attr('data-tag') = data.v1id;
-                            $('#enter2').attr('data-tag') = data.v2id;
-                            $(this).attr('data-tag') = data.v1id;
-                            $('#vote2').attr('data-tag') = data.v2id;
+                            alert(data.v1id + " " + data.v2id);
+                            $('#enter1').attr('data-tag', data.v1id);
+                            $('#enter2').attr('data-tag', data.v2id);
+                            $(this).attr('data-tag', data.v1id);
+                            $('#vote2').attr('data-tag', data.v2id);
+                            $('#one').html(data.v1id);
+                            $('#two').html(data.v2id);
                         }
                     })
-                })
+                });
                 $('#vote2').click(function(){
                     $.ajax({
                         url: "/testvote",
@@ -80,13 +84,16 @@
                         cache: false,
                         data: {vid: $(this).attr('data-tag')},
                         success: function(data){
-                            $('#enter1').attr('data-tag') = data.v1id;
-                            $('#enter2').attr('data-tag') = data.v2id;
-                            $(this).attr('data-tag') = data.v2id;
-                            $('#vote1').attr('data-tag') = data.v1id;
+                            alert(data.v1id + " " + data.v2id);
+                            $('#enter1').attr('data-tag', data.v1id);
+                            $('#enter2').attr('data-tag', data.v2id);
+                            $(this).attr('data-tag', data.v1id);
+                            $('#vote1').attr('data-tag', data.v2id);
+                            $('#one').html(data.v1id);
+                            $('#two').html(data.v2id);
                         }
                     })
-                })
+                });
         	})
         </script>
     </body>
