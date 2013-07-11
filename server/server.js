@@ -764,6 +764,9 @@ app.post('/create', function(req, res){
 });
 
 app.get('/view', function(req, res){
+    if (req.session.user == null && req.user == null) {
+      res.redirect('/');
+    }
     var pid = req.query["id"];
     if(pid == null){
         res.send('error, you suck');
