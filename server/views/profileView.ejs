@@ -35,48 +35,43 @@
       <div class="c2" id="tabs">
 
         <ul id="listName">
-<li id="songButton"><a href="#songContent" id="songListLabel"><span id="vidColor">Videos</span></a></li>
-         <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><span id="favColor" class = "highlightTab">Favorites</span></a></li>
-
+      <li id="songButton"><a href="#songContent" id="songListLabel"><span id="vidColor" class="highlightTab">Videos</span></a></li>
+          <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><span id="favColor">Favorites</span></a></li>
+          
           <script>
           $("document").ready(function(){
             $('a#playlistLabel').click(function(){
-              $('span#favColor').addClass("highlighTab");
-            });
-            $('a#playlistLabel').click(function(){
+              $('span#favColor').addClass("highlightTab");
+            })
+            $("a#playlistLabel").click(function(){
               $('span#vidColor').removeClass("highlightTab");
             });
           });          
           </script>
           <script>
           $("document").ready(function(){
-            $('a#playlistLabel').click(function(){
-              $('span#favColor').removeClass("highlighTab");
-            });
-            $('a#playlistLabel').click(function(){
+            $('a#songListLabel').click(function(){
+              $('span#favColor').removeClass("highlightTab");
+            })
+            $("a#songListLabel").click(function(){
               $('span#vidColor').addClass("highlightTab");
-            });
+            })
           });          
-          </script>
-          <script>
-            $(document).ready(function(){
-              $("#tabs").tabs({active : 1});
-            });
-          </script>          
+          </script>         
         </ul>
   
 
 
   <div id="playlistContent">
     <div id="song" style="margin-top:4px;">
-	<div style=" overflow:auto;">
+  <div style=" overflow:auto;">
         <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
           <% playlist.forEach(function(play){ %>
-          <tr id="song_name" style="color #000; border-bottom: 2px solid;" class = "p<%=play.songID%>" >
-            <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.artistName %> - <%= play.name %></div></td>
-			<td style="float:right;min-width:20px;margin-top:5px;cursor:pointer; "><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+          <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "p<%=play.songID%>" >
+            <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.name %></div></td>
+      <td style="float:right;min-width:20px;margin-top:5px;cursor:pointer; "><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
             <img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
-			</tr>
+      </tr>
           <% }); %>
         </table> 
     </div> 
@@ -91,20 +86,20 @@
              <div style=" overflow:auto;">
                <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable" style="color:#000;margin-top:21px;">
       <% songs.forEach(function(song){ %>
-        <tr id="song_name" style="color #000; border-bottom: 2px solid;" class = "<%=song._id%>">
+        <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
           <td><div data-tag ="<%=song._id%>" class = "songname" ><%= song.name %></div></td>
-		  <td style="float:right;min-width:40px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-		  <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-		  </tr>
+      <td style="float:right;min-width:40px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+      <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+      </tr>
       <% }); %>
-			
+      
           </table>  
 
         </div>
             </div> 
           </div>
         </div>
-		
+    
 <div id = "users"></div>
 
         <div id="name" class="c5">
@@ -115,20 +110,20 @@
         <span id="displayLocation"><%=location%></span>
         </spanLocation>
         </div>
-		
-		
+    
+    
       <div id="profilePicture" style="margin:auto">
-        <img id="preview" src="<%=profID%>" data-tag="<%=id%>" class="modalbutton">
+        <img id="preview" src="<%=profID%>" data-tag="<%=id%>">
         <ul class="interaction" id="followInfo">
         <div id="followinglistb" class="modalbutton"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></div>
-		
+    
         <% if (follow == 0) {%>
-		<li><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li><br>
-		<%} else {%>
-		<li><input type="button" value="Unfollow" class="stampFollow" id="<%=id%>"></li><br>
-		<%}%>
-		
-		
+    <li><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li><br>
+    <%} else {%>
+    <li><input type="button" value="Forget" class="stampFollow" id="<%=id%>"></li><br>
+    <%}%>
+    
+    
         <div id="followerslistb" class="modalbutton"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></div>
         </ul>
         <ul class="interaction" id="social">
@@ -136,14 +131,14 @@
         <!--<a href="<%=twitter%>" id="twit" target="_blank"><li><img src="twitter.png" id="twitIcon"></li>-->
         <li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li></a><br> 
         </ul>
-        <div id="bio">
-          <spanBio id="displayBio"><%=bio%></spanBio>
-        </div>
       </div>
 <br>
 
-				
+        
         <div id="video">
+        <div id="bio">
+                  <spanBio id="displayBio"><%=bio%></spanBio>
+                </div>
           <div class="c12 end" id="videoPlayer" style="border:none">
            <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>
                 <source src="" type="video/mp4" id = "source">
@@ -187,4 +182,4 @@
 
 
 <% stylesheet('modals.css') -%>
-<%-partial('modals', ["'IJNOPQS'"]) %>
+<%-partial('modals', ["'NOPYZ'"]) %>
