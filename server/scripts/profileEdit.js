@@ -89,3 +89,27 @@ function tourneyButtonChange(){
      if (element.value=="Submit") element.value = "Submitted";
       else element.value = "Submit"; 
 }
+
+
+
+function fillBio(){
+  var bio = $("input#displayBioEdit").val();
+  if(bio == ""){
+    $("input#displayBioEdit").val('This is my artist page');
+  }
+}
+
+
+function fillName(){
+  var name = $("input#displayNameEdit").val();
+  if(name == ""){
+    $("input#displayNameEdit").val('Anonymous');
+  }
+}
+
+function fillLocation(){
+  var loc = $("input#displayLocationEdit").val();
+  if(loc == ""){
+    $("input#displayLocationEdit").val('My location is not specified');
+  }
+}
