@@ -13,58 +13,58 @@
 <body>
     <div id="wrapper">
     <div id="profileSection"  style="color: #000">
-	<div  id="createPageLabel" style="font-size:40px;">
-	    <center><h1>Create your Profile</h1></center>
-	</div>	
-	<form method = "POST" enctype = "multipart/form-data" id = "createFields" name = "profileForm">
-	    <div id="band_info">
-		<div id="picture">
-		    <img id="preview" src="<%=imgsrc%>"/>
-		    <br>
-		    <input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
-		</div>
-		<div id="bioCreateDiv">	
-		    <input type = "text" size="28" name = "bio" placeholder = "Tagline" id = "bioCreate" name = "" style="font-size:20px;width:350px;"></input>
-		</div>
-		<div id="nameCreate">
-		    <input style="font-size:20px; width:350px;" size="28" type = "text" placeholder = "Personal/Stage/Band Name" value = "<%=name%>" name = "name" id= "name">
-		</div>
-		<div id="locationCreate">
-		    <input type = "text" size="28" style="font-size:20px; width:350px;" placeholder = "Location (i.e. Ann Arbor, Michigan)" value = "<%=location%>" name = "location" id= "locationEnter">
-		</div>
-	    </div>
-	    <div id="social_media">
-		<div  id="fbLink">
-		    <span style="font-size:20px;">Link to a Facebook Fan Page</span>
-		    <input style="font-size:20px" size="28" type = "text" value="http://facebook.com/stampfm" placeholder = "Link to Facebook Fan Page" name = "fb" id= "fbEnter"/>
-		</div>
-		<div id="fbLikes">
-		    <input type = "text" size="28" style="font-size:20px" placeholder = "# of Current Facebook Likes" name = "fbLikes" id= "fbLikesInput"/>
-		</div>
-		<div id="twitterLink">
-		    <span style="font-size:20px;">Link to a Twitter Profile</span>
-		    <input type = "text" size="28" style="font-size:20px" value="http://twitter.com/stampfm" placeholder = "Link to Twitter" name = "twitter" id= "twitterEnter"/>
-		</div>
-		<div id="twitterFollowers">
-		    <input type = "text" size="28" style="font-size:20px" placeholder = "# of Current Twitter Followers" name = "twitterFollowers" id= "twitterFollowersInput"/>
-		</div>
-		<div id="gender">
-		    Gender:
-		    <select name="gender" id = "genderDrop">
-		        <option class="genderChoice" name = "male" id="male">Male</option>
-		        <option class="genderChoice" name = "female" id="female">Female</option>
-		    </select>
-		</div>
-		<div id="birthday">
-		    Birth Date:<input type="text" maxlength="2" name = "month" id="month" placeholder="MM" size="2"><input type="text" maxlength="2" name = "day" id="day" placeholder="DD" size="2"><input  maxlength="4" type="text" name = "year" id="year" placeholder="YYYY" size="4">
-		</div>
-		<div id="createProfileButton">
-    		<input type = "submit" id="createButton" value = "Click to View Your Profile">
-	        </div>
-	    </div>
-    	</div>
-	</form>
-    </div>	
+  <div  id="createPageLabel" style="font-size:40px;">
+      <center><h1>Create your Profile</h1></center>
+  </div>  
+  <form method = "POST" enctype = "multipart/form-data" id = "createFields" name = "profileForm">
+      <div id="band_info">
+    <div id="picture">
+        <img id="preview" src="<%=imgsrc%>"/>
+        <br>
+        <input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
+    </div>
+    <div id="bioCreateDiv"> 
+        <input type = "text" size="28" name = "bio" placeholder = "Tagline" id = "bioCreate" name = "" style="font-size:20px;width:350px;"></input>
+    </div>
+    <div id="nameCreate">
+        <input style="font-size:20px; width:350px;" size="28" type = "text" placeholder = "Personal/Stage/Band Name" value = "<%=name%>" name = "name" id= "name">
+    </div>
+    <div id="locationCreate">
+        <input type = "text" size="28" style="font-size:20px; width:350px;" placeholder = "Location (i.e. Ann Arbor, Michigan)" value = "<%=location%>" name = "location" id= "locationEnter">
+    </div>
+      </div>
+      <div id="social_media">
+    <div  id="fbLink">
+        <span style="font-size:20px;">Link to a Facebook Fan Page</span>
+        <input style="font-size:20px" size="28" type = "text" value="http://facebook.com/stampfm" placeholder = "Link to Facebook Fan Page" name = "fb" id= "fbEnter"/>
+    </div>
+    <div id="fbLikes">
+        <input type = "text" size="28" style="font-size:20px" placeholder = "# of Current Facebook Likes" name = "fbLikes" id= "fbLikesInput"/>
+    </div>
+    <div id="twitterLink">
+        <span style="font-size:20px;">Link to a Twitter Profile</span>
+        <input type = "text" size="28" style="font-size:20px" value="http://twitter.com/stampfm" placeholder = "Link to Twitter" name = "twitter" id= "twitterEnter"/>
+    </div>
+    <div id="twitterFollowers">
+        <input type = "text" size="28" style="font-size:20px" placeholder = "# of Current Twitter Followers" name = "twitterFollowers" id= "twitterFollowersInput"/>
+    </div>
+    <div id="gender">
+        Gender:
+        <select name="gender" id = "genderDrop">
+            <option class="genderChoice" name = "male" id="male">Male</option>
+            <option class="genderChoice" name = "female" id="female">Female</option>
+        </select>
+    </div>
+    <div id="birthday">
+        Birth Date:<input type="text" maxlength="2" name = "month" id="month" placeholder="MM" size="2"><input type="text" maxlength="2" name = "day" id="day" placeholder="DD" size="2"><input  maxlength="4" type="text" name = "year" id="year" placeholder="YYYY" size="4">
+    </div>
+    <div id="createProfileButton">
+        <input type = "submit" id="createButton" value = "Click to View Your Profile">
+          </div>
+      </div>
+      </div>
+  </form>
+    </div>  
     </div>
 
 
@@ -97,34 +97,40 @@ $(document).ready(function() {
         var twitterlikes = $('input#twitterFollowersInput').val();
         var fblink = $('input#fbEnter').val();
         var twitterLink = $('input#twitterEnter').val();
-        var bioCreate = $('textarea#bioCreate').val();
+        var bioCreate = $('input#bioCreate').val();
         var Regex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-		
-		name = name.replace(/\W/g,"");
-		
-		var temp = 0;
-		$("#proferrdiv").html("");
+    
+    name = name.replace(/\W/g,"");
+    
+    var temp = 0;
+    $("#proferrdiv").html("");
      if(name == ""){
       $("#proferrdiv").append('<h3>Please fill in the name field</h3>');
      }
      if(location == ""){temp = 1;
         $("#proferrdiv").append('<h3>Please fill in the location field</h3>');
      }
-	 if (bioCreate == ""){temp = 1;
+   if (bioCreate == ""){temp = 1;
         $("#proferrdiv").append('<h3>Please fill in the tagline field</h3>');
      }
-     if (!(fblink == "") && !(Regex.test(fblink))){temp = 1;
+     if (fblink != "" && ((fblink.indexOf("http://facebook.com/") == -1) || !(Regex.test(fblink)))){temp = 1;
        $("#proferrdiv").append('<h3>Please enter a valid url for Facebook Link</h3>');
      }
-    if (!(twitterLink == "") && !(Regex.test(twitterLink))){temp = 1;
+     if (fblink == "" || fblink == "http://facebook.com/" || fblink == "http://facebook.com"){
+       $('input#fbEnter').val("http://facebook.com/stampfm");
+     }
+    if (twitterLink != "" && ((twitterLink.indexOf("http://twitter.com/") == -1) || !(Regex.test(twitterLink)))){temp = 1;
         $("#proferrdiv").append('<h3>Please enter a valid url for Twitter Link</h3>');
      }
-	if(month == "" || day == "" || year == ""){temp = 1;
+     if (twitterLink == "" || twitterLink == "http://twitter.com/" || twitterLink == "http://twitter.com"){
+      $('input#twitterEnter').val("http://twitter.com/stampfm");
+     }
+  if(month == "" || day == "" || year == ""){temp = 1;
         $("#proferrdiv").append('<h3>Please fill in the all the fields for the birthday</h3>');
      }
-		if ( temp == 0 )$("#createFields").unbind("submit");
-		else $("#proferr").addClass("unhidden");
-		
+    if ( temp == 0 )$("#createFields").unbind("submit");
+    else $("#proferr").addClass("unhidden");
+    
      });
   });
 
@@ -137,4 +143,5 @@ $(document).ready(function() {
 
 <% stylesheet('modals.css') -%>
 <%-partial('modals', ["'NOPV'"]) %>
+
 
