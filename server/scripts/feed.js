@@ -29,7 +29,7 @@ $(document).ready(function() {
 				else if (typeof data.error == 'string')alert(data.error);
 				else {
 					$('#followers').append(data.length);
-					for ( var i = 0; i < data.length;i++ ){
+					for (var i = 0; i < data.length;i++){
 						
 						$.ajax({ 
 							url: '/profile/data',
@@ -81,12 +81,12 @@ $(document).ready(function() {
 								$div.click(redirect);
 								 $('#'+followingid).append($div);
 								for ( var j = 0; j < prof.shared.length; j++){
-									if (prof.shared[j].type == 'upload')var $feedentry = $('<div id="feedElement">'+prof.name+' Uploaded a New Video ('+prof.shared[j].name+')'+'</div>');
-									if (prof.shared[j].type == 'follow')var $feedentry = $('<div id="feedElement">'+prof.name+' Followed '+prof.shared[j].name+'</div>');
-									if (prof.shared[j].type == 'favorite')var $feedentry = $('<div id="feedElement">'+prof.name+' Added a New Favorite ('+prof.shared[j].name+')</div>');
-									if (prof.shared[j].type == 'tournament')var $feedentry = $('<div id="feedElement">'+prof.name+' Entered the Tournament ('+prof.shared[j].name+')'+'</div>');
-									if (prof.shared[j].type == 'delete')var $feedentry = $('<div id="feedElement">'+prof.name+' Deleted a Video ('+prof.shared[j].name+')'+'</div>');
-									
+									if (prof.shared[j].type == 'upload')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Uploaded a New Video ('+prof.shared[j].name+')'+'</div>');
+									if (prof.shared[j].type == 'follow')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Followed '+prof.shared[j].name+'</div>');
+									if (prof.shared[j].type == 'favorite')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Added a New Favorite ('+prof.shared[j].name+')</div>');
+									if (prof.shared[j].type == 'tournament')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Entered the Tournament ('+prof.shared[j].name+')'+'</div>');
+									if (prof.shared[j].type == 'delete')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Deleted a Video ('+prof.shared[j].name+')'+'</div>');
+									$feedentry.click(redirect1);
 									prof.shared[j].element = $feedentry;
 									prof.shared[j].date = new Date(prof.shared[j].date);
 									feedarray.push(prof.shared[j]);
@@ -112,6 +112,9 @@ $(document).ready(function() {
 	}
 	function redirect(event){
 		window.location = "/view?id="+event.target.id; 
+	}
+	function redirect1(event){
+		window.location = "/view?id="+$(this).attr("data-tag");
 	}
 	/*function feed() {
 	    $.ajaxSetup({
