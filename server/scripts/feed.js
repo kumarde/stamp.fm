@@ -42,6 +42,7 @@ $(document).ready(function() {
 								else {
 									var $div = $('<div id = "'+data._id+'">'+data.name+'</div>');
 									$div.click(redirect);
+									$div.css('cursor', 'pointer');
 								 	$('#'+followersid).append($div);
 								}
 							}
