@@ -82,11 +82,11 @@ $(document).ready(function() {
 								$div.click(redirect);
 								 $('#'+followingid).append($div);
 								for ( var j = 0; j < prof.shared.length; j++){
-									if (prof.shared[j].type == 'upload')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Uploaded a New Video ('+prof.shared[j].name+')'+'</div>');
-									if (prof.shared[j].type == 'follow')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Followed '+prof.shared[j].name+'</div>');
-									if (prof.shared[j].type == 'favorite')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Added a New Favorite ('+prof.shared[j].name+')</div>');
-									if (prof.shared[j].type == 'tournament')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Entered the Tournament ('+prof.shared[j].name+')'+'</div>');
-									if (prof.shared[j].type == 'delete')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement">'+prof.name+' Deleted a Video ('+prof.shared[j].name+')'+'</div>');
+									if (prof.shared[j].type == 'upload')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement"><strong>'+prof.name+'</strong> Uploaded a New Video - '+prof.shared[j].name+''+'</div>');
+									if (prof.shared[j].type == 'follow')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement"><strong>'+prof.name+'</strong> Followed '+prof.shared[j].name+'</div>');
+									if (prof.shared[j].type == 'favorite')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement"><strong>'+prof.name+'</strong> Added a New Favorite - '+prof.shared[j].name+'</div>');
+									if (prof.shared[j].type == 'tournament')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement"><strong>'+prof.name+'</strong> Entered the Tournament - '+prof.shared[j].name+''+'</div>');
+									if (prof.shared[j].type == 'delete')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement"><strong>'+prof.name+'</strong> Deleted a Video - '+prof.shared[j].name+''+'</div>');
 									$feedentry.click(redirect1);
 									prof.shared[j].element = $feedentry;
 									prof.shared[j].date = new Date(prof.shared[j].date);
