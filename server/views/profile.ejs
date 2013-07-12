@@ -152,7 +152,7 @@
         <spanName id="displayName" onclick="exchange(this); visibilityName();" style="color:black"><%=name%></spanName>
         <form method = "POST" action = "/changeName" id = "chName">
           <input id="displayNameEdit" name="editName" class="replace" style="font-size:20px" type="text" value="">
-          <input type="submit" id="submitNameButton" value="Submit" style="visibility: hidden" onclick="visibilityName(); exchange((document.getElementById('displayNameEdit')));"/>
+          <input type="submit" id="submitNameButton" value="Submit" style="visibility: hidden" onclick="fillName();visibilityName(); exchange((document.getElementById('displayNameEdit')));"/>
         </form>
         <div id="location">
         <spanLocation id="spanLocation">
@@ -160,7 +160,7 @@
         </spanLocation>
         <form method = "POST" action = "/changeLocation" id = "chLoc">
           <input id="displayLocationEdit" name="editLocation" style="font-size:10px"class="replace" type="text" value="">
-          <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
+          <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="fillLocation();visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
         </form>
         </div>
 
@@ -217,7 +217,7 @@
     <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio" id = "chBio">
           <input type="text" id="displayBioEdit" name="editBio" class="replace" value="" style="display:none;">
-          <input type="submit" id="submitBioButton" value="Submit" style="display:none;" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
+          <input type="submit" id="submitBioButton" value="Submit" style="display:none;" onclick="fillBio();visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
         </form> 
       </div>
           <div class="c12 end" id="videoPlayer" style="border:none">

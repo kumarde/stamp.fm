@@ -19,6 +19,26 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
+      <script>
+  $(function() {
+    $( "#stampVote img[title], #tweetVote[title]" ).tooltip({
+      position: {
+        my: "center bottom-20",
+        at: "center top",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+      }
+    });
+  });
+
+  </script>
+
  
   </head>
   
@@ -27,34 +47,96 @@
 
       <div id="video">  
         <div id="selectSong">
-          <ul id="songOneVote" style="margin-left:20%; margin-bottom:-85px;">
-            <li id="fbVote" style="float:left; margin-top:2px">
-              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a>
-            </li>          
-            <li id="tweetVote"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
-            <li id="ban"><img src="banButton.png" style="height:20px; width:20px;"></li>
-          </ul>  
-
-          <ul id="songTwoVote" style="margin-left:60%;">
-            <li id="fbVote" style="float:left;">
-              <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
-              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a><script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
-              </b:if>
-            </li>          
-            <li id="tweetVote"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
-            <li id="ban"><img src="banButton.png" style="height:20px; width:20px;"></li>
-          </ul>  
 
           <ul id="selectSongList">
-            <li id="songOne" >Video One</li>
-            <li id="songTwo">Video Two</li>
+            <a href="#"id="playVidOne" style="text-decoration:none;"><li id="songOne" class="selected"><spanV id="vidOne" style="font-size:30px;">Video One</spanV><br><spanA id="artistOne" style="font-size:15px;">Artist One</spanA></li></a>
+            <a href="#" id="playVidTwo" style="text-decoration:none;"><li id="songTwo" class="blurred"><spanV id="vidTwo" style="font-size:30px;">Video Two</spanV><br><spanA id="artistTwo" style="font-size:15px;">Artist Two</spanA></li></a>
+
+
+          <script>
+          $("document").ready(function(){
+            $("a#playVidTwo").click(function() {
+            $('li#songTwo').removeClass("blurred");
+            $('li#songTwo').addClass("selected");
+            $('li#songOne').removeClass("selected");
+            $('li#songOne').addClass("blurred");
+          })
+          });          
+          </script> 
+          <script>
+          $("document").ready(function(){
+            $("a#playVidOne").click(function() {
+            $('li#songOne').removeClass("blurred");
+            $('li#songOne').addClass("selected");
+            $('li#songTwo').removeClass("selected");
+            $('li#songTwo').addClass("blurred");
+          })
+          });          
+          </script>           
           </ul> 
         </div>
 
         <div class="c12 end" id="videoPlayer" style="border:none">
+          <ul id="songOneVote" style="float:left; margin-left:2%;">
+            <li id="labelOne">
+              <labelName style="font-size:15px;"><b>Artist One</b></labelName>
+            </li>               
+            <li id="stampVote">
+              <img src="favoriteIcon.png" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="+1 Vote for Artist One">
+            </li>  
+            <li id="fbVote">
+              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a>
+            </li>          
+            <li id="tweetVote" style="margin-top:20px;" title=""><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
+            <li id="banOne" onclick="openBanOne();"><img src="banButton.png" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+              <ul id="banContentOne" style="visibility:hidden;" class="banWrapper">
+                <div id="firstThird">  
+                <li id="badContent" style="font-size:12px;">Explicit Content</li>
+                </div>
+                <div id="secondThird">  
+                <li id="badSong" style="font-size:12px;">This Song Sucks!</li>
+                </div>
+                <div id="finalThird">  
+                <li id="wrongGenre" style="font-size:12px; border-bottom:none;">Wrong Genre</li>
+                </div>
+              </ul>             
+            </li> 
+
+          </ul>      
+
+          <ul id="songTwoVote" style="float:right; margin-right:5%;">
+            <li id="labelTwo">
+              <labelName style="font-size:15px;"><b>Artist Two</b></labelName>
+            </li>                   
+            <li id="stampVote">
+              <img src="favoriteIcon.png" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="+1 Vote for Artist Two">
+            </li>             
+            <li id="fbVote">      
+              <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
+              <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a><script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
+              </b:if>
+            </li>          
+            <li id="tweetVote" style="margin-top:20px;" title=""><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a></li>
+            <li id="banTwo" onclick="openBanTwo();"><img src="banButton.png" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+              <ul id="banContentTwo" style="visibility:hidden;" class="banWrapper">
+                <div id="firstThird">  
+                <li id="badContent" style="font-size:12px;">Explicit Content</li>
+                </div>
+                <div id="secondThird">  
+                <li id="badSong" style="font-size:12px;">This Song Sucks!</li>
+                </div>
+                <div id="finalThird">  
+                <li id="wrongGenre" style="font-size:12px; border-bottom:none;">Wrong Genre</li>
+                </div>
+              </ul>  
+            </li>
+
+          </ul>  
+
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
             <source src="" type="video/mp4" id = "source">
             </video>
+
         </div>   
     </div> 
 
@@ -106,7 +188,7 @@
 
 
 <!--Twitter Tweet Script-->
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="twitterTweet.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <!--End Tweet Script-->
 
 <!--FB Share Script-->
