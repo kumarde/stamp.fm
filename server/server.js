@@ -31,6 +31,7 @@ var songs = 0;
   var UploadModule = require('./scripts/UploadModule.js').UploadModule;
   var UserModule = require('./scripts/UserModule.js').UserModule;
   var FeedModule = require('./scripts/FeedModule.js').FeedModule;
+  var ElimModule = require('./scripts/ElimModule.js').EliminationModule;
 
   var testModule = new TestModule;
   var auditionModule = new AuditionModule;
@@ -39,6 +40,7 @@ var songs = 0;
   var uploadModule = new UploadModule;
   var userModule = new UserModule;
   var Feed = new FeedModule;
+  var elim = new ElimModule;
 
 
   
@@ -146,65 +148,40 @@ var cPop = 0;
 var totalPop;
 var pop_array;
 
-dbtest.tournament.find({genre: "Pop"}).sort({votes:-1}, function(e, o){
-  pop_array = o;
-  dbtest.locals.insert({_id: "pop_array", pop_array: pop_array});
-  dbtest.locals.insert({_id: "pop", cPop: cPop});
-  totalPop = pop_array.length;
-});
+var cRap = 0;
+var totalRap;
+var rap_array;
 
 app.get('/testview', function(req, res){
-  res.render('testview', {imgid: "0", v1id: pop_array[cPop]._id, v2id:pop_array[cPop+1]._id});
-  dbtest.tournament.update({_id: pop_array[cPop]._id}, {$inc:{views: 1}}); //on view, update view
-  dbtest.tournament.update({_id: pop_array[cPop+1]._id}, {$inc: {views:1}}); //on view, update view
-  cPop += 2; //increment cPop so next time someone goes to testView, they see two new people
-  dbtest.locals.update({_id: "pop"}, {$set: {cPop: cPop}}); //insert into locals collection datastore to keeptrack of Pop
-  if(cPop >= totalPop){
-    dbtest.tournament.find({genre: "Pop"}).sort({votes: -1}, function(e, o){
-      console.log(o);
-      pop_array = o;
-      dbtest.locals.update({_id: "pop_array"}, {$set: {pop_array: pop_array}});
-      cPop = 0;
+  elim.initElim(cRap, rap_array, totalRap, "Rap", function(array, c){
+    rap_array = array;
+    console.log(rap_array);
+    cRap = c;
+    res.render('testview', {imgid: "0", v1id: rap_array[cRap]._id, v2id:rap_array[cRap+1]._id});
+    elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+      if(inc) cRap += 2;
+      else{
+        rap_array = newArray;
+        cRap = 0;
+      }
     });
-  }
-  else if(cPop + 1 === totalPop){
-    dbtest.tournament.update({_id: pop_array[c]._id}, {$inc: {views:1}, $inc: {votes:1}});
-    dbtest.tournament.find({genre: "Pop"}).sort({votes: -1}, function(e, o){
-      console.log(o);
-      pop_array = o;
-      dbtest.locals.update({_id: "pop_array"}, {$set: {pop_array: pop_array}});
-      cPop = 0;
-      dbtest.locals.update({_id: "pop"}, {$set: {cPop: cPop}});
-    });
-  };
+  });
 });
 
 app.post('/testvote', function(req, res){
   dbtest.tournament.update({_id: parseInt(req.body.vid)}, {$inc: {votes:1}});
-  //res.send({v1id: pop_array[c]._id, v2id: pop_array[c+1]._id});
-  console.log("hello!");
-  dbtest.tournament.update({_id: pop_array[cPop]._id}, {$inc:{views: 1}}); //on view, update view
-  dbtest.tournament.update({_id: pop_array[cPop+1]._id}, {$inc: {views:1}}); //on view, update view
-  cPop += 2; //increment cPop so next time someone goes to testVote, they see two new people
-  dbtest.locals.update({_id: "pop"}, {$set: {cPop: cPop}}); //insert into locals collection datastore to keeptrack of Pop
-  if(cPop >= totalPop){
-    dbtest.tournament.find({genre: "Pop"}).sort({votes: -1}, function(e, o){
-      console.log(o);
-      pop_array = o;
-      dbtest.locals.update({_id: "pop_array"}, {$set: {pop_array: pop_array}});
-      cPop = 0;
-    });
-  }
-  else if(cPop + 1 === totalPop){
-    dbtest.tournament.update({_id: pop_array[c]._id}, {$inc: {views:1}, $inc: {votes:1}});
-    dbtest.tournament.find({genre: "Pop"}).sort({votes: -1}, function(e, o){
-      console.log(o);
-      pop_array = o;
-      dbtest.locals.update({_id: "pop_array"}, {$set: {pop_array: pop_array}});
-      cPop = 0;
-      dbtest.locals.update({_id: "pop"}, {$set: {cPop: cPop}});
-    });
-  }; 
+  elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+    if(inc) cRap += 2;
+    else{
+      rap_array = newArray;
+      cRap = 0;
+    }
+    res.send(204);
+  }) 
+});
+
+app.post('/playNext', function(req, res){
+  res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id});
 });
 
 db.music.count(function(err, count){
