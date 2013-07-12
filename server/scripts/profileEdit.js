@@ -95,7 +95,7 @@ function tourneyButtonChange(){
 function fillBio(){
   var bio = $("input#displayBioEdit").val();
   if(bio == ""){
-    $("input#displayBioEdit").val('This is my artist page');
+    $("input#displayBioEdit").val('I love Stamp.fm and Stamp.fm loves us!');
   }
 }
 
