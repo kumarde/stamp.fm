@@ -21,6 +21,7 @@
             <div id = "two"> <%=v2id%> </div>
         <input data-tag = "<%=v1id%>" type = "button" id = "vote1" value = "Vote1"/>
         <input data-tag = "<%=v2id%>" type = "button" id = "vote2" value = "Vote2"/>
+        <input id = "next" type = "button" value = "Play Next"/>
 
         <script>
         	$(document).ready(function(){
@@ -67,13 +68,6 @@
                         cache: false,
                         data: {vid: $(this).attr('data-tag')},
                         success: function(data){
-                            alert(data.v1id + " " + data.v2id);
-                            $('#enter1').attr('data-tag', data.v1id);
-                            $('#enter2').attr('data-tag', data.v2id);
-                            $(this).attr('data-tag', data.v1id);
-                            $('#vote2').attr('data-tag', data.v2id);
-                            $('#one').html(data.v1id);
-                            $('#two').html(data.v2id);
                         }
                     })
                 });
@@ -84,16 +78,24 @@
                         cache: false,
                         data: {vid: $(this).attr('data-tag')},
                         success: function(data){
-                            alert(data.v1id + " " + data.v2id);
+                        }
+                    })
+                });
+                $('#next').click(function(){
+                    $.ajax({
+                        url: "/playNext",
+                        type: "POST",
+                        cache: false,
+                        success: function(data){
                             $('#enter1').attr('data-tag', data.v1id);
                             $('#enter2').attr('data-tag', data.v2id);
-                            $(this).attr('data-tag', data.v1id);
-                            $('#vote1').attr('data-tag', data.v2id);
+                            $('#vote1').attr('data-tag', data.v1id);
+                            $('#vote2').attr('data-tag', data.v2id);
                             $('#one').html(data.v1id);
                             $('#two').html(data.v2id);
                         }
                     })
-                });
+                })
         	})
         </script>
     </body>
