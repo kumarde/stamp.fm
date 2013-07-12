@@ -105,11 +105,11 @@
 				</ul>
 				</center>
 			  </div>
-			  <a id="advertisement" href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"></a>
+			  <a id="advertisement"></a>
 			</div>
 		<%}
 		else if ( type == 'O' ){%>
-			<div id="feedback" class="modalDialog_temp" style="text-align:center">
+			<div id="feedback" class="modalDialog_temp" >
 			  <script>
 			  function highlight(radio){
 				radio.style.backgroundColor="#000";
@@ -119,7 +119,7 @@
 				}
 
 				</script>
-				<div>
+				<div style="text-align:center">
 				<div class="close" style="color:#FFFFFF">X</div>
 				<h3 style="color:white">Give us Some Feedback!</h3>
 				<form method = "POST" action = "/feedback" id = "feedback">
@@ -136,7 +136,7 @@
 				  </script>
 				</form>        
 			  </div>
-			  <a id="advertisement" href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"></a>
+			  <a id="advertisement" ></a>
 			</div>
 	<%}
 	else if ( type == 'P' ){%>
@@ -167,7 +167,7 @@
 				  </script>
 				</form>        
 			  </div>
-			  <a id="advertisement" href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"></a>
+			  <a id="advertisement" ></a>
 			</div>
 		<% }
 	else if ( type == 'Q' ){%>
@@ -266,15 +266,43 @@
 
 <script>
 $("document").ready(function(){
+	var adlist = [];var linklist = [];
+	var count = 0;
+	adlist.push('turtle_ad.jpg');
+	adlist.push('turtle_ad.jpg');
+	adlist.push('turtle_ad.jpg');
+	linklist.push("http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea");
+	linklist.push("http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea");
+	linklist.push("http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea");
+	
+	
 	$('.close').click(function(){
 		$(this).parent().parent().removeClass("unhidden");
 	});
 	
 	$('.modalbutton').click(function(event){
 		var str = $(this).attr("id");
-		$('#'+str.substring(0, str.length - 1)).addClass("unhidden");
+		var $modal = $('#'+str.substring(0, str.length - 1));
+		
+		if ( $modal.hasClass("modalDialog_temp") ){
+			count++;
+			if ( count >= adlist.length )count = 0;
+
+			$modal.find("a").attr("href", linklist[count]);
+			$modal.css("background-image","url('"+adlist[count]+"')");
+			$modal.css("top","-35px");
+			
+		}
+		$modal.addClass("unhidden");
+		
+		
+
 	});
 	
+	
+	//$("#notreal").css("background-image","url('turtle_ad.jpg')");
+	//$("#notreal").css("top","-35px");
 });
+
 
 </script>
