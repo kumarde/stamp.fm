@@ -311,9 +311,6 @@ overflow: auto;
     max-height: 220px;
     max-width: 400px;
     opacity: 1;
-    -moz-border-radius:10px;  
-    border-radius: 10px;  
-    -webkit-border-radius: 10px;
 }
 #preview:hover{
     opacity: .7;
