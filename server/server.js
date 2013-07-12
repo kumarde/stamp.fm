@@ -148,17 +148,19 @@ var cPop = 0;
 var totalPop;
 var pop_array;
 
-var cRap = 0;
-var totalRap;
-var rap_array;
+cRap = 0;
+rap_array = [];
 
 app.get('/testview', function(req, res){
-  elim.initElim(cRap, rap_array, totalRap, "Rap", function(array, c){
+  elim.initElim("Rap", function(array, c){
+    console.log("This is the array" + " " + array);
+    console.log("This is the count: " + c);
     rap_array = array;
-    console.log(rap_array);
+    totalRap = rap_array.length;
     cRap = c;
     res.render('testview', {imgid: "0", v1id: rap_array[cRap]._id, v2id:rap_array[cRap+1]._id});
     elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+      console.log("C: :" + cRap + " total: " + totalRap);
       if(inc) cRap += 2;
       else{
         rap_array = newArray;
@@ -169,8 +171,10 @@ app.get('/testview', function(req, res){
 });
 
 app.post('/testvote', function(req, res){
+  console.log(rap_array);
   dbtest.tournament.update({_id: parseInt(req.body.vid)}, {$inc: {votes:1}});
   elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+    console.log("C: :" + cRap + " total: " + totalRap);
     if(inc) cRap += 2;
     else{
       rap_array = newArray;
@@ -181,6 +185,9 @@ app.post('/testvote', function(req, res){
 });
 
 app.post('/playNext', function(req, res){
+  console.log(rap_array);
+  console.log(cRap);
+  console.log(totalRap);
   res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id});
 });
 
@@ -221,13 +228,7 @@ app.get('/newView', function(req, res, next){
         }
     });
 });
-
-
-
-
 /*******************************************/
-
-
 app.post('/namesearch', function(req,res){
     db.users.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){
         if (err || !o)res.send({error:"Cannot find"});
