@@ -35,27 +35,27 @@
       <div class="c2" id="tabs">
 
         <ul id="listName">
-		  <li id="songButton"><a href="#songContent" id="songListLabel"><span id="vidColor" class="highlightTab">Videos</span></a></li>
-      <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><span id="favColor">Favorites</span></a></li>
+      <li id="songButton"><a href="#songContent" id="songListLabel"><strong><span id="vidColor" class="highlightTab">Videos</span></strong></a></li>
+          <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><strong><span id="favColor">Favorites</span></strong></a></li>
           
           <script>
           $("document").ready(function(){
-            $('a#playlistLabel').click(function(){
-              $('span#favColor').addClass("highlightTab");
-            })
-            $("a#playlistLabel").click(function(){
-              $('span#vidColor').removeClass("highlightTab");
+          $('a#playlistLabel').click(function(){
+            $('span#favColor').addClass("highlightTab");
+          })
+          $("a#playlistLabel").click(function() {
+            $('span#vidColor').removeClass("highlightTab");
             });
           });          
           </script>
           <script>
           $("document").ready(function(){
-            $('a#songListLabel').click(function(){
-              $('span#favColor').removeClass("highlightTab");
-            })
-            $("a#songListLabel").click(function(){
-              $('span#vidColor').addClass("highlightTab");
-            })
+          $('a#songListLabel').click(function(){
+            $('span#favColor').removeClass("highlightTab");
+          })
+          $("a#songListLabel").click(function() {
+            $('span#vidColor').addClass("highlightTab");
+            });
           });          
           </script>  
           
@@ -64,32 +64,27 @@
   <div id="songContent">
 
     <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash">
-    <div style = "color: #333333;"> To upload your video, <a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> CLICK HERE </a> to convert it to the WebM format.
-    <input type="text" name="name"	style="display:none;" id="upname">
-	  <input type="text" name="genre" style="display:none;" id="upgenre">
-	  <input type="text" name="explicit" style="display:none;" id="upex">
-	  <input type="button" value="Upload" id="uploadFigurehead">
+    <div style = "color: #333333;"> To upload your video, <a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> CLICK HERE </a> to convert it to the WebM format or it will not play.
+    <input type="text" name="name"  style="display:none;" id="upname">
+    <input type="text" name="genre" style="display:none;" id="upgenre">
+    <input type="text" name="explicit" style="display:none;" id="upex">
+    <input type="button" value="Upload" id="uploadFigurehead">
     </form>
-
-  </div>
-	 
+    </div>
+   
       <div id="song" style="margin-top:4px;">
       <div style=" overflow:auto;">
       <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
-          <td><div data-tag ="<%=song._id%>" class = "songname" ><%= song.name %></div></td>
-		  <td style="float:right;min-width:120px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-		  <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-		  <img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;">
-		  <% if (song.inTourney == "Submit") {%> 
-		  <input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="<%=song.inTourney%>" id="tourneyAdd" class="addTourney" onclick="tourneyButtonChange();"></td>
-		  <% }else {%>
-			<input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="<%=song.inTourney%>" id="tourneyAdd" class="inTourney" ></td>
-		  <%}%>
-	  </tr>
+          <td><div data-tag ="<%=song._id%>" class = "songname"><%= song.name %></div></td>
+      <td style="float:right;min-width:120px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+      <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+      <img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;">
+      <input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="<%=song.inTourney%>" id="tourneyAdd" class="addTourney" onclick="tourneyButtonChange();"></td>
+     </tr>
       <% }); %>
-			
+      
           </table>  
 
         </div>
@@ -99,12 +94,12 @@
 
   <div id="playlistContent">
     <div id="song" style="margin-top:4px;">
-	<div style=" overflow:auto;">
+  <div style=" overflow:auto;">
         <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
           <% playlist.forEach(function(play){ %>
-          <tr id="song_name" style="color:#000; border-bottom:2px solid;" class = "p<%=play.songID%>" >
-            <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.artistName %> - <%= play.name %></div></td>
-			<td style="float:right;min-width:40px;margin-top:5px;cursor:pointer;"><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+          <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "p<%=play.songID%>" >
+            <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.name %></div></td>
+      <td style="float:right;min-width:40px;margin-top:5px;cursor:pointer;"><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
             <img data-tag = "<%=play.songID%>" class="playdelete" id = "<%=play.songID%>" src="favoriteRemove.png" style="height:15px;width:15px;"></td>
           </tr>
           <% }); %>
@@ -115,6 +110,25 @@
 
 
         </div>
+    
+    
+<script>
+          $("document").ready(function(){
+      
+      $("#songButton").trigger('click');
+      
+          $("li#songButton").click(function() {
+       $('li#songButton').addClass("highlightTab");
+            $('li#favButton').removeClass("highlightTab");
+          $('li#favButton').click(function(){
+            $('li#favButton').addClass("highlightTab");
+      $('li#songButton').removeClass("highlightTab");
+          })
+            });
+          });          
+          </script>
+        
+
  <script>
           $("document").ready(function(){
             $('#uploadSong').change(function(){
@@ -126,7 +140,7 @@
           $('input#cancelUpload').click(function(){
             $('div#info').removeClass("unhidden");
           })
-		  $('#uploadFigurehead').click(function() {
+      $('#uploadFigurehead').click(function() {
              $('#uploadSong').click();
             });
           });
@@ -138,7 +152,7 @@
         <spanName id="displayName" onclick="exchange(this); visibilityName();" style="color:black"><%=name%></spanName>
         <form method = "POST" action = "/changeName" id = "chName">
           <input id="displayNameEdit" name="editName" class="replace" style="font-size:20px" type="text" value="">
-          <input type="submit" id="submitNameButton" value="Submit" style="visibility: hidden" onclick="visibilityName(); exchange((document.getElementById('displayNameEdit')));"/>
+          <input type="submit" id="submitNameButton" value="Submit" style="visibility: hidden" onclick="fillName();visibilityName(); exchange((document.getElementById('displayNameEdit')));"/>
         </form>
         <div id="location">
         <spanLocation id="spanLocation">
@@ -146,7 +160,7 @@
         </spanLocation>
         <form method = "POST" action = "/changeLocation" id = "chLoc">
           <input id="displayLocationEdit" name="editLocation" style="font-size:10px"class="replace" type="text" value="">
-          <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
+          <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="fillLocation();visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
         </form>
         </div>
 
@@ -166,8 +180,8 @@
           <input name = "file" type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="display:none">  
         </form>
         </ul>
-		
-		
+    
+    
         <!--Picture Preview-->
         <script type="text/javascript">      
         function previewImage(input) {
@@ -203,12 +217,12 @@
     <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
         <form method = "POST" action = "/changeBio" id = "chBio">
           <input type="text" id="displayBioEdit" name="editBio" class="replace" value="" style="display:none;">
-          <input type="submit" id="submitBioButton" value="Submit" style="display:none;" onclick="visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
+          <input type="submit" id="submitBioButton" value="Submit" style="display:none;" onclick="fillBio();visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
         </form> 
       </div>
           <div class="c12 end" id="videoPlayer" style="border:none">
            <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
-		   <source src="" type="video/mp4" id = "source">
+       <source src="" type="video/mp4" id = "source">
             </video>
           </div>   
 
@@ -274,7 +288,6 @@
 
 
 <% stylesheet('modals.css') -%>
-<%-partial('modals', ["'IJKLMNOPQTUWX'"]) %>
-
+<%-partial('modals', ["'IJKLMNOPTUWX'"]) %>
 
 

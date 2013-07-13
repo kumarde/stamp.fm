@@ -105,6 +105,7 @@ overflow: auto;
   margin-right: 5px;
   margin-top: 3px;
     font-size: 10px;
+    background: url('trebleClef.png');
     color: white;
     background-size: 5px; 
     background-color: rgba(180,7,6,1);
@@ -112,6 +113,7 @@ overflow: auto;
     background-position: 7px 4px;  
     border: none;         
     cursor: pointer;       
+    padding-left: 10px; 
     vertical-align: middle;
     max-height: 40px;
     max-width: 90px;
@@ -130,6 +132,7 @@ overflow: auto;
     background-color: rgba(140,7,6,1);
 }
 .followButton:active{
+    background-image: url('trebleClef.png');
     -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
     box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
     background: rgba(120,7,6,1);
@@ -197,8 +200,8 @@ overflow: auto;
 #header .nav{
     color: black;
     margin-top: 0px;
-	cursor: hand; 
-	cursor: pointer;
+    cursor: hand; 
+    cursor: pointer;
 }
 
 #profileLink{
@@ -230,7 +233,7 @@ overflow: auto;
         background-color: #000;
         width: 110px;
         border: 1px solid #FFFFFF;
-	text-align:center;
+    text-align:center;
 }
 
 #tophalf{
@@ -308,9 +311,6 @@ overflow: auto;
     max-height: 220px;
     max-width: 400px;
     opacity: 1;
-    -moz-border-radius:10px;  
-    border-radius: 10px;  
-    -webkit-border-radius: 10px;
 }
 #preview:hover{
     opacity: .7;
@@ -353,16 +353,17 @@ overflow: auto;
     -webkit-border-radius: 100px;
 }
 
-	
+    
 .stampFollow{
 font-size: 15px;
  border: 1px solid rgba(0,0,0,1);
-	color: #FFFFFF;
+ background: url('trebleClef.png');
+    color: #FFFFFF;
     background-size: 9px; 
     background-color: rgba(180,7,6,1);
     background-repeat: no-repeat; 
     background-position: 7px 4px;  
-	cursor: pointer; 
+    cursor: pointer; 
     height: 30px;  
     width: 80px;  
     vertical-align: middle;
@@ -371,7 +372,8 @@ font-size: 15px;
     margin-top: 30px;
     margin-bottom: 30px;
     margin-left: 0%;
-    padding: 2px;
+        padding: 2px;
+        padding-left: 20px; 
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -390,7 +392,7 @@ font-size: 15px;
     -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
     box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
     border: solid 1px #000;
-	
+    
 }
 
 td{
@@ -504,6 +506,7 @@ td{
 
 #feedElement{
     border-bottom: 1px solid #000;
+    cursor: pointer;
 }
 
 #feedElement:hover{
@@ -548,13 +551,13 @@ td{
 }
 #song_name{
     font-size: 15px;
-	z-index: 0;
-	width:100%;
-	min-width:100px; width: auto !important; width: 100px;
+    z-index: 0;
+    width:100%;
+    min-width:100px; width: auto !important; width: 100px;
 }
 
 #song_name:hover{
-    background-color: rgba(163, 163, 163, .3);
+    background-color: rgba(163,163,163,.3);
     -moz-border-radius:10px;  
     border-radius: 10px;  
     -webkit-border-radius: 10px;
@@ -572,12 +575,12 @@ td{
     background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
     background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
     background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.2, rgb(240,240,240)),
-        color-stop(0.6, rgb(235,235,235)),
-        color-stop(0.8, rgb(230,230,230))
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(240,240,240)),
+    color-stop(0.6, rgb(235,235,235)),
+    color-stop(0.8, rgb(230,230,230))
     );
 }
 
@@ -605,14 +608,14 @@ td{
     color: rgba(180,7,6,1);
 }
 
-#songButton{
+#vidColor{
     margin: auto;
     padding-right: 30px;
     border-right: 1px solid #000;
 }
-#favButton{
+#favColor{
     margin-left:10%;
-    margin-right:auto;
+    margin-right: auto;
 }
 #songListLabel{
     font-size: 20px;
@@ -621,6 +624,7 @@ td{
 .highlightTab{
     color: rgba(180,7,6,.8);
 }
+
 #playlist_name{
     float: left;
     font-size: 15px;
@@ -640,11 +644,11 @@ td{
 }
 
 .songnames{
-	width:100%;
+    width:100%;
 }
 
 .songname{
-	max-width:190px;
+    max-width:190px;
     overflow:hidden;
 }
 
@@ -712,12 +716,3 @@ td{
 .replace {
 display:none;
 }
-
-.accountlink:hover{
-    background-color: rgba(163, 163, 163, .3);
-    -moz-border-radius:10px;  
-    border-radius: 10px;  
-    -webkit-border-radius: 10px;
-	cursor: pointer;     
-}
-
