@@ -159,6 +159,10 @@ app.post('/namesearch', function(req,res){
 });
 
 app.post('/bandsearch', function(req,res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
 	if(req.session.user == null){
         id = req.user[0]._id;
     }
@@ -173,6 +177,7 @@ app.post('/bandsearch', function(req,res){
         if (err || !o)res.send({error:"Cannot find"});
         else res.send({data:o, id:id});
     });
+}
 });
 
 app.get('/feed', function(req, res){
@@ -766,7 +771,7 @@ app.post('/create', function(req, res){
 app.get('/view', function(req, res){
     if (req.session.user == null && req.user == null) {
       res.redirect('/');
-    }
+    }else{
     var pid = req.query["id"];
     if(pid == null){
         res.send('error, you suck');
@@ -833,6 +838,7 @@ app.get('/view', function(req, res){
             })
         }
     })    
+}
 })
 
 app.post('/vidPlay', function(req, res){
