@@ -105,6 +105,10 @@ body {
     margin-right: auto;
 }
 
+.req{
+    color: rgba(180,7,6,1);
+}
+
 
 #fbLabel #fbEnter{
     display: inline;
