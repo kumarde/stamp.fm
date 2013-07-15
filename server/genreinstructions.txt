@@ -1,0 +1,38 @@
+What's up guys! 
+
+Here are detailed instructions on how to run the Genre thing.
+
+1. Open a mongo terminal
+2. It should say "Connected to test."
+3. That's good. The genre simulation is currently in the test database.
+4. Enter this code: 
+	for(var i = 8; i < 12; ++i){
+		db.tournament.insert({_id: i, votes: 0, views: 0, genre: "Rap"});
+	}
+	This will create four entries into the database. Note the capitalization of the genre field.
+5. Go to /testview, and begin simulation! 
+
+If you ever screw something up, the code to "clear" the database is as follows
+
+	for(var i = 8; i < 12; ++i){
+		db.tournament.update({_id: i}, {$set:{votes:0, views:0}});
+	}
+
+	This will clear the votes and views. 
+
+
+TODO:
+
+I still need to make it such that when you refresh, if you as a user haven't voted, then you will see the same two videos again until you vote on them. 
+
+That is on my list of things to do next. 
+
+Some Guidelines:
+
+1. The AJAX team will handle not making the buttons clickable etc etc etc, so don't go clicking like it's your job. Be reasonable about "When you can click" and "When you shouldn't click".
+
+2. The code is awesome. We should all make sure we understand how everything works - so we can be ready to justify our choices to anyone who asks.
+
+3. Mongodb <3 
+
+Thanks guys! 
