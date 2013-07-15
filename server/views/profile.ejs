@@ -63,12 +63,16 @@
   
   <div id="songContent">
 
-    <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash">
-    <div style = "color: #333333;"> To upload your video, <a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> CLICK HERE </a> to convert it to the WebM format or it will not play.
-    <input type="text" name="name"	style="display:none;" id="upname">
-	  <input type="text" name="genre" style="display:none;" id="upgenre">
-	  <input type="text" name="explicit" style="display:none;" id="upex">
-	  <input type="button" value="Upload" id="uploadFigurehead">
+    <div style = "color: #333333; font-size:10px"> <strong>For video:</strong> 1. Convert to WebM format<a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> HERE </a> <br><span style="margin-left:52px;">2. Upload WebM to Stamp.fm</span>
+    </form>
+    <input type="button" value="Upload" id="uploadFigurehead">
+    </div>
+
+    <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash, audio/mp3">
+    <div style = "color: #333333;"> <strong>For song:</strong> <span style="margin-left:3px;">1. Upload MP3 to Stamp.fm</span>
+    <input type="text" name="name"  style="display:none;" id="upname">
+    <input type="text" name="genre" style="display:none;" id="upgenre">
+    <input type="text" name="explicit" style="display:none;" id="upex">
     </form>
     </div>
 	 
