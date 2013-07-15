@@ -1,41 +1,63 @@
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>stamp.fm</title>
-        <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
-        <link rel="stylesheet" type="text/css" href="/page404.css">
-        <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-        <style type="text/css">
-          body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-          }
-        </style>
-    </head>
-    <body>
-        <header id="header">
-        <a href="http://www.stamp.fm"><img src="/headerStamp.png"></a>
-        <ul style="float:right">
-            <li>
-              <a href="/upload" style="text-decoration:none" class="nav">UPLOAD</a>
-            </li>
-            <li>
-              <a href="#notReal" style="text-decoration:none" class="nav">AUDITION</a>
-            </li>
-            <li>
-                <a href="#notReal" style="text-decoration:none" class="nav">BRACKET</a>
-            </li>
-        </ul>  
-        </header>
-        <div id="error_box">
-            <center>
-            <img src="/Stamp.jpg">
-            <p id="watcha_text"> <b>What'cha Doing Here?</b></p><br>
-            <p id="error_text">404: page not found</p>
-            </center>
-        </div>
+  <head>
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/page404.css">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+  </head>
+<body>
+    <header id="header">
+
+      <a href="http://www.stamp.fm" id="logo"><img id="logoPic" src="/headerStamp.png"></a>
+      </form>
+      <ul id="links">
+        <li id="audition">
+        <a style="text-decoration:none" id="audLink" class="nav">Elimination</a>
+        </li>
+        <li id="bracket">
+        <a style="text-decoration:none" id="brackLink" class="nav">Finals</a>
+        </li> 
+    </ul>
+    </header>
+
+<div class="blurb">
+<p style="font-size: 50px" class="big"><strong>404 Page Not Found</<br><br> <span style="font-size:40px;">Find your way back using the bar at the top!</span>
+</p><br><br><br>
+<p style="font-size: 30px" class="small">Like us on Facebook and follow us on Twitter to stay up to date!</p>
+ <div style="margin-left:20%;">
+ <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
+ <div>
+  <a href="http://twitter.com/stampfm" class="twitter-follow-button"  data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
+</div>
+</div>    
+
+   <div id="footer">
+      <ul>
+  <ul>
+  <li>&copy Copyright 2013 Stamp.fm All Rights Reserved</li>
+      </ul>
+    </div>
+
+<!-- FB Like Script-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- End FB Like Script -->
+
 </body>
-    
+</html>
