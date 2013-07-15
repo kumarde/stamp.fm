@@ -148,9 +148,6 @@ var cPop = 0;
 var totalPop;
 var pop_array;
 
-cRap = 0;
-rap_array = [];
-
 app.get('/testview', function(req, res){
   elim.initElim("Rap", function(array, c){
     console.log("This is the array" + " " + array);
@@ -161,10 +158,11 @@ app.get('/testview', function(req, res){
     res.render('testview', {imgid: "0", v1id: rap_array[cRap]._id, v2id:rap_array[cRap+1]._id});
     elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
       console.log("C: :" + cRap + " total: " + totalRap);
-      if(inc) cRap += 2;
+      if(inc == 1) cRap += 2;
       else{
         rap_array = newArray;
         cRap = 0;
+
       }
     });
   });
@@ -173,22 +171,25 @@ app.get('/testview', function(req, res){
 app.post('/testvote', function(req, res){
   console.log(rap_array);
   dbtest.tournament.update({_id: parseInt(req.body.vid)}, {$inc: {votes:1}});
-  elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
-    console.log("C: :" + cRap + " total: " + totalRap);
-    if(inc) cRap += 2;
-    else{
-      rap_array = newArray;
-      cRap = 0;
-    }
-    res.send(204);
-  }) 
+  res.send(204);
 });
 
 app.post('/playNext', function(req, res){
   console.log(rap_array);
   console.log(cRap);
-  console.log(totalRap);
   res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id});
+  elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+    console.log("C: :" + cRap + " total: " + totalRap);
+    if(inc){
+      cRap += 2;
+      dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+    } 
+    else{
+      rap_array = newArray;
+      cRap = 0;
+      dbtest.locals.update({_id: "Rap"}, {$set: {array: rap_array, c: 0}});
+    }
+  });  
 });
 
 db.music.count(function(err, count){
