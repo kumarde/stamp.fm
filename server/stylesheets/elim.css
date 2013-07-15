@@ -65,6 +65,15 @@
 	text-shadow: 0 0 5px rgba(180,7,6,0.5);
 }
 
+.unclickable{
+	filter: blur(2px) grayscale(95%);
+	-webkit-filter: blur(2px) grayscale(95%);
+	-moz-filter: blur(2px) grayscale(95%);
+	-o-filter: blur(2px) grayscale(95%);
+	-ms-filter: blur(2px) grayscale(95%);
+}
+
+
 #songOne{
 	float: left;
 	margin-left: 10%;
@@ -90,6 +99,10 @@
 #songTwoVote{
 	list-style-type: none;
 	text-align: center;
+}
+
+#voteOne{
+
 }
 .ui-tooltip {
 	padding: 8px;
