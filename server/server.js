@@ -1124,7 +1124,41 @@ app.get('/elim', function(req,res){
        });             
 });
 
-
+app.get('/browse', function(req,res){
+  if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+    }
+  
+   db.profiles.findOne({_id: id}, function(e, profile){
+            if(e){
+                console.log(e);
+            }
+            else if(profile == undefined){
+                res.redirect('/create');
+            }
+  var imgurl;
+  console.log(profile.url);
+  if(profile.url && profile.changedPic == "none"){
+  imgurl = profile.url;
+  }
+  else if(profile.changedPic === "true" || profile.changedPic === "none"){
+    imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+  }
+   else{
+    imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+    }
+    db.music.find(function(e,songs){
+      res.render('browse', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, facebook: profile.facebook, songs:songs, twitter: profile.twitter, createModal: "null"});
+       });
+    });   
+})
 
 /*****************************************404**************************************************/
 app.get("*", function(req, res){
