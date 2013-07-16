@@ -16,6 +16,7 @@
   <div  id="createPageLabel" style="font-size:40px;">
       <center><h1>Create your Profile</h1></center>
   </div>  
+   <span class="req"> &nbsp;&nbsp;&nbsp;* required</span>
   <form method = "POST" enctype = "multipart/form-data" id = "createFields" name = "profileForm">
       <div id="band_info">
     <div id="picture">
@@ -24,30 +25,33 @@
         <input type = "file" name = "picture" id = "pic" accept = 'image/*' onchange="previewImage(this)">
     </div>
     <div id="bioCreateDiv"> 
-        <input type = "text" size="28" name = "bio" placeholder = "Tagline" id = "bioCreate" name = "" style="font-size:20px;width:350px;"></input>
+        <input type = "text" size="28" name = "bio" placeholder = "Tagline" id = "bioCreate" name = "" style="font-size:20px;width:350px;"></input><span class="req">*</span>
     </div>
     <div id="nameCreate">
-        <input style="font-size:20px; width:350px;" size="28" type = "text" placeholder = "Personal/Stage/Band Name" value = "<%=name%>" name = "name" id= "name">
+        <input style="font-size:20px; width:350px;" size="28" type = "text" placeholder = "Personal/Stage/Band Name" value = "<%=name%>" name = "name" id= "name"><span class="req">*</span>
     </div>
     <div id="locationCreate">
-        <input type = "text" size="28" style="font-size:20px; width:350px;" placeholder = "Location (i.e. Ann Arbor, Michigan)" value = "<%=location%>" name = "location" id= "locationEnter">
+        <input type = "text" size="28" style="font-size:20px; width:350px;" placeholder = "Location (i.e. Ann Arbor, Michigan)" value = "<%=location%>" name = "location" id= "locationEnter"><span class="req">*</span>
     </div>
       </div>
       <div id="social_media">
-    <div  id="fbLink">
-        <span style="font-size:20px;">Link to Your Facebook Fan Page</span>
-        <input style="font-size:20px" size="28" type = "text" placeholder = "Link to Facebook Fan Page" name = "fb" id= "fbEnter"/>
+    <div  id="fbLink" style="margin-top:2%;">
+        <span id="fbLabel">Facebook.com/</span>
+        <input style="font-size:12px" size="30" type = "text" placeholder = "Facebook Fan Page" name = "fb" id= "fbEnter"/><span class="req">*</span>
     </div>
     <div id="fbLikes">
-        <input type = "text" size="28" style="font-size:20px" placeholder = "# of Current Facebook Likes" name = "fbLikes" id= "fbLikesInput"/>
-    </div>
+    <span id="fbLike"># Facebook Likes:</span>
+        <input type = "text" size="27" style="font-size:12px;" placeholder = "" name = "fbLikes" id= "fbLikesInput"/>
+    </div><br>
     <div id="twitterLink">
-        <span style="font-size:20px;">Link to Your Twitter Profile</span>
-        <input type = "text" size="28" style="font-size:20px" placeholder = "Link to Twitter Profile" name = "twitter" id= "twitterEnter"/>
+        <span id="twitLabel">Twitter.com/</span>
+        <input type = "text" size="35" style="font-size:12px" placeholder = "Twitter Profile" name = "twitter" id= "twitterEnter"/><span class="req">*</span>
     </div>
     <div id="twitterFollowers">
-        <input type = "text" size="28" style="font-size:20px" placeholder = "# of Current Twitter Followers" name = "twitterFollowers" id= "twitterFollowersInput"/>
+    <span id="twitFol"># Twitter Followers:</span>
+        <input type = "text" size="26" style="font-size:12px;" placeholder = "" name = "twitterFollowers" id= "twitterFollowersInput"/>
     </div>
+    <br>
     <div id="gender">
         Gender:
         <select name="gender" id = "genderDrop">
@@ -56,7 +60,7 @@
         </select>
     </div>
     <div id="birthday">
-        Birth Date:<input type="text" maxlength="2" name = "month" id="month" placeholder="MM" size="2"><input type="text" maxlength="2" name = "day" id="day" placeholder="DD" size="2"><input  maxlength="4" type="text" name = "year" id="year" placeholder="YYYY" size="4">
+        Birth Date:<input type="text" maxlength="2" name = "month" id="month" placeholder="MM" size="2"><input type="text" maxlength="2" name = "day" id="day" placeholder="DD" size="2"><input  maxlength="4" type="text" name = "year" id="year" placeholder="YYYY" size="4"><span class="req">*</span>
     </div>
     <div id="createProfileButton">
         <input type = "submit" id="createButton" value = "Click to View Your Profile">
@@ -66,11 +70,7 @@
   </form>
     </div>  
     </div>
-
-
-
-<script type="text/javascript">      
-  function previewImage(input) {
+    <script>
     if (input.files && input.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
@@ -143,4 +143,5 @@ $(document).ready(function() {
 
 <% stylesheet('modals.css') -%>
 <%-partial('modals', ["'NOPV'"]) %>
+
 
