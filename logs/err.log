@@ -29,3 +29,10 @@ failed to obtain access token (status: 400 data: {"error":{"message":"This autho
     at IncomingMessage.EventEmitter.emit (events.js:117:20)
     at _stream_readable.js:910:16
     at process._tickCallback (node.js:415:13)
+Error: Request aborted
+    at IncomingMessage.<anonymous> (/home/ec2-user/stamp.fm/server/node_modules/express/node_modules/connect/node_modules/formidable/lib/incoming_form.js:84:19)
+    at IncomingMessage.EventEmitter.emit (events.js:92:17)
+    at abortIncoming (http.js:1881:11)
+    at Socket.serverSocketCloseListener (http.js:1893:5)
+    at Socket.EventEmitter.emit (events.js:117:20)
+    at TCP.close (net.js:465:12)

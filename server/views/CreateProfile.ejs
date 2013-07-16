@@ -113,16 +113,12 @@ $(document).ready(function() {
    if (bioCreate == ""){temp = 1;
         $("#proferrdiv").append('<h3>Please fill in the tagline field</h3>');
      }
-     if (fblink != "" && ((fblink.indexOf("http://facebook.com/") == -1) || !(Regex.test(fblink)))){temp = 1;
-       $("#proferrdiv").append('<h3>Please enter a valid url for Facebook Link</h3>');
-     }
-     if (fblink == "" || fblink == "http://facebook.com/" || fblink == "http://facebook.com"){
+  
+     if (fblink == ""){
        $('input#fbEnter').val("http://facebook.com/stampfm");
      }
-    if (twitterLink != "" && ((twitterLink.indexOf("http://twitter.com/") == -1) || !(Regex.test(twitterLink)))){temp = 1;
-        $("#proferrdiv").append('<h3>Please enter a valid url for Twitter Link</h3>');
-     }
-     if (twitterLink == "" || twitterLink == "http://twitter.com/" || twitterLink == "http://twitter.com"){
+   
+     if (twitterLink == ""){
       $('input#twitterEnter').val("http://twitter.com/stampfm");
      }
   if(month == "" || day == "" || year == ""){temp = 1;
