@@ -49,13 +49,28 @@
         <div id="selectSong">
 
           <ul id="selectSongList">
-            <a href="#"id="playVidOne" style="text-decoration:none;"><li id="songOne" class="selected"><spanV id="vidOne" style="font-size:30px;">Video One</spanV><br><spanA id="artistOne" style="font-size:15px;">Artist One</spanA></li></a>
-            <a href="#" id="playVidTwo" style="text-decoration:none;"><li id="songTwo" class="unselectable blurred"><spanV id="vidTwo" style="font-size:30px;">Video Two</spanV><br><spanA id="artistTwo" style="font-size:15px;">Artist Two</spanA></li></a>
+            <li id="songOne" class="selected"><input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"><spanV id="vidOne" style="font-size:30px;">Video One</spanV><br><spanA id="artistOne" style="font-size:15px;">Artist One</spanA>
+              <div id = "one"> <%=v1id%> </div>
+            </li>
+            <li id="songTwo" class="unselectable blurred"><input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;"><spanV id="vidTwo" style="font-size:30px;">Video Two</spanV><br><spanA id="artistTwo" style="font-size:15px;">Artist Two</spanA>
+              <div id = "two"> <%=v2id%> </div>
+            </li>
+
+            <script>
+           $('li#songOne').click(function() {
+             $('input#playVidOne').click();
+            });
+           </script>
+            <script>
+           $('li#songTwo').click(function() {
+             $('input#playVidTwo').click();
+            });
+           </script>
 
 
           <script>
           $("document").ready(function(){
-            $("a#playVidTwo").click(function() {
+            $("input#playVidTwo").click(function() {
             $('li#songTwo').removeClass("blurred");
             $('li#songTwo').addClass("selected");
             $('li#songOne').removeClass("selected");
@@ -65,7 +80,7 @@
           </script> 
           <script>
           $("document").ready(function(){
-            $("a#playVidOne").click(function() {
+            $("input#playVidOne").click(function() {
             $('li#songOne').removeClass("blurred");
             $('li#songOne').addClass("selected");
             $('li#songTwo').removeClass("selected");
@@ -82,7 +97,7 @@
               <labelName style="font-size:15px;"><b>Artist One</b></labelName>
             </li>               
             <li id="stampVote">
-              <img src="favoriteIcon.png" id="voteOne" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="+1 Vote for Artist One">
+              <img  data-tag = "<%=v1id%>"src="favoriteIcon.png" id="voteOne" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="+1 Vote for Artist One">
             </li>  
             <li id="fbVote">
               <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a>
@@ -109,7 +124,7 @@
               <labelName style="font-size:15px;"><b>Artist Two</b></labelName>
             </li>                   
             <li id="stampVote">
-              <img src="favoriteIcon.png" id="voteTwo" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="+1 Vote for Artist Two">
+              <img data-tag="<%=v2id%>"src="favoriteIcon.png" id="voteTwo" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="+1 Vote for Artist Two">
             </li>             
             <li id="fbVote">      
               <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
@@ -137,7 +152,7 @@
             <source src="" type="video/mp4" id = "source">
             </video>
             <strong><p id="tenSecs" style="font-size:25px; text-align:center;color:rgba(180,7,6,1);">Voting and Sharing will appear after you watch 10 seconds of each video!</p></strong>
-            <input type="button" value="Next" id="nextSet"></input>
+            <input type="button" value="Next" id="next"></input>
         </div>   
     </div> 
 
@@ -195,6 +210,84 @@
 <!--FB Share Script-->
 <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
 <!--End FB Share Script-->
+
+<!--Song Stuff-->
+        <script>
+          $(document).ready(function(){
+            $('#playVidOne').click(function(e){
+                    $.ajax({
+                        url: "/vidPlay2",
+                        type: "POST",
+                        cache: false,
+                        data: {video: $(this).attr('data-tag')},
+                        success: function(data){
+                            var $vid_obj = _V_("vidYo");
+                            $vid_obj.ready(function(){
+                                $vid_obj.pause();
+                                $('#vidYo').find('#source').attr('src', data.video);
+                                $('#vidYo').removeClass('vjs-playing').addClass('vjs-paused');
+                                $vid_obj.load();
+                                $('#div_video_html5_api').show();
+                            })
+                        }
+                    })
+                });
+                $('#playVidTwo').click(function(e){
+                    $.ajax({
+                        url: "/vidPlay2",
+                        type: "POST",
+                        cache: false,
+                        data: {video: $(this).attr('data-tag')},
+                        success: function(data){
+                            var $vid_obj = _V_("vidYo");
+                            $vid_obj.ready(function(){
+                                $vid_obj.pause();
+                                $('#vidYo').find('#source').attr('src', data.video);
+                                $('#vidYo').removeClass('vjs-playing').addClass('vjs-paused');
+                                $vid_obj.load();
+                                $('#div_video_html5_api').show();
+                            })
+                        }
+                    })
+                });
+                $('#voteOne').click(function(){
+                    $.ajax({
+                        url: "/testvote",
+                        type: "POST",
+                        cache: false,
+                        data: {vid: $(this).attr('data-tag')},
+                        success: function(data){
+                        }
+                    })
+                });
+                $('#voteTwo').click(function(){
+                    $.ajax({
+                        url: "/testvote",
+                        type: "POST",
+                        cache: false,
+                        data: {vid: $(this).attr('data-tag')},
+                        success: function(data){
+                        }
+                    })
+                });
+                $('#next').click(function(){
+                    $.ajax({
+                        url: "/playNext",
+                        type: "POST",
+                        cache: false,
+                        success: function(data){
+                            $('#playVidOne').attr('data-tag', data.v1id);
+                            $('#playVidTwo').attr('data-tag', data.v2id);
+                            $('#voteOne').attr('data-tag', data.v1id);
+                            $('#voteTwo').attr('data-tag', data.v2id);
+                            $('#one').html(data.v1id);
+                            $('#two').html(data.v2id);
+                        }
+                    })
+                })
+          })
+        </script>
+<!--End Song Stuff-->        
 
 
 

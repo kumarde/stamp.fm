@@ -289,7 +289,7 @@ body .ui-tooltip {
     background-color: rgba(180,7,6,1);
 }
 
-#nextSet{
+#next{
 	margin-top: 10px;
 	margin-left: 50%;
 	font-size: 30px;
@@ -311,7 +311,7 @@ body .ui-tooltip {
     transition-duration: 0.2s;
 }
 
-#nextSet:hover{
+#next:hover{
     background-color: rgba(140,7,6,1);
 }
 
