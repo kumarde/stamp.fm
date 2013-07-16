@@ -864,22 +864,26 @@ app.post('/addPlay', function(req, res){
             }
     }
     db.music.findOne({_id: parseInt(req.body.sid)}, function(e, o){
-      console.log(o);
-      name = o.artistName;
-      db.playlists.insert({
-        songID: req.body.sid,
-        name: req.body.name,
-        artistName: name,
-        artistID: id
-    }, function(e, o){
-        if(e) res.send(e, 400);
-    else{
-      res.send({name: req.body.name, id: req.body.sid});
-      Feed.share(id, {type: 'favorite', id: req.body.sid, name: req.body.name}, function(data){
-        if (data == false)console.log("Share failed");
-      });
-    }
-    });
+		console.log(o);
+		name = o.artistName;
+		db.playlists.findOne({songID: req.body.sid, artistID:id}, function(e,o){
+			  if (!o && !e){
+				  db.playlists.insert({
+					songID: req.body.sid,
+					name: req.body.name,
+					artistName: name,
+					artistID: id
+				}, function(e, o){
+					if(e) res.send(e, 400);
+				else{
+				  res.send({name: req.body.name, id: req.body.sid});
+				  Feed.share(id, {type: 'favorite', id: req.body.sid, name: req.body.name}, function(data){
+					if (data == false)console.log("Share failed");
+				  });
+				}
+				});
+			}
+		});
     });
 })  
 
