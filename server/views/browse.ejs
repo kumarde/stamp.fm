@@ -1,0 +1,74 @@
+<% layout('layoutBrowse') -%>
+<% script('/scripts/main.js') -%>
+<% stylesheet('video-js.css') -%>
+<% script('video.js') -%>
+<% script('feed.js') -%>
+<% script('profileEdit.js') -%>
+<% script('browse.js') -%>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/gridiculous.css">
+    <link rel="stylesheet" type="text/css" href="/browse.css">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  </head>
+  <body>
+<div class="c2" id="songList" style="float:right"><b><spanLabel style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">All Uploaded Songs</spanLabel></b>
+  <% songs.forEach(function(song){ %>
+        <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
+          <td><div data-tag ="<%=song._id%>" class = "songname"><%= song.name %></div></td>
+      <td style="float:right;min-width:120px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+      <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+     </tr>
+      <% }); %>
+</div>
+
+
+<div class="c12 end" id="videoPlayer" style="border:none">
+    <video height="300px" width="40%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
+	<source src="" type="video/mp4" id = "source">
+   	</video>
+</div> 
+
+<!-- FB Like Script-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- End FB Like Script -->
+</body>    
+<script>
+  videojs("vidYo", {}, function(){
+  // Player (this) is initialized and ready.
+  });
+</script>
+<script>
+  videojs.options.flash.swf = "video-js.swf"
+</script>     
+
+
+<!--Twitter Tweet Script-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="twitterTweet.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<!--End Tweet Script-->
+
+<!--FB Share Script-->
+<script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
+<!--End FB Share Script-->
+
+
+
+
+<% stylesheet('modals.css') -%>
+<%-partial('modals', ["'NOPQ'"]) %>
