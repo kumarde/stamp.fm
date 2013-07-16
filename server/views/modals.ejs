@@ -287,7 +287,7 @@ $("document").ready(function(){
 			if ( count >= adlist.length )count = 0;
 
 			$modal.find("a").attr("href", linklist[count]);
-			$modal.find("a").click(counter(count));
+			$modal.find("a").click(function(){counter(count)});
 			$modal.css("background-image","url('"+adlist[count]+"')");
 			$modal.css("top","-35px");
 			

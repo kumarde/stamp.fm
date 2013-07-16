@@ -720,7 +720,7 @@ app.get('/create', function(req, res){
                  id = req.session.user[0]._id;
             }
              db.profiles.save({_id: id, name: "", location: "Click to change Location", bio: "Click to change Tagline", facebook: "", twitter: "", following: [], followers: [], shared: [], gender: ""}, function(e, o){
-              db.playlists.insert({songID: 0, artistName: "Dan Henig", name: "Stamp Champ Dan Henig - Don't You Worry Child", artistID: id}, function(e, o){
+              db.playlists.insert({songID: "0", artistName: "Dan Henig", name: "Stamp Champ Dan Henig - Don't You Worry Child", artistID: id}, function(e, o){
 		db.users.findOne({_id: id}, function(e, carrier){
 			name = carrier.name;
 			res.render('CreateProfile', {name: name, location: location, imgsrc: "stampman.png"});
