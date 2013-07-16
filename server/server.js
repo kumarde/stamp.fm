@@ -153,7 +153,17 @@ app.get('/elim', function(req, res){
     rap_array = array;
     totalRap = rap_array.length;
     cRap = c;
-    res.render('elim', {imgid: "0", v1id: rap_array[cRap]._id, v2id:rap_array[cRap+1]._id});
+    //find song where rap_array[cRap]._id, get artistID, get songName
+    //find profile where artistID is _id, get name
+    dbtest.tournament.findOne({_id: rap_array[cRap]._id}, function(e, o){
+    	db.profiles.findOne({_id: o.artistID}, function(e, user){
+    		dbtest.tournament.findOne({_id: rap_array[cRap+1]._id}, function(e, o2){
+    			db.profiles.findOne({_id: o2.artistID}, function(e, user2){
+    				res.render('elim', {imgid: "0", v1id: rap_array[cRap]._id, v2id:rap_array[cRap+1]._id, song1: o.name, song2: o2.name, user1: user.name, user2: user2.name});
+    			})
+    		})
+    	})
+    })
     elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
       console.log("C: :" + cRap + " total: " + totalRap);
       if(inc == 1){
@@ -544,7 +554,7 @@ app.post('/tournament', function(req, res){
       }
       if(!o){
         db.music.update({_id: parseInt(req.body.id)}, {$set: {inTourney: "Submitted"}});
-        db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name});
+        db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name, votes: 0, views: 0});
         res.send({msg: "yes"});
       }
     })
