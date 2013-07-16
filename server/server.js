@@ -1019,7 +1019,9 @@ app.post('/changeImage', function(req, res){
 })
 
 app.post('/playDelete', function(req, res){
-   
+   if(req.session.user == undefined && req.user == undefined){
+            res.redirect('/');
+    }else{
    if(req.session.user == undefined){
         id = req.user[0]._id;
     }
@@ -1035,9 +1037,13 @@ app.post('/playDelete', function(req, res){
     var sid = req.body.id;
     db.playlists.remove({songID: sid, artistID: id}, true);
     res.send({msg: "Deleted", id: req.body.id});
+	}
 });
 
 app.post('/deleteSong', function(req, res){
+    if (req.session.user == null && req.user == null) {
+      res.redirect('/');
+	  }else{
     var sid = req.body.id;
     console.log(req.body.id);
     db.tournament.find({_id: sid}, function(e, o){
@@ -1061,14 +1067,17 @@ app.post('/deleteSong', function(req, res){
             res.send({msg: "yes", id: sid, name: req.body.name})
         }
     });
+	}
 })
 
 app.post('/counter', function(req,res){
     if(req.session.user == undefined && req.user == undefined){
             res.redirect('/');
     }
+	else{
 	var id = req.body.id;
 	db.ads.update({_id: id}, {$inc:{ clicks:1}});
+	}
 });
 
 
