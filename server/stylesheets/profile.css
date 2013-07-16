@@ -20,6 +20,9 @@ html{
      color-stop(0.8, rgb(245,245,245))
     );
 }
+body{
+    min-width: 1250px;
+}
 #wrapper {
   position: relative;
   min-height: 400px;
