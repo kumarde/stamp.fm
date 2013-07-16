@@ -22,7 +22,6 @@ EliminationModule.prototype.updateDB = function(genre, c, array, total, callback
   db.tournament.update({_id: array[c+1]._id}, {$inc: {views:1}}); //on view, update view
   //increment cPop so next time someone goes to testView, they see two new people
   //insert into locals collection datastore to keeptrack of Pop
-  console.log(c);
   c += 2;
   if(c >= total){
     db.tournament.find({genre: genre}).sort({votes: -1}, function(e, o){ //set into locals
