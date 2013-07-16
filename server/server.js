@@ -148,12 +148,12 @@ var cPop = 0;
 var totalPop;
 var pop_array;
 
-app.get('/testview', function(req, res){
+app.get('/elim', function(req, res){
   elim.initElim("Rap", function(array, c){
     rap_array = array;
     totalRap = rap_array.length;
     cRap = c;
-    res.render('testview', {imgid: "0", v1id: rap_array[cRap]._id, v2id:rap_array[cRap+1]._id});
+    res.render('elim', {imgid: "0", v1id: rap_array[cRap]._id, v2id:rap_array[cRap+1]._id});
     elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
       console.log("C: :" + cRap + " total: " + totalRap);
       if(inc == 1){
