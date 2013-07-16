@@ -1,6 +1,6 @@
 .modalDialog_temp {
     position: fixed;
-   font-family: "Arimo";
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     top: 0;
     right: 0;
     bottom: 0;
@@ -47,7 +47,7 @@
 
 .modalDialog_account {
     position: fixed;
-    font-family: "Arimo"; 
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     top: 0;
     right: 0;
     bottom: 0;
@@ -91,7 +91,7 @@
 
   .modalDialog_feedback {
     position: fixed;
-   font-family: "Arimo"; 
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     top: 0;
     right: 0;
     bottom: 0;
@@ -174,7 +174,7 @@
   
 .modalDialog {
   position: fixed;
-  font-family: "Arimo";
+  font-family: 'Poiret One', cursive;
   top: 0;
   right: 0;
   bottom: 0;
@@ -190,7 +190,7 @@
 
 .modalDialog > div {
   width: 20%;
-  height: 25%;
+  height: 20%;
   position: relative;
   margin: 10% auto;
   padding: 5px 20px 13px 20px;
@@ -202,7 +202,7 @@
 
 .modalDialog_upload {
   position: fixed;
-  font-family: "Arimo";
+  font-family: 'Poiret One', cursive;
   top: 0;
   right: 0;
   bottom: 0;
@@ -218,7 +218,7 @@
 
 .modalDialog_upload > div {
   width: 30%;
-  height: 51%;
+  height: 35%;
   position: relative;
   margin: 10% auto;
   padding: 5px 20px 13px 20px;
@@ -273,7 +273,7 @@
 
 .modalDialog_follow {
     position: fixed;
-    font-family: "Arimo";
+    font-family: 'Alef', sans-serif;
     top: 0;
     right: 0;
     bottom: 0;
@@ -315,21 +315,11 @@
   cursor: pointer;
 }
 
+
+
 .modalbutton {
   cursor: hand; 
   cursor: pointer;
 }
 
-.but{
-    background-color: rgba(0,0,0,1);
-    color: #FFFFFF;
-    margin-top: 2%;
-    max-width: 50%;
-    font-size: 20px;
-    height: 20%;
-    border: 0px;
-    -moz-border-radius:5px;  
-    border-radius: 5px;  
-    -webkit-border-radius: 5px;
-}
-.but:hover { background: rgba(163,163,163,1); }
+
