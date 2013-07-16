@@ -17,7 +17,7 @@ html{
     border-radius: 5px;  
     -webkit-border-radius: 5px;
     color: white;
-    height: 580px;
+    height: 650px;
 }
 *:focus {outline: none;}
 
@@ -80,6 +80,7 @@ html{
 }
 
 #birthday{
+	background-color: transparent;
     max-width: 300px;
 }
 #box{

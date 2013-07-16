@@ -495,13 +495,13 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   font-size: 5em;
   line-height: 1;
 
-  width: 1em;
-  height: 1em;
+  /*width: 1em;
+  height: 1em;*/
 
   margin-left: -0.5em;
   margin-top: -0.5em;
 
-  opacity: 0.75;
+  opacity: 1;
 
   -webkit-animation: spin 1.5s infinite linear;
      -moz-animation: spin 1.5s infinite linear;
@@ -536,6 +536,8 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   -webkit-text-fill-color: transparent;
 }
 
+/* Spinning-ness
+
 @-moz-keyframes spin {
   0% { -moz-transform: rotate(0deg); }
   100% { -moz-transform: rotate(359deg); }
@@ -556,6 +558,8 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   0% { transform: rotate(0deg); }
   100% { transform: rotate(359deg); }
 }
+
+*/
 
 /* Menu Buttons (Captions/Subtitles/etc.)
 -------------------------------------------------------------------------------- */

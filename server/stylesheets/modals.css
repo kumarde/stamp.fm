@@ -5,11 +5,11 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: url('turtle_ad.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url('turtle_ad.jpg') no-repeat center center; 
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
     z-index: 99999;
     opacity:0;
     -webkit-transition: opacity 400ms ease-in;
@@ -84,8 +84,8 @@
 
 #advertisement{
     position: absolute;
-    height:100%;
-    width:100%;
+    max-height:100%;
+    max-width: 100%;
     z-index:9909;
   }
 
