@@ -22,9 +22,9 @@ $(document).ready(function() {
 			cache: false, 
 			data: { id: pid},
 			success: function(data){
-			if (typeof data.redirect == 'string' )window.location = data.redirect;
-			else if (typeof data.error == 'string')console.log(data.error);
-			else console.log(data);
+				if (typeof data.redirect == 'string' )window.location = data.redirect;
+				else if (typeof data.error == 'string')console.log(data.error);
+				else console.log(data);
 			}
 		});
 	});
@@ -57,7 +57,7 @@ $(document).ready(function() {
 								if (typeof data.redirect == 'string' )window.location = data.redirect;
 								else if (typeof data.error == 'string')alert(data.error);
 								else {
-									var $div = $('<div id = "'+data._id+'">'+data.name+'</div>');
+									var $div = $('<div id = "'+data._id+'" class="accountlink">'+data.name+'</div>');
 									$div.click(redirect);
 								 	$('#'+followersid).append($div);
 								}
@@ -92,7 +92,7 @@ $(document).ready(function() {
 								if (typeof data.redirect == 'string' )window.location = data.redirect;
 								else if (typeof data.error == 'string')alert(data.error);
 								else {
-									var $div = $('<div id = "'+data._id+'">'+data.name+'</div>');
+									var $div = $('<div id = "'+data._id+'" class="accountlink">'+data.name+'</div>');
 									$div.click(redirect);
 								 	$('#'+followingid).append($div);
 								}
@@ -134,7 +134,7 @@ function redirect(event){
 							else if (typeof prof.error == 'string')alert(prof.error);
 							else {	
 								followingarray.push(prof);
-								var $div = $('<div id = "'+prof._id+'">'+prof.name+'</div>');
+								var $div = $('<div id = "'+prof._id+'" class="accountlink">'+prof.name+'</div>');
 								$div.click(redirect);
 								for ( var j = 0; j < prof.shared.length; j++){
 									if (prof.shared[j].type == 'upload')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement"><strong>'+prof.name+'</strong> Uploaded a New Video - '+prof.shared[j].name+''+'</div>');

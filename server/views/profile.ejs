@@ -81,7 +81,7 @@
       <td style="float:right;min-width:120px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
       <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
       <img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;">
-      <input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="<%=song.inTourney%>" id="tourneyAdd" class="addTourney" onclick="tourneyButtonChange();"></td>
+      <input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" value = "<%=song.inTourney%>" type="button" id="tourneyAdd" class="addTourney" onclick="<% if(song.inTourney != "Submitted" ) {%>tourneyButtonChange();<% } %>"></td>
      </tr>
       <% }); %>
       
@@ -288,6 +288,6 @@
 
 
 <% stylesheet('modals.css') -%>
-<%-partial('modals', ["'IJKLMNOPTUWX'"]) %>
+<%-partial('modals', ["'IJKLMNOPTUWXQ'"]) %>
 
 

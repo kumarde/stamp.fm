@@ -1,3 +1,4 @@
+var $del;
 $(document).ready(function() {
 
     $('#songSubmit').click(function(event){
@@ -28,7 +29,8 @@ $(document).ready(function() {
 										$("#syes").attr('data-tag',$(this).attr('data-tag'));
 		});
     $('.playdelete').click(function(){$("#playdel").addClass("unhidden");
-	$("#pyes").attr('data-tag',$(this).attr('data-tag'));
+		$("#pyes").attr('data-tag',$(this).attr('data-tag'));
+		$del = $(this);
 	
 	});
 	$("#syes").click(deleteSong);
@@ -161,7 +163,8 @@ $(document).ready(function() {
         data: {id: tag},
         success: function(data){
           if(data.msg){
-            $(".p"+data.id).remove();
+            //$(".p"+data.id).remove();
+			$del.parent().parent().remove();
           }
         }
       });

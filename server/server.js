@@ -703,7 +703,7 @@ app.get('/create', function(req, res){
                    db.profiles.update({_id: id}, {$set: {url: respo.picture.data.url}});
                    db.profiles.findOne({_id: id}, function(e, o){
                       location = o.location;
-                      db.playlists.insert({songID: 0, artistName: "Dan Henig", name: "(Stamp Champ) Dan Henig - Don't You Worry Child Cover", artistID: id});
+                      db.playlists.insert({songID: "0", artistName: "Dan Henig", name: "(Stamp Champ) Dan Henig - Don't You Worry Child Cover", artistID: id});
                       res.render('CreateProfile', {name: name, location: location, imgsrc: respo.picture.data.url}); 
                   })
                 });
@@ -1031,9 +1031,9 @@ app.post('/playDelete', function(req, res){
 
 
     var sid = req.body.id;
-    db.playlists.remove({songID: parseInt(sid), artistID: id});
+    db.playlists.remove({songID: sid, artistID: id}, true);
     res.send({msg: "Deleted", id: req.body.id});
-})
+});
 
 app.post('/deleteSong', function(req, res){
     var sid = req.body.id;

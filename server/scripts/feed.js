@@ -40,7 +40,7 @@ $(document).ready(function() {
 								if (typeof data.redirect == 'string' )window.location = data.redirect;
 								else if (typeof data.error == 'string')alert(data.error);
 								else {
-									var $div = $('<div id = "'+data._id+'">'+data.name+'</div>');
+									var $div = $('<div id = "'+data._id+'" class="accountlink">'+data.name+'</div>');
 									$div.click(redirect);
 									$div.css('cursor', 'pointer');
 								 	$('#'+followersid).append($div);
@@ -78,7 +78,7 @@ $(document).ready(function() {
 							else if (typeof prof.error == 'string')alert(prof.error);
 							else {	
 								followingarray.push(prof);
-								var $div = $('<div id = "'+prof._id+'">'+prof.name+'</div>');
+								var $div = $('<div id = "'+prof._id+'" class="accountlink">'+prof.name+'</div>');
 								$div.click(redirect);
 								 $('#'+followingid).append($div);
 								for ( var j = 0; j < prof.shared.length; j++){
@@ -117,83 +117,5 @@ $(document).ready(function() {
 	function redirect1(event){
 		window.location = "/view?id="+$(this).attr("data-tag");
 	}
-	/*function feed() {
-	    $.ajaxSetup({
-            cache: false,
-			data: {id: feednum},
-            beforeSend: function() {
-               // $('#content').hide();
-              //  $('#loading').show();
-            },
-            complete: function() {
-               // $('#loading').hide();
-               // $('#content').show();
-            },
-            success: function() {
-                //$('#loading').hide();
-                //$('#content').show();
-				if (typeof data.redirect == 'string' )window.location = data.redirect;
-				else if (typeof data.error == 'string' )alert(data.error);
-				else {
-				feednum = data.index;
-				for ( var i = 0; i < data.data.length; i++ ){
-					$('#feed').prepend('<div id="f'+i+'">'+data.data[i].data.text+'</div>');
-				}
-				}
-			}
-        });
-			$.ajax({ 
-				url: '/feed',
-				type: 'POST',
-				cache: false, 
-				data: {index: feednum},
-				success: function(data){
-				if (typeof data.redirect == 'string' )window.location = data.redirect;
-				else if (typeof data.error == 'string' )console.log(data.error);
-				else {
-					feednum = data.index;
-					for ( var i = 0; i < data.data.length; i++ ){
-						$('#feed').prepend('<div id="f'+i+'">'+data.data[i].data.text+'</div>');
-					}
-				}
-				}
-
-			});
-		var refreshId = setInterval(function(){
-			$.ajax({ 
-				url: '/feed',
-				type: 'POST',
-				cache: false, 
-				data: {index: feednum},
-				success: function(data){
-				if (typeof data.redirect == 'string' )window.location = data.redirect;
-				else if (typeof data.error == 'string' )console.log(data.error);
-				else {
-					feednum = data.index;
-					for ( var i = 0; i < data.data.length; i++ ){
-						$('#feed').prepend('<div id="f'+i+'">'+data.data[i].data.text+'</div>');
-					}
-				}
-				}
-
-			});
-		}, 10000);
-      
-	}
-
-	    $("#feedform").submit(function(e){
-      return false;
-    });
-
-    $('#post').click(function(){  
-     $.ajax({ 
-           url: '/addfeed',
-           type: 'POST',
-           cache: false, 
-           data: { type: "message", data: {text: $('#message').val(), url: ""}},
-           success: function(data){
-            if (typeof data.redirect == 'string' )window.location = data.redirect;
-			else console.log(data.text);
-           }
-        });
-     });*/
+	
+	

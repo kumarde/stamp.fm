@@ -102,10 +102,8 @@ overflow: auto;
 .followButton{
   width: 50px;
   height: 20px;
-  margin-right: 5px;
   margin-top: 3px;
     font-size: 10px;
-    background: url('trebleClef.png');
     color: white;
     background-size: 5px; 
     background-color: rgba(180,7,6,1);
@@ -113,7 +111,6 @@ overflow: auto;
     background-position: 7px 4px;  
     border: none;         
     cursor: pointer;       
-    padding-left: 10px; 
     vertical-align: middle;
     max-height: 40px;
     max-width: 90px;
@@ -357,7 +354,6 @@ overflow: auto;
 .stampFollow{
 font-size: 15px;
  border: 1px solid rgba(0,0,0,1);
- background: url('trebleClef.png');
     color: #FFFFFF;
     background-size: 9px; 
     background-color: rgba(180,7,6,1);
@@ -373,7 +369,6 @@ font-size: 15px;
     margin-bottom: 30px;
     margin-left: 0%;
         padding: 2px;
-        padding-left: 20px; 
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -715,4 +710,13 @@ td{
 
 .replace {
 display:none;
+}
+
+
+.accountlink:hover{
+    background-color: rgba(163, 163, 163, .3);
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 10px;
+	cursor: pointer;     
 }
