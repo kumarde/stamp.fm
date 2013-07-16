@@ -150,26 +150,26 @@ var pop_array;
 
 app.get('/testview', function(req, res){
   elim.initElim("Rap", function(array, c){
-    console.log("This is the array" + " " + array);
-    console.log("This is the count: " + c);
     rap_array = array;
     totalRap = rap_array.length;
     cRap = c;
     res.render('testview', {imgid: "0", v1id: rap_array[cRap]._id, v2id:rap_array[cRap+1]._id});
     elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
       console.log("C: :" + cRap + " total: " + totalRap);
-      if(inc == 1) cRap += 2;
+      if(inc == 1){
+      	cRap += 2;
+      	dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+      }
       else{
         rap_array = newArray;
         cRap = 0;
-
+        dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap, array: rap_array}});
       }
     });
   });
 });
 
 app.post('/testvote', function(req, res){
-  console.log(rap_array);
   dbtest.tournament.update({_id: parseInt(req.body.vid)}, {$inc: {votes:1}});
   res.send(204);
 });
