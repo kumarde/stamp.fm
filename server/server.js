@@ -10,7 +10,7 @@ var flash = require('connect-flash')
   , FacebookStrategy = require('passport-facebook').Strategy
   , graph = require('fbgraph')
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists", "ads"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -40,6 +40,8 @@ var songs = 0;
 
   
  db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
+ 
+ db.ads.insert({_id:"0", name:"Turtle Cell", clicks:0});
  
 /***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
 db.music.count(function(e, count){
@@ -1060,6 +1062,15 @@ app.post('/deleteSong', function(req, res){
         }
     });
 })
+
+app.post('/counter', function(req,res){
+    if(req.session.user == undefined && req.user == undefined){
+            res.redirect('/');
+    }
+	var id = req.body.id;
+	db.ads.update({_id: id}, {$inc:{ clicks:1}});
+});
+
 
 /*****************************************404**************************************************/
 app.get("*", function(req, res){

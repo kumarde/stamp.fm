@@ -267,15 +267,13 @@
 <script>
 $("document").ready(function(){
 	var adlist = [];var linklist = [];
-	var count = 0;
 	adlist.push('turtle_ad.jpg');
-	adlist.push('turtle_ad.jpg');
-	adlist.push('turtle_ad.jpg');
+	//adlist.push('turtle_ad.jpg');
+	//adlist.push('turtle_ad.jpg');
 	linklist.push("http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea");
-	linklist.push("http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea");
-	linklist.push("http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea");
-	
-	
+	//linklist.push("http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea");
+	//linklist.push("http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea");
+	var count=Math.floor(Math.random()*adlist.length);
 	$('.close').click(function(){
 		$(this).parent().parent().removeClass("unhidden");
 	});
@@ -289,6 +287,7 @@ $("document").ready(function(){
 			if ( count >= adlist.length )count = 0;
 
 			$modal.find("a").attr("href", linklist[count]);
+			$modal.find("a").click(counter(count));
 			$modal.css("background-image","url('"+adlist[count]+"')");
 			$modal.css("top","-35px");
 			
@@ -304,5 +303,13 @@ $("document").ready(function(){
 	//$("#notreal").css("top","-35px");
 });
 
+function counter(id){
+      $.ajax({
+        url: '/counter',
+        type: 'POST',
+        cache: false,
+        data: {id: id}
+      });
+}
 
 </script>
