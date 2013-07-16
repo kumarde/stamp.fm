@@ -50,7 +50,7 @@
 
           <ul id="selectSongList">
             <a href="#"id="playVidOne" style="text-decoration:none;"><li id="songOne" class="selected"><spanV id="vidOne" style="font-size:30px;">Video One</spanV><br><spanA id="artistOne" style="font-size:15px;">Artist One</spanA></li></a>
-            <a href="#" id="playVidTwo" style="text-decoration:none;"><li id="songTwo" class="blurred"><spanV id="vidTwo" style="font-size:30px;">Video Two</spanV><br><spanA id="artistTwo" style="font-size:15px;">Artist Two</spanA></li></a>
+            <a href="#" id="playVidTwo" style="text-decoration:none;"><li id="songTwo" class="unselectable blurred"><spanV id="vidTwo" style="font-size:30px;">Video Two</spanV><br><spanA id="artistTwo" style="font-size:15px;">Artist Two</spanA></li></a>
 
 
           <script>
@@ -136,7 +136,8 @@
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
             <source src="" type="video/mp4" id = "source">
             </video>
-
+            <strong><p id="tenSecs" style="font-size:25px; text-align:center;color:rgba(180,7,6,1);">Voting and Sharing will appear after you watch 10 seconds of each video!</p></strong>
+            <input type="button" value="Next" id="nextSet"></input>
         </div>   
     </div> 
 
