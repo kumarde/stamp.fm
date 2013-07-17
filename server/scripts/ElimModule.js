@@ -10,7 +10,7 @@ EliminationModule.prototype.initElim = function(genre, callback){
 		}
 		else{
 			db.tournament.find({genre: genre}).sort({votes: -1}, function(e, results){
-				db.locals.save({_id: genre, c: o.c, array: o.array});
+				db.locals.save({_id: genre, c: 0, array: results});
 				callback(results, 0);
 			});
 		}

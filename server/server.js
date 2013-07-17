@@ -1144,8 +1144,7 @@ app.get('/browse', function(req,res){
         } else{
             id = req.session.user[0]._id;
         }
-    }
-  
+    }  
    db.profiles.findOne({_id: id}, function(e, profile){
             if(e){
                 console.log(e);
