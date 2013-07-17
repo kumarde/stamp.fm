@@ -10,6 +10,21 @@ Here are detailed instructions on how to run the Genre thing.
 		db.tournament.insert({_id: i, votes: 0, views: 0, genre: "Rap"});
 	}
 	This will create four entries into the database. Note the capitalization of the genre field.
+4.5. In order to correctly display the names of artists and the names of songs, you need to manually add some entries into the 
+	stampfm profiles collection and the test tournament collection.
+	
+	Run this script inside of the test db tournament collection.
+	
+	for(var i = 8; i < 12; ++i){
+		db.tournament.update({_id: i}, {$set: {artistName: "Deepak Kumar", artistID: 666, name: "Song"}});
+	}
+	
+	and run this script inside of the stampfm db profiles collection.
+	
+	db.profiles.insert({artistName: "Deepak Kumar", _id: 666});
+	
+	These will then properly display for you the correct names and such, and shouldn't throw an error.
+	
 5. Go to /testview, and begin simulation! 
 
 If you ever screw something up, the code to "clear" the database is as follows
