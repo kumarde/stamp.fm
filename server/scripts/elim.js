@@ -98,7 +98,6 @@ $('#playVidOne').click(function(e){
 		}
 	});
 	$('#next').click(function(){
-
 		$.ajax({
 			url: "/playNext",
 			type: "POST",
@@ -107,8 +106,9 @@ $('#playVidOne').click(function(e){
 				$("#vidOne").html(data.s1);
 				$("#vidTwo").html(data.s2);
 				$("#artistOne").html(data.a1);
-				$("#artistTwo").html(data.a2);			
-				
+				$("#artistTwo").html(data.a2);
+				$('#subartist1').html(data.a1);
+				$('#subartist2').html(data.a2);			
 				$('#playVidOne').attr('data-tag', data.v1id);
 				$('#playVidTwo').attr('data-tag', data.v2id);
 				$('#voteOne').attr('data-tag', data.v1id);
@@ -124,14 +124,11 @@ $('#playVidOne').click(function(e){
 				
 				var $vid_obj = _V_("vidYo");
 				$vid_obj.ready(function(){
-					
-
 					$vid_obj.pause();
+					$vid_obj.get(0).currenTime = 0;
 				});
-				
 			}
 		});
-		
 	});
 });
     function openBanOne()

@@ -149,36 +149,41 @@ var pop_array;
 var temp;
 
 app.get('/elim', function(req, res){
-  elim.initElim("Rap", function(array, c){
-    rap_array = array;
-    totalRap = rap_array.length;
-    cRap = c;
-	temp = c;
-    //find song where rap_array[cRap]._id, get artistID, get songName
-    //find profile where artistID is _id, get name
-	console.log(rap_array);
-    dbtest.tournament.findOne({_id: rap_array[temp]._id}, function(e, o){
-    	db.profiles.findOne({_id: o.artistID}, function(e, user){
-    		dbtest.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
-    			db.profiles.findOne({_id: o2.artistID}, function(e, user2){
-    				res.render('elim', {imgid: "0", v1id: rap_array[temp]._id, v2id:rap_array[temp+1]._id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
-    			});
-    		});
-    	});
-    });
-    elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
-      console.log("C: :" + cRap + " total: " + totalRap);
-      if(inc == 1){
-      	cRap += 2;
-      	dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
-      }
-      else{
-        rap_array = newArray;
-        cRap = 0;
-        dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap, array: rap_array}});
-      }
-    });
-  });
+  if (req.session.user == null && req.user == null) {
+      res.redirect('/');
+  }
+  else {
+        elim.initElim("Rap", function(array, c){
+            rap_array = array;
+            totalRap = rap_array.length;
+            cRap = c;
+    	      temp = c;
+        //find song where rap_array[cRap]._id, get artistID, get songName
+        //find profile where artistID is _id, get name
+    	console.log(rap_array);
+        dbtest.tournament.findOne({_id: rap_array[temp]._id}, function(e, o){
+        	db.profiles.findOne({_id: o.artistID}, function(e, user){
+        		dbtest.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
+        			db.profiles.findOne({_id: o2.artistID}, function(e, user2){
+        				res.render('elim', {imgid: "0", v1id: rap_array[temp]._id, v2id:rap_array[temp+1]._id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+        			});
+        		});
+        	});
+        });
+        elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+          console.log("C: :" + cRap + " total: " + totalRap);
+          if(inc == 1){
+          	cRap += 2;
+          	dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+          }
+          else{
+            rap_array = newArray;
+            cRap = 0;
+            dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap, array: rap_array}});
+          }
+        });
+      });
+  }
 });
 
 app.post('/testvote', function(req, res){
@@ -218,7 +223,7 @@ db.music.find().sort({_id:1}, function(err, rest){
 });
 
 
-app.post('/vote', function(req, res){
+/*app.post('/vote', function(req, res){
     db.music.update({_id:parseInt(req.body.vid)}, {$inc:{votes:1}}, function(err, count){
       res.send({v1id: sorted[c]._id, v2id: sorted[c+1]._id});
       auditionModule.UpdateDB(c, function(inc, newsort){
@@ -240,7 +245,7 @@ app.get('/newView', function(req, res, next){
           c = 0;
         }
     });
-});
+});*/
 /*******************************************/
 app.post('/namesearch', function(req,res){
     db.users.find({name: { $regex: new RegExp('^'+req.body.search,"i")}},function(err,o){
@@ -625,7 +630,9 @@ app.get('/', function(req, res){
     if(req.session.user || req.user){
         res.redirect('/profile');
     }
-	res.render('createAccount', {title: "Signup"});
+	else {
+      res.render('createAccount', {title: "Signup"});
+  }
 });
 
 app.post('/', function(req, res){
@@ -823,7 +830,11 @@ app.post('/create', function(req, res){
     );
 });
 
-app.get('/view', function(req, res){
+app.get('/view', function(req, res){    
+
+    if(req.session.user == null && req.user == null){
+        res.redirect('/');
+    } else {
     var pid = req.query["id"];
     if(pid == null){
         res.send('error, you suck');
@@ -883,7 +894,8 @@ app.get('/view', function(req, res){
                 }
             })
         }
-    })    
+    })
+    }    
 })
 
 app.post('/vidPlay2', function(req, res){
@@ -1137,6 +1149,9 @@ app.get('/elim', function(req,res){
 });
 */
 app.get('/browse', function(req,res){
+  if(req.session.user == null && req.user == null){
+        res.redirect('/');
+  } else{
   if(req.session.user == undefined){
         id = req.user[0]._id;
     }
@@ -1168,7 +1183,8 @@ app.get('/browse', function(req,res){
     db.music.find(function(e,songs){
       res.render('browse', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, facebook: profile.facebook, songs:songs, twitter: profile.twitter, createModal: "null"});
        });
-    });   
+    });
+  }   
 })
 
 app.get('/init', function(req,res){
