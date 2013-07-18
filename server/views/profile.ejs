@@ -25,7 +25,7 @@
   </script>
   </head>
   
-  <body>
+  <body style="min-width:1250px;>
     <div id="wrapper">
 
 
@@ -63,12 +63,12 @@
   
   <div id="songContent">
 
-    <div style = "color: #333333; font-size:10px"> <strong>For video:</strong> 1. Convert to WebM format<a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> HERE </a> <br><span style="margin-left:52px;">2. Upload WebM to Stamp.fm</span>
+    <div style = "color: #333333; font-size:10px"> <strong>For video:</strong> 1. Convert to WebM format<a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> HERE </a> <br><span style="margin-left:52px;">2. Upload WebM to Stamp.fm</span><br id="SafariWarning">
     </form>
     <input type="button" value="Upload" id="uploadFigurehead">
     </div>
 
-    <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/mp4, video/ogg, video/webm, video/quicktime,video/x-ms-wmv, video/x-flv, application/x-shockwave-flash, audio/mp3">
+    <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/webm, audio/mp3">
     <div style = "color: #333333;"> <strong>For song:</strong> <span style="margin-left:3px;">1. Upload MP3 to Stamp.fm</span>
     <input type="text" name="name"  style="display:none;" id="upname">
     <input type="text" name="genre" style="display:none;" id="upgenre">
@@ -228,11 +228,11 @@
            <video height="300px" width="80%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
 		   <source src="" type="video/mp4" id = "source">
             </video>
-          </div>   
-
+          </div>
+	  <span style="font-size:10px;display:none;" id="SafariWarning"">Safari Detected: In order to view videos - use <a style="color:#FF2200;" href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a style="color:#FF2200;" href="http://perian.cachefly.net/Perian_1.2.3.dmg">Dowload Perian</a></span>
          </div> 
 </div>
-   <div class="c2" id="feed" style="float:right"><b><spanLabel id="newsFeedLabel" style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">News Feed</spanLabel></b></div>
+   <div class="c2" id="feed" style="float:right"><b><spanLabel id="newsFeedLabel" style="font-size:15px; padding-bottom:24px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">News Feed</spanLabel></b></div>
 </div>
 </div>
 </div> 
@@ -263,7 +263,21 @@
 
 </script>
 
-
+<script>
+  (function($){
+    // console.log(navigator.userAgent);
+    /* Adjustments for Safari on Mac */
+    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Mac') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+        // console.log('Safari on Mac detected, applying class...');
+        $('html').addClass('safari-mac'); // provide a class for the safari-mac specific css to filter with
+    }
+  })(jQuery);
+</script>
+<style>
+  .safari-mac #SafariWarning{
+    display:block !important;
+  }
+</style>
 
 <!-- FB Like Script-->
 <div id="fb-root"></div>
