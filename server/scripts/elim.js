@@ -152,3 +152,13 @@ $('#playVidOne').click(function(e){
             document.getElementById('banContentTwo').style.visibility = 'hidden';
           }   
     }
+
+    function addControls()
+    {
+    	var whereYouAt = myPlayer.currentTime();
+    	element = document.getElementById('vidYo');
+
+    	if (whereYouAt >= 10000){
+    		element.attributeName = 'controls';
+    	}
+    }
