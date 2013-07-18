@@ -147,23 +147,26 @@ var sorted;
 var cPop = 0;
 var totalPop;
 var pop_array;
+var temp;
 
 app.get('/elim', function(req, res){
   elim.initElim("Rap", function(array, c){
     rap_array = array;
     totalRap = rap_array.length;
     cRap = c;
+	temp = c;
     //find song where rap_array[cRap]._id, get artistID, get songName
     //find profile where artistID is _id, get name
-    dbtest.tournament.findOne({_id: rap_array[cRap]._id}, function(e, o){
+	console.log(rap_array);
+    dbtest.tournament.findOne({_id: rap_array[temp]._id}, function(e, o){
     	db.profiles.findOne({_id: o.artistID}, function(e, user){
-    		dbtest.tournament.findOne({_id: rap_array[cRap+1]._id}, function(e, o2){
+    		dbtest.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
     			db.profiles.findOne({_id: o2.artistID}, function(e, user2){
-    				res.render('elim', {imgid: "0", v1id: rap_array[cRap]._id, v2id:rap_array[cRap+1]._id, song1: o.name, song2: o2.name, user1: user.name, user2: user2.name});
-    			})
-    		})
-    	})
-    })
+    				res.render('elim', {imgid: "0", v1id: rap_array[temp]._id, v2id:rap_array[temp+1]._id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+    			});
+    		});
+    	});
+    });
     elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
       console.log("C: :" + cRap + " total: " + totalRap);
       if(inc == 1){
@@ -180,14 +183,14 @@ app.get('/elim', function(req, res){
 });
 
 app.post('/testvote', function(req, res){
-  dbtest.tournament.update({_id: parseInt(req.body.vid)}, {$inc: {votes:1}});
+  dbtest.tournament.update({_id: req.body.vid}, {$inc: {votes:1}});
   res.send(204);
 });
 
 app.post('/playNext', function(req, res){
   console.log(rap_array);
   console.log(cRap);
-  res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id});
+  res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, votes1: rap_array[cRap].votes, votes2: rap_array[cRap+1].votes, s1:rap_array[cRap].name , s2:rap_array[cRap+1].name, a1: rap_array[cRap].artistName, a2: rap_array[cRap+1].artistName});
   elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
     console.log("C: :" + cRap + " total: " + totalRap);
     if(inc){
@@ -1099,7 +1102,7 @@ app.post('/deleteSong', function(req, res){
     });
 })
 
-
+/*
 app.get('/elim', function(req,res){
    if(req.session.user == undefined){
         id = req.user[0]._id;
@@ -1133,7 +1136,7 @@ app.get('/elim', function(req,res){
 	res.render('elim', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
        });             
 });
-
+*/
 app.get('/browse', function(req,res){
   if(req.session.user == undefined){
         id = req.user[0]._id;
@@ -1168,6 +1171,23 @@ app.get('/browse', function(req,res){
        });
     });   
 })
+
+app.get('/init', function(req,res){
+	dbtest.locals.remove();
+	dbtest.tournament.remove();
+	
+	
+	for (var i = 6; i < 20; i++){
+		dbtest.tournament.save({ _id: i+"", votes:0, views:0, genre: "Rap", artistName: "Artist " + i, artistID: i+"", name: "Song " + i });
+	}
+	
+	for ( var i = 6; i < 20; i++){
+		db.profiles.save({artistName: "Artist " + i, _id: i+""});
+	}
+	
+	res.send("done");
+	
+});
 
 /*****************************************404**************************************************/
 app.get("*", function(req, res){

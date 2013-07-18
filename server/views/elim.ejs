@@ -2,7 +2,6 @@
 <% script('/scripts/main.js') -%>
 <% stylesheet('video-js.css') -%>
 <% script('video.js') -%>
-<% script('feed.js') -%>
 <% script('profileEdit.js') -%>
 <% script('elim.js') -%>
 
@@ -49,11 +48,11 @@
         <div id="selectSong">
 
           <ul id="selectSongList">
-            <li id="songOne" class="selected"><input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"><spanV id="vidOne" style="font-size:30px;"><%=song1%></spanV><br><spanA id="artistOne" style="font-size:15px;"><%=user1%>     </spanA>
-              <div id = "one"> <%=v1id%> </div>
+            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"><li id="songOne" class="selected"><spanV id="vidOne" style="font-size:30px;"><%=song1%></spanV><br><spanA id="artistOne" style="font-size:15px;"><%=user1%>     </spanA>
+              <div id = "one"> <%=votes1%> </div>
             </li>
-            <li id="songTwo" class="unselectable blurred"><input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;"><spanV id="vidTwo" style="font-size:30px;"><%=song2%></spanV><br><spanA id="artistTwo" style="font-size:15px;"><%=user2%></spanA>
-              <div id = "two"> <%=v2id%> </div>
+            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;"><li id="songTwo" class="unselectable blurred"><spanV id="vidTwo" style="font-size:30px;"><%=song2%></spanV><br><spanA id="artistTwo" style="font-size:15px;"><%=user2%></spanA>
+              <div id = "two"> <%=votes2%> </div>
             </li>
 
             <script>
@@ -151,7 +150,7 @@
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
             <source src="" type="video/mp4" id = "source">
             </video>
-            <strong><p id="tenSecs" style="font-size:25px; text-align:center;color:rgba(180,7,6,1);">Voting and Sharing will appear after you watch 10 seconds of each video!</p></strong>
+            <strong><p id="tenSecs" style="font-size:25px; text-align:center;color:rgba(180,7,6,1);">Voting and Sharing will appear after you watch each video!</p></strong>
             <input type="button" value="Next" id="next"></input>
         </div>   
     </div> 
@@ -192,7 +191,7 @@
 
 <!-- End FB Like Script -->
 </body>
-<% script('video.js') -%>       
+   
 <script>
   videojs("vidYo", {}, function(){
   // Player (this) is initialized and ready.
@@ -210,85 +209,6 @@
 <!--FB Share Script-->
 <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
 <!--End FB Share Script-->
-
-<!--Song Stuff-->
-        <script>
-          $(document).ready(function(){
-            $('#playVidOne').click(function(e){
-                    $.ajax({
-                        url: "/vidPlay2",
-                        type: "POST",
-                        cache: false,
-                        data: {video: $(this).attr('data-tag')},
-                        success: function(data){
-                            var $vid_obj = _V_("vidYo");
-                            $vid_obj.ready(function(){
-                                $vid_obj.pause();
-                                $('#vidYo').find('#source').attr('src', data.video);
-                                $('#vidYo').removeClass('vjs-playing').addClass('vjs-paused');
-                                $vid_obj.load();
-                                $('#div_video_html5_api').show();
-                            })
-                        }
-                    })
-                });
-                $('#playVidTwo').click(function(e){
-                    $.ajax({
-                        url: "/vidPlay2",
-                        type: "POST",
-                        cache: false,
-                        data: {video: $(this).attr('data-tag')},
-                        success: function(data){
-                            var $vid_obj = _V_("vidYo");
-                            $vid_obj.ready(function(){
-                                $vid_obj.pause();
-                                $('#vidYo').find('#source').attr('src', data.video);
-                                $('#vidYo').removeClass('vjs-playing').addClass('vjs-paused');
-                                $vid_obj.load();
-                                $('#div_video_html5_api').show();
-                            })
-                        }
-                    })
-                });
-                $('#voteOne').click(function(){
-                    $.ajax({
-                        url: "/testvote",
-                        type: "POST",
-                        cache: false,
-                        data: {vid: $(this).attr('data-tag')},
-                        success: function(data){
-                        }
-                    })
-                });
-                $('#voteTwo').click(function(){
-                    $.ajax({
-                        url: "/testvote",
-                        type: "POST",
-                        cache: false,
-                        data: {vid: $(this).attr('data-tag')},
-                        success: function(data){
-                        }
-                    })
-                });
-                $('#next').click(function(){
-                    $.ajax({
-                        url: "/playNext",
-                        type: "POST",
-                        cache: false,
-                        success: function(data){
-                            $('#playVidOne').attr('data-tag', data.v1id);
-                            $('#playVidTwo').attr('data-tag', data.v2id);
-                            $('#voteOne').attr('data-tag', data.v1id);
-                            $('#voteTwo').attr('data-tag', data.v2id);
-                            $('#one').html(data.v1id);
-                            $('#two').html(data.v2id);
-                        }
-                    })
-                })
-          })
-        </script>
-<!--End Song Stuff-->        
-
 
 
 
