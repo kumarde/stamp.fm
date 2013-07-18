@@ -27,11 +27,11 @@ var songs = 0;
   var TestModule =  require('./scripts/testModule.js').TestModule;
   var AuditionModule = require('./scripts/AuditionModule.js').AuditionModule;
   var AccountModule = require('./scripts/AccountModule.js').AccountModule;
-  var EmailModule = require('./scripts/EmailModule.js').EmailModule;
   var UploadModule = require('./scripts/UploadModule.js').UploadModule;
   var UserModule = require('./scripts/UserModule.js').UserModule;
   var FeedModule = require('./scripts/FeedModule.js').FeedModule;
   var ElimModule = require('./scripts/ElimModule.js').EliminationModule;
+  var EmailModule = require('./scripts/EmailModule.js').EmailModule;
 
   var testModule = new TestModule;
   var auditionModule = new AuditionModule;
@@ -41,7 +41,6 @@ var songs = 0;
   var userModule = new UserModule;
   var Feed = new FeedModule;
   var elim = new ElimModule;
-
 
   
  db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
