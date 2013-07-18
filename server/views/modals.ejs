@@ -191,11 +191,11 @@
 
 	<%}
 	else if ( type == 'S' ){%>
-		<div id="bigpic" class="modalDialog">
+		<div id="previe" class="modalDialogPic">
 		  <div>
-			<div class="close" style="color:#FFFFFF">X</div>
+			<div class="close" style="color:#FFFFFF; margin-top: -100px; margin-right: 25px;">X</div>
 			<center>
-			<img src="<%=profID%>" id="bigPicture" style="height: 70%; width: 70%;">  
+			<img src="<%=profID%>" id="bigPicture" style = "top: 50%; max-width: 550px; max-height: 400px">  
 		  </center>
 		  </div>
 		</div>
@@ -274,6 +274,13 @@ $("document").ready(function(){
 		var str = $(this).attr("id");
 		$('#'+str.substring(0, str.length - 1)).addClass("unhidden");
 	});
+	$('#preview').click(function(){
+      if($('#previe').hasClass('unhidden') == true){
+      $('#previe').click(function(){
+        $('#previe').removeClass('unhidden');
+      })
+    } 
+    })
 	
 });
 
