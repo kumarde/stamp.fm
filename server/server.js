@@ -153,60 +153,131 @@ app.get('/elim', function(req, res){
       res.redirect('/');
   }
   else {
-        elim.initElim("Rap", function(array, c){
-            rap_array = array;
-            totalRap = rap_array.length;
-            cRap = c;
-    	      temp = c;
-        //find song where rap_array[cRap]._id, get artistID, get songName
-        //find profile where artistID is _id, get name
-    	console.log(rap_array);
-        dbtest.tournament.findOne({_id: rap_array[temp]._id}, function(e, o){
-        	db.profiles.findOne({_id: o.artistID}, function(e, user){
-        		dbtest.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
-        			db.profiles.findOne({_id: o2.artistID}, function(e, user2){
-        				res.render('elim', {imgid: "0", v1id: rap_array[temp]._id, v2id:rap_array[temp+1]._id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
-        			});
-        		});
-        	});
-        });
-        elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
-          console.log("C: :" + cRap + " total: " + totalRap);
-          if(inc == 1){
-          	cRap += 2;
-          	dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
-          }
-          else{
-            rap_array = newArray;
-            cRap = 0;
-            dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap, array: rap_array}});
-          }
-        });
-      });
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			if(req.session.user[0] == undefined){
+			id = req.session.user._id;
+			} else {
+				id = req.session.user[0]._id;
+			}
+		}
+  
+		db.profiles.findOne({_id:id}, function(e,p){
+			
+			if (!p.elim){
+  
+	  
+			elim.initElim("Rap", function(array, c){
+				rap_array = array;
+				totalRap = rap_array.length;
+				cRap = c;
+				  temp = c;
+			//find song where rap_array[cRap]._id, get artistID, get songName
+			//find profile where artistID is _id, get name
+			console.log(rap_array);
+			dbtest.tournament.findOne({_id: rap_array[temp]._id}, function(e, o){
+				db.profiles.findOne({_id: o.artistID}, function(e, user){
+					dbtest.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
+						db.profiles.findOne({_id: o2.artistID}, function(e, user2){
+							var e = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes};
+							db.profiles.update({_id: id},{$set: {elim:e}});
+							res.render('elim', {imgid: "0", v1id: rap_array[temp]._id, v2id:rap_array[temp+1]._id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+
+						});
+					});
+				});
+			});
+			elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+			  console.log("C: :" + cRap + " total: " + totalRap);
+			  if(inc == 1){
+				cRap += 2;
+				dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+			  }
+			  else{
+				rap_array = newArray;
+				cRap = 0;
+				dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap, array: rap_array}});
+			  }
+			});
+		  });
+		}else{
+			res.render('elim', {imgid: "0", v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v});
+		}
+	  });
   }
 });
 
 app.post('/testvote', function(req, res){
-  dbtest.tournament.update({_id: req.body.vid}, {$inc: {votes:1}});
-  res.send(204);
+  if (req.session.user == null && req.user == null) {
+      res.redirect('/');
+  }
+  else {
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			if(req.session.user[0] == undefined){
+				id = req.session.user._id;
+			} else {
+				id = req.session.user[0]._id;
+			}
+		}
+  
+		db.profiles.findOne({_id:id}, function(e,p){
+		  if (req.body.vid == p.elim.v1id || req.body.vid == p.elim.v2id){
+			  db.profiles.update({_id:id},{$unset:{elim:""}});
+			  dbtest.tournament.update({_id: req.body.vid}, {$inc: {votes:1}});
+			  res.send(204);
+		  
+		  }else res.send(204);
+		});
+  }
 });
 
 app.post('/playNext', function(req, res){
-  console.log(rap_array);
-  console.log(cRap);
-  res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, votes1: rap_array[cRap].votes, votes2: rap_array[cRap+1].votes, s1:rap_array[cRap].name , s2:rap_array[cRap+1].name, a1: rap_array[cRap].artistName, a2: rap_array[cRap+1].artistName});
-  elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
-    console.log("C: :" + cRap + " total: " + totalRap);
-    if(inc){
-      cRap += 2;
-      dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
-    } 
-    else{
-      rap_array = newArray;
-      cRap = 0;
-      dbtest.locals.update({_id: "Rap"}, {$set: {array: rap_array, c: 0}});
-    }
-  });  
+  if (req.session.user == null && req.user == null) {
+      res.redirect('/');
+  }
+  else {
+		if(req.session.user == null){
+			id = req.user[0]._id;
+		}
+		else if(req.user == null){
+			if(req.session.user[0] == undefined){
+				id = req.session.user._id;
+			} else {
+				id = req.session.user[0]._id;
+			}
+		}
+
+		db.profiles.findOne({_id:id}, function(e,p){
+			
+			if (!p.elim ){
+				  console.log(rap_array);
+				  console.log(cRap);
+				  var e = {v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, v1name: rap_array[cRap].name, v2name: rap_array[cRap+1].name, v1artist: rap_array[cRap].artistName, v2artist: rap_array[cRap+1].artistName, v1v: rap_array[cRap].votes, v2v: rap_array[cRap+1].votes};
+				 db.profiles.update({_id:id},{$set:{elim:e}});
+				 res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, votes1: rap_array[cRap].votes, votes2: rap_array[cRap+1].votes, s1:rap_array[cRap].name , s2:rap_array[cRap+1].name, a1: rap_array[cRap].artistName, a2: rap_array[cRap+1].artistName});
+				  elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+					console.log("C: :" + cRap + " total: " + totalRap);
+					if(inc){
+					  cRap += 2;
+					  dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+					} 
+					else{
+					  rap_array = newArray;
+					  cRap = 0;
+					  dbtest.locals.update({_id: "Rap"}, {$set: {array: rap_array, c: 0}});
+					}
+				  });  
+			  }else {
+				res.send({v1id: p.elim.v1id, v2id: p.elim.v2id, votes1: p.elim.v1v, votes2: p.elim.v2v, s1:p.elim.v1name , s2:p.elim.v2name, a1: p.elim.v1artist, a2: p.elim.v2artist});
+
+			  }
+	  });
+  }
 });
 
 db.music.count(function(err, count){
@@ -1188,8 +1259,25 @@ app.get('/browse', function(req,res){
 })
 
 app.get('/init', function(req,res){
+
+	if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+    }  
+	
+	db.profiles.update({_id:id},{$unset:{elim:""}});
+	
 	dbtest.locals.remove();
 	dbtest.tournament.remove();
+	
+	
+	
 	
 	
 	for (var i = 6; i < 20; i++){
