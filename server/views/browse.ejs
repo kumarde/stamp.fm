@@ -23,7 +23,7 @@
     <div id="body_wrapper">
     <div id="selectedArea">
       <div class="c12 end" id="videoPlayer">
-	<video height="300px" width="460px" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
+	<video height="300px" width="100%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
 	  <source src="" type="video/mp4" id = "source">
    	</video>
       </div>
@@ -44,8 +44,11 @@
     <div id="artists">
       <% for(var artists=0;artists<50;artists++){ %>
 	<div class="artist">
-	  <img class=artist_pic" src="stampman.png" style="height:100px;width:100px;"><br>
-	  <span class="artist_name">Artist Name</span>
+	  <img class="artist_pic" src="stampman.png" style="height:100%;width:100%;"><br>
+    <ul id="songInfo" style="background-color:rgba(0,0,0,.7);">
+    <li><span class="song_name">Song Name</span></li><br>
+	  <li><span class="artist_name">Artist Name</span></li>
+    </ul>
 	</div>
       <% } %>
     </div>

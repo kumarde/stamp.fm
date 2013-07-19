@@ -3,36 +3,56 @@
     margin-right:10px;
     margin-top:50px;
     height: 100%;
-    width:500px
+    width:38%;
 }
 #artists{
     float: left;
     margin-top: 50px;
     margin-left: 10px;
     height: 570px;
-    max-width:650px;
-    width:100%;
+    width: 60%;
     overflow-y: auto;
     overflow-x:hidden;
 }
 .artist{
     float:left;
-    height:130px;
-    width:106px;
+    height:200px;
+    width:200px;
     border-width: 3px;
-    border: solid #000;
-    -moz-border-radius:5px;  
-    border-radius: 5px;  
-    -webkit-border-radius: 5px;
-    margin: 10px;
+
+    margin: 2px;
 }
 .artist_pic{
+    margin: auto;
     position: relative;
-    top:2px;
+    color: transparent;
 }
+
+#songInfo{
+    color: #FFFFFF;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    list-style-type: none;
+    margin-top: -60px;
+    text-align: center;
+    background-color:#000;
+    opacity:.9;
+    filter:alpha(opacity=90); /* For IE8 and earlier */
+
+}
+#songInfo li{
+    display: inline-block;
+    margin-left: -30px;
+}
+
 .artist_name{
     position: relative;
-    bottom: 10px;
+    font-size: 12px;
+    overflow-x: auto;
+}
+.song_name{
+    position: relative;
     font-size: 15px;
     overflow-x: auto;
 }
@@ -54,6 +74,7 @@
     font-size: 15px;
 }
 #vidYo{
+    float: right;
     position: relative;
     left: 0;
     -moz-box-shadow:    1px 1px 5px 2px rgba(0,0,0,.5);
