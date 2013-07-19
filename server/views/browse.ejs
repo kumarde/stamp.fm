@@ -18,34 +18,43 @@
     <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
   </head>
   <body>
     <div id="body_wrapper">
-    <div id="selectedArea">
-      <div class="c12 end" id="videoPlayer">
-	<video height="300px" width="100%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
-	  <source src="" type="video/mp4" id = "source">
-   	</video>
+
+    <div id="selectedArea" >
+      <div id="videoPlayer" >
+	     <video height="300px" width="100%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
+	       <source src="" type="video/mp4" id = "source">
+   	   </video>
       </div>
-      <div>
-      <div id="songList"><b><span style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">Artist's Songs</span></b>
-        <% songs.forEach(function(song){ %>
-          <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
-            <div data-tag ="<%=song._id%>" class = "songname" style="float:left;"><%= song.name %></div><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-          </tr>
-        <% }); %>
-      </div>
-      <div id="selected_pic">
-	<img src="stampman.png" style="width:150px;position:relative;right:0;"><br>
-	<span class="artist_name">Artist Name</span>
-      </div>
+
+      <div id="artistInfo">
+        <div id="selected_pic">
+	       <img src="stampman.png" style="width:80px;position:relative;">
+	       <span id="artistNameSelected">Artist Name</span>
+         <input type="button" value="Follow" class="stampFollow" id="<%=id%>"/>    
+        </div>
+        <div id="songList">
+
+          <!--<div class="c2" id="otherSongsLabel" style="border-bottom: 1px solid rgba(0,0,0,.4);">
+            <b><spanLabel id="artistSongLabel" style="float:left;margin-left:37%;vertical-align:middle;">Artist's Songs</spanLabel></b>
+          </div>          -->
+          <% songs.forEach(function(song){ %>
+            <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
+             <div data-tag ="<%=song._id%>" class = "songname" style="float:left;"><%= song.name %></div><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><br>
+            </tr>
+          <% }); %>
+        </div> 
       </div>
     </div>
+
     <div id="artists">
       <% for(var artists=0;artists<50;artists++){ %>
 	<div class="artist">
 	  <img class="artist_pic" src="stampman.png" style="height:100%;width:100%;"><br>
-    <ul id="songInfo" style="background-color:rgba(0,0,0,.7);">
+    <ul id="songInfo">
     <li><span class="song_name">Song Name</span></li><br>
 	  <li><span class="artist_name">Artist Name</span></li>
     </ul>

@@ -3,23 +3,33 @@
     margin-right:10px;
     margin-top:50px;
     height: 100%;
-    width:38%;
+    width:41%;
+    padding: 0;
 }
+
+#artistNameSelected{
+    color: #000;
+    position: relative;
+    font-size: 15px;
+    font-weight: bold;
+    overflow-x: auto;
+    vertical-align: top;
+}
+
 #artists{
     float: left;
     margin-top: 50px;
     margin-left: 10px;
-    height: 570px;
-    width: 60%;
+    height: 100%;
+    width: 57%;
     overflow-y: auto;
     overflow-x:hidden;
+    border-right: 1px groove rgba(0,0,0,.1);
 }
 .artist{
     float:left;
-    height:200px;
-    width:200px;
-    border-width: 3px;
-
+    height:33%;
+    width:24%;
     margin: 2px;
 }
 .artist_pic{
@@ -37,9 +47,8 @@
     margin-top: -60px;
     text-align: center;
     background-color:#000;
-    opacity:.9;
-    filter:alpha(opacity=90); /* For IE8 and earlier */
-
+    opacity:.7;
+    filter:alpha(opacity=70); /* For IE8 and earlier */
 }
 #songInfo li{
     display: inline-block;
@@ -47,56 +56,102 @@
 }
 
 .artist_name{
+    color: #FFFFFF;
     position: relative;
     font-size: 12px;
     overflow-x: auto;
+    vertical-align: middle;
 }
+
 .song_name{
     position: relative;
     font-size: 15px;
     overflow-x: auto;
 }
-#songList{
-    float: left;
-    margin-left: 20px;
-    width:300px; 
-    height: 280px;
-    background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(240,240,240)),color-stop(0.6, rgb(235,235,235)),color-stop(0.8, rgb(230,230,230)));
-    -moz-box-shadow:    3px 5px 10px 3px rgba(0,0,0,.2);
-    -webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,.2);
-    box-shadow:         3px 3px 10px 3px rgba(0,0,0,.2);
+
+#otherSongsLabel{
+    margin-left:auto;
+    margin-right: auto;
+    width:100%; 
     overflow: auto;
     font-size: 15px;
+    background-color: rgba(255,255,255,.6);
+}
+
+#artistSongLabel{
+    margin: auto;
+    width:100%; 
+}
+
+.stampFollow{
+   
+    font-size: 12px;
+    border: 1px solid rgba(0,0,0,1);
+    color: #FFFFFF;
+    cursor: pointer; 
+    height: 20px;  
+    width: 60px;  
+    max-height: 30px;
+    max-width: 70px;
+    margin-top: -35px;
+    margin-left: -85px;
+    padding: 2px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.stampFollow:hover{
+    background-color: rgba(140,7,6,1);
+}
+
+.stampFollow:active{
+    color: #FFFFFF;
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    border: solid 1px #000;
+}
+
+.stampFollow #artistNameSelected{
+    display: inline-block;
+}
+
+#songList{
+    float: left;
+    margin-top: 10px;
+    width:100%; 
+    height: 185px;
+    overflow: auto;
+    font-size: 15px;
+    /*background-color: rgba(240,240,240,.9);*/
 }
 #vidYo{
-    float: right;
+    float: left;
     position: relative;
     left: 0;
-    -moz-box-shadow:    1px 1px 5px 2px rgba(0,0,0,.5);
-    -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,.5);
-    box-shadow:         1px 1px 5px 2px rgba(0,0,0,.5);
+    right: 0;
+    -moz-box-shadow:    1px 1px 5px 1px rgba(0,0,0,.5);
+    -webkit-box-shadow: 1px 1px 5px 1px rgba(0,0,0,.5);
+    box-shadow:         1px 1px 5px 1px rgba(0,0,0,.5);
     margin: 0;
     padding: 0;
 }
 #selected_pic{
-    float: right;
-    margin-right: 20px;
-    margin-top:-1px;
-    border-width: 3px;
-    border: solid #000;
-    -moz-border-radius:5px;  
-    border-radius: 5px;  
-    -webkit-border-radius: 5px;
+    width: 100%;
+    float: left;
+    margin-top:10px;
+    padding-top: 10px;
+    border-top: 1px groove rgba(0,0,0,.1);
+    border-bottom: 1px groove rgba(0,0,0,.1);
 }
 #body_wrapper{
-    height: 570px;
+    height: 600px;
     width:100%;
 }
+
 body{
     min-width: 1175px !important;
 }
