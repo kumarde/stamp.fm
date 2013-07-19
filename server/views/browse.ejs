@@ -20,22 +20,37 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   </head>
   <body>
-<div class="c2" id="songList" style="float:right"><b><spanLabel style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">All Uploaded Songs</spanLabel></b>
-  <% songs.forEach(function(song){ %>
-        <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
-          <td><div data-tag ="<%=song._id%>" class = "songname"><%= song.name %></div></td>
-      <td style="float:right;min-width:120px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-      <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-     </tr>
-      <% }); %>
-</div>
-
-
-<div class="c12 end" id="videoPlayer" style="border:none">
-    <video height="300px" width="40%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
-	<source src="" type="video/mp4" id = "source">
+    <div id="body_wrapper">
+    <div id="selectedArea">
+      <div class="c12 end" id="videoPlayer">
+	<video height="300px" width="460px" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
+	  <source src="" type="video/mp4" id = "source">
    	</video>
-</div> 
+      </div>
+      <div>
+      <div id="songList"><b><span style="font-size:15px; border-bottom: 1px solid rgba(180,7,6,1); padding-left:31%; padding-right:31%;">Artist's Songs</span></b>
+        <% songs.forEach(function(song){ %>
+          <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
+            <div data-tag ="<%=song._id%>" class = "songname" style="float:left;"><%= song.name %></div><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+          </tr>
+        <% }); %>
+      </div>
+      <div id="selected_pic">
+	<img src="stampman.png" style="width:150px;position:relative;right:0;"><br>
+	<span class="artist_name">Artist Name</span>
+      </div>
+      </div>
+    </div>
+    <div id="artists">
+      <% for(var artists=0;artists<50;artists++){ %>
+	<div class="artist">
+	  <img class=artist_pic" src="stampman.png" style="height:100px;width:100px;"><br>
+	  <span class="artist_name">Artist Name</span>
+	</div>
+      <% } %>
+    </div>
+    </div>
+  </body>
 
 <!-- FB Like Script-->
 <div id="fb-root"></div>
