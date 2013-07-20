@@ -417,6 +417,10 @@ app.post('/vote', function(req, res){
 /*********************************UPLOAD ROUTES **********************************************/
 app.post('/song-upload', function(req, res){
   var id;
+  		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
   if(req.session.user == null){
         id = req.user[0]._id;
         name = req.user[0].name;
@@ -452,9 +456,14 @@ app.post('/song-upload', function(req, res){
 	  res.redirect('/profile');
     }
     );
+	}
 });
 
 app.post("/db-upload", function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
     var id;
     var name;
     var songID;
@@ -471,11 +480,15 @@ app.post("/db-upload", function(req, res){
                 name = req.session.user[0].name;
         }
     }
-
+}
 })
 
 
 app.post('/tournament', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
     console.log(req.body.id);
     var id;
     var name;
@@ -503,11 +516,16 @@ app.post('/tournament', function(req, res){
         res.send({msg: "yes"});
       }
     })
+	}
 });
 
 /************************************END UPLOAD TO THE TOURNAMENT****************************************/
 /**************************************FEEDBACK ROUTES***************************************/
 app.post('/feedback', function(req,res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
   var email, name;
     if(req.session.user == null){
       console.log(req.user);
@@ -540,6 +558,7 @@ app.post('/feedback', function(req,res){
         if(e) console.log(e);
     })
     res.send({msg:"ok"})
+	}
 });
 
 /*******************************LOGIN STUFF HERE******************************************/
@@ -732,6 +751,10 @@ app.get('/create', function(req, res){
 });
 
 app.post('/create', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
     var id;
     var stream;
     console.log(req.user);
@@ -768,6 +791,7 @@ app.post('/create', function(req, res){
 				});
         }
     );
+	}
 });
 
 app.get('/view', function(req, res){
@@ -844,15 +868,22 @@ app.get('/view', function(req, res){
 })
 
 app.post('/vidPlay', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
     var temp = req.body.video;
     var vid = myS3Account.readPolicy(temp, S3_BUCKET, 60);
     console.log(vid);
     res.send({video: vid});
+	}
 })
 
 app.post('/addPlay', function(req, res){
     var id;
     var name;
+	
+	
     if(req.session.user == undefined){
             id = req.user[0]._id;
     }
@@ -942,6 +973,10 @@ app.get('/profile', function(req, res){
 });
 app.post('/changeName', function(req, res){
   var id;
+  		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
     if(req.session.user == undefined){
         id = req.user[0]._id;
     }
@@ -953,10 +988,15 @@ app.post('/changeName', function(req, res){
         }
    }
    db.profiles.update({_id: id}, {$set: {name: req.body.editName}});
+   }
 })
 
 app.post('/changeBio', function(req, res){
     var id;
+			if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
     if(req.session.user == undefined){
         id = req.user[0]._id;
     }
@@ -969,9 +1009,14 @@ app.post('/changeBio', function(req, res){
    }
    db.profiles.update({_id: id}, {$set: {bio: req.body.editBio}});
    res.send({msg:'ok'});
+   }
 })
 
 app.post('/changeLocation', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
     var id;
     if(req.session.user == undefined){
         id = req.user[0]._id;
@@ -985,9 +1030,14 @@ app.post('/changeLocation', function(req, res){
    }
    db.profiles.update({_id: id}, {$set: {location: req.body.editLocation}});
    res.send({msg: 'ok'});
+   }
 })
 
 app.post('/changeImage', function(req, res){
+		if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+		}
+else{
     var stream = fs.createReadStream(req.files.file.path);
     var id;
     if(req.session.user == undefined){
@@ -1020,6 +1070,7 @@ app.post('/changeImage', function(req, res){
           // If successful, will return a JSON object containing Location, Bucket, Key and ETag of the object
         }
     );
+	}
 })
 
 app.post('/playDelete', function(req, res){
@@ -1066,7 +1117,7 @@ app.post('/deleteSong', function(req, res){
 					});
 				}
 			})
-            db.playlists.remove({songID: sid}, function(e, o){})
+            db.playlists.remove({songID: sid}, function(e, o){});
             client.deleteFile(parseInt(sid), function(e, res){});
             res.send({msg: "yes", id: sid, name: req.body.name})
         }
@@ -1087,7 +1138,7 @@ app.post('/counter', function(req,res){
 
 /*****************************************404**************************************************/
 app.get("*", function(req, res){
-      res.render('page404');
+      res.redirect('/');
 })
 /*****************************************404 done**************************************************/
 
