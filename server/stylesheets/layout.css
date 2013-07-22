@@ -634,24 +634,20 @@ td{
 
 #vidColor{
     margin: auto;
-    padding-right: 12px;
+    padding-right: 30px;
     border-right: 1px solid #000;
 }
 #favColor{
     margin: auto;
-    padding-right: 12px;
-    border-right: 1px solid #000;
+    padding-right: 30px;
 }
 #favButton{
-    margin-left:3%;
+    margin-left:10%;
     margin-right: auto;
 }
-#tourneyButton{
-    margin-left:3%;
-    margin-right: auto;
-}
+
 #songListLabel{
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .highlightTab{
@@ -672,7 +668,7 @@ td{
 }
 
 #playlistLabel{
-    font-size: 15px;
+    font-size: 20px;
     color: #000000;
 }
 
@@ -728,34 +724,6 @@ td{
     max-width : 100%; 
     min-height: 610px;
     max-height: 610px;
-    overflow : auto;
-    background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
-    background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.2, rgb(240,240,240)),
-    color-stop(0.6, rgb(235,235,235)),
-    color-stop(0.8, rgb(230,230,230))
-    );
-    -moz-border-radius:10px;  
-    border-radius: 10px;  
-    -webkit-border-radius: 10px;
-}
-
-#tourneyContent{
-    margin-top: 0px;
-    margin-bottom: 5px;
-    background : #E0E0E0;
-    color : #ffffff; 
-    padding : 4px; 
-    max-width : 100%; 
-    min-height:610px;
-    max-height: 610px; 
     overflow : auto;
     background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
     background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
