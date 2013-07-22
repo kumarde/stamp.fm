@@ -59,22 +59,23 @@ $(document).ready(function() {
                     for ( var i = 0; i < data.data.length; i++ ){
 						if ( !users[data.data[i]] ){
 							if ( data.data[i]._id != data.id ){
-								$div = $('<div class="user" id="'+data.data[i]._id+'">'+data.data[i].name+'</div>');
+								$div = $('<div class="user" id="'+data.data[i]._id+'" style= "max-width:200px;overflow:scroll;" >'+data.data[i].name+'</div>');
+								$div1 = $('<div></div>');
 								if (data.data[i].followers.indexOf(data.id) == -1 ){
-									$img = $('<input type="button" value="Follow" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
+									$img = $('<input type="button" value="Follow" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="margin-top:-23px;float:right;">');
 									$img.click(follow);
 								}
 								else{
-								$img = $('<input type="button" value="Forget" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="float:right">');
+								$img = $('<input type="button" value="Forget" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="margin-top:-23px;float:right">');
 									$img.click(unfollow);
 								}
-
 								$div.click(function(event){
 									if (!$(event.target).hasClass("user")) return;
 									window.location = "/view?id="+event.target.id;
 								});
-								$div.append($img);
-								$('#users').append($div);
+								$div1.append($div);
+								$div1.append($img);
+								$('#users').append($div1);
 							}
 						}
                     }
