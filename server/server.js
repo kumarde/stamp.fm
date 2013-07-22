@@ -17,8 +17,8 @@ var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWO
 var mpu = require('knox-mpu');
 var S3_KEY = 'AKIAIZQEDQU7GWKOSZ3A';
 var S3_SECRET = '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';
-var S3_BUCKET = 'media.stamp.fm';
-var PIC_BUCKET = 'pictures.stamp.fm';
+var S3_BUCKET = 'data.stamp.fm';
+var PIC_BUCKET = 'images.stamp.fm';
 var knox = require('knox');
 var songs = 0;
 
