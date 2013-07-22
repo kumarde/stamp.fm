@@ -637,10 +637,15 @@ td{
     padding-right: 30px;
     border-right: 1px solid #000;
 }
+#favColor{
+    margin: auto;
+    padding-right: 30px;
+}
 #favButton{
     margin-left:10%;
     margin-right: auto;
 }
+
 #songListLabel{
     font-size: 20px;
 }
@@ -676,7 +681,10 @@ td{
     overflow:hidden;
 }
 
-
+#tourneyLabel{
+    font-size: 15px;
+    color: #000000;
+}
 
 #playlistContent{
     margin-top: 0px;
@@ -734,7 +742,6 @@ td{
     border-radius: 10px;  
     -webkit-border-radius: 10px;
 }
-
 
 
 .replace {
