@@ -41,7 +41,8 @@ var songs = 0;
   
  db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
  
- db.ads.insert({_id:"0", name:"Turtle Cell", clicks:0});
+ db.ads.insert({_id:"0", name:"Turtle Cell"});
+ db.ads.insert({_id:"0", name:"Turtle Cell"});
  
 /***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
 db.music.count(function(e, count){
@@ -971,6 +972,40 @@ app.get('/profile', function(req, res){
         });
     }
 });
+
+
+app.post('/pldata',function(req,res){
+	 if(req.session.user == undefined && req.user == undefined){
+            res.redirect('/');
+    }
+    else{
+        var vid = 0;
+        var id;
+        if(req.session.user == undefined){
+            id = req.user[0]._id;
+        }
+        else if(req.user == undefined){
+            if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+            }
+            else{
+                id = req.session.user[0]._id;
+            }
+        }
+	
+		var sid = req.body.sid;
+	
+		
+	
+		db.music.findOne({_id: parseInt(sid)}, function(e, m){
+			if (!e && m ) res.send(m);
+			else res.send(204);
+		});
+	
+	}
+});
+
+
 app.post('/changeName', function(req, res){
   var id;
   		if (req.session.user == null && req.user == null) {
@@ -1138,7 +1173,7 @@ app.post('/counter', function(req,res){
 
 /*****************************************404**************************************************/
 app.get("*", function(req, res){
-      res.redirect('/');
+      res.redirect('/profile');
 })
 /*****************************************404 done**************************************************/
 
