@@ -35,9 +35,10 @@
       <div class="c2" id="tabs">
 
         <ul id="listName">
-      <li id="songButton"><a href="#songContent" id="songListLabel"><strong><span id="vidColor">Videos</span></strong></a></li>
+          <li id="songButton"><a href="#songContent" id="songListLabel"><strong><span id="vidColor">Videos</span></strong></a></li>
           <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><strong><span id="favColor" class="highlightTab">Favorites</span></strong></a></li>
-          
+          <li id="tourneyButton" ><a href="#tourneyContent" id="tourneyLabel"><strong><span id="tourneyColor">Tourney</span></strong></a></li>
+
           <script>
           $("document").ready(function(){
           $('a#playlistLabel').click(function(){
@@ -45,6 +46,9 @@
           })
           $("a#playlistLabel").click(function() {
             $('span#vidColor').removeClass("highlightTab");
+            })
+          $("a#playlistLabel").click(function() {
+            $('span#tourneyColor').removeClass("highlightTab");
             });
           });          
           </script>
@@ -55,9 +59,25 @@
           })
           $("a#songListLabel").click(function() {
             $('span#vidColor').addClass("highlightTab");
+            })
+          $("a#songListLabel").click(function() {
+            $('span#tourneyColor').removeClass("highlightTab");
             });
           });          
           </script>
+          <script>
+          $("document").ready(function(){
+          $('a#tourneyLabel').click(function(){
+            $('span#favColor').removeClass("highlightTab");
+          })
+          $("a#tourneyLabel").click(function() {
+            $('span#tourneyColor').addClass("highlightTab");
+            });
+          })
+          $("a#tourneyLabel").click(function() {
+            $('span#vidColor').removeClass("highlightTab");
+            });          
+          </script>          
           <script>
             $(document).ready(function() { 
               $("#tabs").tabs({ active: 1 }); 
@@ -82,11 +102,24 @@
     </div> 
   </div>    
 </div>
+  <div id="tourneyContent">
+    <div id="song" style="margin-top:4px;">
+  <div style=" overflow:auto;">
+        <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
+          <% playlist.forEach(function(play){ %>
+          <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "p<%=play.songID%>" >
+            <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.name %></div></td>
+      <td style="float:right;min-width:20px;margin-top:5px;cursor:pointer; "><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+            <img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
+      </tr>
+          <% }); %>
+        </table> 
+    </div> 
+  </div>    
+</div> 
 
 
   <div id="songContent">
-
-
       <div id="song" style="margin-top:4px;">
              <div style=" overflow:auto;">
                <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable" style="color:#000;margin-top:0px;">
@@ -103,6 +136,8 @@
             </div> 
           </div>
         </div>
+     
+
 		
 <div id = "users"></div>
 
