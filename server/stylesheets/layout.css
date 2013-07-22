@@ -634,15 +634,15 @@ td{
 
 #vidColor{
     margin: auto;
-    padding-right: 30px;
+    padding-right: 25px;
     border-right: 1px solid #000;
 }
 #favColor{
     margin: auto;
-    padding-right: 30px;
+    padding-right: 25px;
 }
 #favButton{
-    margin-left:10%;
+    margin-left:8%;
     margin-right: auto;
 }
 
