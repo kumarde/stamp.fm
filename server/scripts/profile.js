@@ -205,7 +205,11 @@ $(document).ready(function() {
         cache: false,
         data: {sid: sid},
         success: function(data){
-			$($("#playlistContent").find('.songname')[i]).parent().append(data.artistName);
+			$span = $("<span id='aname'>"+data.artistName+"</span>");
+			$($("#playlistContent").find('.songname')[i]).prepend(" - ");
+			$($("#playlistContent").find('.songname')[i]).prepend($span);
+			
+			if (sid != "0")$span.click(function(){window.location = "/view?id="+data.artistID;});
         }
       })
 	}
