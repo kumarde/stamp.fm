@@ -106,11 +106,11 @@
     <div id="song" style="margin-top:4px;">
   <div style=" overflow:auto;">
         <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:21px;" id = "playlistTable" class = "songnames" >
-          <% playlist.forEach(function(play){ %>
-          <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "p<%=play.songID%>" >
-            <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.name %></div></td>
-      <td style="float:right;min-width:20px;margin-top:5px;cursor:pointer; "><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-            <img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
+          <% tournament.forEach(function(tourn){ %>
+          <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "p<%=tourn._id%>" >
+            <td><div style="max-width:230px;" data-tag ="<%=tourn._id%>" class = "songname"><%=tourn.name%></div></td>
+      <td style="float:right;min-width:20px;margin-top:5px;cursor:pointer; "><img data-name = "<%=tourn.name%>" data-tag ="<%=tourn._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+            <img data-name = "<%=tourn.name%>" data-tag ="<%=tourn._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
       </tr>
           <% }); %>
         </table> 

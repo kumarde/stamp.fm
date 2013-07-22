@@ -959,7 +959,9 @@ app.get('/view', function(req, res){
                           else{
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
-                         res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null", follow: follow});
+                          db.music.find({$and: [{artistID: pid, inTourney:"Submitted"}]}, function(e, tournament){
+                          	res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null", follow: follow, tournament: tournament});	
+                         	 })
                           })
                         })        
                 }
@@ -1275,10 +1277,6 @@ app.get('/init', function(req,res){
 	
 	dbtest.locals.remove();
 	dbtest.tournament.remove();
-	
-	
-	
-	
 	
 	for (var i = 6; i < 20; i++){
 		dbtest.tournament.save({ _id: i+"", votes:0, views:0, genre: "Rap", artistName: "Artist " + i, artistID: i+"", name: "Song " + i });
