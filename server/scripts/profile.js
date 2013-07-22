@@ -79,6 +79,15 @@ $(document).ready(function() {
         data: {editLocation: loc}
       });
     });
+	
+
+	var l = $("#playlistContent").find('.songname').length;
+	for ( var i = 0; i < l; i++){
+		PlaylistData($($("#playlistContent").find('.songname')[i]).attr('data-tag'), i);
+	}
+	
+	
+	
   });
   
   function playVideo(){
@@ -188,3 +197,16 @@ $(document).ready(function() {
         }
       })
 	  }
+
+	function PlaylistData(sid,i){
+		$.ajax({
+        url: '/pldata',
+        type: 'POST',
+        cache: false,
+        data: {sid: sid},
+        success: function(data){
+			$($("#playlistContent").find('.songname')[i]).parent().append(data.artistName);
+        }
+      })
+	}
+	  
