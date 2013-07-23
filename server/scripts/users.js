@@ -59,7 +59,7 @@ $(document).ready(function() {
                     for ( var i = 0; i < data.data.length; i++ ){
 						if ( !users[data.data[i]] ){
 							if ( data.data[i]._id != data.id ){
-								$div = $('<div class="user" id="'+data.data[i]._id+'" style= "max-width:200px;overflow:scroll;" >'+data.data[i].name+'</div>');
+								$div = $('<div class="user" id="'+data.data[i]._id+'" style= "max-width:200px;overflow:hidden;" >'+data.data[i].name+'</div>');
 								$div1 = $('<div></div>');
 								if (data.data[i].followers.indexOf(data.id) == -1 ){
 									$img = $('<input type="button" value="Follow" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="margin-top:-23px;float:right;">');

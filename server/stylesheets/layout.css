@@ -93,6 +93,7 @@ margin-left: 145px;
 margin-top: -15px;
 max-height: 300px;
 overflow: auto;
+
 }
 
 .user:hover{
@@ -719,4 +720,13 @@ display:none;
     border-radius: 10px;  
     -webkit-border-radius: 10px;
 	cursor: pointer;     
+}
+
+#aname {
+	font-weight:bold;
+}
+
+#aname:hover{
+	cursor: pointer;
+	text-decoration: underline;
 }

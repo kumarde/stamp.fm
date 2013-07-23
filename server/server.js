@@ -2,7 +2,7 @@ var flash = require('connect-flash')
   , express = require('express')
   , engine = require('ejs-locals')
   , form  = require('express-form')
-  , moment = require('moment') //hey omar what up
+  , moment = require('moment')
   , http = require('http')
   , ObjectID = require('mongodb').ObjectID
   , field = form.field 
@@ -39,10 +39,10 @@ var songs = 0;
   var Feed = new FeedModule;
 
   
- db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
+ db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "(Stamp Champ)Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
  
  db.ads.insert({_id:"0", name:"Turtle Cell"});
- db.ads.insert({_id:"0", name:"Turtle Cell"});
+
  
 /***********************CHECK HOW MANY SONGS THERE ACTUALLY ARE*************************/
 db.music.count(function(e, count){
@@ -440,23 +440,26 @@ else{
   var temp = songs;
   songs++;
   
-   db.music.save({_id:temp,name: req.body.name, artistID: id, artistName: name, explicit: req.body.explicit, genre: req.body.genre, inTourney: "Submit"});
-      Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
-        if(data == false) console.log("Share failed.");
-      });
-  var stream = fs.createReadStream(req.files.file.path);
-  upload = new mpu(
-    {
-      client: client,
-      objectName: temp.toString(),
-      stream: stream,
-      headers: {"Content-Type": req.files.file.type}
-    },
-    function(err, obj){
-      console.log(obj);
-	  res.redirect('/profile');
-    }
-    );
+	  db.profiles.findOne({_id: id}, function(e,o){
+		  
+		   db.music.save({_id:temp,name: req.body.name, artistID: id, artistName: o.name, explicit: req.body.explicit, genre: req.body.genre, inTourney: "Submit"});
+			  Feed.share(id, {type: 'upload', id: songs, name: req.body.name}, function(data){
+				if(data == false) console.log("Share failed.");
+			  });
+		  var stream = fs.createReadStream(req.files.file.path);
+		  upload = new mpu(
+			{
+			  client: client,
+			  objectName: temp.toString(),
+			  stream: stream,
+			  headers: {"Content-Type": req.files.file.type}
+			},
+			function(err, obj){
+			  console.log(obj);
+			  res.redirect('/profile');
+			}
+			);
+		});
 	}
 });
 
@@ -506,17 +509,18 @@ else{
                 name = req.session.user[0].name;
         }
     }
-    db.tournament.findOne({$and: [{genre: req.body.genre}, {artistID: id}]}, function(e, o){
-      if(e) console.log(e);
-      if(o){
-        res.send({msg: "no"});
-      }
-      if(!o){
-        db.music.update({_id: parseInt(req.body.id)}, {$set: {inTourney: "Submitted"}});
-        db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name, votes: 0, views: 0});
-        res.send({msg: "yes"});
-      }
-    })
+	
+	db.tournament.findOne({$and: [{genre: req.body.genre}, {artistID: id}]}, function(e, o){
+	  if(e) console.log(e);
+	  if(o){
+		res.send({msg: "no"});
+	  }
+	  if(!o){
+		db.music.update({_id: parseInt(req.body.id)}, {$set: {inTourney: "Submitted"}});
+		db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name, votes: 0, views: 0});
+		res.send({msg: "yes"});
+	  }
+	})
 	}
 });
 
@@ -725,7 +729,7 @@ app.get('/create', function(req, res){
                    db.profiles.update({_id: id}, {$set: {url: respo.picture.data.url}});
                    db.profiles.findOne({_id: id}, function(e, o){
                       location = o.location;
-                      db.playlists.insert({songID: "0", artistName: "Dan Henig", name: "(Stamp Champ) Dan Henig - Don't You Worry Child Cover", artistID: id});
+                      db.playlists.insert({songID: "0", artistName: "(Stamp Champ)Dan Henig", name: "Don't You Worry Child Cover", artistID: id});
                       res.render('CreateProfile', {name: name, location: location, imgsrc: respo.picture.data.url}); 
                   })
                 });
@@ -740,7 +744,7 @@ app.get('/create', function(req, res){
                  id = req.session.user[0]._id;
             }
              db.profiles.save({_id: id, name: "", location: "Click to change Location", bio: "Click to change Tagline", facebook: "", twitter: "", following: [], followers: [], shared: [], gender: ""}, function(e, o){
-              db.playlists.insert({songID: "0", artistName: "Dan Henig", name: "Stamp Champ Dan Henig - Don't You Worry Child", artistID: id}, function(e, o){
+              db.playlists.insert({songID: "0", artistName: "(Stamp Champ)Dan Henig", name: "Don't You Worry Child", artistID: id}, function(e, o){
 		db.users.findOne({_id: id}, function(e, carrier){
 			name = carrier.name;
 			res.render('CreateProfile', {name: name, location: location, imgsrc: "stampman.png"});
@@ -996,7 +1000,7 @@ app.post('/pldata',function(req,res){
 		var sid = req.body.sid;
 	
 		
-	
+		
 		db.music.findOne({_id: parseInt(sid)}, function(e, m){
 			if (!e && m ) res.send(m);
 			else res.send(204);

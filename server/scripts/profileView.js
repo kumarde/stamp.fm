@@ -20,6 +20,13 @@
 	$('.vidPlay').click(playVideo);
     $('.addPlay').click(addtoPlaylist);
 
+	
+	
+	var l = $("#playlistContent").find('.songname').length;
+	for ( var i = 0; i < l; i++){
+		PlaylistData($($("#playlistContent").find('.songname')[i]).attr('data-tag'), i);
+	}
+	
   });
   
   
@@ -57,3 +64,21 @@ function playVideo(){
         data: {sid: tag, name: name},
       })
   }
+  
+  
+	function PlaylistData(sid,i){
+		$.ajax({
+        url: '/pldata',
+        type: 'POST',
+        cache: false,
+        data: {sid: sid},
+        success: function(data){
+			$span = $("<span id='aname'>"+data.artistName+"</span>");
+			$($("#playlistContent").find('.songname')[i]).prepend(" - ");
+			$($("#playlistContent").find('.songname')[i]).prepend($span);
+			
+			if (sid != "0")$span.click(function(){window.location = "/view?id="+data.artistID;});
+        }
+      })
+	}
+  
