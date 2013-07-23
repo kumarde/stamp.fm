@@ -1,4 +1,7 @@
 
+#tabs{
+    min-width: 350px;
+}
 
 #displayName{
     font-weight: bold;
@@ -24,30 +27,28 @@
     max-height : 30px;
 }
 
-
-
 .songname{
 	max-width:195px;
     overflow:hidden;
 }
 
 #vidColor{
-    margin: auto;
-    padding-right: 12px;
     border-right: 1px solid #000;
 }
 #favColor{
-    margin: auto;
-    padding-right: 12px;
     border-right: 1px solid #000;
 }
+#songButton{
+    width: 30%;
+    margin-left: -12%;
+
+}
 #favButton{
-    margin-left:3%;
-    margin-right: auto;
+    width: 30%;
+
 }
 #tourneyButton{
-    margin-left:3%;
-    margin-right: auto;
+    width: 30%;
 }
 #songListLabel{
     font-size: 15px;
@@ -57,6 +58,14 @@
     font-size: 15px;
 }
 
+#tourneyLabel{
+    font-size: 15px;
+    margin-left: 5%;
+}
+
+#listName{
+    width: 100%;
+}
 #tourneyContent{
     margin-top: 0px;
     margin-bottom: 5px;

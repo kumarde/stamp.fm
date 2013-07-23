@@ -35,9 +35,9 @@
       <div class="c2" id="tabs">
 
         <ul id="listName">
-          <li id="songButton"><a href="#songContent" id="songListLabel"><strong><span id="vidColor">Videos</span></strong></a></li>
-          <li id="favButton" ><a href="#playlistContent" id="playlistLabel"><strong><span id="favColor" class="highlightTab">Favorites</span></strong></a></li>
-          <li id="tourneyButton" ><a href="#tourneyContent" id="tourneyLabel"><strong><span id="tourneyColor">Tourney</span></strong></a></li>
+          <li id="songButton" style="width:30%;"><a href="#songContent" id="songListLabel"><strong><span id="vidColor">Videos</span></strong></a></li>
+          <li id="favButton" style="width:30%;"><a href="#playlistContent" id="playlistLabel"><strong><span id="favColor" class="highlightTab">Favorites</span></strong></a></li>
+          <li id="tourneyButton" style="width:30%;"><a href="#tourneyContent" id="tourneyLabel"><strong><span id="tourneyColor">Tournament</span></strong></a></li>
 
           <script>
           $("document").ready(function(){
@@ -110,7 +110,7 @@
           <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "p<%=tourn._id%>" >
             <td><div style="max-width:230px;" data-tag ="<%=tourn._id%>" class = "songname"><%=tourn.name%></div></td>
       <td style="float:right;min-width:20px;margin-top:5px;cursor:pointer; "><img data-name = "<%=tourn.name%>" data-tag ="<%=tourn._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
-            <img data-name = "<%=tourn.name%>" data-tag ="<%=tourn._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
+            <img data-name = "<%=tourn.name%>" data-tag ="<%=tourn._id%>" class = "stampVote" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
       </tr>
           <% }); %>
         </table> 
@@ -195,7 +195,6 @@
 </div> 
 
 </div>
-
 
 
 
