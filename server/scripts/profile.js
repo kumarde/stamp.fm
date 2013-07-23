@@ -86,8 +86,6 @@ $(document).ready(function() {
 		PlaylistData($($("#playlistContent").find('.songname')[i]).attr('data-tag'), i);
 	}
 	
-	
-	
   });
   
   function playVideo(){

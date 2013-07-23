@@ -2,7 +2,7 @@ var flash = require('connect-flash')
   , express = require('express')
   , engine = require('ejs-locals')
   , form  = require('express-form')
-  , moment = require('moment') //hey omar what up
+  , moment = require('moment')
   , http = require('http')
   , ObjectID = require('mongodb').ObjectID
   , field = form.field 
@@ -39,7 +39,7 @@ var songs = 0;
   var Feed = new FeedModule;
 
   
- db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
+ db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "(Stamp Champ)Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
  
  db.ads.insert({_id:"0", name:"Turtle Cell"});
 
