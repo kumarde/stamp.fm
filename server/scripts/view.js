@@ -22,7 +22,7 @@ $(document).ready(function() {
 			cache: false, 
 			data: { id: pid},
 			success: function(data){
-				if (typeof data.redirect == 'string' )window.location = data.redirect;
+				if (typeof data.redirect == 'string' )console.log("");//window.location = data.redirect;
 				else if (typeof data.error == 'string')console.log(data.error);
 				else console.log(data);
 			}
@@ -111,6 +111,10 @@ function redirect(event){
 		window.location = "/view?id="+event.target.id; 
 	}
 	
+function redirect1(event){
+		window.location = "/view?id="+$(this).attr("data-tag");
+	}
+	
 	
 		function feedfollowing() {
 		$.ajax({ 
@@ -142,7 +146,7 @@ function redirect(event){
 									if (prof.shared[j].type == 'favorite')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement"><strong>'+prof.name+'</strong> Added a New Favorite - '+prof.shared[j].name+'</div>');
 									if (prof.shared[j].type == 'tournament')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement"><strong>'+prof.name+'</strong> Entered the Tournament - '+prof.shared[j].name+''+'</div>');
 									if (prof.shared[j].type == 'delete')var $feedentry = $('<div data-tag ="'+prof._id+'" id="feedElement"><strong>'+prof.name+'</strong> Deleted a Video - '+prof.shared[j].name+''+'</div>');
-									
+									$feedentry.click(redirect1);
 									prof.shared[j].element = $feedentry;
 									prof.shared[j].date = new Date(prof.shared[j].date);
 									feedarray.push(prof.shared[j]);

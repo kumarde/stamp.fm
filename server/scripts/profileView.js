@@ -27,6 +27,11 @@
 		PlaylistData($($("#playlistContent").find('.songname')[i]).attr('data-tag'), i);
 	}
 	
+	$('.stampFollow').click(function(e){
+		if ($(this).val() == "Follow"){$(this).val("Unfollow");follow(e);}
+		else {$(this).val("Follow");unfollow(e);}
+	});
+	
   });
   
   

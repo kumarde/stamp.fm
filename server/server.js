@@ -272,7 +272,7 @@ app.post('/unfollow', function(req, res){
       }
     }
     Feed.unfollow(id, req.body.id, function(data){
-      res.send({redirect:'/profile'});
+      res.send(204);
     });
   }
 });
@@ -293,8 +293,8 @@ app.post('/follow', function(req,res){
 			}
     }
 	Feed.follow(id, req.body.id, function(data) {
-		if ( data != false)res.send({redirect:'/profile'});
-		else res.send({redirect:'/profile'});
+		if ( data != false)res.send(204);
+		else res.send(204);
 	});
 	db.profiles.findOne({_id:req.body.id}, function(err,data){
 		if (err || !data)console.log("failed");

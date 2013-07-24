@@ -32,10 +32,7 @@ $(document).ready(function() {
             }
         }
     });
-		$(".stampFollow").click(function(e){
-			if ( $(this).val() == "Follow" )follow(e);
-			else unfollow(e);
-		});
+
 	
 });
 	 function searcher() {
