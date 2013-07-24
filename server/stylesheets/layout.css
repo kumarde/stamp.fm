@@ -37,7 +37,7 @@ body {
 #header {
     min-width: 1000px;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Arimo', sans-serif;
-    background-color: rgba(180,7,6,.9);
+    background-color: #cc0000;
     width:80%;
     height: 40px;
     position: fixed;
@@ -141,6 +141,7 @@ overflow: auto;
 
 #header ul{
     list-style-type: none;
+    color: #FFFFFF;
 }
 
 #links #prof{
@@ -618,7 +619,7 @@ td{
 }
 
 #listName a:focus {
-    outline: 4px;
+    outline: none;
 }
 
 #listName li{

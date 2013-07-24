@@ -59,7 +59,7 @@ background-color: rgba(140,7,6,1);
 
 }
 
-.blurred{
+.inactive{
 	background-color: rgba(180,7,6,.5);
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
@@ -71,14 +71,15 @@ background-color: rgba(140,7,6,1);
 .selected{
     background-color: rgba(180,7,6,1);
 }
-/*.unclickable{
-	filter: blur(2px) grayscale(95%);
-	-webkit-filter: blur(2px) grayscale(95%);
-	-moz-filter: blur(2px) grayscale(95%);
-	-o-filter: blur(2px) grayscale(95%);
-	-ms-filter: blur(2px) grayscale(95%);
+
+.blurred{
+	filter: blur(7px);
+	-webkit-filter: blur(7px);
+	-moz-filter: blur(7px);
+	-o-filter: blur(7px);
+	-ms-filter: blur(7px);
 }
-*/
+
 
 #songOne{
 	width: 50%;
