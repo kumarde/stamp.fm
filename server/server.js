@@ -39,7 +39,7 @@ var songs = 0;
   var Feed = new FeedModule;
 
   
- db.music.insert({_id:0, name: "Don't You Worry Child", artistID: "0", artistName: "(Stamp Champ)Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
+ db.music.insert({_id:0, name: "Don't You Worry Child Cover", artistID: "51eef88e5e61878754000018", artistName: "(Stamp Champ)Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
  
  db.ads.insert({_id:"0", name:"Turtle Cell"});
 

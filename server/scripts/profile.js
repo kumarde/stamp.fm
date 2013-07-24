@@ -207,7 +207,7 @@ $(document).ready(function() {
 			$($("#playlistContent").find('.songname')[i]).prepend(" - ");
 			$($("#playlistContent").find('.songname')[i]).prepend($span);
 			
-			if (sid != "0")$span.click(function(){window.location = "/view?id="+data.artistID;});
+			$span.click(function(){window.location = "/view?id="+data.artistID;});
         }
       })
 	}
