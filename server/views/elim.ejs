@@ -27,13 +27,18 @@
 
       <div id="video">  
         <div id="selectSong">
+        <a href="" class="genreLink selected" id="rap" style="color:#FFFFFF">Rap and R&B</a>
+        <a href="" class="genreLink blurred" id="pop" style="color:#FFFFFF">Pop and Country</a>
+        <a href="" class="genreLink blurred" id="edm" style="color:#FFFFFF">EDM and Instrumental</a>
+        <a href="" class="genreLink blurred" id="folk" style="color:#FFFFFF">Folk and International</a>
+        <a href="" class="genreLink blurred" id="alt" style="color:#FFFFFF">Alternative and Hard Rock</a> 
 
           <ul id="selectSongList">
-            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected blurred"><spanV id="vidOne" style="font-size:30px;"><%=song1%></spanV><br><spanA id="artistOne" style="font-size:15px;"><%=user1%></spanA>
+            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected"><spanV id="vidOne" style="font-size:30px;"><%=song1%></spanV><br><spanA id="artistOne" style="font-size:15px;"><%=user1%></spanA>
               <div id = "one"> <%=votes1%> </div>
             </li>
             <span id="verses" style="margin-left:0.70%;float:left;margin-top:40px;font-size:25px;"><strong>vs</strong></span>
-            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred inactive"><spanV id="vidTwo" style="font-size:30px;"><%=song2%></spanV><br><spanA id="artistTwo" style="font-size:15px;"><%=user2%></spanA>
+            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred"><spanV id="vidTwo" style="font-size:30px;"><%=song2%></spanV><br><spanA id="artistTwo" style="font-size:15px;"><%=user2%></spanA>
               <div id = "two"> <%=votes2%> </div>
             </li>
 
@@ -52,20 +57,20 @@
           <script>
           $("document").ready(function(){
             $("input#playVidTwo").click(function() {
-            $('li#songTwo').removeClass("inactive");
+            $('li#songTwo').removeClass("blurred");
             $('li#songTwo').addClass("selected");
             $('li#songOne').removeClass("selected");
-            $('li#songOne').addClass("inactive");
+            $('li#songOne').addClass("blurred");
           })
           });          
           </script> 
           <script>
           $("document").ready(function(){
             $("input#playVidOne").click(function() {
-            $('li#songOne').removeClass("inactive");
+            $('li#songOne').removeClass("blurred");
             $('li#songOne').addClass("selected");
             $('li#songTwo').removeClass("selected");
-            $('li#songTwo').addClass("inactive");
+            $('li#songTwo').addClass("blurred");
           })
           });          
           </script>           
