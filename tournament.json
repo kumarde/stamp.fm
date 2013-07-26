@@ -1,0 +1,412 @@
+[
+	{
+		"_id" : "2",
+		"name" : "Mubaraktest",
+		"genre" : "Country",
+		"artistID" : "51da6a854317e3372800000c",
+		"artistName" : "OmarMHashwi"
+	},
+	{
+		"_id" : "3",
+		"name" : "Life In The Citi 2 (Intro)",
+		"genre" : "RnB",
+		"artistID" : "51da54f34317e33728000007",
+		"artistName" : "MotorCityKam"
+	},
+	{
+		"_id" : "4",
+		"name" : "Going Steady",
+		"genre" : "Alternative",
+		"artistID" : "609868747",
+		"artistName" : "Matt Hoebeke",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "5",
+		"name" : "Crash N' Smash",
+		"genre" : "Hardrock",
+		"artistID" : "51dc8e6452e95da743000007",
+		"artistName" : "I'm William Cutting",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "11",
+		"name" : "Noise  Mix",
+		"genre" : "EDM",
+		"artistID" : "527670733",
+		"artistName" : "Rayan El Zein",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "10",
+		"name" : "Sorry Jack, It's Just Good Business",
+		"genre" : "Hardrock",
+		"artistID" : "1557826663",
+		"artistName" : "Zack Walby",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "14",
+		"name" : "Habits Of Failure",
+		"genre" : "Hardrock",
+		"artistID" : "51df08cf91464add56000001",
+		"artistName" : "Our Vices",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "15",
+		"name" : "It's Getting Old",
+		"genre" : "Alternative",
+		"artistID" : "51ddb31d52e95da74300001d",
+		"artistName" : "Alex Hathaway",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "16",
+		"name" : "End Of Time",
+		"genre" : "Hardrock",
+		"artistID" : "51e0792ac34cf2390d000001",
+		"artistName" : "Donald R Miller",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "17",
+		"name" : "Kill Me",
+		"genre" : "Alternative",
+		"artistID" : "100000028561374",
+		"artistName" : "Julie Haven",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "18",
+		"name" : "Overhaul",
+		"genre" : "Alternative",
+		"artistID" : "100004236040504",
+		"artistName" : null,
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "19",
+		"name" : "She Screams",
+		"genre" : "Alternative",
+		"artistID" : "51e4460e30af85350f000019",
+		"artistName" : "Louis George",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "20",
+		"name" : "Storm The Masses",
+		"genre" : "Hardrock",
+		"artistID" : "743382414",
+		"artistName" : "Travis Harker",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "22",
+		"name" : "You Say You Love Me",
+		"genre" : "Rap",
+		"artistID" : "751779739",
+		"artistName" : "Chris Justchrisnotchristopherchris Chris",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "33",
+		"name" : "Little Ghost",
+		"genre" : "Alternative",
+		"artistID" : "51e8ad277db62f0944000013",
+		"artistName" : "Brian Rizza",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "36",
+		"name" : "Blown Away",
+		"genre" : "Country",
+		"artistID" : "100003133278486",
+		"artistName" : "Brennan Michael-David Prill",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "24",
+		"name" : "Pastime",
+		"genre" : "Instrumental",
+		"artistID" : "100000173247280",
+		"artistName" : "Pete Metropoulos",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "41",
+		"name" : "Epic Storm",
+		"genre" : "Hardrock",
+		"artistID" : "100000173247280",
+		"artistName" : "Pete Metropoulos",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "42",
+		"name" : "Order Out Of Chaos",
+		"genre" : "International",
+		"artistID" : "100000173247280",
+		"artistName" : "Pete Metropoulos",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "43",
+		"name" : "Get Down",
+		"genre" : "Instrumental",
+		"artistID" : "100005719091472",
+		"artistName" : "Seven ThirtySeven",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "44",
+		"name" : "Tangerine",
+		"genre" : "Pop",
+		"artistID" : "51e73ae4e1486eab3100001e",
+		"artistName" : "Mella",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "47",
+		"name" : "FUXK MY EX",
+		"genre" : "Rap",
+		"artistID" : "100006305652759",
+		"artistName" : null,
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "49",
+		"name" : "Pathway To The Hidden Warrior",
+		"genre" : "Instrumental",
+		"artistID" : "1479193154",
+		"artistName" : "Steven Buckner",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "51",
+		"name" : "Heaven Vs. Hell",
+		"genre" : "International",
+		"artistID" : "1479193154",
+		"artistName" : "Steven Buckner",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "52",
+		"name" : "Commodore Dayz",
+		"genre" : "EDM",
+		"artistID" : "1479193154",
+		"artistName" : "Steven Buckner",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "53",
+		"name" : "Life Goes On",
+		"genre" : "Rap",
+		"artistID" : "734509107",
+		"artistName" : "Dae'lon I. Simmond",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "55",
+		"name" : "Chilled Breeze",
+		"genre" : "RnB",
+		"artistID" : "734509107",
+		"artistName" : "Dae'lon I. Simmond",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "66",
+		"name" : "Divide & Conquer",
+		"genre" : "Alternative",
+		"artistID" : "51ed4a84e4c78af54700001c",
+		"artistName" : "Paradox Please",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "67",
+		"name" : "Bombshell",
+		"genre" : "EDM",
+		"artistID" : "514939451",
+		"artistName" : "Michael McCrindle",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "70",
+		"name" : "Kia's Song",
+		"genre" : "Pop",
+		"artistID" : "51eee6055e61878754000016",
+		"artistName" : "Nate",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "71",
+		"name" : "Lying Tongue",
+		"genre" : "Hardrock",
+		"artistID" : "51ef3f7d5e61878754000032",
+		"artistName" : "Nails of Grace",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "72",
+		"name" : "What HE's Done in Me",
+		"genre" : "RnB",
+		"artistID" : "51ef3f7d5e61878754000032",
+		"artistName" : "Nails of Grace",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "73",
+		"name" : "Death Come Quickly",
+		"genre" : "Alternative",
+		"artistID" : "51eff8568152d18a5c000001",
+		"artistName" : "Recreational Suicide",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "74",
+		"name" : "I don't wanna fuck with you",
+		"genre" : "Alternative",
+		"artistID" : "682259154",
+		"artistName" : "Kenny Holley",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "78",
+		"name" : "Sleepwalker",
+		"genre" : "Pop",
+		"artistID" : "100004370678407",
+		"artistName" : "Matthew Verstrate",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "79",
+		"name" : "No God for Dogs (Tribute to M. Jovovich)",
+		"genre" : "EDM",
+		"artistID" : "51f03df33324d2795e00000b",
+		"artistName" : "Progenitior Virus",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "82",
+		"name" : "The Copper Sword",
+		"genre" : "Folk",
+		"artistID" : "689506830",
+		"artistName" : "Dan Lawrence",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "83",
+		"name" : "The Loud Way Out",
+		"genre" : "Hardrock",
+		"artistID" : "1266984756",
+		"artistName" : "Jordan Everts",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "85",
+		"name" : "Paradise",
+		"genre" : "International",
+		"artistID" : "1267890006",
+		"artistName" : "Ramona Joy",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "90",
+		"name" : "Hollow Log",
+		"genre" : "Folk",
+		"artistID" : "51f0a2863324d2795e000018",
+		"artistName" : "John Steffenson",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "92",
+		"name" : "Behind the Sun",
+		"genre" : "Folk",
+		"artistID" : "25712978",
+		"artistName" : "Anthony Lai",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "91",
+		"name" : "You Make It Right",
+		"genre" : "Pop",
+		"artistID" : "25712978",
+		"artistName" : "Anthony Lai",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "95",
+		"name" : "Whisper Within",
+		"genre" : "Hardrock",
+		"artistID" : "51f0c1363324d2795e000020",
+		"artistName" : "FINAL CONFESSION",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "96",
+		"name" : "Get Back to Back",
+		"genre" : "Country",
+		"artistID" : "51f17c593324d2795e00002d",
+		"artistName" : "North Country Flyers",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "98",
+		"name" : "Bass Existence VIP",
+		"genre" : "EDM",
+		"artistID" : "1387406733",
+		"artistName" : "Δαμοκλῆς Στέφανος",
+		"votes" : 0,
+		"views" : 0
+	},
+	{
+		"_id" : "100",
+		"name" : "Kingdom Uncome",
+		"genre" : "Instrumental",
+		"artistID" : "1387406733",
+		"artistName" : "Δαμοκλῆς Στέφανος",
+		"votes" : 0,
+		"views" : 0
+	}
+]
