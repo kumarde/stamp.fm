@@ -11,7 +11,7 @@ var flash = require('connect-flash')
   , graph = require('fbgraph')
   , fs = require('fs')
   , dbtest = require('mongojs').connect("test", ["tournament", "locals"])
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists", "temps"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -149,22 +149,30 @@ var pop_array;
 var temp;
 
 app.get('/elim', function(req, res){
-  if (req.session.user == null && req.user == null) {
+  if (req.session.user == null && req.user == null && req.session.temp == null) {
       res.redirect('/');
   }
   else {
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			if(req.session.user[0] == undefined){
-			id = req.session.user._id;
-			} else {
-				id = req.session.user[0]._id;
+		var dbt = db.profiles;
+		if (req.session.temp == null ){
+		
+			if(req.session.user == null){
+				id = req.user[0]._id;
+			}
+			else if(req.user == null){
+				if(req.session.user[0] == undefined){
+				id = req.session.user._id;
+				} else {
+					id = req.session.user[0]._id;
+				}
 			}
 		}
-  
-		db.profiles.findOne({_id:id}, function(e,p){
+		else {
+				id = req.session.temp._id;
+				dbt = db.temps;
+		}
+	
+		dbt.findOne({_id:id}, function(e,p){
 			
 			if (!p.elim){
   
@@ -182,8 +190,8 @@ app.get('/elim', function(req, res){
 					dbtest.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
 						db.profiles.findOne({_id: o2.artistID}, function(e, user2){
 							var e = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes};
-							db.profiles.update({_id: id},{$set: {elim:e}});
-							res.render('elim', {imgid: "0", v1id: rap_array[temp]._id, v2id:rap_array[temp+1]._id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+							dbt.update({_id: id},{$set: {elim:e}});
+							res.render('elim', {imgid: "0", v1id: e.v1id, v2id:e.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
 
 						});
 					});
@@ -210,74 +218,90 @@ app.get('/elim', function(req, res){
 });
 
 app.post('/testvote', function(req, res){
-  if (req.session.user == null && req.user == null) {
+  if (req.session.user == null && req.user == null && req.session.temp == null) {
       res.redirect('/');
   }
   else {
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			if(req.session.user[0] == undefined){
+	var dbt = db.profiles;
+		if (req.session.temp == null ){
+		
+			if(req.session.user == null){
+				id = req.user[0]._id;
+			}
+			else if(req.user == null){
+				if(req.session.user[0] == undefined){
 				id = req.session.user._id;
-			} else {
-				id = req.session.user[0]._id;
+				} else {
+					id = req.session.user[0]._id;
+				}
 			}
 		}
-  
-		db.profiles.findOne({_id:id}, function(e,p){
+		else {
+				id = req.session.temp._id;
+				dbt = db.temps;
+		}
+	
+		dbt.findOne({_id:id}, function(e,p){
 		  if (req.body.vid == p.elim.v1id || req.body.vid == p.elim.v2id){
-			  db.profiles.update({_id:id},{$unset:{elim:""}});
+			  dbt.update({_id:id},{$unset:{elim:""}});
 			  dbtest.tournament.update({_id: req.body.vid}, {$inc: {votes:1}});
 			  res.send(204);
 		  
 		  }else res.send(204);
 		});
-  }
+	}
 });
 
 app.post('/playNext', function(req, res){
-  if (req.session.user == null && req.user == null) {
+  if (req.session.user == null && req.user == null && req.session.temp == null) {
       res.redirect('/');
   }
   else {
-		if(req.session.user == null){
-			id = req.user[0]._id;
-		}
-		else if(req.user == null){
-			if(req.session.user[0] == undefined){
+	var dbt = db.profiles;
+		if (req.session.temp == null ){
+		
+			if(req.session.user == null){
+				id = req.user[0]._id;
+			}
+			else if(req.user == null){
+				if(req.session.user[0] == undefined){
 				id = req.session.user._id;
-			} else {
-				id = req.session.user[0]._id;
+				} else {
+					id = req.session.user[0]._id;
+				}
 			}
 		}
+		else {
+				id = req.session.temp._id;
+				dbt = db.temps;
+		}
+		
+	dbt.findOne({_id:id}, function(e,p){
+		
+		if (!p.elim ){
+			  console.log(rap_array);
+			  console.log(cRap);
+			  var e = {v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, v1name: rap_array[cRap].name, v2name: rap_array[cRap+1].name, v1artist: rap_array[cRap].artistName, v2artist: rap_array[cRap+1].artistName, v1v: rap_array[cRap].votes, v2v: rap_array[cRap+1].votes};
+			 dbt.update({_id:id},{$set:{elim:e}});
+			 res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, votes1: rap_array[cRap].votes, votes2: rap_array[cRap+1].votes, s1:rap_array[cRap].name , s2:rap_array[cRap+1].name, a1: rap_array[cRap].artistName, a2: rap_array[cRap+1].artistName});
+			  elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+				console.log("C: :" + cRap + " total: " + totalRap);
+				if(inc){
+				  cRap += 2;
+				  dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+				} 
+				else{
+				  rap_array = newArray;
+				  cRap = 0;
+				  dbtest.locals.update({_id: "Rap"}, {$set: {array: rap_array, c: 0}});
+				}
+			  });  
+		  }else {
+			res.send({v1id: p.elim.v1id, v2id: p.elim.v2id, votes1: p.elim.v1v, votes2: p.elim.v2v, s1:p.elim.v1name , s2:p.elim.v2name, a1: p.elim.v1artist, a2: p.elim.v2artist});
 
-		db.profiles.findOne({_id:id}, function(e,p){
-			
-			if (!p.elim ){
-				  console.log(rap_array);
-				  console.log(cRap);
-				  var e = {v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, v1name: rap_array[cRap].name, v2name: rap_array[cRap+1].name, v1artist: rap_array[cRap].artistName, v2artist: rap_array[cRap+1].artistName, v1v: rap_array[cRap].votes, v2v: rap_array[cRap+1].votes};
-				 db.profiles.update({_id:id},{$set:{elim:e}});
-				 res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, votes1: rap_array[cRap].votes, votes2: rap_array[cRap+1].votes, s1:rap_array[cRap].name , s2:rap_array[cRap+1].name, a1: rap_array[cRap].artistName, a2: rap_array[cRap+1].artistName});
-				  elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
-					console.log("C: :" + cRap + " total: " + totalRap);
-					if(inc){
-					  cRap += 2;
-					  dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
-					} 
-					else{
-					  rap_array = newArray;
-					  cRap = 0;
-					  dbtest.locals.update({_id: "Rap"}, {$set: {array: rap_array, c: 0}});
-					}
-				  });  
-			  }else {
-				res.send({v1id: p.elim.v1id, v2id: p.elim.v2id, votes1: p.elim.v1v, votes2: p.elim.v2v, s1:p.elim.v1name , s2:p.elim.v2name, a1: p.elim.v1artist, a2: p.elim.v2artist});
-
-			  }
-	  });
-  }
+		  }
+	});
+	}
 });
 
 db.music.count(function(err, count){
@@ -1260,35 +1284,47 @@ app.get('/browse', function(req,res){
   }   
 })
 
-app.get('/init', function(req,res){
-
-	if(req.session.user == undefined){
-        id = req.user[0]._id;
-    }
-    else if(req.user == undefined){
-        if(req.session.user[0] == undefined){
-            id = req.session.user._id;
-        } else{
-            id = req.session.user[0]._id;
-        }
-    }  
+app.get('/tempaccount', function(req, res) {
+        var email = req.query["e"];
+        var pass = req.query["p"];
+        
+        db.temps.findOne({_id:email}, function(e,o){
+			if (!e && o)
+				if(pass == o.pass){
+					req.session.temp = o;
+					res.redirect("/elim");
+				}
+		});
+		
+});
 	
-	db.profiles.update({_id:id},{$unset:{elim:""}});
+app.post('/tempacc',function(req,res){
+	var o = {email:req.body.email,pass:makeid()};
+	
+	db.temps.remove({_id:o.email});
+	db.temps.save({_id:o.email, pass:o.pass});
+	var options = emailModule.tempAccount(o);
+	emailModule.dispatchResponse(options, function(e, m){
+                if(!e){
+                     res.send({redirect:'/'});
+                } else{
+                    res.send({redirect:'/'});
+                    for(k in e) console.log('error : ', k, e[k]);
+                }
+            });
+});	
+	
+app.get('/init',function(req,res){
+	db.users.remove();
+	db.profiles.remove();
 	
 	dbtest.locals.remove();
-	dbtest.tournament.remove();
-	
-	for (var i = 6; i < 20; i++){
-		dbtest.tournament.save({ _id: i+"", votes:0, views:0, genre: "Rap", artistName: "Artist " + i, artistID: i+"", name: "Song " + i });
-	}
-	
-	for ( var i = 6; i < 20; i++){
-		db.profiles.save({artistName: "Artist " + i, _id: i+""});
-	}
-	
-	res.send("done");
-	
+	dbtest.tournament.update({genre:"Rap"}, {$set:{votes:0, views:0}},{multi:true});
+	db.temps.remove();
+	res.send("asd");
 });
+
+
 
 /*****************************************404**************************************************/
 app.get("*", function(req, res){
@@ -1299,3 +1335,14 @@ app.get("*", function(req, res){
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Server listening on port " + app.get('port'));
 });
+
+function makeid()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 10; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}

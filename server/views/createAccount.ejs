@@ -42,6 +42,30 @@ fb_param.currency = 'USD';
 
 
 <div class="blurb">
+<input type="text" id="tempemail">
+<input type="submit" id="tempsub">
+
+<script>
+$(document).ready(function(){
+	$("#tempsub").click(function(){
+		$.ajax({ 
+				url: '/tempacc',
+				type: 'POST',
+				cache: false, 
+				data: { email: $('#tempemail').val()},
+				success: function(data){
+				if (typeof data.redirect == 'string' )window.location = data.redirect;
+				else if (typeof data.error == 'string')console.log(data.error);
+				else console.log(data);
+				}
+		});
+	});
+});
+
+</script>
+
+
+
 <p style="font-size: 40px" class="big">Music lovers worldwide, rejoice.
    Discover or compete.
 </p>

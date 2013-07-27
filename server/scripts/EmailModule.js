@@ -72,6 +72,27 @@ EmailModule.prototype.composeEmail = function(o)
 	return mailOptions;
 }
 
+EmailModule.prototype.tempAccount = function(o){
+	var link = "localhost:8888/tempaccount?e="+o.email+"&p="+o.pass;
+	var a = "<a href = "+link+"> Click here to activate</a><br><br>";
+	var html = "<html><body>";
+		html += "Copy and Paste this link into your browser to activate<br><br>";
+		html += link;
+		html += "<br><br>";
+		html += "Cheers,<br>";
+		html += "<a href='http://twitter.com/stamp.fm'>stamp.fm</a><br><br>";
+		html += "</body></html>";
+	var mailOptions = {
+		from:"Stamp.fm <debug12@gmail.com>",
+		to: o.email,
+		subject: "Stamp.fm Temporary Access",
+		text: "Activate your temporary access.",
+		html: html
+	}
+	return mailOptions;
+}
+
+
 EmailModule.prototype.dispatchResponse = function(o, callback){
 	smtpTransport.sendMail(o, function(e, res){
 		if(e) console.log(e);
