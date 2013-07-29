@@ -959,9 +959,7 @@ app.get('/view', function(req, res){
                           else{
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
-                          db.music.find({$and: [{artistID: pid, inTourney:"Submitted"}]}, function(e, tournament){
-                          	res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null", follow: follow, tournament: tournament});	
-                         	 })
+                         res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null", follow: follow});
                           })
                         })        
                 }
@@ -1253,9 +1251,7 @@ app.get('/browse', function(req,res){
    else{
     imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
     }
-    db.music.find(function(e,songs){
-      res.render('browse', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, facebook: profile.facebook, songs:songs, twitter: profile.twitter, createModal: "null"});
-       });
+    res.render('browse', {id: id, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, facebook: profile.facebook, twitter: profile.twitter, createModal: "null"});
     });
   }   
 })
@@ -1278,6 +1274,10 @@ app.get('/init', function(req,res){
 	dbtest.locals.remove();
 	dbtest.tournament.remove();
 	
+	
+	
+	
+	
 	for (var i = 6; i < 20; i++){
 		dbtest.tournament.save({ _id: i+"", votes:0, views:0, genre: "Rap", artistName: "Artist " + i, artistID: i+"", name: "Song " + i });
 	}
@@ -1288,6 +1288,52 @@ app.get('/init', function(req,res){
 	
 	res.send("done");
 	
+});
+
+app.post('/songGen',function(req,res){
+   if(req.session.user == undefined && req.user == undefined){
+            res.redirect('/');
+    }
+    else{
+        var vid = 0;
+        var id;
+        if(req.session.user == undefined){
+            id = req.user[0]._id;
+        }
+        else if(req.user == undefined){
+            if(req.session.user[0] == undefined){
+                id = req.session.user._id;
+            }
+            else{
+                id = req.session.user[0]._id;
+            }
+        }
+
+    var profiles = [];
+    var imgurl;
+    db.music.find(function(e, songs){
+      db.profiles.find(function(e, profs){
+      for(var i = 0; i<songs.length; ++i){
+      for(var j = 0; j<profs.length; ++j){
+        if(profs[j]._id == songs[i].artistID){
+          if(profs[j].url && profs[j].changedPic == "none"){
+            imgurl = profile.url;
+          }
+          else if(profs[j].changedPic === "true" || profs[j].changedPic === "none"){
+            imgurl = myS3Account.readPolicy(profs[j]._id, PIC_BUCKET, 60);
+          }
+          else{
+            imgurl = myS3Account.readPolicy(profs[j]._id, PIC_BUCKET, 60);
+          }
+          profs[j].url = imgurl;
+          profiles.push(profs[j]);
+        }
+      }
+      }
+      res.send({songs:songs, id:id, profiles:profiles});
+    })
+    })
+  }
 });
 
 /*****************************************404**************************************************/

@@ -32,34 +32,32 @@
 
       <div id="artistInfo">
         <div id="selected_pic">
-	       <img src="stampman.png" style="width:80px;position:relative;">
-	       <span id="artistNameSelected">Artist Name</span>
-         <input type="button" value="Follow" class="stampFollow" id="<%=id%>"/>    
+	       <img id = "imgid" src="stampman.png" style="height:80px;width:80px;position:relative;">
+	       <span id="artistNameSelected">Artist Name</span> 
         </div>
         <div id="songList">
 
           <!--<div class="c2" id="otherSongsLabel" style="border-bottom: 1px solid rgba(0,0,0,.4);">
             <b><spanLabel id="artistSongLabel" style="float:left;margin-left:37%;vertical-align:middle;">Artist's Songs</spanLabel></b>
           </div>          -->
-          <% songs.forEach(function(song){ %>
-            <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
-             <div data-tag ="<%=song._id%>" class = "songname" style="float:left;"><%= song.name %></div><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><br>
+            <!--
+            <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "">
+             <div data-tag ="" class = "songname" style="float:left;">song.name</div><img data-name = "" data-tag ="" class = "vidPlay" src="play.jpg" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><img data-name = "" data-tag ="" class = "addPlay" src="favoriteIcon.png" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><br>
             </tr>
-          <% }); %>
+          -->
         </div> 
       </div>
     </div>
 
     <div id="artists">
-      <% for(var artists=0;artists<50;artists++){ %>
-	<div class="artist">
+	<!--<div class="artist">
 	  <img class="artist_pic" src="stampman.png" style="height:100%;width:100%;"><br>
     <ul id="songInfo">
-    <li><span class="song_name">Song Name</span></li><br>
-	  <li><span class="artist_name">Artist Name</span></li>
+    <li><span class="song_name">song.name</span></li><br>
+	  <li><span class="artist_name">song.artistName</span></li>
     </ul>
 	</div>
-      <% } %>
+  -->
     </div>
     </div>
   </body>
