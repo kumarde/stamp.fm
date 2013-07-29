@@ -73,11 +73,21 @@ EmailModule.prototype.composeEmail = function(o)
 }
 
 EmailModule.prototype.tempAccount = function(o){
-	var link = "localhost:8888/tempaccount?e="+o.email+"&p="+o.pass;
+	var link = "http://localhost:8888/tempaccount?e="+o.email+"&p="+o.pass;
 	var a = "<a href = "+link+"> Click here to activate</a><br><br>";
 	var html = "<html><body>";
-		html += "Copy and Paste this link into your browser to activate<br><br>";
+		html += "Congratulations! You now have access to judge the Stamp.fm contestants.<br><br>";
+		html += "Copy and paste this link to your broswer to start voting.<br><br>"
 		html += link;
+		html += "For all inclusive access, register for FREE at stamp.fm, to";
+		html += "<ul>
+				<li>Judging (the only feature you have access to now)</li>
+				<li> Creating a profile </li>
+				<li> Adding songs to your favorites </li>
+				<li> Downloading songs (soon to be implemented </li>
+				<li> [Artists] Uploading songs to your profile </li>
+				<li> [Artists] Competing in the tournament </li>
+				<li> [Artists] Promoting your music </li></ul><br><br>";
 		html += "<br><br>";
 		html += "Cheers,<br>";
 		html += "<a href='http://twitter.com/stamp.fm'>stamp.fm</a><br><br>";
