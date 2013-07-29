@@ -125,8 +125,11 @@ $('#playVidOne').click(function(e){
 				var $vid_obj = _V_("vidYo");
 				$vid_obj.ready(function(){
 					$vid_obj.pause();
-					$vid_obj.get(0).currenTime = 0;
+					$vid_obj.currentTime(0);
+					setTimeout(function(){$('#songOne').click();},100);
 				});
+				
+				
 			}
 		});
 	});

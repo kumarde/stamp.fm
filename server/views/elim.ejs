@@ -27,13 +27,19 @@
 
       <div id="video">  
         <div id="selectSong">
+    <!--    <a href="" class="genreLink selected" id="rap" style="color:#FFFFFF">Rap and R&B</a>
+        <a href="" class="genreLink blurred" id="pop" style="color:#FFFFFF">Pop and Country</a>
+        <a href="" class="genreLink blurred" id="edm" style="color:#FFFFFF">EDM and Instrumental</a>
+        <a href="" class="genreLink blurred" id="folk" style="color:#FFFFFF">Folk and International</a>
+        <a href="" class="genreLink blurred" id="alt" style="color:#FFFFFF">Alternative and Hard Rock</a> 
+-->
 
           <ul id="selectSongList">
-            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected blurred"><spanV id="vidOne" style="font-size:30px;"><%=song1%></spanV><br><spanA id="artistOne" style="font-size:15px;"><%=user1%></spanA>
+            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected"><spanV id="vidOne" style="font-size:30px;"><%=song1%></spanV><br><spanA id="artistOne" style="font-size:15px;"><%=user1%></spanA>
               <div id = "one"> <%=votes1%> </div>
             </li>
             <span id="verses" style="margin-left:0.70%;float:left;margin-top:40px;font-size:25px;"><strong>vs</strong></span>
-            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred inactive"><spanV id="vidTwo" style="font-size:30px;"><%=song2%></spanV><br><spanA id="artistTwo" style="font-size:15px;"><%=user2%></spanA>
+            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred"><spanV id="vidTwo" style="font-size:30px;"><%=song2%></spanV><br><spanA id="artistTwo" style="font-size:15px;"><%=user2%></spanA>
               <div id = "two"> <%=votes2%> </div>
             </li>
 
@@ -52,20 +58,20 @@
           <script>
           $("document").ready(function(){
             $("input#playVidTwo").click(function() {
-            $('li#songTwo').removeClass("inactive");
+            $('li#songTwo').removeClass("blurred");
             $('li#songTwo').addClass("selected");
             $('li#songOne').removeClass("selected");
-            $('li#songOne').addClass("inactive");
+            $('li#songOne').addClass("blurred");
           })
           });          
           </script> 
           <script>
           $("document").ready(function(){
             $("input#playVidOne").click(function() {
-            $('li#songOne').removeClass("inactive");
+            $('li#songOne').removeClass("blurred");
             $('li#songOne').addClass("selected");
             $('li#songTwo').removeClass("selected");
-            $('li#songTwo').addClass("inactive");
+            $('li#songTwo').addClass("blurred");
           })
           });          
           </script>           
@@ -73,8 +79,8 @@
         </div>                              
 
         <div class="c12 end" id="videoPlayer" style="border:none">
-          <ul id="songOneVote" style="float:left; margin-left:2%;" class="unclickable">
-            <li id="labelOne">
+          <ul id="songOneVote" style="float:left; margin-left:2%; max-width:150px; overflow:hidden;" class="unclickable">
+            <li id="labelOne" sytle="">
               <labelName id = "subartist1" style="font-size:15px;"><b><%=user1%></b></labelName>
             </li>               
             <li id="stampVote">
@@ -103,8 +109,8 @@
           </ul>      
 
           <ul id="songTwoVote" style="float:right; margin-right:5%;" class="unclickable">
-            <li id="labelTwo">
-              <labelName id = "subartist2" style="font-size:15px;"><b><%=user2%></b></labelName>
+            <li id="labelTwo"> 
+              <labelName id = "subartist2" style="font-size:15px;max-width:150px; overflow:hidden;"><b><%=user2%></b></labelName>
             </li>                   
             <li id="stampVote">
               <img data-tag="<%=v2id%>"src="favoriteIcon.png" id="voteTwo" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
