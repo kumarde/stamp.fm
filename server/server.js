@@ -11,7 +11,7 @@ var flash = require('connect-flash')
   , graph = require('fbgraph')
   , fs = require('fs')
   , dbtest = require('mongojs').connect("test", ["tournament", "locals"])
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists", "temps"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists", "temps", "locals"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -171,7 +171,6 @@ app.get('/elim', function(req, res){
 				id = req.session.temp._id;
 				dbt = db.temps;
 		}
-	
 		dbt.findOne({_id:id}, function(e,p){
 			
 			if (!p.elim){
@@ -181,13 +180,13 @@ app.get('/elim', function(req, res){
 				rap_array = array;
 				totalRap = rap_array.length;
 				cRap = c;
-				  temp = c;
+				temp = c;
 			//find song where rap_array[cRap]._id, get artistID, get songName
 			//find profile where artistID is _id, get name
 			console.log(rap_array);
-			dbtest.tournament.findOne({_id: rap_array[temp]._id}, function(e, o){
+			db.tournament.findOne({_id: rap_array[temp]._id}, function(e, o){
 				db.profiles.findOne({_id: o.artistID}, function(e, user){
-					dbtest.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
+					db.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
 						db.profiles.findOne({_id: o2.artistID}, function(e, user2){
 							var e = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes};
 							dbt.update({_id: id},{$set: {elim:e}});
@@ -201,12 +200,12 @@ app.get('/elim', function(req, res){
 			  console.log("C: :" + cRap + " total: " + totalRap);
 			  if(inc == 1){
 				cRap += 2;
-				dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+				db.locals.update({_id: "Rap"}, {$set: {c: cRap}});
 			  }
 			  else{
 				rap_array = newArray;
 				cRap = 0;
-				dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap, array: rap_array}});
+				db.locals.update({_id: "Rap"}, {$set: {c: cRap, array: rap_array}});
 			  }
 			});
 		  });
@@ -244,7 +243,7 @@ app.post('/testvote', function(req, res){
 		dbt.findOne({_id:id}, function(e,p){
 		  if (req.body.vid == p.elim.v1id || req.body.vid == p.elim.v2id){
 			  dbt.update({_id:id},{$unset:{elim:""}});
-			  dbtest.tournament.update({_id: req.body.vid}, {$inc: {votes:1}});
+			  db.tournament.update({_id: req.body.vid}, {$inc: {votes:1}});
 			  res.send(204);
 		  
 		  }else res.send(204);
@@ -288,12 +287,12 @@ app.post('/playNext', function(req, res){
 				console.log("C: :" + cRap + " total: " + totalRap);
 				if(inc){
 				  cRap += 2;
-				  dbtest.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+				  db.locals.update({_id: "Rap"}, {$set: {c: cRap}});
 				} 
 				else{
 				  rap_array = newArray;
 				  cRap = 0;
-				  dbtest.locals.update({_id: "Rap"}, {$set: {array: rap_array, c: 0}});
+				  db.locals.update({_id: "Rap"}, {$set: {array: rap_array, c: 0}});
 				}
 			  });  
 		  }else {
@@ -1295,7 +1294,6 @@ app.get('/tempaccount', function(req, res) {
 					res.redirect("/elim");
 				}
 		});
-		
 });
 	
 app.post('/tempacc',function(req,res){
