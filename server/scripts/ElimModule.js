@@ -1,6 +1,6 @@
 EliminationModule = function(){};
 
-var db = require('mongojs').connect("test", ["tournament", "locals"]);
+var db = require('mongojs').connect("stampfm", ["tournament", "locals"]);
 
 EliminationModule.prototype.initElim = function(genre, callback){
 	db.locals.findOne({_id: genre}, function(e, o){
