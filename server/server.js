@@ -1331,6 +1331,34 @@ app.post('/counter', function(req,res){
 	}
 });
 
+app.get('/tempaccount', function(req, res) {
+    var email = req.query["e"];
+    var pass = req.query["p"];
+        
+    db.temps.findOne({_id:email}, function(e,o){
+		if (!e && o)
+		if(pass == o.pass){
+			req.session.temp = o;
+			res.redirect("/elim");
+		}
+	});
+});
+
+app.post('/tempacc',function(req,res){
+	var o = {email:req.body.email,pass:makeid()};
+
+	db.temps.remove({_id:o.email});
+	db.temps.save({_id:o.email, pass:o.pass});
+	var options = emailModule.tempAccount(o);
+	emailModule.dispatchResponse(options, function(e, m){
+        if(!e){
+            res.send({redirect:'/'});
+        } else{
+			es.send({redirect:'/'});
+            for(k in e) console.log('error : ', k, e[k]);
+        }
+    });
+});	
 app.get('/init',function(req,res){
 	db.users.remove();
 	db.profiles.remove();
