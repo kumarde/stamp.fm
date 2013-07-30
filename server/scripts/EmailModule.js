@@ -26,6 +26,37 @@ EmailModule.prototype.composeFeedback = function(o)
 	}
 	return mailOptions;
 }
+EmailModule.prototype.tempAccount = function(o){
+	var link = "http://localhost:8888/tempaccount?e="+o.email+"&p="+o.pass;
+	var a = "<a href = "+link+"> Click here to activate</a><br><br>";
+	var html = "<html><body>";
+	html += "Congratulations! You now have access to judge the Stamp.fm contestants.<br><br>";
+	html += "Copy and paste this link to your broswer to start voting.<br><br>"
+	html += link;
+	html += "<br>"
+	html += "For all inclusive access, register for FREE at stamp.fm, to";
+	html += "<ul>";
+	html += "<li>Judging (the only feature you have access to now)</li>";
+	html += "<li> Creating a profile </li>";
+	html += "<li> Adding songs to your favorites </li>";
+	html += "<li> Downloading songs (soon to be implemented </li>";
+	html += "<li> [Artists] Uploading songs to your profile </li>";
+	html += "<li> [Artists] Competing in the tournament </li>";
+	html += "<li> [Artists] Promoting your music </li></ul><br><br>";
+	html += "<br><br>";
+	html += "Cheers,<br>";
+	html += "<a href='http://twitter.com/stamp.fm'>stamp.fm</a><br><br>";
+	html += "</body></html>";
+	var mailOptions = {
+		from:"Stamp.fm <debug12@gmail.com>",
+		to: o.email,
+		subject: "Stamp.fm Temporary Access",
+		text: "Activate your temporary access.",
+		html: html
+	}
+	return mailOptions;
+}
+
 
 EmailModule.prototype.composeResponse = function(o)
 {
