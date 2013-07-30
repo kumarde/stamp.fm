@@ -1030,7 +1030,7 @@ app.get('/view', function(req, res){
 })
 
 app.post('/vidPlay', function(req, res){
-		if (req.session.user == null && req.user == null) {
+		if (req.session.user == null && req.user == null && req.session.temp == null) {
 			res.redirect('/');
 		}
 else{
