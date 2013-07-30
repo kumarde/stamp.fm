@@ -1331,7 +1331,15 @@ app.post('/counter', function(req,res){
 	}
 });
 
+app.get('/init',function(req,res){
+	db.users.remove();
+	db.profiles.remove();
 
+	db.locals.remove();
+	db.tournament.update({genre:"Rap"}, {$set:{votes:0, views:0}},{multi:true});
+	db.temps.remove();
+	res.send("asd");
+});
 /*****************************************404**************************************************/
 app.get("*", function(req, res){
       res.redirect('/profile');
