@@ -1129,7 +1129,7 @@ app.post('/playDelete', function(req, res){
 
 
     var sid = req.body.id;
-    db.playlists.remove({songID: sid, artistID: id}, true);
+    db.playlists.remove({$and : [{songID: sid}, {artistID: id}]}, true);
     res.send({msg: "Deleted", id: req.body.id});
 	}
 });
