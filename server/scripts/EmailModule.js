@@ -79,15 +79,16 @@ EmailModule.prototype.tempAccount = function(o){
 		html += "Congratulations! You now have access to judge the Stamp.fm contestants.<br><br>";
 		html += "Copy and paste this link to your broswer to start voting.<br><br>"
 		html += link;
+		html += "<br>"
 		html += "For all inclusive access, register for FREE at stamp.fm, to";
-		html += "<ul>
-				<li>Judging (the only feature you have access to now)</li>
-				<li> Creating a profile </li>
-				<li> Adding songs to your favorites </li>
-				<li> Downloading songs (soon to be implemented </li>
-				<li> [Artists] Uploading songs to your profile </li>
-				<li> [Artists] Competing in the tournament </li>
-				<li> [Artists] Promoting your music </li></ul><br><br>";
+		html += "<ul>";
+		html += "<li>Judging (the only feature you have access to now)</li>";
+		html += "<li> Creating a profile </li>";
+		html += "<li> Adding songs to your favorites </li>";
+		html += "<li> Downloading songs (soon to be implemented </li>";
+		html += "<li> [Artists] Uploading songs to your profile </li>";
+		html += "<li> [Artists] Competing in the tournament </li>";
+		html += "<li> [Artists] Promoting your music </li></ul><br><br>";
 		html += "<br><br>";
 		html += "Cheers,<br>";
 		html += "<a href='http://twitter.com/stamp.fm'>stamp.fm</a><br><br>";

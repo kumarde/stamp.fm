@@ -61,7 +61,7 @@ db.music.count(function(e, count){
 var flag = false; 
 
 var client = knox.createClient({
-    key: S3_KEY,
+    key   : S3_KEY,
     secret: S3_SECRET,
     bucket: S3_BUCKET
 });
