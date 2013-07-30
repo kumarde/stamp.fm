@@ -10,7 +10,7 @@ var flash = require('connect-flash')
   , FacebookStrategy = require('passport-facebook').Strategy
   , graph = require('fbgraph')
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists", "ads"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists", "ads","temps", "locals"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -29,6 +29,7 @@ var songs = 0;
   var UploadModule = require('./scripts/UploadModule.js').UploadModule;
   var UserModule = require('./scripts/UserModule.js').UserModule;
   var FeedModule = require('./scripts/FeedModule.js').FeedModule;
+  var ElimModule = require('./scripts/ElimModule.js').EliminationModule;
 
   var testModule = new TestModule;
   var auditionModule = new AuditionModule;
@@ -37,7 +38,7 @@ var songs = 0;
   var uploadModule = new UploadModule;
   var userModule = new UserModule;
   var Feed = new FeedModule;
-
+  var elim = new ElimModule;
   
  db.music.insert({_id:0, name: "Don't You Worry Child Cover", artistID: "51eef88e5e61878754000018", artistName: "(Stamp Champ)Dan Henig", explicit: "off", genre: "acoustic", inTourney: "Submitted"}); 
  
@@ -141,6 +142,161 @@ app.configure(function(){
 var counter = 0;
 var c = 0;
 var sorted;
+
+var cPop = 0;
+var totalPop;
+var pop_array;
+var temp;
+
+app.get('/elim', function(req, res){
+	if (req.session.user == null && req.user == null && req.session.temp == null) {
+		res.redirect('/');
+	}else {
+		var dbt = db.profiles;
+		if (req.session.temp == null ){
+
+			if(req.session.user == null){
+				id = req.user[0]._id;
+			}
+			else if(req.user == null){
+				if(req.session.user[0] == undefined){
+				id = req.session.user._id;
+				} else {
+					id = req.session.user[0]._id;
+				}
+			}
+		}	
+		else {
+			id = req.session.temp._id;
+			dbt = db.temps;
+		}
+		
+		dbt.findOne({_id:id}, function(e,p){
+			if ( e || !p)res.redirect('/');
+			if (!p.elim){
+  
+
+				elim.initElim("Rap", function(array, c){
+					rap_array = array;
+					totalRap = rap_array.length;
+					cRap = c;
+					temp = c;
+
+					console.log(rap_array);
+					db.tournament.findOne({_id: rap_array[temp]._id}, function(e, o){
+						db.profiles.findOne({_id: o.artistID}, function(e, user){
+							db.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
+								db.profiles.findOne({_id: o2.artistID}, function(e, user2){
+									var e = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes};
+									dbt.update({_id: id},{$set: {elim:e}});
+									res.render('elim', {imgid: "0", v1id: e.v1id, v2id:e.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+
+								});
+							});
+						});
+					});
+					elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+						console.log("C: :" + cRap + " total: " + totalRap);
+						if(inc == 1){
+							cRap += 2;
+							db.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+						}
+						else{
+							rap_array = newArray;
+							cRap = 0;
+							db.locals.update({_id: "Rap"}, {$set: {c: cRap, array: rap_array}});
+						}
+					});
+				});
+			}else{
+				res.render('elim', {imgid: "0", v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v});
+			}
+		});
+	}
+});
+
+app.post('/testvote', function(req, res){
+	if (req.session.user == null && req.user == null && req.session.temp == null) {
+		res.redirect('/');
+	}
+	else {
+		var dbt = db.profiles;
+		if (req.session.temp == null ){
+			if(req.session.user == null){
+				id = req.user[0]._id;
+			}
+			else if(req.user == null){	
+				if(req.session.user[0] == undefined){
+					id = req.session.user._id;
+				} else {
+					id = req.session.user[0]._id;
+				}
+			}
+		}
+		else {
+			id = req.session.temp._id;
+			dbt = db.temps;
+		}
+
+		dbt.findOne({_id:id}, function(e,p){
+			if (req.body.vid == p.elim.v1id || req.body.vid == p.elim.v2id){
+				dbt.update({_id:id},{$unset:{elim:""}});
+				db.tournament.update({_id: req.body.vid}, {$inc: {votes:1}});
+				res.send(204);
+
+			}else res.send(204);
+		});
+	}
+});
+
+app.post('/playNext', function(req, res){
+	if (req.session.user == null && req.user == null && req.session.temp == null) {
+		res.redirect('/');
+	}
+	else {
+		var dbt = db.profiles;
+		if (req.session.temp == null ){
+
+			if(req.session.user == null){
+				id = req.user[0]._id;
+			}
+			else if(req.user == null){
+				if(req.session.user[0] == undefined){
+					id = req.session.user._id;
+				} else {
+					id = req.session.user[0]._id;
+				}
+			}
+		}
+		else {
+			id = req.session.temp._id;
+			dbt = db.temps;
+		}
+
+		dbt.findOne({_id:id}, function(e,p){
+			if (!p.elim ){
+				var e = {v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, v1name: rap_array[cRap].name, v2name: rap_array[cRap+1].name, v1artist: rap_array[cRap].artistName, v2artist: rap_array[cRap+1].artistName, v1v: rap_array[cRap].votes, v2v: rap_array[cRap+1].votes};
+				dbt.update({_id:id},{$set:{elim:e}});
+				res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, votes1: rap_array[cRap].votes, votes2: rap_array[cRap+1].votes, s1:rap_array[cRap].name , s2:rap_array[cRap+1].name, a1: rap_array[cRap].artistName, a2: rap_array[cRap+1].artistName});
+				elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
+				if(inc){
+					cRap += 2;
+					db.locals.update({_id: "Rap"}, {$set: {c: cRap}});
+				}
+				else{
+					rap_array = newArray;
+					cRap = 0;
+					db.locals.update({_id: "Rap"}, {$set: {array: rap_array, c: 0}});
+				}
+				});
+			}else {
+				res.send({v1id: p.elim.v1id, v2id: p.elim.v2id, votes1: p.elim.v1v, votes2: p.elim.v2v, s1:p.elim.v1name , s2:p.elim.v2name, a1: p.elim.v1artist, a2: p.elim.v2artist});
+
+			}
+		});
+	}
+});
+
 db.music.count(function(err, count){
   if(count == 0){
     counter = 0;
@@ -568,7 +724,7 @@ else{
 
 /*******************************LOGIN STUFF HERE******************************************/
 /*FACEBOOK AUTH*/
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_likes', 'user_photos','user_location']}));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_likes', 'user_photos','user_location']}), function(req,res){if (req.session.temp)req.session.temp = null;});
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', {successRedirect: '/create',
                                        failureRedirect: '/login'}));
@@ -579,6 +735,7 @@ app.post('/login', function(req, res){
             res.send({error: "Error: Username and Password Combination don't match"});
 		} else{
 			req.session.user = o;
+			if (req.session.temp)req.session.temp = null;
 			if(req.body.rememberme == 'true'){
 				res.cookie('email', o.email, {maxAge: 900000});
 				res.cookie('pass', o.pass, {maxAge: 900000});

@@ -30,7 +30,7 @@ $("#next").toggle();
 $('#playVidOne').click(function(e){
 		
 		$.ajax({
-			url: "/vidPlay2",
+			url: "/vidPlay",
 			type: "POST",
 			cache: false,
 			data: {video: $(this).attr('data-tag')},
@@ -50,7 +50,7 @@ $('#playVidOne').click(function(e){
 	$('#playVidTwo').click(function(e){
 		
 		$.ajax({
-			url: "/vidPlay2",
+			url: "/vidPlay",
 			type: "POST",
 			cache: false,
 			data: {video: $(this).attr('data-tag')},
