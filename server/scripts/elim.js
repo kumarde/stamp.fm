@@ -26,7 +26,9 @@ $(document).ready(function(){
 $("#songOneVote").toggle();
 $("#songTwoVote").toggle();
 $("#next").toggle();
-
+$(".votee").mousedown(switchdown);
+$(".votee").mouseup(switchup);
+$("#next").click(changeback);
 $('#playVidOne').click(function(e){
 		
 		$.ajax({
@@ -183,3 +185,17 @@ $('#playVidOne').click(function(e){
      element.toggleClass('Unfavorite');
 }
 
+	function switchdown(){
+		if($("#voteTwo").attr('src') == 'vote.png' && $("#voteOne").attr('src') == 'vote.png'){
+			$(this).attr('src', 'voted.png');
+		}
+	}
+	function switchup(){
+		if(($("#voteTwo").attr('src') == 'vote.png' && $("#voteOne").attr('src') == 'vote.png') || $(this).attr('src') == 'voted.png')  {
+			$(this).attr('src', 'votedd.png');
+		}
+	}
+	function changeback(){
+		$("#voteTwo").attr('src', 'vote.png');
+		$("#voteOne").attr('src', 'vote.png');
+	}

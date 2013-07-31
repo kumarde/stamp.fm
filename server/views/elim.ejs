@@ -96,7 +96,7 @@
               <labelName id = "subartist1" style="font-size:15px;"><b><%=user1%></b></labelName>
             </li>               
             <li id="stampVote">
-              <img  data-tag = "<%=v1id%>"src="favoriteIcon.png" id="voteOne" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
+              <img  data-tag = "<%=v1id%>"src="vote.png" id="voteOne" class = "votee" style="cursor:pointer;height:60px;width:60px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
             </li>  
             <li id="fbVote" title="Share to give this artist another point">
               <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count' title="Share to give this artist another point">Share</a>
@@ -126,7 +126,7 @@
               <labelName id = "subartist2" style="font-size:15px;max-width:150px; overflow:hidden;"><b><%=user2%></b></labelName>
             </li>                   
             <li id="stampVote">
-              <img data-tag="<%=v2id%>"src="favoriteIcon.png" id="voteTwo" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
+              <img data-tag="<%=v2id%>"src="vote.png" id="voteTwo" class = "votee" style="cursor:pointer;height:60px;width:60px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
             </li>             
             <li id="fbVote" title="Share to give this artist another point">      
               <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
