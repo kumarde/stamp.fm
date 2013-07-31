@@ -1380,7 +1380,7 @@ app.get('/tempaccount', function(req, res) {
 	});
 });
 
-app.get('/success', function(){
+app.get('/success', function(req, res){
 		res.render('successPage');
 });
 
