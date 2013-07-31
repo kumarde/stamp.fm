@@ -1348,6 +1348,7 @@ app.post('/songGen',function(req,res){
 
     var profiles = [];
     var imgurl;
+    db.playlists.find({artistID: id}, function(e, playlist){
     db.music.find(function(e, songs){
       db.profiles.find(function(e, profs){
       for(var i = 0; i<songs.length; ++i){
@@ -1367,7 +1368,8 @@ app.post('/songGen',function(req,res){
         }
       }
       }
-      res.send({songs:songs, id:id, profiles:profiles});
+      res.send({songs:songs, id:id, playlist:playlist, profiles:profiles});
+    })
     })
     })
   }
