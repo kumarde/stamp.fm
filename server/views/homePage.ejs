@@ -1,0 +1,105 @@
+<% layout('layoutCreate') -%>
+<% script('login.js') -%>
+<% script('create.js') -%>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/homePage.css">
+    <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+	
+	
+	
+	
+	<script type="text/javascript">
+var fb_param = {};
+fb_param.pixel_id = '6009020414318';
+fb_param.value = '0.00';
+fb_param.currency = 'USD';
+(function(){
+  var fpw = document.createElement('script');
+  fpw.async = true;
+  fpw.src = '//connect.facebook.net/en_US/fp.js';
+  var ref = document.getElementsByTagName('script')[0];
+  ref.parentNode.insertBefore(fpw, ref);
+})();
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6009020414318&amp;value=0&amp;currency=USD" /></noscript>
+ 
+
+ </head>
+<body>
+
+<div style="text-align:center; margin-top:50px;">
+<p id="welcome">Welcome to the Online Music Tournament</p><br>
+
+  
+
+	<div id = "login-container">
+	<p id="second">It is your turn to choose the next big star</p>
+	<p class="sign"><span class="who">Artists: </span>Create a profile to <i>compete</i> in the next tournament</p>
+	<p class="sign"><span class="who">Fans: </span>Create a profile to <i>judge</i> the current artists</p>	
+
+	  <form method = "POST" class = "InputFields" id = "inputFields" action = "/">
+		  <a href = "/auth/facebook"><img src="/facebook.png"></a><br>
+		  <span style="font-size:10px; margin-top:-5px;">WE WILL NOT POST ON YOUR FACEBOOK WALL</span>
+	  </form>
+	</div>
+	<br><br><br>
+	<div id="tempStuff">  
+		<p style="font-size:25px;"><b>Want to vote in the tournament but don't want to make a profile?</b></p><br>
+		<p style="font-size:20px;">Enter your email:
+		<span id="tempage"><input type="text" id="tempemail" placeholder="Enter Email">
+		<input type="submit" id="tempsub"> </span> 
+		</p>
+
+<script>
+$(document).ready(function(){
+	$("#tempsub").click(function(){
+		$.ajax({ 
+				url: '/tempacc',
+				type: 'POST',
+				cache: false, 
+				data: { email: $('#tempemail').val()},
+				success: function(data){
+				if (typeof data.redirect == 'string' )window.location = data.redirect;
+				else if (typeof data.error == 'string')console.log(data.error);
+				else console.log(data);
+				}
+		});
+	});
+});
+
+</script>		
+		
+	</div>	
+
+</div>
+	<!-- FB Like Script-->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<!-- End FB Like Script -->
+
+</body>
+</html>
+
+
+<% stylesheet('modals.css') -%>
+<%-partial('modals', ["'ABCDEFGPR'"]) %>
+

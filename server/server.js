@@ -785,7 +785,7 @@ app.get('/', function(req, res){
     if(req.session.user || req.user){
         res.redirect('/profile');
     }
-	res.render('createAccount', {title: "Signup"});
+	res.render('homePage', {title: "Signup"});
 });
 
 app.post('/', function(req, res){

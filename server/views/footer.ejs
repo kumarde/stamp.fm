@@ -1,14 +1,16 @@
       <div id="footer">
+      <div id="inFoot">
       <ul>
-	<li>&copy Copyright 2013 Stamp.fm All Rights Reserved</li>
-	<li class="non-copyright"><a href="/faq">FAQ</a></li>
-	<li class="non-copyright"><a href="/tos">Terms</a></li>
-	<li class="non-copyright"><a href="/privacy">Privacy</a></li>
+	<li class="non-copyright"><a href="/faq">FAQ</a></li> 
+	<li class="non-copyright"><a href="/blog">Blog</a></li>	
 	<li class="non-copyright"><div id="contactb" class="modalbutton"><a>Contact</a></div></li>
-	<li class="non-copyright"><a href="/blog">Blog</a></li>
+	<li class="non-copyright"><a href="/tos">Terms</a></li>	
+	<li class="non-copyright"><a href="/privacy">Privacy</a></li>
 	<li><div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
-	<li><a href="http://twitter.com/stampfm" class="twitter-follow-button"  data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+	<li><a href="http://twitter.com/stampfm" class="twitter-follow-button"  data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>			     
+	<li style="margin-left:-20px;">&copy Copyright 2013 Stamp.fm All Rights Reserved</li>
       </ul>
+      </div>
     </div>
     <style>
 	<% if ( footer[0] == 1 ){ %>
@@ -17,10 +19,21 @@
       a:active {color: #000000; text-decoration: none; }
       #footer{
 	  color: #000000;
-	  margin-top: 0%;
-	  font-size:12px;
-		}
-	<% }else {%>
+	<% }else if (footer[0] == 2) {%>
+	  a:visited {text-decoration: none;color:#FFFFFF;}
+      a:link { text-decoration: none; color:#FFFFFF;}
+      a:active {color:#FFFFFF; text-decoration: none; }
+      #inFoot{
+      	text-align: center;
+      	margin-left: 22%;
+      	padding-bottom: -200px;
+      }
+      #footer{
+      	margin-top: -190px;
+		color:#FFFFFF;
+      	width: 100%;
+	<%}
+	else {%>
 	  a:visited {text-decoration: none;color:#FFFFFF;}
       a:link { text-decoration: none; color:#FFFFFF;}
       a:active {color:#FFFFFF; text-decoration: none; }
@@ -29,8 +42,6 @@
 	<%}%>
 	font-size:12px;
 	 text-decoration: none;
-	 position: absolute;
-	margin-top: 48%;
 	cursor:default;
 	width:100%;
 	height:30px;
@@ -41,39 +52,12 @@
       #footer li{
 	margin-top:100px;
 	float:left;
-	padding-right:3%;
+	padding-right:1%;
+	font-weight: bold;
       }
       #footer a:hover{
 	color:#FF0000;
       }
-
-      @media screen and (-webkit-min-device-pixel-ratio:0) { 
-    /* Safari only override */
-    ::i-block-chrome, #footer{
-	color:#FFFFFF;
-	font-size:12px;
-	 text-decoration: none;
-	 position: absolute;
-	margin-top: 100%;
-	cursor:default;
-	width:100%;
-	height:30px;
-      }
-      #footer ul{
-	list-style-type:none;
-      }
-      #footer li{
-	margin-top:100px;
-	float:left;
-	padding-right:3%;
-      }
-      #footer a:hover{
-	color:#FF0000;
-      }
-}
-
-
-
     </style>
     </footer>
 	
