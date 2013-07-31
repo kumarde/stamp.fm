@@ -14,12 +14,12 @@ $("#songTwoVote").toggle();
 
 function t1(){
 	clearTimeout(t);
-	t = setTimeout(function(){vid1watch = 1; if(vid1watch && vid2watch)votesel(); },10000);
+	t = setTimeout(function(){vid1watch = 1; if(vid1watch && vid2watch)votesel(); },1000);
 }
 
 function t2(){
 	clearTimeout(t);
-	t = setTimeout(function(){vid2watch = 1; if(vid1watch && vid2watch)votesel();},10000);
+	t = setTimeout(function(){vid2watch = 1; if(vid1watch && vid2watch)votesel();},1000);
 }
 
 $(document).ready(function(){
