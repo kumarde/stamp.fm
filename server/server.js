@@ -1386,11 +1386,10 @@ app.post('/tempacc',function(req,res){
 	db.temps.remove({_id:o.email});
 	db.temps.save({_id:o.email, pass:o.pass});
 	var options = emailModule.tempAccount(o);
+	res.send({redirect:'/'});
 	emailModule.dispatchResponse(options, function(e, m){
         if(!e){
-            res.send({redirect:'/'});
         } else{
-			res.send({redirect:'/'});
             for(k in e) console.log('error : ', k, e[k]);
         }
     });

@@ -27,7 +27,7 @@ EmailModule.prototype.composeFeedback = function(o)
 	return mailOptions;
 }
 EmailModule.prototype.tempAccount = function(o){
-	var link = "http://localhost:8888/tempaccount?e="+o.email+"&p="+o.pass;
+	var link = "http://www.stamp.fm/tempaccount?e="+o.email+"&p="+o.pass;
 	var a = "<a href = "+link+"> Click here to activate</a><br><br>";
 	var html = "<html><body>";
 	html += "Congratulations! You now have access to judge the Stamp.fm contestants.<br><br>";

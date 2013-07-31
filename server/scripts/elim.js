@@ -23,10 +23,7 @@ function t2(){
 }
 
 $(document).ready(function(){
-	$('#songOne').click();
-	//var temp = $('#vidTwo').val();
-	//$('#vidTwo').val('???');
-	//setTimeout(function(){$('#vidTwo').val(temp);}, 10000);
+	setTimeout(function(){$('#songOne').click();},500);
 	
 $("#songOneVote").toggle();
 $("#songTwoVote").toggle();

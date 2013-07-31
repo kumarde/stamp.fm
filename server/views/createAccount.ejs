@@ -62,9 +62,9 @@ $(document).ready(function(){
 				cache: false, 
 				data: { email: $('#tempemail').val()},
 				success: function(data){
-				if (typeof data.redirect == 'string' )window.location = data.redirect;
-				else if (typeof data.error == 'string')console.log(data.error);
-				else console.log(data);
+					if (typeof data.redirect == 'string' )window.location = data.redirect;
+					else if (typeof data.error == 'string')console.log(data.error);
+					else console.log(data);
 				}
 		});
 	});
