@@ -176,12 +176,9 @@ app.get('/elim', function(req, res){
 			id = req.session.temp._id;
 			dbt = db.temps;
 		}
-		
 		dbt.findOne({_id:id}, function(e,p){
 			if ( e || !p)res.redirect('/');
 			if (!p.elim){
-  
-
 				elim.initElim("Rap", function(array, c){
 					rap_array = array;
 					totalRap = rap_array.length;
@@ -195,7 +192,18 @@ app.get('/elim', function(req, res){
 								db.profiles.findOne({_id: o2.artistID}, function(e, user2){
 									var e = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes};
 									dbt.update({_id: id},{$set: {elim:e}});
-									res.render('elim', {imgid: "0", v1id: e.v1id, v2id:e.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+									db.profiles.findOne({_id: id}, function(e, profile){
+										if(profile.url && profile.changedPic == "none"){
+                              				imgurl = profile.url;
+				                        }
+				                        else if(profile.changedPic === "true" || profile.changedPic === "none"){
+				                           imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+				                        }
+				                        else{
+				                          imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+				                        }
+									})
+									res.render('elim', {imgid: imgurl, v1id: e.v1id, v2id:e.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
 
 								});
 							});
@@ -215,7 +223,18 @@ app.get('/elim', function(req, res){
 					});
 				});
 			}else{
-				res.render('elim', {imgid: "0", v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v});
+				db.profiles.findOne({_id: id}, function(e, profile){
+					if(profile.url && profile.changedPic == "none"){
+                            imgurl = profile.url;
+				    }
+				    else if(profile.changedPic === "true" || profile.changedPic === "none"){
+				      	 imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+				    }
+				    else{
+				        imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
+				    }
+				    res.render('elim', {imgid: imgurl, v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v});
+				})
 			}
 		});
 	}
