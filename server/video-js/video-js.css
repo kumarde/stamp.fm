@@ -509,6 +509,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
           animation: spin 1.5s infinite linear;
 }
 
+/*
 .vjs-default-skin .vjs-loading-spinner:before {
   content: url('/spinning_treble.png');
   font-family: VideoJS;
@@ -520,13 +521,18 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   -ms-transform-origin:50% 80%;
   -webkit-transform-origin:50% 80%;
 }
+*/
+
+
 
 /* Add a gradient to the spinner by overlaying another copy.
    Text gradient plus a text shadow doesn't work
    and `background-clip: text` only works in Webkit. */
+
+/*
 .vjs-default-skin .vjs-loading-spinner:after {
   content: url('/spinning_treble.png'); /* Loading spinner icon */
-
+/*
   position: absolute;
   width: 1em;
   height: 1em;
@@ -535,6 +541,9 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+*/
+
+
 
 /* Spinning-ness
 

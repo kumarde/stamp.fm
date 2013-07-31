@@ -35,12 +35,24 @@
 -->
 
           <ul id="selectSongList">
-            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected"><spanV id="vidOne" style="font-size:30px;"><%=song1%></spanV><br><spanA id="artistOne" style="font-size:15px;"><%=user1%></spanA>
-              <div id = "one"> <%=votes1%> </div>
+            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected"><span style="display:inline-block;max-width:200px; overflow:hidden; text-overflow:ellipsis;"><spanV id="vidOne" style="font-size:20px;"><%=song1%></spanV></span>
+
+            <spanA id="artistOne" style="font-size:15px;"> &#8211; 
+              <span style="display:inline-block;max-width:150px; overflow:hidden; text-overflow:ellipsis;">
+              <%=user1%>
+              </span>
+            </spanA>
+        <!--      <div id = "one"> <%=votes1%> </div> -->
             </li>
-            <span id="verses" style="margin-left:0.70%;float:left;margin-top:40px;font-size:25px;"><strong>vs</strong></span>
-            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred"><spanV id="vidTwo" style="font-size:30px;"><%=song2%></spanV><br><spanA id="artistTwo" style="font-size:15px;"><%=user2%></spanA>
-              <div id = "two"> <%=votes2%> </div>
+            <span id="verses" style="margin-left:6%;float:left;margin-top:0px;font-size:25px;"><strong>vs</strong></span>
+            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred"><span style="display:inline-block;max-width:200px; overflow:hidden; text-overflow:ellipsis;"><spanV id="vidTwo" style="font-size:20px;"><%=song2%></spanV></span>
+
+            <spanA id="artistTwo" style="font-size:15px;"> &#8211; 
+              <span style="display:inline-block;max-width:150px; overflow:hidden; text-overflow:ellipsis;">
+              <%=user2%>
+              </span>
+            </spanA>
+             <!-- <div id = "two"> <%=votes2%> </div> -->
             </li>
 
             <script>
@@ -90,8 +102,9 @@
               <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count' title="Share to give this artist another point">Share</a>
             </li>          
             <li id="tweetVote" style="margin-top:20px;" title="Tweet to give this artist another point"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical" title="Tweet to give this artist another point">Tweet</a></li>
-            <li id="followOne"><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li>
-            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=id%>"></li><br> 
+            <li id="followOne"><input type="button" value="Follow" class="stampFollow" onclick="buttonChange(this);" id="<%=id%>"></li>
+            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" onclick="buttonChangeFav(this);" id="<%=id%>"></li><br> 
+            <img src="h" id="adRight" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;">
             <!--<li id="banOne" ><img src="banButton.png" onmouseover="openBanOne();" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
               <ul id="banContentOne" style="visibility:hidden;" class="banWrapper">
                 <div id="firstThird">  
@@ -134,14 +147,14 @@
                 </div>
               </ul>  
             </li>-->
-            <li id="followTwo"><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li>
-            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=id%>"></li><br> 
+            <li id="followTwo"><input type="button" value="Follow" class="stampFollow" onclick="buttonChange(this);"id="<%=id%>"></li>
+            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" onclick="buttonChangeFav(this);"id="<%=id%>"></li><br> 
           </ul>  
-          <img src="h" id="adLeft" style="height:170px; width:170px; float:left; margin-left: 0%;margin-top:20%">
+          <img src="h" id="adLeft" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;">
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
             <source src="" type="video/mp4" id = "source">
             </video>
-            <strong><p id="tenSecs" style="font-size:25px; text-align:center;color:rgba(180,7,6,1);">Voting and Sharing will appear after you watch each video!</p></strong>
+            <strong><p id="tenSecs" style="font-size:25px; text-align:center;color:rgba(180,7,6,1);">Voting and sharing will appear after you watch each video!</p></strong>
             <input type="button" value="Next" id="next"></input>
         </div>   
     </div> 

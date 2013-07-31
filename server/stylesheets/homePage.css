@@ -1,23 +1,12 @@
 html{
     background: #000 no-repeat center center fixed;
-    background-image: url('/login-background.jpg');
+    background-image: url('/home-background.jpg');
     background-size: cover;
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Arimo', sans-serif;
 }
 
 .login{
-    position: relative;
-    background: rgba(0,0,0,.8);
-    float: right;
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-top: 2%;
-    border: 3px solid rgba(0,0,0,0.1);
-    -moz-border-radius:5px;  
-    border-radius: 5px;  
-    -webkit-border-radius: 5px;
-    color: white;
-    height: 650px;
+
 }
 *:focus {outline: none;}
 
@@ -94,55 +83,50 @@ html{
 }
 
 .blurb{
-    float: left;
-    margin-left: 1%;
-    margin-top: 2%;
-    -moz-border-radius:5px;  
-    border-radius: 5px;  
-    -webkit-border-radius: 5px;
-    color: #FFFFFF;
-    background-color: rgba(0,0,0,.7);
-    height: 650px;
-    width:53%;
+
 }
 #start{
 	margin-bottom: 0%;
 	margin-left: 8%;
 }
 
+
+
+#welcome{
+    margin: auto;
+    font-size: 50px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+#login-container{
+    margin: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 50%;
+    border-top: 5px solid rgba(0,0,0,.6);
+}
+
+#second{
+    margin: auto;
+    margin-top: 50px;
+    font-size:25px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.sign{
+    font-weight: bold;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.who{
+    color: rgba(180,7,6,1);
+}
+
 @media only screen and (max-width: 1050px) {
 
-    .blurb{
-	float: none;
-	margin-left: auto;
-	margin-right: auto;
-	width:80%;
-	height:600px;
-    }
-    .login{
-	float:none;
-	margin-left: auto;
-	margin-right: auto;
-	width:400px;
-    }
-	#start{
-		margin-left: 80px;
-	}
-	
-}
-
-.big{
-	margin-top: 15px;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-bottom: 0px;
-	font-size: 3em;
-}
-
-.small{
-	margin-left: 10px;
-	font-size: 2em;
-}
 
 
 body{

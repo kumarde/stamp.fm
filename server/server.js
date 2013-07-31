@@ -61,7 +61,7 @@ db.music.count(function(e, count){
 var flag = false; 
 
 var client = knox.createClient({
-    key: S3_KEY,
+    key   : S3_KEY,
     secret: S3_SECRET,
     bucket: S3_BUCKET
 });
@@ -276,7 +276,6 @@ app.post('/playNext', function(req, res){
 		}
 		
 	dbt.findOne({_id:id}, function(e,p){
-		
 		if (!p.elim ){
 			  console.log(rap_array);
 			  console.log(cRap);
