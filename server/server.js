@@ -192,12 +192,12 @@ app.get('/elim', function(req, res){
 						db.profiles.findOne({_id: o.artistID}, function(e, user){
 							db.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
 								db.profiles.findOne({_id: o2.artistID}, function(e, user2){
-									var e = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes};
-									dbt.update({_id: id},{$set: {elim:e}});
+									var vp = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes};
+									dbt.update({_id: id},{$set: {elim:vp}});
 									db.profiles.findOne({_id: id}, function(e, profile){
 										if(!profile){
 											if(tacc){
-										res.render('elim', {temp: tacc, imgid: "0", v1id: e.v1id, v2id:e.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+										res.render('elim', {temp: tacc, imgid: "0", v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
 											}
 										}
 										else{
@@ -211,7 +211,7 @@ app.get('/elim', function(req, res){
 					                        else{
 					                          imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
 					                        }
-					                        res.render('elim', {temp: tacc, imgid: imgurl, v1id: e.v1id, v2id:e.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+					                        res.render('elim', {temp: tacc, imgid: imgurl, v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
 				                       	}
 									})
 								});
