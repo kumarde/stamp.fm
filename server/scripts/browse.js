@@ -26,12 +26,12 @@ function playVideo(){
         }
       });
   }
-function follow1(event) {
+function follow1(input) {
     $.ajax({ 
       url: '/follow',
       type: 'POST',
       cache: false, 
-      data: { id: event.target.id},
+      data: { id: input},
       success: function(data){
         if (typeof data.redirect == 'string' )console.log(data.redirect);
         else if (typeof data.error == 'string')console.log(data.error);
@@ -40,12 +40,12 @@ function follow1(event) {
     });
   }
 
-  function unfollow1(event) {
+  function unfollow1(input) {
     $.ajax({ 
       url: '/unfollow',
       type: 'POST',
       cache: false, 
-      data: { id: event.target.id},
+      data: { id: input},
       success: function(data){
         if (typeof data.redirect == 'string' )console.log(data.redirect);
         else if (typeof data.error == 'string')console.log(data.error);
@@ -54,9 +54,7 @@ function follow1(event) {
     });
   }
 
-function addtoPlaylist(){
-      var tag = $(this).attr('data-tag');
-      var name = $(this).attr('data-name');
+function addtoPlaylist1(tag, name){
       console.log(tag);
       console.log(name);
       $.ajax({
@@ -66,19 +64,40 @@ function addtoPlaylist(){
         data: {sid: tag, name: name},
       })
   }
+
+function deletefromPlaylist1(tag){
+      $.ajax({
+        url: '/playDelete',
+        type: 'POST',
+        cache: false,
+        data: {id: tag},
+      });
+   }
+
 function changeUp(event){
   $($(this).find('#foll')).attr('id', $(this).attr('profID'));
 }
-/*function buttonChange(){
-  alert("sdfsdfsdf");
-  if($(this).attr('value') == 'Follow'){
-    $(this).attr('value', 'Unfollow');
+
+function buttonChange(event){
+  if($(this).attr("value") == "Follow"){
+    follow1($(this).attr("id"));
+    $(this).val('Unfollow');
   }
   else{
-    $(this).attr('value', 'Follow')
+    unfollow1($(this).attr("id"));
+    $(this).val('Follow');
   }
-}*/
-
+}
+function playlistbutton(event){
+  if($(this).attr("src") == "notfavorited.jpg"){
+    addtoPlaylist1($(this).attr('data-tag'), $(this).attr('data-name'));
+    $(this).attr("src", "favorited.jpg");
+  }
+  else{
+    deletefromPlaylist1($(this).attr('data-tag'));
+    $(this).attr("src", "notfavorited.jpg");
+  }
+}
 function generateSongs(){
     $.ajax({
         url: '/songGen',
@@ -86,18 +105,7 @@ function generateSongs(){
         cache: false,
         success: function(data){
           for(var i = 0; i < data.songs.length; ++i){
-            var $tr = $('<tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "'+data.songs[i]._id+'"></tr>');
-            var $div = $('<div data-tag ="'+data.songs[i]._id+'" class = "songname" style="float:left;">'+data.songs[i].name+'</div>');
-            var $img = $('<img data-name = "'+data.songs[i].name+'" data-tag ="'+data.songs[i]._id+'" class = "vidPlay" src="play.jpg" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">');
-            var $img1 = $('<img data-name = "'+data.songs[i].name+'" data-tag ="'+data.songs[i]._id+'" class = "addPlay" src="favoriteIcon.png" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><br>');
-            $img.click(playVideo);
-            $img1.click(addtoPlaylist);
-            $tr.append($div);
-            $tr.append($img);
-            $tr.append($img1);
-            $("#songList").append($tr);
             var $artist = $('<div class="artist"></div>');
-            console.log(data.profiles[i]);
             var $imgart = $('<img num = "'+i+'"name = "'+data.profiles[i].name+'" profID = "'+data.profiles[i]._id+'" data-name = "'+data.songs[i].name+'" data-tag ="'+data.songs[i]._id+'" class="artist_pic" src="'+data.profiles[i].url+'" style="height:100%;width:100%;"><br>');
             var $ul = $('<ul id="songInfo"></ul>');
             var $li = $('<li><span class="song_name">'+data.songs[i].name+'</span></li><br>');
@@ -117,7 +125,12 @@ function generateSongs(){
             $follow.hide();
            $('#selected_pic').append($follow);
             $li1.click(function(){window.location = "/view?id="+$(this).attr('data-tag');});
-            $imgart.click(function(){$("#artistNameSelected").html($(this).attr('name'));$("#imgid").attr('src', $(this).attr('src'));});
+            $imgart.click(function(){$("#artistNameSelected").html($(this).attr('name'));$("#imgid").attr('src', $(this).attr('src'));$("#imgid").attr('data-tag', $(this).attr('profID'))});
+            $("#imgid").click(function(){
+              if($(this).attr('data-tag') != "asdasd"){
+                window.location = "/view?id="+$(this).attr('data-tag');
+              }
+            })
             $imgart.click(playVideo);
             $imgart.click(function(){
               var l = $('#selected_pic').find('input').length;
@@ -126,18 +139,41 @@ function generateSongs(){
                  else $($('#selected_pic').find('input')[i]).hide();
                }
             })
-            if($follow.attr("value") == "Follow"){
-              $follow.click(follow1);
-              $follow.click(function(){
-                $(this).val('Unfollow');
-              })
-            }
-            else{
-              $follow.click(unfollow1);
-              $follow.click(function(){
-                $(this).val('Follow');
-              })
-            }
+            $imgart.click(function(){
+              $("#songList").empty();
+              for(var j = 0; j < data.songs.length; ++j){
+                if(data.songs[j].artistID == $(this).attr("profID")){
+                  var $tr = $('<tr id="song_name" style="color:#000; border-bottom: 2px solid; width:100%;" class = "'+data.songs[j]._id+'"></tr>');
+                  var $img = $('<img data-name = "'+data.songs[j].name+'" data-tag ="'+data.songs[j]._id+'" id = "playVideo" class = "vidPlay" src="play.jpg" style="float:left;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">');
+                  var $div = $('<div data-tag ="'+data.songs[j]._id+'" id = "songg" class = "songname" style="float:left;vertical-align:middle;">'+data.songs[j].name+'</div>');
+                  var $img1;
+                  if($(this).attr("profID") == data.id){
+                    $img1 = $('<div data-tag = "'+i+'" id = "oyyyy" class="stampFollow"></div>');
+                  }
+                  else if(data.playlist.length == 0){
+                    $img1 = $('<img data-name = "'+data.songs[j].name+'" data-tag ="'+data.songs[j]._id+'" class = "addPlay" src="notfavorited.jpg" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><br>');
+                  }
+                  else{
+                    for(var k = 0; k < data.playlist.length; ++k){
+                      if(data.playlist[k].songID == data.songs[j]._id){
+                        $img1 = $('<img data-name = "'+data.songs[j].name+'" data-tag ="'+data.songs[j]._id+'" class = "addPlay" src="favorited.jpg" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><br>');
+                        break;
+                      }
+                      else{
+                        $img1 = $('<img data-name = "'+data.songs[j].name+'" data-tag ="'+data.songs[j]._id+'" class = "addPlay" src="notfavorited.jpg" style="float:right;height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"><br>');
+                      }
+                    }
+                  }
+                  $img.click(playVideo);
+                  $img1.click(playlistbutton);
+                  $tr.append($img);
+                  $tr.append($div);
+                  $tr.append($img1);
+                  $("#songList").append($tr);
+                }
+              }
+            })
+            $follow.click(buttonChange);
             $ul.append($li);
             $ul.append($li1);
             $artist.append($imgart);
