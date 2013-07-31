@@ -1380,13 +1380,17 @@ app.get('/tempaccount', function(req, res) {
 	});
 });
 
+app.get('/success', function(){
+		res.render('successPage');
+});
+
 app.post('/tempacc',function(req,res){
 	var o = {email:req.body.email,pass:makeid()};
 
 	db.temps.remove({_id:o.email});
 	db.temps.save({_id:o.email, pass:o.pass});
 	var options = emailModule.tempAccount(o);
-	res.send({redirect:'/'});
+	res.send({redirect:'/success'});
 	emailModule.dispatchResponse(options, function(e, m){
         if(!e){
         } else{
