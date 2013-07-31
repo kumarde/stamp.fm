@@ -151,6 +151,7 @@ var temp;
 elim.initElim("Rap", function(array, c){
 	rap_array = array;
 	totalRap = rap_array.length;
+	cRap = c;
 });
 
 app.get('/elim', function(req, res){
