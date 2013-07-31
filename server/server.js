@@ -10,7 +10,7 @@ var flash = require('connect-flash')
   , FacebookStrategy = require('passport-facebook').Strategy
   , graph = require('fbgraph')
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament", "playlists", "ads","temps", "locals"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament","tournament2", "playlists", "ads","temps", "locals"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -666,14 +666,14 @@ else{
         }
     }
 	
-	db.tournament.findOne({$and: [{genre: req.body.genre}, {artistID: id}]}, function(e, o){
+	db.tournament2.findOne({$and: [{genre: req.body.genre}, {artistID: id}]}, function(e, o){
 	  if(e) console.log(e);
 	  if(o){
 		res.send({msg: "no"});
 	  }
 	  if(!o){
 		db.music.update({_id: parseInt(req.body.id)}, {$set: {inTourney: "Submitted"}});
-		db.tournament.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name, votes: 0, views: 0});
+		db.tournament2.save({_id: req.body.id, name: req.body.name, genre: req.body.genre, artistID: id, artistName: name, votes: 0, views: 0});
 		res.send({msg: "yes"});
 	  }
 	})
@@ -1030,7 +1030,7 @@ app.get('/view', function(req, res){
 })
 
 app.post('/vidPlay', function(req, res){
-		if (req.session.user == null && req.user == null && req.session.temp == null) {
+		if (req.session.user == null && req.user == null) {
 			res.redirect('/');
 		}
 else{
@@ -1377,15 +1377,3 @@ app.get("*", function(req, res){
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Server listening on port " + app.get('port'));
 });
-
-
-function makeid()
-{
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for( var i=0; i < 10; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
-}
