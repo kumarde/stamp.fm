@@ -147,8 +147,7 @@ var cPop = 0;
 var totalPop;
 var pop_array;
 var temp;
-var rap_array;
-var totalRap;
+
 elim.initElim("Rap", function(array, c){
 	rap_array = array;
 	totalRap = rap_array.length;
