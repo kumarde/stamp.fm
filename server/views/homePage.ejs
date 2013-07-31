@@ -41,20 +41,48 @@ fb_param.currency = 'USD';
 <body>
 
 <div style="text-align:center; margin-top:50px;">
-<p id="welcome">Welcome to the Online Music Tournament.</p><br>
+<p id="welcome">Welcome to the Online Music Tournament</p><br>
 
   
 
 	<div id = "login-container">
 	<p id="second">It is your turn to choose the next big star</p>
-	<p class="sign"><span class="who">Artists: </span>Sign in to <i>compete</i> in the next tournament</p>
-	<p class="sign"><span class="who">Fans: </span>Sign in to <i>judge</i> the current artists</p>	
+	<p class="sign"><span class="who">Artists: </span>Create a profile to <i>compete</i> in the next tournament</p>
+	<p class="sign"><span class="who">Fans: </span>Create a profile to <i>judge</i> the current artists</p>	
 
 	  <form method = "POST" class = "InputFields" id = "inputFields" action = "/">
-		  <p style="font-size: 25px"><a href = "/auth/facebook"><img src="/facebook.png"></a><br>
-		  	<span style="font-size:10px;">WE WILL NOT POST ON YOUR FACEBOOK WALL</span>
+		  <a href = "/auth/facebook"><img src="/facebook.png"></a><br>
+		  <span style="font-size:10px; margin-top:-5px;">WE WILL NOT POST ON YOUR FACEBOOK WALL</span>
 	  </form>
 	</div>
+	<br><br><br>
+	<div id="tempStuff">  
+		<p style="font-size:25px;"><b>Want to vote in the tournament but don't want to make a profile?</b></p><br>
+		<p style="font-size:20px;">Enter your email:
+		<span id="tempage"><input type="text" id="tempemail" placeholder="Enter Email">
+		<input type="submit" id="tempsub"> </span> 
+		</p>
+
+<script>
+$(document).ready(function(){
+	$("#tempsub").click(function(){
+		$.ajax({ 
+				url: '/tempacc',
+				type: 'POST',
+				cache: false, 
+				data: { email: $('#tempemail').val()},
+				success: function(data){
+				if (typeof data.redirect == 'string' )window.location = data.redirect;
+				else if (typeof data.error == 'string')console.log(data.error);
+				else console.log(data);
+				}
+		});
+	});
+});
+
+</script>		
+		
+	</div>	
 
 </div>
 	<!-- FB Like Script-->
