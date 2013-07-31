@@ -42,7 +42,8 @@ $(document).ready(function() {
         var str = $('#search').val();
 		
 		str  = str.toLowerCase();
-        if (str!="" && str.match(/\W/g) == null){
+
+        if (str!="" && str.match(/^\w \s/g) == null){
 	    $.ajax({ 
                 url: '/bandsearch',
                 type: 'POST',
@@ -63,7 +64,7 @@ $(document).ready(function() {
 									$img.click(follow);
 								}
 								else{
-								$img = $('<input type="button" value="Forget" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="margin-top:-23px;float:right">');
+								$img = $('<input type="button" value="Unfollow" onclick="buttonChange();" id="'+data.data[i]._id+'" class="followButton" style="margin-top:-23px;float:right">');
 									$img.click(unfollow);
 								}
 								$div.click(function(event){

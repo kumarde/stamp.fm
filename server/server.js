@@ -1030,7 +1030,7 @@ app.get('/view', function(req, res){
 })
 
 app.post('/vidPlay', function(req, res){
-		if (req.session.user == null && req.user == null) {
+		if (req.session.user == null && req.user == null && req.session.temp == null) {
 			res.redirect('/');
 		}
 else{
@@ -1377,3 +1377,15 @@ app.get("*", function(req, res){
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Server listening on port " + app.get('port'));
 });
+
+
+function makeid()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 10; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
