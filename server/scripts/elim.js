@@ -162,3 +162,24 @@ $('#playVidOne').click(function(e){
     		element.attributeName = 'controls';
     	}
     }
+
+
+
+    function buttonChange(object){
+  var element = object;
+
+     if (element.value=="Follow") element.value = "Unfollow";
+      else element.value = "Follow"; 
+
+     element.toggleClass('Unfollow');
+}
+
+    function buttonChangeFav(object){
+  var element = object;
+
+     if (element.value=="Favorite") element.value = "Unfavorite";
+      else element.value = "Favorite"; 
+
+     element.toggleClass('Unfavorite');
+}
+

@@ -102,8 +102,8 @@
               <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count' title="Share to give this artist another point">Share</a>
             </li>          
             <li id="tweetVote" style="margin-top:20px;" title="Tweet to give this artist another point"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical" title="Tweet to give this artist another point">Tweet</a></li>
-            <li id="followOne"><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li>
-            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=id%>"></li><br> 
+            <li id="followOne"><input type="button" value="Follow" class="stampFollow" onclick="buttonChange(this);" id="<%=id%>"></li>
+            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" onclick="buttonChangeFav(this);" id="<%=id%>"></li><br> 
             <img src="h" id="adRight" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;">
             <!--<li id="banOne" ><img src="banButton.png" onmouseover="openBanOne();" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
               <ul id="banContentOne" style="visibility:hidden;" class="banWrapper">
@@ -147,8 +147,8 @@
                 </div>
               </ul>  
             </li>-->
-            <li id="followTwo"><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li>
-            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=id%>"></li><br> 
+            <li id="followTwo"><input type="button" value="Follow" class="stampFollow" onclick="buttonChange(this);"id="<%=id%>"></li>
+            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" onclick="buttonChangeFav(this);"id="<%=id%>"></li><br> 
           </ul>  
           <img src="h" id="adLeft" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;">
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
