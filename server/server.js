@@ -201,6 +201,7 @@ app.get('/elim', function(req, res){
 											}
 										}
 										else{
+											if (!tacc){
 											if(profile.url && profile.changedPic == "none"){
                               				imgurl = profile.url;
 					                        }
@@ -210,7 +211,7 @@ app.get('/elim', function(req, res){
 					                        }
 					                        else{
 					                          imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
-					                        }
+					                        }}else imgurl = "0";
 					                        res.render('elim', {temp: tacc, imgid: imgurl, v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
 				                       	}
 									})
