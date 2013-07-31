@@ -201,8 +201,8 @@ overflow: auto;
 #header .nav{
     color: black;
     margin-top: 0px;
-	cursor: hand; 
-	cursor: pointer;
+    cursor: hand; 
+    cursor: pointer;
 }
 
 #profileLink{
@@ -234,7 +234,7 @@ overflow: auto;
         background-color: #000;
         width: 110px;
         border: 1px solid #FFFFFF;
-	text-align:center;
+    text-align:center;
 }
 
 #tophalf{
@@ -354,17 +354,17 @@ overflow: auto;
     -webkit-border-radius: 100px;
 }
 
-	
+    
 .stampFollow{
 font-size: 15px;
  border: 1px solid rgba(0,0,0,1);
 
-	color: #FFFFFF;
+    color: #FFFFFF;
     background-size: 9px; 
     background-color: rgba(180,7,6,1);
     background-repeat: no-repeat; 
     background-position: 7px 4px;  
-	cursor: pointer; 
+    cursor: pointer; 
     height: 30px;  
     width: 80px;  
     vertical-align: middle;
@@ -373,8 +373,8 @@ font-size: 15px;
     margin-top: 30px;
     margin-bottom: 30px;
     margin-left: 0%;
-	    padding: 2px;
-		padding-left: 20px; 
+        padding: 2px;
+        padding-left: 20px; 
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -393,7 +393,7 @@ font-size: 15px;
     -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
     box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
     border: solid 1px #000;
-	
+    
 }
 
 td{
@@ -576,9 +576,9 @@ td{
 }
 #song_name{
     font-size: 15px;
-	z-index: 0;
-	width:100%;
-	min-width:100px; width: auto !important; width: 100px;
+    z-index: 0;
+    width:100%;
+    min-width:100px; width: auto !important; width: 100px;
 }
 
 #song_name:hover{
@@ -674,11 +674,11 @@ td{
 }
 
 .songnames{
-	width:100%;
+    width:100%;
 }
 
 .songname{
-	max-width:190px;
+    max-width:190px;
     overflow:hidden;
 }
 
@@ -748,4 +748,3 @@ td{
 .replace {
 display:none;
 }
-
