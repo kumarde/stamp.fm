@@ -35,9 +35,9 @@
 -->
 
           <ul id="selectSongList">
-            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected"><span style="display:inline-block;max-width:200px; overflow:hidden; text-overflow:ellipsis;"><spanV id="vidOne" style="font-size:20px;"><%=song1%></spanV></span>
+            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected"><span style="display:inline-block;max-width:200px; white-space:nowrap;overflow:hidden; text-overflow:ellipsis;"><spanV id="vidOne" style="font-size:20px;"><%=song1%></spanV></span>
 
-            <spanA id="artistOne" style="font-size:15px;"> &#8211; 
+            <spanA id="artistOne" style="font-size:15px;white-space:nowrap;"> &#8211; 
               <span style="display:inline-block;max-width:150px; overflow:hidden; text-overflow:ellipsis;">
               <%=user1%>
               </span>
@@ -45,9 +45,9 @@
         <!--      <div id = "one"> <%=votes1%> </div> -->
             </li>
             <span id="verses" style="margin-left:6%;float:left;margin-top:0px;font-size:25px;"><strong>vs</strong></span>
-            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred"><span style="display:inline-block;max-width:200px; overflow:hidden; text-overflow:ellipsis;"><spanV id="vidTwo" style="font-size:20px;"><%=song2%></spanV></span>
+            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred"><span style="display:inline-block;max-width:200px; white-space:nowrap;overflow:hidden; text-overflow:ellipsis;"><spanV id="vidTwo" style="font-size:20px;"><%=song2%></spanV></span>
 
-            <spanA id="artistTwo" style="font-size:15px;"> &#8211; 
+            <spanA id="artistTwo" style="font-size:15px;white-space:nowrap;"> &#8211; 
               <span style="display:inline-block;max-width:150px; overflow:hidden; text-overflow:ellipsis;">
               <%=user2%>
               </span>
@@ -102,9 +102,9 @@
               <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count' title="Share to give this artist another point">Share</a>
             </li>          
             <li id="tweetVote" style="margin-top:20px;" title="Tweet to give this artist another point"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical" title="Tweet to give this artist another point">Tweet</a></li>
-            <li id="followOne"><input type="button" value="Follow" class="stampFollow" id="<%=a1id%>"></li>
+            <li id="followOne" data-tag="<%=a1id%>"><input type="button" value="Follow" class="stampFollow" id="<%=a1id%>"></li>
             <li id="favoriteOne" style="margin-top:5px;" data-tag = "<%=v1id%>" data-name = "<%=song1%>"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=v1id%>"></li><br> 
-            <a href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"><img src="turtle_ad.jpg" id="adRight" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;"></a>
+            <!--<a href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"><img src="turtle_ad.jpg" id="adRight" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;"></a>-->
             <!--<li id="banOne" ><img src="banButton.png" onmouseover="openBanOne();" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
               <ul id="banContentOne" style="visibility:hidden;" class="banWrapper">
                 <div id="firstThird">  
@@ -147,10 +147,10 @@
                 </div>
               </ul>  
             </li>-->
-            <li id="followTwo"><input type="button" value="Follow" class="stampFollow" id="<%=a2id%>"></li>
+            <li id="followTwo" data-tag="<%=a2id%>"><input type="button" value="Follow" class="stampFollow" id="<%=a2id%>"></li>
             <li id="favoriteTwo" style="margin-top:5px;" data-tag="<%=v2id%>" data-name="<%=song2%>"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=v2id%>"></li><br> 
           </ul>  
-          <a href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"><img src="turtle_ad.jpg" id="adLeft" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;"></a>
+          <!--<a href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"><img src="turtle_ad.jpg" id="adLeft" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;"></a>-->
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
             <source src="" type="video/mp4" id = "source">
             </video>

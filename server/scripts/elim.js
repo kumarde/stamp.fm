@@ -115,6 +115,14 @@ $('#playVidOne').click(function(e){
 				$('#playVidTwo').attr('data-tag', data.v2id);
 				$('#voteOne').attr('data-tag', data.v1id);
 				$('#voteTwo').attr('data-tag', data.v2id);	
+				$('#favoriteOne').attr('data-tag', data.v1id);
+				$('#favoriteOne').attr('data-name', data.song1);
+				$('#favoriteTwo').attr('data-tag', data.v2id);
+				$('#favoriteTwo').attr('data-name', data.song2);
+				$('#followOne').attr('#data-tag', data.a1id);
+				$('#followTwo').attr('#data-tag', data.a2id);
+				
+				
 				$('#one').html(data.votes1);
 				$('#two').html(data.votes2);
 				$("#tenSecs").toggle();
@@ -177,7 +185,7 @@ $('#playVidOne').click(function(e){
 			url: '/follow',
 			type: 'POST',
 			cache: false, 
-			data: { id: event.target.id},
+			data: { id: $(this).attr('data-tag');},
 			success: function(data){
 			if (typeof data.redirect == 'string' )window.location = data.redirect;
 			else if (typeof data.error == 'string')console.log(data.error);
