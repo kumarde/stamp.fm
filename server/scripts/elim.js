@@ -114,7 +114,7 @@ $('#playVidOne').click(function(e){
 				$('#playVidOne').attr('data-tag', data.v1id);
 				$('#playVidTwo').attr('data-tag', data.v2id);
 				$('#voteOne').attr('data-tag', data.v1id);
-				$('#voteTwo').attr('data-tag', data.v2id);
+				$('#voteTwo').attr('data-tag', data.v2id);	
 				$('#one').html(data.votes1);
 				$('#two').html(data.votes2);
 				$("#tenSecs").toggle();
