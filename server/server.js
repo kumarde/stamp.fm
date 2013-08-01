@@ -244,7 +244,7 @@ app.get('/elim', function(req, res){
 				    else{
 				        imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
 				    }}else imgurl = "0";
-				    res.render('elim', {temp: tacc, imgid: imgurl, v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v, a1id: p.a1id, a2id: p.a2id});
+				    res.render('elim', {temp: tacc, imgid: imgurl, v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v, a1id: p.elim.a1id, a2id: p.elim.a2id});
 				})
 			}
 		});
@@ -326,7 +326,7 @@ app.post('/playNext', function(req, res){
 				}
 				});
 			}else {
-				res.send({v1id: p.elim.v1id, v2id: p.elim.v2id, votes1: p.elim.v1v, votes2: p.elim.v2v, s1:p.elim.v1name , s2:p.elim.v2name, a1: p.elim.v1artist, a2: p.elim.v2artist, a1id: p.a1id, a2id: p.a2id});
+				res.send({v1id: p.elim.v1id, v2id: p.elim.v2id, votes1: p.elim.v1v, votes2: p.elim.v2v, s1:p.elim.v1name , s2:p.elim.v2name, a1: p.elim.v1artist, a2: p.elim.v2artist, a1id: p.elim.a1id, a2id: p.elim.a2id});
 
 			}
 		});

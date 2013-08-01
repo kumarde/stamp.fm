@@ -185,11 +185,7 @@ $('#playVidOne').click(function(e){
 			url: '/follow',
 			type: 'POST',
 			cache: false, 
-			data: { id: $(this).attr('data-tag')},
-			success: function(data){
-			if (typeof data.redirect == 'string' )window.location = data.redirect;
-			else if (typeof data.error == 'string')console.log(data.error);
-			else console.log(data);
+			data: { id: $(this).attr('data-tag')}
 			}
 		});
 	}
