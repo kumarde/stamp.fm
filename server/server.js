@@ -212,7 +212,7 @@ app.get('/elim', function(req, res){
 					                        else{
 					                          imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
 					                        }}else imgurl = "0";
-					                        res.render('elim', {temp: tacc, imgid: imgurl, v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+					                        res.render('elim', {temp: tacc, imgid: imgurl, v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes, a1id: o.artistID, a2id: o2.artistID});
 				                       	}
 									})
 								});
@@ -1095,7 +1095,7 @@ app.post('/addPlay', function(req, res){
     db.music.findOne({_id: parseInt(req.body.sid)}, function(e, o){
 		console.log(o);
 		name = o.artistName;
-		db.playlists.findOne({songID: req.body.sid, artistID:id}, function(e,o){
+		db.playlists.findOne($and:[{songID: req.body.sid, artistID:id}], function(e,o){
 			  if (!o && !e){
 				  db.playlists.insert({
 					songID: req.body.sid,

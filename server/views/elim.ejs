@@ -102,9 +102,9 @@
               <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count' title="Share to give this artist another point">Share</a>
             </li>          
             <li id="tweetVote" style="margin-top:20px;" title="Tweet to give this artist another point"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical" title="Tweet to give this artist another point">Tweet</a></li>
-            <li id="followOne"><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li>
-            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=id%>"></li><br> 
-            <img src="turtle_ad.jpg" id="adRight" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;">
+            <li id="followOne"><input type="button" value="Follow" class="stampFollow" id="<%=a1id%>"></li>
+            <li id="favoriteOne" style="margin-top:5px;" data-tag = "<%=v1id%>" data-name = "<%=song1%>"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=v1id%>"></li><br> 
+            <a href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"><img src="turtle_ad.jpg" id="adRight" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;"></a>
             <!--<li id="banOne" ><img src="banButton.png" onmouseover="openBanOne();" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
               <ul id="banContentOne" style="visibility:hidden;" class="banWrapper">
                 <div id="firstThird">  
@@ -147,8 +147,8 @@
                 </div>
               </ul>  
             </li>-->
-            <li id="followTwo"><input type="button" value="Follow" class="stampFollow" id="<%=id%>"></li>
-            <li id="favoriteOne" style="margin-top:5px;"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=id%>"></li><br> 
+            <li id="followTwo"><input type="button" value="Follow" class="stampFollow" id="<%=a2id%>"></li>
+            <li id="favoriteTwo" style="margin-top:5px;" data-tag="<%=v2id%>" data-name="<%=song2%>"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=v2id%>"></li><br> 
           </ul>  
           <img src="turtle_ad.jpg" id="adLeft" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;">
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
@@ -215,8 +215,13 @@
 <!--End FB Share Script-->
 
 
-<% if (temp == 1) {%><script>alert("yes");</script>
-<% ;}else { %> <script>alert("no");</script> <% ;}%>
+<% if (temp == 1) {%><script>$(document).ready(function(){
+	$('#favoriteOne').remove();
+	$('#followOne').remove();
+	$('#favoriteTwo').remove();
+	$('#followTwo').remove();
+});</script>
+<% ;}else { %> <script></script> <% ;}%>
 
 <% stylesheet('modals.css') -%>
 <%-partial('modals', ["'NOPQ'"]) %>

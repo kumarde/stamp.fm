@@ -135,6 +135,13 @@ $('#playVidOne').click(function(e){
 			}
 		});
 	});
+	
+	$('#favoriteOne').click(addtoPlaylist);
+	$('#favoriteTwo').click(addtoPlaylist);
+	$('#followOne').click(follow);
+	$('#followTwo').click(follow);
+	
+	
 });
     function openBanOne()
     {
@@ -164,3 +171,29 @@ $('#playVidOne').click(function(e){
     		element.attributeName = 'controls';
     	}
     }
+
+	function follow(event) {
+		$.ajax({ 
+			url: '/follow',
+			type: 'POST',
+			cache: false, 
+			data: { id: event.target.id},
+			success: function(data){
+			if (typeof data.redirect == 'string' )window.location = data.redirect;
+			else if (typeof data.error == 'string')console.log(data.error);
+			else console.log(data);
+			}
+		});
+	}
+
+  function addtoPlaylist(){
+      var tag = $(this).attr('data-tag');
+      var name = $(this).attr('data-name');
+      $.ajax({
+        url: '/addPlay',
+        type: 'POST',
+        cache: false,
+        data: {sid: tag, name: name}
+      })
+  }
+	
