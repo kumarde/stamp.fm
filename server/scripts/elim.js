@@ -186,7 +186,6 @@ $('#playVidOne').click(function(e){
 			type: 'POST',
 			cache: false, 
 			data: { id: $(this).attr('data-tag')}
-			}
 		});
 	}
 
