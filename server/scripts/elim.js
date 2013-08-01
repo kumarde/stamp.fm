@@ -119,8 +119,8 @@ $('#playVidOne').click(function(e){
 				$('#favoriteOne').attr('data-name', data.song1);
 				$('#favoriteTwo').attr('data-tag', data.v2id);
 				$('#favoriteTwo').attr('data-name', data.song2);
-				$('#followOne').attr('#data-tag', data.a1id);
-				$('#followTwo').attr('#data-tag', data.a2id);
+				$('#followOne').attr('data-tag', data.a1id);
+				$('#followTwo').attr('data-tag', data.a2id);
 				
 				
 				$('#one').html(data.votes1);
