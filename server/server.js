@@ -702,7 +702,7 @@ else{
         }
     }
 	
-	db.tournament2.findOne({$and: [{genre: req.body.genre}, {artistID: id}]}, function(e, o){
+	db.tournament2.findOne({{$and: [{genre: req.body.genre}, {artistID: id}]}}, function(e, o){
 	  if(e) console.log(e);
 	  if(o){
 		res.send({msg: "no"});
