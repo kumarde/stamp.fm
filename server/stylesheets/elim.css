@@ -342,8 +342,9 @@ body .ui-tooltip {
 }
 
 #next{
+    margin-left: 0px;
+    margin-right: 0px;    
     margin-top: 10px;
-    margin-left: 50%;
     font-size: 30px;
     border: 1px solid rgba(0,0,0,1);
     color: #FFFFFF;
@@ -391,3 +392,8 @@ body .ui-tooltip {
     right: 0px;
     bottom: 0px;
 }
+
+#tweeter #feeber #next{
+    display: inline;
+}
+
