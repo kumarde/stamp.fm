@@ -726,7 +726,7 @@ app.get('/', function(req, res){
         res.redirect('/profile');
     }
 	else {
-      res.render('createAccount', {title: "Signup"});
+      res.render('homePage', {title: "Signup"});
   }
 });
 
@@ -983,7 +983,10 @@ app.get('/view', function(req, res){
                           else{
                             imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
                           }
-                         res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null", follow: follow});
+                          db.music.find({$and: [{artistID: pid, inTourney: "Submitted"}]}, function(e, tournament){
+                          	res.render('profileView', {profID:myS3Account.readPolicy(pid, PIC_BUCKET, 60), id:pid, name: profile.name, bio:profile.bio, location:profile.location, imgid: imgurl, songs:songs, playlist: playlist, songId: vid, facebook: profile.facebook, twitter: profile.twitter, createModal: "null", follow: follow, tournament: tournament});	
+                          })
+                         
                           })
                         })        
                 }
