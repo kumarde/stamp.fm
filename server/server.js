@@ -154,6 +154,7 @@ app.get('/elim', function(req, res){
   }
   else {
 		var dbt = db.profiles;
+    var tacc = 0;
 		if (req.session.temp == null ){
 		
 			if(req.session.user == null){
@@ -170,6 +171,7 @@ app.get('/elim', function(req, res){
 		else {
 				id = req.session.temp._id;
 				dbt = db.temps;
+        var tacc = 1;
 		}
 		dbt.findOne({_id:id}, function(e,p){
 			
@@ -190,8 +192,8 @@ app.get('/elim', function(req, res){
 						db.profiles.findOne({_id: o2.artistID}, function(e, user2){
 							var e = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes};
 							dbt.update({_id: id},{$set: {elim:e}});
-							res.render('elim', {imgid: "0", v1id: e.v1id, v2id:e.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
-
+							     res.render('elim', {imgid: "0", v1id: e.v1id, v2id:e.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+              
 						});
 					});
 				});
