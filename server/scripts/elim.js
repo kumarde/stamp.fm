@@ -30,6 +30,9 @@ $($('#elim').find('.close')).click(function(){
 $("#songOneVote").toggle();
 $("#songTwoVote").toggle();
 $("#next").toggle();
+$(".votee").mousedown(switchdown);
+$(".votee").mouseup(switchup);
+$("#next").click(changeback);
 
 $('#playVidOne').click(function(e){
 		
@@ -201,4 +204,37 @@ $('#playVidOne').click(function(e){
         data: {sid: tag, name: name}
       })
   }
+
+  function buttonChange(object){
+  	var element = object;
+  	if(element.value == "Follow") element.value = "Unfollow";
+  	else element.value = "Follow";
+
+  	element.toggleClass("Unfollow");
+  }
+
+  function buttonChangeFav(object){
+  	var element = object;
+  	if(element.value == "Favorite") element.value = "Unfavorite";
+  	else element.value = "Favorite";
+
+  	element.toggleClass("Unfavorite");
+  }
+
+  function switchdown(){
+  	if($('#voteTwo').attr('src') == 'vote.png' && $("#voteOne").attr('src') == 'vote.png'){
+  		$(this).attr('src', 'voted.png');
+  	}
+  }
+
+  function switchup(){
+	if(($("#voteTwo").attr('src') == 'vote.png' && $("#voteOne").attr('src') == 'vote.png') || $(this).attr('src') == 'voted.png')  {
+			$(this).attr('src', 'votedd.png');
+		}
+	}
+function changeback(){
+ 	$("#voteTwo").attr('src', 'vote.png');
+	$("#voteOne").attr('src', 'vote.png');
+ }
+
 	
