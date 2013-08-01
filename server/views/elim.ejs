@@ -96,14 +96,14 @@
               <labelName id = "subartist1" style="font-size:15px;"><b><%=user1%></b></labelName>
             </li>               
             <li id="stampVote">
-              <img  data-tag = "<%=v1id%>"src="favoriteIcon.png" id="voteOne" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
+			  <img data-tag = "<%=v1id%>"src="vote.png" id="voteOne" class = "votee" style="cursor:pointer;height:60px;width:60px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point"> 
             </li>  
             <li id="fbVote" title="Share to give this artist another point">
               <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count' title="Share to give this artist another point">Share</a>
             </li>          
             <li id="tweetVote" style="margin-top:20px;" title="Tweet to give this artist another point"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical" title="Tweet to give this artist another point">Tweet</a></li>
-            <li id="followOne" data-tag="<%=a1id%>"><input type="button" value="Follow" class="stampFollow" id="<%=a1id%>"></li>
-            <li id="favoriteOne" style="margin-top:5px;" data-tag = "<%=v1id%>" data-name = "<%=song1%>"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=v1id%>"></li><br> 
+             <li id="followOne" data-tag="<%=a1id%>"><input type="button" value="Follow" class="stampFollow" onclick="buttonChange(this);" id="<%=a1id%>"></li>
+            <li id="favoriteOne" style="margin-top:5px;" data-tag="<%=v1id%>" data-name="<%=song1%>"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" onclick="buttonChangeFav(this);" id="<%=v1id%>"></li><br> 
             <!--<a href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"><img src="turtle_ad.jpg" id="adRight" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;"></a>-->
             <!--<li id="banOne" ><img src="banButton.png" onmouseover="openBanOne();" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
               <ul id="banContentOne" style="visibility:hidden;" class="banWrapper">
@@ -126,7 +126,7 @@
               <labelName id = "subartist2" style="font-size:15px;max-width:150px; overflow:hidden;"><b><%=user2%></b></labelName>
             </li>                   
             <li id="stampVote">
-              <img data-tag="<%=v2id%>"src="favoriteIcon.png" id="voteTwo" style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
+              <img data-tag="<%=v2id%>"src="vote.png" id="voteTwo" class = "votee" style="cursor:pointer;height:60px;width:60px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
             </li>             
             <li id="fbVote" title="Share to give this artist another point">      
               <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
@@ -147,9 +147,10 @@
                 </div>
               </ul>  
             </li>-->
-            <li id="followTwo" data-tag="<%=a2id%>"><input type="button" value="Follow" class="stampFollow" id="<%=a2id%>"></li>
-            <li id="favoriteTwo" style="margin-top:5px;" data-tag="<%=v2id%>" data-name="<%=song2%>"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" id="<%=v2id%>"></li><br> 
-          </ul>  
+         
+            <li id="followTwo" data-tag="<%=a2id%>"><input type="button" value="Follow" class="stampFollow" onclick="buttonChange(this);" id="<%=a2id%>"></li>
+            <li id="favoriteTwo" style="margin-top:5px;" data-tag="<%=v2id%>" data-name="<%=song2%>"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" onclick="buttonChangeFav(this);" id="<%=v2id%>"></li><br> 
+		 </ul>  
           <!--<a href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"><img src="turtle_ad.jpg" id="adLeft" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;"></a>-->
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
             <source src="" type="video/mp4" id = "source">
