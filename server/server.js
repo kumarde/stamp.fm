@@ -106,7 +106,7 @@ app.configure(function(){
     passport.use(new FacebookStrategy({
         clientID: "427362497341922",
         clientSecret: "12e395fc0c5f42b67e58f60894bf66a2",
-        callbackURL: "http://www.stamp.fm/auth/facebook/callback"
+        callbackURL: "http://ec2-107-22-75-182.compute-1.amazonaws.com/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done){
             graph.setAccessToken(accessToken);
