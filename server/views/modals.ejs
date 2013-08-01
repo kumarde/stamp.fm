@@ -28,20 +28,20 @@
 			<div id="recovererror" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 >There was an error. Please try again</h5></center></div></div>
 		<%}
 		else if ( type == 'I' ){%>
-			<div id="followinglist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 >Who you are Following</h3><div id="to"></div></center></div></div>
+			<div id="followinglist" class="modalDialog_follow"><div><div class="close" >X</div><center><h3 >Who you are Following</h3><div id="to"></div></center></div></div>
 		<%}
 		else if ( type == 'J' ){%>
-			<div id="followerslist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 >Who's Following You</h3><div id="from"></div></center></div></div>		
+			<div id="followerslist" class="modalDialog_follow"><div><div class="close" >X</div><center><h3 >Who's Following You</h3><div id="from"></div></center></div></div>		
 		<%}
 		else if ( type == 'K' ){%>
 		<div id="info" class="modalDialog_upload">
 		  <div>
-			<div class="close" id="closeButton" style="color:#FFFFFF">X</div>
+			<div class="close" id="closeButton" >X</div>
 			<center>
 			<h5 >Fill in your Song Information</h5>
 			<div>
 				<input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName">
-			   <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
+			   <p >Choose the Genre that best fits your song</p>
 				<center>
 				<select name="genre" form="songInfo" id = "genre">
 				  <option class="genreChoice" id="country">Country</option>
@@ -81,7 +81,7 @@
 		else if ( type == 'M' ){%>
 			<div id="congrats" class="modalDialog">
 			  <div>
-			  <div class="close" id="closeButton" style="color:#FFFFFF">X</div>
+			  <div class="close" id="closeButton" >X</div>
 				<center>
 				<h3 >Congratulations! <br> Your song has been successfully added to the next tournament!</h3>    
 				</center>
@@ -92,7 +92,7 @@
 		else if ( type == 'N' ){%>
 			<div id="notreal" class="modalDialog_temp">
 			  <div>
-				<div class="close" style="color:#FFFFFF">X</div>
+				<div class="close" >X</div>
 				<center>
 				<h3 >This stage of the competition has not begun yet.<br><br>
 				See you August 1st!</h3>
@@ -120,7 +120,7 @@
 
 				</script>
 				<div style="text-align:center">
-				<div class="close" style="color:#FFFFFF">X</div>
+				<div class="close" >X</div>
 				<h3 >Give us Some Feedback!</h3>
 				<form method = "POST" action = "/feedback" id = "feedback">
 
@@ -151,7 +151,7 @@
 
 				</script>
 				<div>
-				<div class="close" style="color:#FFFFFF">X</div>
+				<div class="close" >X</div>
 				<h3 >Give us Some Feedback!</h3>
 				<form method = "POST" action = "/feedback" id = "feedback">
 
@@ -173,7 +173,7 @@
 	else if ( type == 'Q' ){%>
 		<div id="tophal" class="modalDialog_account">
 		  <div>
-			<div class="close" style="color:#FFFFFF">X</div>
+			<div class="close" >X</div>
 			<center>
 			<h3 >Edit Your Account Info</h3>
 			<form id="editAccount">
@@ -193,7 +193,7 @@
 	else if ( type == 'S' ){%>
 		<div id="bigpic" class="modalDialog">
 		  <div>
-			<div class="close" style="color:#FFFFFF">X</div>
+			<div class="close" >X</div>
 			<center>
 			<img src="<%=profID%>" id="bigPicture" style="height: 70%; width: 70%;">  
 		  </center>
@@ -203,7 +203,7 @@
 		else if ( type == 'T' ){%>
 		<div id="samesong" class="modalDialog">
 		  <div>
-			<div class="close" style="color:#FFFFFF">X</div>
+			<div class="close" >X</div>
 			<center>
 			<h3 >You cannot enter two videos in the same genre</h3>    
 			</center>
@@ -213,7 +213,7 @@
 	else if ( type == 'U' ){%>
 		<div id="delerror" class="modalDialog">
 		  <div>
-			<div class="close" style="color:#FFFFFF">X</div>
+			<div class="close" >X</div>
 			<center>
 			<h3 >You cannot delete a video uploaded to the tournament</h3>    
 			</center>
@@ -223,7 +223,7 @@
 	else if ( type == 'V' ){%>
 		<div id="proferr" class="modalDialog">
 		  <div>
-			<div class="close" style="color:#FFFFFF">X</div>
+			<div class="close" >X</div>
 			<center>
 			<div id="proferrdiv" ></div>
 			</center>
@@ -254,11 +254,11 @@
 		</div>
 	<% }
 	else if ( type == 'Y' ){%>
-			<div id="followerslist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 >Who's Following <%=name%></h3><div id="from"></div></center></div></div>		
+			<div id="followerslist" class="modalDialog_follow"><div><div class="close" >X</div><center><h3 >Who's Following <%=name%></h3><div id="from"></div></center></div></div>		
 		<%}
 
 	else if ( type == 'Z' ){%>
-			<div id="followinglist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 >Who <%=name%> is Following</h3><div id="to"></div></center></div></div>
+			<div id="followinglist" class="modalDialog_follow"><div><div class="close" >X</div><center><h3 >Who <%=name%> is Following</h3><div id="to"></div></center></div></div>
 		<%}
 	else if ( type == '1' ){%>
 			<div id="elim" class="modalDialog_temp">

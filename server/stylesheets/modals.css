@@ -163,7 +163,7 @@ height: 100%;
     );
 }
 .close {
- 
+  color: rgba(0,0,0,.7);
   line-height: 25px;
   position: absolute;
   right: 0px;
