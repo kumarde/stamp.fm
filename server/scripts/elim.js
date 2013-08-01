@@ -23,9 +23,10 @@ function t2(){
 }
 
 $(document).ready(function(){
-	
-	setTimeout(function(){$('#songOne').click();},500);
 	$('#elim').addClass('unhidden');
+$($('#elim').find('.close')).click(function(){
+	$('#songOne').click();
+});
 $("#songOneVote").toggle();
 $("#songTwoVote").toggle();
 $("#next").toggle();
