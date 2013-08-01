@@ -702,7 +702,7 @@ else{
         }
     }
 	
-	db.tournament2.findOne({{$and: [{genre: req.body.genre}, {artistID: id}]}}, function(e, o){
+	db.tournament2.findOne({$and: [{genre: req.body.genre}, {artistID: id}]}, function(e, o){
 	  if(e) console.log(e);
 	  if(o){
 		res.send({msg: "no"});
@@ -1095,7 +1095,7 @@ app.post('/addPlay', function(req, res){
     db.music.findOne({_id: parseInt(req.body.sid)}, function(e, o){
 		console.log(o);
 		name = o.artistName;
-		db.playlists.findOne($and:[{songID: req.body.sid, artistID:id}], function(e,o){
+		db.playlists.findOne({$and:[{songID: req.body.sid, artistID:id}]}, function(e,o){
 			  if (!o && !e){
 				  db.playlists.insert({
 					songID: req.body.sid,
