@@ -23,8 +23,9 @@ function t2(){
 }
 
 $(document).ready(function(){
-	setTimeout(function(){$('#songOne').click();},500);
 	
+	setTimeout(function(){$('#songOne').click();},500);
+	$('#elim').addClass('unhidden');
 $("#songOneVote").toggle();
 $("#songTwoVote").toggle();
 $("#next").toggle();
