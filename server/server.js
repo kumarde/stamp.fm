@@ -192,12 +192,12 @@ app.get('/elim', function(req, res){
 						db.profiles.findOne({_id: o.artistID}, function(e, user){
 							db.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
 								db.profiles.findOne({_id: o2.artistID}, function(e, user2){
-									var vp = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes};
+									var vp = {v1id: rap_array[temp]._id, v2id: rap_array[temp+1]._id, v1name: o.name, v2name: o2.name, v1artist: o.artistName, v2artist:o2.artistName, v1v: o.votes, v2v:o2.votes, a1id: o.artistID, a2id: o2.artistID};
 									dbt.update({_id: id},{$set: {elim:vp}});
 									db.profiles.findOne({_id: id}, function(e, profile){
 										if(!profile){
 											if(tacc){
-										res.render('elim', {temp: tacc, imgid: "0", v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+										res.render('elim', {temp: tacc, imgid: "0", v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes, a1id: o.artistID, a2id: o2.artistID});
 											}
 										}
 										else{
@@ -212,7 +212,7 @@ app.get('/elim', function(req, res){
 					                        else{
 					                          imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
 					                        }}else imgurl = "0";
-					                        res.render('elim', {temp: tacc, imgid: imgurl, v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes});
+					                        res.render('elim', {temp: tacc, imgid: imgurl, v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes, a1id: o.artistID, a2id: o2.artistID});
 				                       	}
 									})
 								});
@@ -244,7 +244,7 @@ app.get('/elim', function(req, res){
 				    else{
 				        imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
 				    }}else imgurl = "0";
-				    res.render('elim', {temp: tacc, imgid: imgurl, v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v});
+				    res.render('elim', {temp: tacc, imgid: imgurl, v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v, a1id: p.elim.a1id, a2id: p.elim.a2id});
 				})
 			}
 		});
@@ -311,9 +311,9 @@ app.post('/playNext', function(req, res){
 
 		dbt.findOne({_id:id}, function(e,p){
 			if (!p.elim ){
-				var e = {v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, v1name: rap_array[cRap].name, v2name: rap_array[cRap+1].name, v1artist: rap_array[cRap].artistName, v2artist: rap_array[cRap+1].artistName, v1v: rap_array[cRap].votes, v2v: rap_array[cRap+1].votes};
+				var e = {v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, v1name: rap_array[cRap].name, v2name: rap_array[cRap+1].name, v1artist: rap_array[cRap].artistName, v2artist: rap_array[cRap+1].artistName, v1v: rap_array[cRap].votes, v2v: rap_array[cRap+1].votes, a1id: rap_array[cRap].artistID, a2id: rap_array[cRap+1].artistID};
 				dbt.update({_id:id},{$set:{elim:e}});
-				res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, votes1: rap_array[cRap].votes, votes2: rap_array[cRap+1].votes, s1:rap_array[cRap].name , s2:rap_array[cRap+1].name, a1: rap_array[cRap].artistName, a2: rap_array[cRap+1].artistName});
+				res.send({v1id: rap_array[cRap]._id, v2id: rap_array[cRap+1]._id, votes1: rap_array[cRap].votes, votes2: rap_array[cRap+1].votes, s1:rap_array[cRap].name , s2:rap_array[cRap+1].name, a1: rap_array[cRap].artistName, a2: rap_array[cRap+1].artistName, a1id: rap_array[cRap].artistID, a2id: rap_array[cRap+1].artistID});
 				elim.updateDB("Rap", cRap, rap_array, totalRap, function(inc, newArray){
 				if(inc){
 					cRap += 2;
@@ -326,7 +326,7 @@ app.post('/playNext', function(req, res){
 				}
 				});
 			}else {
-				res.send({v1id: p.elim.v1id, v2id: p.elim.v2id, votes1: p.elim.v1v, votes2: p.elim.v2v, s1:p.elim.v1name , s2:p.elim.v2name, a1: p.elim.v1artist, a2: p.elim.v2artist});
+				res.send({v1id: p.elim.v1id, v2id: p.elim.v2id, votes1: p.elim.v1v, votes2: p.elim.v2v, s1:p.elim.v1name , s2:p.elim.v2name, a1: p.elim.v1artist, a2: p.elim.v2artist, a1id: p.elim.a1id, a2id: p.elim.a2id});
 
 			}
 		});
@@ -1095,7 +1095,7 @@ app.post('/addPlay', function(req, res){
     db.music.findOne({_id: parseInt(req.body.sid)}, function(e, o){
 		console.log(o);
 		name = o.artistName;
-		db.playlists.findOne({songID: req.body.sid, artistID:id}, function(e,o){
+		db.playlists.findOne({$and:[{songID: req.body.sid, artistID:id}]}, function(e,o){
 			  if (!o && !e){
 				  db.playlists.insert({
 					songID: req.body.sid,
@@ -1398,15 +1398,7 @@ app.post('/tempacc',function(req,res){
         }
     });
 });	
-app.get('/init',function(req,res){
-	db.users.remove();
-	db.profiles.remove();
 
-	db.locals.remove();
-	db.tournament.update({genre:"Rap"}, {$set:{votes:0, views:0}},{multi:true});
-	db.temps.remove();
-	res.send("asd");
-});
 /*****************************************404**************************************************/
 app.get("*", function(req, res){
       res.redirect('/profile');
