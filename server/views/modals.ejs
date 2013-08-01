@@ -4,41 +4,41 @@
 		type = modals[i];
 		
 		if ( type == 'A' ){%>
-			<div id="logerror" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">Error: Username and Password Combination do not match</h5></center></div></div>
+			<div id="logerror" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 >Error: Username and Password Combination do not match</h5></center></div></div>
 		<% }
 		else if ( type == 'B' ){%>
-			<div id="unfilled" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">Please Fill In All Required Fields</h5></center></div></div>
+			<div id="unfilled" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 >Please Fill In All Required Fields</h5></center></div></div>
 		<%}
 		else if ( type == 'C' ){%>
-			<div id="bademail" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">Please Enter a valid Email Address</h5></center></div></div>
+			<div id="bademail" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 >Please Enter a valid Email Address</h5></center></div></div>
 		<%}
 		else if ( type == 'D' ){%>
-			<div id="nomatch" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">Your Email Eddresses Must Match</h5></center></div></div>
+			<div id="nomatch" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 >Your Email Eddresses Must Match</h5></center></div></div>
 		<%}
 		else if ( type == 'E' ){%>
-			<div id="error" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">E-mail Already Taken</h5></center></div></div>
+			<div id="error" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 >E-mail Already Taken</h5></center></div></div>
 		<%}	
 		else if ( type == 'F' ){%>
-			<div id="forgot" class="modalDialog"><div><div class="close">X</div><center><h5 style="color:white">Enter Email to Recover Your Password</h5><div><form method = "post" action = "/forgot" id = "forgotpass"><input type="text" class="enterEmail" placeholder="Email" name = "email"><br><br><input type="submit" class="but" value="Recover" id = "recoverPass"></form></div></center></div></div>
+			<div id="forgot" class="modalDialog"><div><div class="close">X</div><center><h5 >Enter Email to Recover Your Password</h5><div><form method = "post" action = "/forgot" id = "forgotpass"><input type="text" class="enterEmail" placeholder="Email" name = "email"><br><br><input type="submit" class="but" value="Recover" id = "recoverPass"></form></div></center></div></div>
 		<%}
 		else if ( type == 'G' ){%>
-			<div id="recoversuccess" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">You will recieve a reset email shortly</h5></center></div></div>
+			<div id="recoversuccess" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 >You will recieve a reset email shortly</h5></center></div></div>
 		<%}
 		else if ( type == 'H' ){%>
-			<div id="recovererror" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">There was an error. Please try again</h5></center></div></div>
+			<div id="recovererror" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 >There was an error. Please try again</h5></center></div></div>
 		<%}
 		else if ( type == 'I' ){%>
-			<div id="followinglist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 style="color:white">Who you are Following</h3><div id="to"></div></center></div></div>
+			<div id="followinglist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 >Who you are Following</h3><div id="to"></div></center></div></div>
 		<%}
 		else if ( type == 'J' ){%>
-			<div id="followerslist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 style="color:white">Who's Following You</h3><div id="from"></div></center></div></div>		
+			<div id="followerslist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 >Who's Following You</h3><div id="from"></div></center></div></div>		
 		<%}
 		else if ( type == 'K' ){%>
 		<div id="info" class="modalDialog_upload">
 		  <div>
 			<div class="close" id="closeButton" style="color:#FFFFFF">X</div>
 			<center>
-			<h5 style="color:white">Fill in your Song Information</h5>
+			<h5 >Fill in your Song Information</h5>
 			<div>
 				<input type="text" class="songName" placeholder="Song Name" name = "songName" id = "songName">
 			   <p style="color:#FFFFFF">Choose the Genre that best fits your song</p>
@@ -71,7 +71,7 @@
 			<div id="youSure" class="modalDialog">
 				<div>
 					<center>
-					<h3 style="color:white">Are you sure you want to enter this song to the tournament?</h3>    
+					<h3 >Are you sure you want to enter this song to the tournament?</h3>    
 					<input type="submit" value="Yes" id = "enterTourney">
 					<input type="button" value="No" id = "noThanks">
 					</center>
@@ -83,7 +83,7 @@
 			  <div>
 			  <div class="close" id="closeButton" style="color:#FFFFFF">X</div>
 				<center>
-				<h3 style="color:white">Congratulations! <br> Your song has been successfully added to the next tournament!</h3>    
+				<h3 >Congratulations! <br> Your song has been successfully added to the next tournament!</h3>    
 				</center>
 			  </div>
 			</div>
@@ -94,9 +94,9 @@
 			  <div>
 				<div class="close" style="color:#FFFFFF">X</div>
 				<center>
-				<h3 style="color:white">This stage of the competition has not begun yet.<br><br>
+				<h3 >This stage of the competition has not begun yet.<br><br>
 				See you August 1st!</h3>
-				<p style="color:white">Stay up to date by liking us on Facebook or following us on Twitter!</p>
+				<p >Stay up to date by liking us on Facebook or following us on Twitter!</p>
 				<ul>
 				  <li> <div class="fb-like" data-href="https://www.facebook.com/Stamp.fm?fref=ts" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
 				  <li>  <div>
@@ -121,7 +121,7 @@
 				</script>
 				<div style="text-align:center">
 				<div class="close" style="color:#FFFFFF">X</div>
-				<h3 style="color:white">Give us Some Feedback!</h3>
+				<h3 >Give us Some Feedback!</h3>
 				<form method = "POST" action = "/feedback" id = "feedback">
 
 				  <label style="background-color:black" id = "ideaz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio" checked>Idea</label>
@@ -152,7 +152,7 @@
 				</script>
 				<div>
 				<div class="close" style="color:#FFFFFF">X</div>
-				<h3 style="color:white">Give us Some Feedback!</h3>
+				<h3 >Give us Some Feedback!</h3>
 				<form method = "POST" action = "/feedback" id = "feedback">
 
 				  <label style="background-color:black" id = "ideaz" onclick="highlight(this); NO((document.getElementById('probz')));NO((document.getElementById('commentz')));NO((document.getElementById('questionz')));"><input type="radio" name="feedback" value="Idea" id="ideaRadio" class="radio" checked>Idea</label>
@@ -175,7 +175,7 @@
 		  <div>
 			<div class="close" style="color:#FFFFFF">X</div>
 			<center>
-			<h3 style="color:white">Edit Your Account Info</h3>
+			<h3 >Edit Your Account Info</h3>
 			<form id="editAccount">
 			  <br>
 			  <input type="email" placeholder="Change your Email Address" id="editEmail"><br><br>
@@ -187,7 +187,7 @@
 		<% }
 	else if ( type == 'R' ){%>
 	
-	<div id="boxerror" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 style="color:white">Please Verify to Our Terms</h5></center></div></div>
+	<div id="boxerror" class="modalDialog"><div><div class="close" id = "close">X</div><center><h5 >Please Verify to Our Terms</h5></center></div></div>
 
 	<%}
 	else if ( type == 'S' ){%>
@@ -205,7 +205,7 @@
 		  <div>
 			<div class="close" style="color:#FFFFFF">X</div>
 			<center>
-			<h3 style="color:white">You cannot enter two videos in the same genre</h3>    
+			<h3 >You cannot enter two videos in the same genre</h3>    
 			</center>
 		  </div>
 		</div>
@@ -215,7 +215,7 @@
 		  <div>
 			<div class="close" style="color:#FFFFFF">X</div>
 			<center>
-			<h3 style="color:white">You cannot delete a video uploaded to the tournament</h3>    
+			<h3 >You cannot delete a video uploaded to the tournament</h3>    
 			</center>
 		  </div>
 		</div>
@@ -225,7 +225,7 @@
 		  <div>
 			<div class="close" style="color:#FFFFFF">X</div>
 			<center>
-			<div id="proferrdiv" style="color:white"></div>
+			<div id="proferrdiv" ></div>
 			</center>
 		  </div>
 		</div>
@@ -234,7 +234,7 @@
 		<div id="songdel" class="modalDialog">
 		  <div>
 			<center>
-			<h5 style="color:white">Are you sure?</h5>
+			<h5 >Are you sure?</h5>
 			   <input type="button" class="but" value="Yes" id = "syes">
 			  <input type="button"  class="but" value="No" id = "sno">
 			</center>
@@ -245,7 +245,7 @@
 		<div id="playdel" class="modalDialog">
 		  <div>
 			<center>
-			<h5 style="color:white">Are you sure?</h5>
+			<h5 >Are you sure?</h5>
 			
 			   <input type="button" class="but" value="Yes" id = "pyes">
 			  <input type="button" class="but" value="No" id = "pno">
@@ -254,11 +254,11 @@
 		</div>
 	<% }
 	else if ( type == 'Y' ){%>
-			<div id="followerslist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 style="color:white">Who's Following <%=name%></h3><div id="from"></div></center></div></div>		
+			<div id="followerslist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 >Who's Following <%=name%></h3><div id="from"></div></center></div></div>		
 		<%}
 
 	else if ( type == 'Z' ){%>
-			<div id="followinglist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 style="color:white">Who <%=name%> is Following</h3><div id="to"></div></center></div></div>
+			<div id="followinglist" class="modalDialog_follow"><div><div class="close" style="color:#FFFFFF">X</div><center><h3 >Who <%=name%> is Following</h3><div id="to"></div></center></div></div>
 		<%}
 	else if ( type == '1' ){%>
 			<div id="elim" class="modalDialog_temp">
