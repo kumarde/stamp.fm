@@ -35,20 +35,20 @@
 -->
 
           <ul id="selectSongList">
-            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected"><span style="display:inline-block;max-width:200px; white-space:nowrap;overflow:hidden; text-overflow:ellipsis;"><spanV id="vidOne" style="font-size:20px;"><%=song1%></spanV></span>
+            <input data-tag = "<%=v1id%>" type="button" id="playVidOne" style="display:none;"/><li id="songOne" class="selected"><span style="display:inline-block;max-width:200px; white-space:nowrap;overflow:hidden; text-overflow:ellipsis; white-space: nowrap;"><spanV id="vidOne" style="font-size:20px;"><%=song1%></spanV></span>
 
             <spanA id="artistOne" style="font-size:15px;white-space:nowrap;"> &#8211; 
-              <span style="display:inline-block;max-width:150px; overflow:hidden; text-overflow:ellipsis;">
+              <span style="display:inline-block;max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space: nowrap;">
               <%=user1%>
               </span>
             </spanA>
         <!--      <div id = "one"> <%=votes1%> </div> -->
             </li>
             <span id="verses" style="margin-left:6%;float:left;margin-top:0px;font-size:25px;"><strong>vs</strong></span>
-            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred"><span style="display:inline-block;max-width:200px; white-space:nowrap;overflow:hidden; text-overflow:ellipsis;"><spanV id="vidTwo" style="font-size:20px;"><%=song2%></spanV></span>
+            <input data-tag = "<%=v2id%>" type="button" id="playVidTwo" style="display:none;" disabled/><li id="songTwo" class="blurred"><span style="display:inline-block;max-width:200px; white-space:nowrap;overflow:hidden; text-overflow:ellipsis; white-space: nowrap;"><spanV id="vidTwo" style="font-size:20px;"><%=song2%></spanV></span>
 
             <spanA id="artistTwo" style="font-size:15px;white-space:nowrap;"> &#8211; 
-              <span style="display:inline-block;max-width:150px; overflow:hidden; text-overflow:ellipsis;">
+              <span style="display:inline-block;max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space: nowrap;">
               <%=user2%>
               </span>
             </spanA>
@@ -98,10 +98,10 @@
             <li id="stampVote">
 			  <img data-tag = "<%=v1id%>"src="vote.png" id="voteOne" class = "votee" style="cursor:pointer;height:60px;width:60px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point"> 
             </li>  
-            <li id="fbVote" title="Share to give this artist another point">
+            <!---<li id="fbVote" title="Share to give this artist another point">
               <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count' title="Share to give this artist another point">Share</a>
             </li>          
-            <li id="tweetVote" style="margin-top:20px;" title="Tweet to give this artist another point"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical" title="Tweet to give this artist another point">Tweet</a></li>
+            <li id="tweetVote" style="margin-top:20px;" title="Tweet to give this artist another point"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical" title="Tweet to give this artist another point">Tweet</a></li>-->
              <li id="followOne" data-tag="<%=a1id%>"><input type="button" value="Follow" class="stampFollow" onclick="buttonChange(this);" id="<%=a1id%>"></li>
             <li id="favoriteOne" style="margin-top:5px;" data-tag="<%=v1id%>" data-name="<%=song1%>"><input type="button" style="font-size:10px;"value="Favorite" class="stampFollow" onclick="buttonChangeFav(this);" id="<%=v1id%>"></li><br> 
             <!--<a href="http://www.kickstarter.com/projects/1627771136/turtlecell-iphone-case-with-retractable-earbud-hea"><img src="turtle_ad.jpg" id="adRight" style="height:170px; width:170px;float:left; margin-left: 0%;margin-top:260px;"></a>-->
@@ -128,12 +128,12 @@
             <li id="stampVote">
               <img data-tag="<%=v2id%>"src="vote.png" id="voteTwo" class = "votee" style="cursor:pointer;height:60px;width:60px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
             </li>             
-            <li id="fbVote" title="Share to give this artist another point">      
+            <!--<li id="fbVote" title="Share to give this artist another point">      
               <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
               <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a><script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
               </b:if>
             </li>          
-            <li id="tweetVote" style="margin-top:20px;" title="Tweet to give this artist another point"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical" title="Tweet to give this artist another point">Tweet</a></li>
+            <li id="tweetVote" style="margin-top:20px;" title="Tweet to give this artist another point"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical" title="Tweet to give this artist another point">Tweet</a></li>-->
            <!-- <li id="banTwo" ><img src="banButton.png" onmouseover="openBanTwo();"  style="height:40px;width:40px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
               <ul id="banContentTwo" style="visibility:hidden;" class="banWrapper">
                 <div id="firstThird">  
