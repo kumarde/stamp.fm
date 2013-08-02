@@ -1421,7 +1421,7 @@ app.get('/analysis', function(){
 	db.profiles.find({_id:id},function(e,o){
 		if (!o)res.redirect('/');
 		//if (o.name == "Omar Hashwi" || o.name == "Jordan Weichel"){*/
-			res.render('anal');
+			res.render('anal.ejs');
 		
 	//});
 });
