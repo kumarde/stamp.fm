@@ -6,8 +6,9 @@ $(document).ready(function(){
 		cache: false,
 		success: function(data){
 			for (var i = 0; i < data.length; ++i){
-				users[data[i]._id] = data[i];
-				$.ajax({
+				//users[data[i]._id] = data[i];
+				$('body').append('<div>'+data[i].name+'<div>');
+				/*$.ajax({
 					url: "/profd",
 					type: "POST",
 					cache: false,
@@ -18,13 +19,13 @@ $(document).ready(function(){
 				});
 				
 				$.ajax({
-					url: "/songsl",
+					url: "/songl",
 					type: "POST",
 					cache: false,
 					data: {id:data[i]._id},
 					success: function(data){
 						if (data)users[data[0].artistID].songs = data;
-						/*for (var i = 0; i < data.length; ++i){
+						for (var i = 0; i < data.length; ++i){
 							$.ajax({
 								url: "/songsd",
 								type: "POST",
@@ -34,9 +35,9 @@ $(document).ready(function(){
 									
 								}
 							});
-						}*/
+						}
 					}
-				});
+				});*/
 			}
 		}
 	});
