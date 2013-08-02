@@ -23,7 +23,7 @@ function t2(){
 }
 
 $(document).ready(function(){
-	$('#elim').addClass('unhidden');
+
 $($('#elim').find('.close')).click(function(){
 	$('#songOne').click();
 });

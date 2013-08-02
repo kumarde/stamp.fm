@@ -236,5 +236,8 @@
 <% stylesheet('modals.css') -%>
 <%-partial('modals', ["'NOPQ1'"]) %>
 
-
+<% if (tut == 1) {%><script>$(document).ready(function(){
+	$('#elim').addClass('unhidden');
+});</script>
+<% ;}else { %> <script></script> <% ;}%>
 

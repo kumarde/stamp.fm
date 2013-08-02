@@ -179,6 +179,9 @@ app.get('/elim', function(req, res){
 			var tacc = 1;
 		}
 		dbt.findOne({_id:id}, function(e,p){
+			var tut = 0;
+			if (!p.tut){tut = 1;dbt.update({_id: id},{$set: {tut:1}});}
+			
 			if ( e || !p)res.redirect('/');
 			if (!p.elim){
 				elim.initElim("Rap", function(array, c){
@@ -197,7 +200,7 @@ app.get('/elim', function(req, res){
 									db.profiles.findOne({_id: id}, function(e, profile){
 										if(!profile){
 											if(tacc){
-										res.render('elim', {temp: tacc, imgid: "0", v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes, a1id: o.artistID, a2id: o2.artistID});
+										res.render('elim', {tut:tut, temp: tacc, imgid: "0", v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes, a1id: o.artistID, a2id: o2.artistID});
 											}
 										}
 										else{
@@ -212,7 +215,7 @@ app.get('/elim', function(req, res){
 					                        else{
 					                          imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
 					                        }}else imgurl = "0";
-					                        res.render('elim', {temp: tacc, imgid: imgurl, v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes, a1id: o.artistID, a2id: o2.artistID});
+					                        res.render('elim', {tut:tut, temp: tacc, imgid: imgurl, v1id: vp.v1id, v2id:vp.v2id, song1: o.name, song2: o2.name, user1: o.artistName, user2: o2.artistName, votes1: o.votes, votes2: o2.votes, a1id: o.artistID, a2id: o2.artistID});
 				                       	}
 									})
 								});
@@ -244,7 +247,7 @@ app.get('/elim', function(req, res){
 				    else{
 				        imgurl = myS3Account.readPolicy(id, PIC_BUCKET, 60);
 				    }}else imgurl = "0";
-				    res.render('elim', {temp: tacc, imgid: imgurl, v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v, a1id: p.elim.a1id, a2id: p.elim.a2id});
+				    res.render('elim', {tut:tut, temp: tacc, imgid: imgurl, v1id: p.elim.v1id, v2id:p.elim.v2id, song1: p.elim.v1name, song2: p.elim.v2name, user1: p.elim.v1artist, user2: p.elim.v2artist, votes1: p.elim.v1v, votes2: p.elim.v2v, a1id: p.elim.a1id, a2id: p.elim.a2id});
 				})
 			}
 		});
