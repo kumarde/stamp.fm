@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var users = {};
 	$('#emails').click(function(){
-		$('body').html("");
+		$('#main').html("");
 		$.ajax({
 			url: "/userl",
 			type: "POST",
@@ -9,7 +9,7 @@ $(document).ready(function(){
 			success: function(data){
 				for (var i = 0; i < data.length; ++i){
 					var $div = $('<div>'+data[i].email+'</div>');
-					$('body').append($div);
+					$('#main').append($div);
 				}
 			}
 		});
@@ -26,7 +26,7 @@ $(document).ready(function(){
 				var $emaildiv = $('<div>Email: '+data[i].email+'</div><br><br>');
 				$div.append($namediv);
 				$div.append($emaildiv);
-				$('body').append($div);
+				$('#main').append($div);
 				users[data[i]._id] = $div;
 				$.ajax({
 					url: "/profd",
@@ -34,7 +34,7 @@ $(document).ready(function(){
 					cache: false,
 					data: {id:data[i]._id},
 					success: function(data){
-						if(users[data._id])users[data._id].prepend('<div>Profilename: '+data.name+'</div>');
+						users[data._id].prepend('<div>Profilename: '+data.name+'</div>');
 					}
 				});
 				/*
