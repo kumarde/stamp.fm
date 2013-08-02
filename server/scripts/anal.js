@@ -7,7 +7,8 @@ $(document).ready(function(){
 		success: function(data){
 			for (var i = 0; i < data.length; ++i){
 				var $div = $('<div></div>');
-				var $namediv = $('<div>'+data[i].name+'</div>');
+				var $namediv = $('<div>Username: '+data[i].name+'</div>');
+				var $emaildiv = $('<div>Email: '+data[i].email+'</div><br><br>');
 				$div.append($namediv);
 				$('body').append($div);
 				users[data[i]._id] = $div;
@@ -17,7 +18,7 @@ $(document).ready(function(){
 					cache: false,
 					data: {id:data[i]._id},
 					success: function(data){
-						users[data._id].append('-<div>'+data.name+'</div>');
+						users[data._id].prepend('<div>Profilename: '+data.name+'</div>');
 					}
 				});
 				/*
