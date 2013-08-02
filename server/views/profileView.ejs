@@ -74,7 +74,7 @@
           <% playlist.forEach(function(play){ %>
           <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "p<%=play.songID%>" >
             <td><div style="max-width:230px;" data-tag ="<%=play.songID%>" class = "songname"><%= play.name %></div></td>
-      <td style="float:right;min-width:20px;margin-top:5px;cursor:pointer; "><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.jpg" style="height:30px;width:30px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+      <td style="float:right;min-width:20px;margin-top:5px;cursor:pointer; "><img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "vidPlay" src="play.png" style="height:30px;width:30px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
             <img data-name = "<%=play.name%>" data-tag ="<%=play.songID%>" class = "addPlay" src="favoriteIcon.png" style="height:30px;width:30px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"></td>
       </tr>
           <% }); %>
@@ -93,7 +93,7 @@
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
           <td ><div data-tag ="<%=song._id%>" class = "songname">  <%= song.name %></div></td>
-              <td style="float:right;min-width:20px;cursor:pointer; "><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:30px;width:30px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"> 
+              <td style="float:right;min-width:20px;cursor:pointer; "><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.png" style="height:30px;width:30px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;"> 
       <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:30px;width:30px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
 
           <% if(song.inTourney == "Submitted"){ %>
