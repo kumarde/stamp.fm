@@ -1402,6 +1402,32 @@ app.post('/tempacc',function(req,res){
     });
 });	
 
+app.get('/analysis', function(){
+	if (req.session.user == null && req.user == null) {
+			res.redirect('/');
+	}
+	else{
+    var id;
+    if(req.session.user == undefined){
+        id = req.user[0]._id;
+    }
+    else if(req.user == undefined){
+        if(req.session.user[0] == undefined){
+            id = req.session.user._id;
+        } else{
+            id = req.session.user[0]._id;
+        }
+    }
+	db.profiles.find({_id:id},function(e,o){
+		if (!o)res.redirect('/');
+		if (o.name == "Omar Hashwi" || o.name == "Jordan Weichel"){
+			res.send("<div id='main'></div>");
+		}else res.redirect('/');
+		
+	});
+});
+
+
 /*****************************************404**************************************************/
 app.get("*", function(req, res){
       res.redirect('/profile');
@@ -1411,7 +1437,6 @@ app.get("*", function(req, res){
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Server listening on port " + app.get('port'));
 });
-
 
 function makeid()
 {
