@@ -125,6 +125,11 @@
                <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable" style="color:#000;margin-top:0px;">
       <% songs.forEach(function(song){ %>
         <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
+                <% if(song.inTourney == "Submitted"){ %>
+            <td id="stampVote" style="float:right;min-width:40px;margin-top:5px;cursor:pointer;">
+              <img data-tag="<%=song._id%>"src="vote.png" id="voteTwo" class = "votee" style="cursor:pointer;height:20px;width:20px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">   
+            </td>
+          <% } %>
           <td><div data-tag ="<%=song._id%>" class = "songname" ><%= song.name %></div></td>
 		  <td style="float:right;min-width:40px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
 		  <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
