@@ -6,8 +6,8 @@ $(document).ready(function(){
 		cache: false,
 		success: function(data){
 			for (var i = 0; i < data.length; ++i){
-				users[data[i]._id] = data[i];
-				$('#main').append('<div>'+data[i].name+'<div>');
+				//users[data[i]._id] = data[i];
+				$('body').append('<div>'+data[i].name+'<div>');
 				/*$.ajax({
 					url: "/profd",
 					type: "POST",
