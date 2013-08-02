@@ -96,7 +96,7 @@
         </div>                              
 
         <div class="c12 end" id="videoPlayer" style="border:none">
-          <ul id="songOneVote" style="float:left; margin-left:2%; max-width:150px; overflow:hidden;" class="unclickable">
+          <ul id="songOneVote" style="float:left; margin-left:2%; max-width:150px; width:10%; word-wrap:break-word; overflow:hidden;" class="unclickable">
             <li id="labelOne" sytle="">
               <labelName id = "subartist1" style="font-size:15px;"><b><%=user1%></b></labelName>
             </li>               
@@ -126,9 +126,9 @@
 
           </ul>      
 
-          <ul id="songTwoVote" style="float:right; margin-right:5%;" class="unclickable">
+          <ul id="songTwoVote" style="float:right; margin-right:5%;font-size:15px;max-width:150px; word-break:break-word; width:10%;overflow:hidden;" class="unclickable">
             <li id="labelTwo"> 
-              <labelName id = "subartist2" style="font-size:15px;max-width:150px; overflow:hidden;"><b><%=user2%></b></labelName>
+              <labelName id = "subartist2" style=""><b><%=user2%></b></labelName>
             </li>                   
             <li id="stampVote">
               <img data-tag="<%=v2id%>"src="vote.png" id="voteTwo" class = "votee" style="cursor:pointer;height:60px;width:60px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;" title="Vote to give this artist a point">
