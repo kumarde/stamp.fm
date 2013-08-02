@@ -14,6 +14,7 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
 	$.ajax({
 		url: "/userl",
 		type: "POST",
@@ -33,7 +34,7 @@ $(document).ready(function(){
 					cache: false,
 					data: {id:data[i]._id},
 					success: function(data){
-						users[data._id].prepend('<div>Profilename: '+data.name+'</div>');
+						if(users[data._id])users[data._id].prepend('<div>Profilename: '+data.name+'</div>');
 					}
 				});
 				/*
