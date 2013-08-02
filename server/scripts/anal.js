@@ -7,7 +7,7 @@ $(document).ready(function(){
 		success: function(data){
 			for (var i = 0; i < data.length; ++i){
 				users[data[i]._id] = data[i];
-				.ajax({
+				$.ajax({
 					url: "/profd",
 					type: "POST",
 					cache: false,
@@ -17,7 +17,7 @@ $(document).ready(function(){
 					}
 				});
 				
-				.ajax({
+				$.ajax({
 					url: "/songsl",
 					type: "POST",
 					cache: false,
@@ -25,7 +25,7 @@ $(document).ready(function(){
 					success: function(data){
 						if (data)users[data[0].artistID].songs = data;
 						/*for (var i = 0; i < data.length; ++i){
-							.ajax({
+							$.ajax({
 								url: "/songsd",
 								type: "POST",
 								cache: false,
