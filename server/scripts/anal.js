@@ -10,6 +10,7 @@ $(document).ready(function(){
 				var $namediv = $('<div>Username: '+data[i].name+'</div>');
 				var $emaildiv = $('<div>Email: '+data[i].email+'</div><br><br>');
 				$div.append($namediv);
+				$div.append($emaildiv);
 				$('body').append($div);
 				users[data[i]._id] = $div;
 				$.ajax({
