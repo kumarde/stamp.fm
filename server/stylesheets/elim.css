@@ -32,11 +32,6 @@
     transition-duration: 0.2s;
 
 }
-
-#selectSong{
-    margin-top: 50px;
-}
-
 span #verses{
     margin-top: 500px;
 }
@@ -160,7 +155,8 @@ background-color: rgba(140,7,6,1);
 }
 
 #selectSong{
-    margin-top: 90px;
+    text-align: center;
+    margin-top: 50px;
 }
 
 #songOneVote{
