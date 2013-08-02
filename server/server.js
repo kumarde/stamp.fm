@@ -1420,14 +1420,33 @@ app.get('/analysis', function(){
     }
 	db.profiles.find({_id:id},function(e,o){
 		if (!o)res.redirect('/');
-		if (o.name == "Omar Hashwi" || o.name == "Jordan Weichel"){
-			res.send("<div id='main'></div>");
-		}else res.redirect('/');
+		//if (o.name == "Omar Hashwi" || o.name == "Jordan Weichel"){
+			res.render('anal');
 		
 	});
 });
 
+app.post('/userl', function(req,res){
+	db.users.find(function(e,o){
+		res.send(o);
+	});
+});
 
+app.post('/songl', function(req,res){
+	db.music.find({artistID:req.body.id},function(e,o){
+		res.send(o);
+	});
+});
+app.post('/songd', function(req,res){
+	db.tournament.find({songID:req.body.id},function(e,o){
+		res.send(o);
+	});
+});
+app.post('/profd', function(req,res){
+	db.profiles.find({_id:req.body.id}, function(e,o){
+		res.send(o);
+	});
+});
 /*****************************************404**************************************************/
 app.get("*", function(req, res){
       res.redirect('/profile');
