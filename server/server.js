@@ -1423,6 +1423,7 @@ app.get('/analysis', function(req,res){
             id = req.session.user[0]._id;
         }
     }
+	
 	db.profiles.find({_id:id},function(e,o){
 		if (!o)res.redirect('/');
 		//if (o.name == "Omar Hashwi" || o.name == "Jordan Weichel"){*/

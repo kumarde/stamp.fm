@@ -1,23 +1,43 @@
 $(document).ready(function(){
 	var users = {};
+	$('#emails').click(function(){
+		$('#main').html("");
+		$.ajax({
+			url: "/userl",
+			type: "POST",
+			cache: false,
+			success: function(data){
+				for (var i = 0; i < data.length; ++i){
+					var $div = $('<div>'+data[i].email+'</div>');
+					$('#main').append($div);
+				}
+			}
+		});
+	});
+	
 	$.ajax({
 		url: "/userl",
 		type: "POST",
 		cache: false,
 		success: function(data){
 			for (var i = 0; i < data.length; ++i){
-				//users[data[i]._id] = data[i];
-				$('body').append('<div>'+data[i].name+'<div>');
-				/*$.ajax({
+				var $div = $('<div></div>');
+				var $namediv = $('<div>Username: '+data[i].name+'</div>');
+				var $emaildiv = $('<div>Email: '+data[i].email+'</div><br><br>');
+				$div.append($namediv);
+				$div.append($emaildiv);
+				$('#main').append($div);
+				users[data[i]._id] = $div;
+				$.ajax({
 					url: "/profd",
 					type: "POST",
 					cache: false,
 					data: {id:data[i]._id},
 					success: function(data){
-						users[data._id].profname = data.name;
+						users[data._id].prepend('<div>Profilename: '+data.name+'</div>');
 					}
 				});
-				
+				/*
 				$.ajax({
 					url: "/songl",
 					type: "POST",
