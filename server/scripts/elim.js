@@ -23,10 +23,12 @@ function t2(){
 }
 
 $(document).ready(function(){
-
+$('#songOne').click();
+/*
 $($('#elim').find('.close')).click(function(){
 	$('#songOne').click();
 });
+*/
 $("#songOneVote").toggle();
 $("#songTwoVote").toggle();
 $("#next").toggle();

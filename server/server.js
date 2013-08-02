@@ -1437,12 +1437,12 @@ app.post('/songl', function(req,res){
 	});
 });
 app.post('/songd', function(req,res){
-	db.tournament.find({songID:req.body.id},function(e,o){
+	db.tournament.findOne({songID:req.body.id},function(e,o){
 		res.send(o);
 	});
 });
 app.post('/profd', function(req,res){
-	db.profiles.find({_id:req.body.id}, function(e,o){
+	db.profiles.findOne({_id:req.body.id}, function(e,o){
 		res.send(o);
 	});
 });

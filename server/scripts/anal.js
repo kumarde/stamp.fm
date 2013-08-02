@@ -11,7 +11,7 @@ $(document).ready(function(){
 					url: "/profd",
 					type: "POST",
 					cache: false,
-					data: {data[i]._id},
+					data: {id:data[i]._id},
 					success: function(data){
 						users[data._id].profname = data.name;
 					}
@@ -21,7 +21,7 @@ $(document).ready(function(){
 					url: "/songsl",
 					type: "POST",
 					cache: false,
-					data: {data[i]._id},
+					data: {id:data[i]._id},
 					success: function(data){
 						if (data)users[data[0].artistID].songs = data;
 						/*for (var i = 0; i < data.length; ++i){
@@ -29,7 +29,7 @@ $(document).ready(function(){
 								url: "/songsd",
 								type: "POST",
 								cache: false,
-								data: {data[i]._id},
+								data: {id: data[i]._id},
 								success: function(data){
 									
 								}
