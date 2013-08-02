@@ -190,7 +190,6 @@ app.get('/elim', function(req, res){
 					cRap = c;
 					temp = c;
 
-					console.log(rap_array);
 					db.tournament.findOne({_id: rap_array[temp]._id}, function(e, o){
 						db.profiles.findOne({_id: o.artistID}, function(e, user){
 							db.tournament.findOne({_id: rap_array[temp+1]._id}, function(e, o2){
@@ -1402,7 +1401,7 @@ app.post('/tempacc',function(req,res){
     });
 });	
 
-app.get('/analysis', function(){
+app.get('/analysis', function(req,res){
 	/*if (req.session.user == null && req.user == null) {
 			res.redirect('/');
 	}
@@ -1421,7 +1420,7 @@ app.get('/analysis', function(){
 	db.profiles.find({_id:id},function(e,o){
 		if (!o)res.redirect('/');
 		//if (o.name == "Omar Hashwi" || o.name == "Jordan Weichel"){*/
-			res.render('anal');
+			res.render('anal.ejs');
 		
 	//});
 });
