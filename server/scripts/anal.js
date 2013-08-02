@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var users = {};
 	$('#emails').click(function(){
-		$('#main').html("");
+		$('body').html("");
 		$.ajax({
 			url: "/userl",
 			type: "POST",
@@ -9,7 +9,7 @@ $(document).ready(function(){
 			success: function(data){
 				for (var i = 0; i < data.length; ++i){
 					var $div = $('<div>'+data[i].email+'</div>');
-					$('#main').append($div);
+					$('body').append($div);
 				}
 			}
 		});
@@ -26,7 +26,7 @@ $(document).ready(function(){
 				var $emaildiv = $('<div>Email: '+data[i].email+'</div><br><br>');
 				$div.append($namediv);
 				$div.append($emaildiv);
-				$('#main').append($div);
+				$('body').append($div);
 				users[data[i]._id] = $div;
 				$.ajax({
 					url: "/profd",
