@@ -1403,7 +1403,7 @@ app.post('/tempacc',function(req,res){
 });	
 
 app.get('/analysis', function(){
-	if (req.session.user == null && req.user == null) {
+	/*if (req.session.user == null && req.user == null) {
 			res.redirect('/');
 	}
 	else{
@@ -1420,10 +1420,10 @@ app.get('/analysis', function(){
     }
 	db.profiles.find({_id:id},function(e,o){
 		if (!o)res.redirect('/');
-		//if (o.name == "Omar Hashwi" || o.name == "Jordan Weichel"){
+		//if (o.name == "Omar Hashwi" || o.name == "Jordan Weichel"){*/
 			res.render('anal');
 		
-	});
+	//});
 });
 
 app.post('/userl', function(req,res){
