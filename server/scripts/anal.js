@@ -18,7 +18,7 @@ $(document).ready(function(){
 				});
 				
 				$.ajax({
-					url: "/songsl",
+					url: "/songl",
 					type: "POST",
 					cache: false,
 					data: {id:data[i]._id},
