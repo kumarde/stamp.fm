@@ -6,18 +6,19 @@ $(document).ready(function(){
 		cache: false,
 		success: function(data){
 			for (var i = 0; i < data.length; ++i){
-				//users[data[i]._id] = data[i];
-				$('body').append('<div>'+data[i].name+'<div>');
-				/*$.ajax({
+				var $div = $('<div>'+data[i].name+'<div>');
+				$('body').append($div);
+				users[data[i]._id] = $div;
+				$.ajax({
 					url: "/profd",
 					type: "POST",
 					cache: false,
 					data: {id:data[i]._id},
 					success: function(data){
-						users[data._id].profname = data.name;
+						users[data._id].append(' - '+data.name);
 					}
 				});
-				
+				/*
 				$.ajax({
 					url: "/songl",
 					type: "POST",
