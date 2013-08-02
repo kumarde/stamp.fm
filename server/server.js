@@ -335,6 +335,12 @@ app.post('/playNext', function(req, res){
 	}
 });
 
+app.post('/profileVote', function(req, res){
+	var id = req.body.sid;
+	db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
+	res.send({msg: 'ok'})
+})
+
 db.music.count(function(err, count){
   if(count == 0){
     counter = 0;

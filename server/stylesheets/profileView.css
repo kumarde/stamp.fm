@@ -30,3 +30,9 @@
 	max-width:195px;
     overflow:hidden;
 }
+
+#song_name td{
+    display: inline-block;
+    padding-right: 0;
+    padding-left: 0;
+}

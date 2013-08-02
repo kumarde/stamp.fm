@@ -87,3 +87,31 @@ function playVideo(){
       })
 	}
   
+  $('#voteTwo').click(function(){
+    var sid = $(this).attr('data-tag');
+    $.ajax({
+      url: '/profileVote',
+      type : 'POST',
+      cache: false,
+      data: {sid: sid},
+      success: function(data){
+        $(this).attr('src', 'votedd.png');
+      }
+    })
+  })
+
+  function switchdown(){
+    if($('#voteTwo').attr('src') == 'vote.png' && $("#voteOne").attr('src') == 'vote.png'){
+      $(this).attr('src', 'voted.png');
+    }
+  }
+
+  function switchup(){
+  if(($("#voteTwo").attr('src') == 'vote.png' && $("#voteOne").attr('src') == 'vote.png') || $(this).attr('src') == 'voted.png')  {
+      $(this).attr('src', 'votedd.png');
+    }
+  }
+function changeback(){
+  $("#voteTwo").attr('src', 'vote.png');
+  $("#voteOne").attr('src', 'vote.png');
+ }
