@@ -20,6 +20,19 @@
 	$('.vidPlay').click(playVideo);
     $('.addPlay').click(addtoPlaylist);
 
+  $('#voteTwo').click(function(){
+    var sid = $(this).attr('data-tag');
+    $.ajax({
+      url: '/profileVote',
+      type : 'POST',
+      cache: false,
+      data: {sid: sid},
+      success: function(data){
+        $('#voteTwo').attr('src', 'votedd.png');
+      }
+    })
+  })
+
 	
 	
 	var l = $("#playlistContent").find('.songname').length;
@@ -86,19 +99,6 @@ function playVideo(){
         }
       })
 	}
-  
-  $('#voteTwo').click(function(){
-    var sid = $(this).attr('data-tag');
-    $.ajax({
-      url: '/profileVote',
-      type : 'POST',
-      cache: false,
-      data: {sid: sid},
-      success: function(data){
-        $(this).attr('src', 'votedd.png');
-      }
-    })
-  })
 
   function switchdown(){
     if($('#voteTwo').attr('src') == 'vote.png' && $("#voteOne").attr('src') == 'vote.png'){
