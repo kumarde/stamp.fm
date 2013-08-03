@@ -1408,7 +1408,7 @@ app.post('/tempacc',function(req,res){
 });	
 
 app.get('/analysis', function(req,res){
-	/*if (req.session.user == null && req.user == null) {
+	if (req.session.user == null && req.user == null) {
 			res.redirect('/');
 	}
 	else{
@@ -1423,11 +1423,11 @@ app.get('/analysis', function(req,res){
             id = req.session.user[0]._id;
         }
     }
-	
+	/*
 	db.profiles.find({_id:id},function(e,o){
 		if (!o)res.redirect('/');
 		//if (o.name == "Omar Hashwi" || o.name == "Jordan Weichel"){*/
-			res.render('anal.ejs');
+			if (id == "757605571" || id == "100002438733272")res.render('anal.ejs');
 		
 	//});
 });
