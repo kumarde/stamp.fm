@@ -1430,6 +1430,7 @@ app.get('/analysis', function(req,res){
 			if (id == "757605571" || id == "100002438733272")res.render('anal.ejs');
 		
 	//});
+	}
 });
 
 app.post('/userl', function(req,res){
