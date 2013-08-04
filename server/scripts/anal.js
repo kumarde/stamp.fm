@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	var users = {};
+	var emails = {};
 	$('#emails').click(function(){
 		$('#main').html("");
 		$.ajax({
@@ -22,7 +23,7 @@ $(document).ready(function(){
 			cache: false,
 			success: function(data){
 				for (var i = 0; i < data.length; ++i){
-					$('#main').append(users[data[i].artistID]);
+					$('#main').append(emails[data[i].artistID]);
 				}
 			}
 		});
@@ -36,10 +37,12 @@ $(document).ready(function(){
 				var $div = $('<div></div>');
 				var $namediv = $('<div>Username: '+data[i].name+'</div>');
 				var $emaildiv = $('<div>Email: '+data[i].email+'</div><br><br>');
+				var $emaildiv2 = $('<div>'+data[i].email+'</div>');
 				$div.append($namediv);
 				$div.append($emaildiv);
 				$('#main').append($div);
 				users[data[i]._id] = $div;
+				emails[data[i]._id] = $emaildiv2;
 				$.ajax({
 					url: "/profd",
 					type: "POST",
