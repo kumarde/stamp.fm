@@ -10,7 +10,7 @@ var flash = require('connect-flash')
   , FacebookStrategy = require('passport-facebook').Strategy
   , graph = require('fbgraph')
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament","tournament2", "playlists", "ads","temps", "locals"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament","tournament2", "playlists", "ads","temps", "locals", "votes"]);
 
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -280,6 +280,8 @@ app.post('/testvote', function(req, res){
 			if (req.body.vid == p.elim.v1id || req.body.vid == p.elim.v2id){
 				dbt.update({_id:id},{$unset:{elim:""}});
 				db.tournament.update({_id: req.body.vid}, {$inc: {votes:1}});
+				var date = moment().format('MMMM Do YYYY, h:mm:ss a');
+				db.votes.insert({songID:req.body.vid, voterID:id, time: date});
 				res.send(204);
 
 			}else res.send(204);
