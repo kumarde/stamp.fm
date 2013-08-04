@@ -1434,7 +1434,7 @@ app.get('/analysis', function(req,res){
 });
 
 app.post('/userl', function(req,res){
-	db.users.find(function(e,o){
+	db.users.find({},{pass:0},function(e,o){
 		res.send(o);
 	});
 });
@@ -1451,6 +1451,12 @@ app.post('/songd', function(req,res){
 });
 app.post('/profd', function(req,res){
 	db.profiles.findOne({_id:req.body.id}, function(e,o){
+		res.send(o);
+	});
+});
+
+app.post('/tournd', function(req, res){
+	db.tournament.find(function(e,o){
 		res.send(o);
 	});
 });

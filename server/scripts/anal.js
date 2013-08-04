@@ -14,7 +14,19 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
+	$('#tourne').click(function(){
+		$('#main').html("");
+		$.ajax({
+			url: "/tournd",
+			type: "POST",
+			cache: false,
+			success: function(data){
+				for (var i = 0; i < data.length; ++i){
+					$('#main').append(users[data[i].artistID]);
+				}
+			}
+		});
+	});
 	$.ajax({
 		url: "/userl",
 		type: "POST",
