@@ -23,7 +23,7 @@ function t2(){
 }
 
 $(document).ready(function(){
-$('#songOne').click();
+setInterval(function(){$('#songOne').click();},500);
 /*
 $($('#elim').find('.close')).click(function(){
 	$('#songOne').click();
