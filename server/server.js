@@ -359,13 +359,13 @@ app.post('/profileVote', function(req, res){
 			if (o){
 				if(o.votes != undefined){
 					if (o.votes.indexOf(req.body.sid) == -1){
-						db.profiles.update({_id:id},{$push:{votes:req.bod.sid}});
+						db.profiles.update({_id:id},{$push:{votes:req.body.sid}});
 						db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
 						res.send({msg: 'ok'});
 					}
 					else res.send({msg: 'fail'});
 				}else{
-						db.profiles.update({_id:id},{$push:{votes:req.bod.sid}});
+						db.profiles.update({_id:id},{$push:{votes:req.body.sid}});
 						db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
 						res.send({msg: 'ok'});
 				}
