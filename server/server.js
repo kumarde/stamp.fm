@@ -11,7 +11,7 @@ var flash = require('connect-flash')
   , graph = require('fbgraph')
   , fs = require('fs')
   , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament","tournament2", "playlists", "ads","temps", "locals", "votes"]);
-
+//
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
 var mpu = require('knox-mpu');
