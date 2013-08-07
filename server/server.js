@@ -921,21 +921,20 @@ app.get('/create', function(req,res){
 			if(resp.location != undefined){
 				db.profiles.update({_id: id}, {$set: {location: resp.location.name}});
 			}
+			else{
+				db.profiles.update({_id: id}, {$set: {location:"Click to change. Ex: Ann Arbor, Michigan"}});
+			}
 		  db.profiles.findOne({_id: id}, function(e, o){
 		  if(o.isNew != "false") res.redirect('/elim');
 		  else {
 			graph.get('/'+id+'?fields=picture.type(large)', function(e, respo){
 			   db.profiles.update({_id: id}, {$set: {url: respo.picture.data.url}});
+			   db.profiles.update({_id: id}, {$set: {changedPic:"none"}});
 				res.redirect('/elim');
 			});
 		  }
 		})
 	  });	
-	
-	
-	
-	
-		
 	}
 });
 /*app.get('/create', function(req, res){
