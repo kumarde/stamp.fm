@@ -355,11 +355,12 @@ app.post('/profileVote', function(req, res){
 				}
 			}
 		}
-		var go = 0;
+		
 		db.profiles.find({_id:id},function(e,o){
 			if (o){
 				if(o.votes != undefined){
-					for ( var i = o.votes.length-1;i >= 0; i--)
+					var go = 0;
+					for ( var i = 0;i < o.votes.length; ++i)
 					{
 						if ( o.votes[i] == req.body.sid)go = 1;
 					}
