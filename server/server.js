@@ -910,7 +910,35 @@ app.post('/updateAccount', function(req, res){
 })
 /********************************************LOGIN STUFF DONE*******************************/
 /**************************************TIME TO DO PROFILES***********************************/
-app.get('/create', function(req, res){
+app.get('/create', function(req,res){
+	if(req.session.user == null && req.user == null){
+        res.redirect('/');
+    }
+	else{
+		id = req.user[0]._id;
+		name = req.user[0].name;
+		graph.get('/'+id+'?fields=location', function(err, resp){
+			if(resp.location != undefined){
+				db.profiles.update({_id: id}, {$set: {location: resp.location.name}});
+			}
+		  db.profiles.findOne({_id: id}, function(e, o){
+		  if(o.isNew != "false") res.redirect('/elim');
+		  else {
+			graph.get('/'+id+'?fields=picture.type(large)', function(e, respo){
+			   db.profiles.update({_id: id}, {$set: {url: respo.picture.data.url}});
+				res.redirect('/elim');
+			});
+		  }
+		})
+	  });	
+	
+	
+	
+	
+		
+	}
+});
+/*app.get('/create', function(req, res){
     var name = "";
     var location = "";
     if(req.session.user == null && req.user == null){
@@ -1000,7 +1028,7 @@ else{
         }
     );
 	}
-});
+});*/
 
 app.get('/view', function(req, res){
     if (req.session.user == null && req.user == null) {
