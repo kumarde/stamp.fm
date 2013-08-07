@@ -154,7 +154,7 @@ elim.initElim("Rap", function(array, c){
 	cRap = c;
 });
 
-app.get('/elim', function(req, res){
+app.get('/tournament', function(req, res){
 	if (req.session.user == null && req.user == null && req.session.temp == null) {
 		res.redirect('/');
 	}else {
@@ -338,9 +338,34 @@ app.post('/playNext', function(req, res){
 });
 
 app.post('/profileVote', function(req, res){
-	var id = req.body.sid;
-	db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
-	res.send({msg: 'ok'})
+	if (req.session.user == null && req.user == null && req.session.temp == null) {
+		res.redirect('/');
+	}
+	else {
+		if (req.session.temp == null ){
+
+			if(req.session.user == null){
+				id = req.user[0]._id;
+			}
+			else if(req.user == null){
+				if(req.session.user[0] == undefined){
+					id = req.session.user._id;
+				} else {
+					id = req.session.user[0]._id;
+				}
+			}
+		}
+		db.profiles.find({_id:id},function(e,o){
+			if (o){
+				if (o.votes.indexOf(req.body.sid) == -1){
+					db.profiles.update({_id:id},{$push:{votes:req.bod.sid}});
+					db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
+					res.send({msg: 'ok'})
+				}
+				else res.send({msg: 'fail'})
+			}
+		});
+	}
 })
 
 db.music.count(function(err, count){
@@ -925,11 +950,11 @@ app.get('/create', function(req,res){
 				db.profiles.update({_id: id}, {$set: {location:"Click to change. Ex: Ann Arbor, Michigan"}});
 			}
 		  db.profiles.findOne({_id: id}, function(e, o){
-		  if(o.isNew == "false") res.redirect('/elim');
+		  if(o.isNew == "false") res.redirect('/tournament');
 		  else {
 			graph.get('/'+id+'?fields=picture.type(large)', function(e, respo){
 			   db.profiles.update({_id: id}, {$set: {url: respo.picture.data.url,isNew:"false",changedPic:"none"}});
-				res.redirect('/elim');
+				res.redirect('/tournament');
 			});
 		  }
 		})
@@ -1411,7 +1436,7 @@ app.get('/tempaccount', function(req, res) {
 		if (!e && o)
 		if(pass == o.pass){
 			req.session.temp = o;
-			res.redirect("/elim");
+			res.redirect("/tournament");
 		}
 	});
 });
