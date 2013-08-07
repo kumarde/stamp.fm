@@ -10,7 +10,7 @@ var flash = require('connect-flash')
   , FacebookStrategy = require('passport-facebook').Strategy
   , graph = require('fbgraph')
   , fs = require('fs')
-  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament","tournament2", "playlists", "ads","temps", "locals", "votes"]);
+  , db = require('mongojs').connect("stampfm", ["profiles", "music", "users", "tournament","tournament2", "playlists", "ads","temps", "locals", "votes","profvotes"]);
 //
 var s3 = require('s3policy');
 var myS3Account = new s3('AKIAIZQEDQU7GWKOSZ3A', 'p99SnAR787SfJ2v+FX5gfuKO8KhBWOwZiQP8AdE5');
@@ -356,25 +356,14 @@ app.post('/profileVote', function(req, res){
 			}
 		}
 		
-		db.profiles.find({_id:id},function(e,o){
-			if (o){
-				if(o.votes != undefined){
-					var go = 0;
-					for ( var i = 0;i < o.votes.length; ++i)
-					{
-						if ( o.votes[i] == req.body.sid)go = 1;
-					}
-					if (go == 0){
-						db.profiles.update({_id:id},{$push:{votes:req.body.sid}});
-						db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
-						res.send({msg: 'ok'});
-					}
-					else res.send({msg: 'fail'});
-				}else{
-						db.profiles.update({_id:id},{$push:{votes:req.body.sid}});
-						db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
-						res.send({msg: 'ok'});
-				}
+		db.profvotes.findOne({voterID:id, songID:req.body.sid},function(e,o){
+			if (!o){
+				db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
+				var date = moment().format('MMMM Do YYYY, h:mm:ss a');
+				db.profvotes.update({voterID:id, songID:req.body.sid, time:date});
+				res.send({msg: 'ok'});
+			}else{
+				res.send({msg: 'fail'});
 			}
 		});
 	}
