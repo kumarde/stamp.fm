@@ -360,7 +360,7 @@ app.post('/profileVote', function(req, res){
 			if (!o){
 				db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
 				var date = moment().format('MMMM Do YYYY, h:mm:ss a');
-				db.profvotes.update({voterID:id, songID:req.body.sid, time:date});
+				db.profvotes.save({voterID:id, songID:req.body.sid, time:date});
 				res.send({msg: 'ok'});
 			}else{
 				res.send({msg: 'fail'});
