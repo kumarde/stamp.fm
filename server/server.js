@@ -355,10 +355,15 @@ app.post('/profileVote', function(req, res){
 				}
 			}
 		}
+		var go = 0;
 		db.profiles.find({_id:id},function(e,o){
 			if (o){
 				if(o.votes != undefined){
-					if (o.votes.indexOf(req.body.sid) == -1){
+					for ( var i = o.votes.length-1;i >= 0; i--)
+					{
+						if ( o.votes[i] == req.body.sid)go = 1;
+					}
+					if (go == 0){
 						db.profiles.update({_id:id},{$push:{votes:req.body.sid}});
 						db.music.update({_id: parseInt(req.body.sid)}, {$inc: {profileVotes: 1}});
 						res.send({msg: 'ok'});
