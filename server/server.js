@@ -125,7 +125,7 @@ app.configure(function(){
                 if(err) return done(err);
                 else if(user == null){
                     db.users.insert({name:profile._json.name,pass: "4c3alfae7878797x97388xx838skdfj222", _id:profile.id, email:profile._json.email, date:moment().format('MMMM Do YYYY, h:mm:ss a')}, function(e, userprof){
-                       db.profiles.save({url: "", _id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Tagline", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender, isNew: "false"});
+                       db.profiles.save({url: "", _id: profile.id, name: profile._json.name, location: "Click to change Location", bio: "Click to change Tagline", facebook: profile._json.link, twitter: "", following: [], followers: [], shared: [], gender: profile.gender, isNew: "true"});
                        return done(null, userprof[0]);
                     });
                 }
@@ -925,11 +925,10 @@ app.get('/create', function(req,res){
 				db.profiles.update({_id: id}, {$set: {location:"Click to change. Ex: Ann Arbor, Michigan"}});
 			}
 		  db.profiles.findOne({_id: id}, function(e, o){
-		  if(o.isNew != "false") res.redirect('/elim');
+		  if(o.isNew == "false") res.redirect('/elim');
 		  else {
 			graph.get('/'+id+'?fields=picture.type(large)', function(e, respo){
-			   db.profiles.update({_id: id}, {$set: {url: respo.picture.data.url}});
-			   db.profiles.update({_id: id}, {$set: {changedPic:"none"}});
+			   db.profiles.update({_id: id}, {$set: {url: respo.picture.data.url,isNew:"false",changedPic:"none"}});
 				res.redirect('/elim');
 			});
 		  }
