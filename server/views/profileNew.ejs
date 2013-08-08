@@ -1,0 +1,311 @@
+<% layout('layout') -%>
+<% script('/scripts/main.js') -%>
+<% script('profileEdit.js') -%>
+<% stylesheet('video-js.css') -%>
+<% script('video.js') -%>
+<% script('feed.js') -%>
+<% script('profile.js') -%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>stamp.fm</title>
+    <link rel="icon" type="image/png" href="/img_samp.fm_logo copy.jpg"/>
+    <link rel="stylesheet" type="text/css" href="/gridiculous.css">
+    <link rel="stylesheet" type="text/css" href="/profile2.css">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  </head>
+  
+  <body style="min-width:1250px;">
+    <div id="wrapper">
+
+
+<div id="profileContent" class="grid wfull">
+
+  <div class="row">
+  <div id = "users"></div>
+        <div id="name" style="float:left;">
+
+      <div id="profilePicture" style="margin:auto">
+      <span id="actualPic">
+        <img id="preview" src="<%=imgid%>" data-tag="<%=id%>">  
+      </span>  
+        <form method = "POST" action = "/changeImage" id = "chImg" enctype="multipart/form-data">
+          <input name = "submit" type="submit" id="submitProfPic" value="Submit" onclick="visibilityPicButton();">
+          <input name = "file" type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="display:none">  
+        </form>
+        
+        <!--Picture Preview-->
+        <script type="text/javascript">      
+        function previewImage(input) {
+          if (input.files && input.files[0]) {
+           var reader = new FileReader();
+            reader.onload = function (e) {
+             //the only jQuery line.  All else is the File API.
+              $('#preview').attr('src', e.target.result);
+           }
+           reader.readAsDataURL(input.files[0]);
+          }
+        }
+        </script>
+        <script>
+        function showSubmit(submit){
+          submit.style.visibility="visible";
+        }
+        </script>
+        <!--End Picture Preview-->
+        <!--Profile Pic Upload Dialog-->    
+           <script>
+           $('#preview').click(function() {
+             $('#uploadPicture').click();
+            });
+           </script>
+        <!--END Profile Pic Upload Dialog--> 
+        <div id="nameStuff">
+        <spanName id="displayName" onclick="exchange(this); visibilityName();"><%=name%></spanName>
+        <form method = "POST" action = "/changeName" id = "chName">
+          <input id="displayNameEdit" name="editName" class="replace" style="font-size:20px" type="text" value="">
+          <input type="submit" id="submitNameButton" value="Submit" style="visibility: hidden" onclick="fillName();visibilityName(); exchange((document.getElementById('displayNameEdit')));"/>
+        </form>
+        </div>
+        <div id="location">
+        <spanLocation id="spanLocation">
+        <span id="displayLocation" onclick="exchange(this); visibilityLocation();"><%=location%></span>
+        </spanLocation>
+        <form method = "POST" action = "/changeLocation" id = "chLoc">
+          <input id="displayLocationEdit" name="editLocation" style="font-size:10px"class="replace" type="text" value="">
+          <input type="submit" id="submitLocationButton" value="Submit" style="visibility: hidden" onclick="fillLocation();visibilityLocation(); exchange((document.getElementById('displayLocationEdit')));"/>
+        </form>
+        </div>       
+      </div>
+
+<!--         <ul class="interaction" id="followInfo">
+             <div id="followinglistb" class="modalbutton"><li><div id="following" style="font-size:12px"><strong>Following</strong><br></div></li></div> 
+            <li><input type="button" value="Follow" class="stampFollowt" ></li><br>
+            <div id="followerslistb" class="modalbutton"><li><div id="followers" style="font-size:12px"><strong>Followers</strong><br></div></li></div> 
+        </ul>
+-->        
+        <ul class="interaction" id="social">
+        <li><input type="button" value="Follow" class="stampFollowt" ></li>  
+        <li><div class="fb-like" id="fbIcon" data-href="<%=facebook%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li><br>
+        <!--<a href="<%=twitter%>" id="twit" target="_blank"><li><img src="twitter.png" id="twitIcon"></li>-->
+        <li><a href="<%=twitter%>" id="twitIcon" class="twitter-follow-button" data-show-screen-name="false"></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li></a><br> 
+        <form method = "POST" action = "/changeImage" id = "chImg" enctype="multipart/form-data">
+          <input name = "submit" type="submit" id="submitProfPic" value="Submit" onclick="visibilityPicButton();">
+          <input name = "file" type="file" onchange ="previewImage(this); showSubmit((document.getElementById('submitProfPic')))" id="uploadPicture" data-tag = "<%=imgid%>" style="display:none">  
+        </form>
+        </ul>      
+
+      </div>
+  
+  <div id="allSongs" style="">
+ <!--
+  <div id="songContent" style="width:100%;">
+
+    <div style = "color: #333333; font-size:10px"> <strong>For video:</strong> 1. Convert to WebM format<a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> HERE </a> <span style="margin-left:52px;">2. Upload WebM to Stamp.fm</span>
+    </form>
+    <input type="button" value="Upload" id="uploadFigurehead">
+    <br id="SafariWarning">    
+    </div>
+
+    <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/webm, audio/mp3">
+    <div style = "color: #333333;"> <strong>For song:</strong> <span style="margin-left:3px;">1. Upload MP3 to Stamp.fm</span>
+    <input type="text" name="name"  style="display:none;" id="upname">
+    <input type="text" name="genre" style="display:none;" id="upgenre">
+    <input type="text" name="explicit" style="display:none;" id="upex">
+    </form>
+    </div>
+     
+      <div id="song" style="margin-top:4px;">
+      <div style=" overflow:auto;">
+      <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
+      <% songs.forEach(function(song){ %>
+        <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
+          <td><div style="max-width:300px; overflow:hidden; whitespace:nowrap;text-overflow:ellipsis;" data-tag ="<%=song._id%>" class = "songname"><%= song.name %></div></td>
+          <td style="float:right;min-width:120px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+          <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+          <img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;">
+          <input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="<%=song.inTourney%>" id="tourneyAdd" class="addTourney" onclick="tourneyButtonChange();"></td>
+       </tr>
+      <% }); %>
+            
+          </table>  
+
+        </div>
+        </div> 
+          </div>
+
+-->
+  <div id="playlistContent" style="width:100%;">
+
+    <div style = "color: #333333; font-size:10px"> <strong>For video:</strong> 1. Convert to WebM format<a style = "color: blue;" target = "_blank" href = "http://video.online-convert.com/convert-to-webm"> HERE </a> <span style="margin-left:52px;">2. Upload WebM to Stamp.fm</span>
+    </form>
+    <input type="button" value="Upload" id="uploadFigurehead">
+    <br id="SafariWarning">    
+    </div>
+
+    <form id="uploadForm" method = "POST" action = "/song-upload" enctype = "multipart/form-data"><input name = "file" type="file" id="uploadSong" style="display:none;" accept="video/webm, audio/mp3">
+    <div style = "color: #333333;"> <strong>For song:</strong> <span style="margin-left:3px;">1. Upload MP3 to Stamp.fm</span>
+    <input type="text" name="name"  style="display:none;" id="upname">
+    <input type="text" name="genre" style="display:none;" id="upgenre">
+    <input type="text" name="explicit" style="display:none;" id="upex">
+    </form>
+    </div>
+   
+      <div id="song" style="margin-top:4px;">
+      <div style=" overflow:auto;">
+      <table cellspacing="0" cellpadding="1" cellpadding class = "songnames" id = "songTable">
+      <% songs.forEach(function(song){ %>
+        <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "<%=song._id%>">
+          <td><div style="max-width:300px; overflow:hidden; whitespace:nowrap;text-overflow:ellipsis;" data-tag ="<%=song._id%>" class = "songname"><%= song.name %></div></td>
+      <td style="float:right;min-width:120px;margin-top:5px;cursor:pointer;"><img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "vidPlay" src="play.jpg" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+      <img data-name = "<%=song.name%>" data-tag ="<%=song._id%>" class = "addPlay" src="favoriteIcon.png" style="height:15px;width:15px;-moz-border-radius:10px;border-radius: 10px;-webkit-border-radius: 10px;">
+      <img data-name = "<%=song.name%>" data-tag = "<%=song._id%>" class="deletebutton" src="deleteIcon.png" style="height:15px;width:15px;">
+      <input data-genre = "<%=song.genre%>" data-name = "<%=song.name%>" data-tag ="<%=song._id%>" type="button" value="<%=song.inTourney%>" id="tourneyAdd" class="addTourney" onclick="tourneyButtonChange();"></td>
+     </tr>
+      <% }); %>
+      
+          </table>  
+
+        </div>
+        </div>   
+    <div id="song" style="margin-top:4px;">
+    <div style=" overflow:auto;">
+        <table cellspacing="0" cellpadding="1" style="color:#000;margin-top:0px;" id = "playlistTable" class = "songnames" >
+          <% playlist.forEach(function(play){ %>
+          <tr id="song_name" style="color:#000; border-bottom: 2px solid;" class = "p<%=play.songID%>" >
+           <td style="float:left;min-width:40px;margin-top:5px;cursor:pointer; margin:auto;">
+            <span style="width:100%;">
+            <img data-tag = "<%=play.songID%>" class="playdelete" id = "<%=play.songID%>" src="favoriteRemove.png" style="height:15px;width:15px;">
+            </span>
+            </td>          
+            <td style="border-right: 1px solid #000;max-width:300px; overflow:hidden; whitespace:nowrap;text-overflow:ellipsis;"><div style="" data-tag ="<%=play.songID%>" class = "songname"><%= play.name %></div></td>
+          </tr>
+          <% }); %>
+        </table> 
+    </div> 
+  </div>    
+</div>
+
+
+</div>
+        
+
+ <script>
+          $("document").ready(function(){
+            $('#uploadSong').change(function(){
+              $('div#info').addClass("unhidden");
+            });
+          $('a#closeButton').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+          $('input#cancelUpload').click(function(){
+            $('div#info').removeClass("unhidden");
+          })
+          $('#uploadFigurehead').click(function() {
+             $('#uploadSong').click();
+            });
+          });
+         </script> 
+        <div id="video" style="width:27%;margin-left:10px;float:left;">
+<!--        <div id="bio" >
+    <spanBio id="displayBio" onclick="exchange(this); visibilityBio();"><%=bio%></spanBio>
+        <form method = "POST" action = "/changeBio" id = "chBio">
+          <input type="text" id="displayBioEdit" name="editBio" class="replace" value="" style="display:none;">
+          <input type="submit" id="submitBioButton" value="Submit" style="display:none;" onclick="fillBio();visibilityBio(); exchange((document.getElementById('displayBioEdit')));"/> 
+        </form> 
+      </div>
+-->      
+          <div id="videoPlayer" style="border:none">
+           <video height="200px" width="100%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
+           <source src="" type="video/mp4" id = "source">
+            </video>
+          </div>
+      <span style="font-size:10px;display:none;" id="SafariWarning">Safari Detected: In order to view videos - use <a style="color:#FF2200;" href="https://www.google.com/intl/en/chrome/browser/">Chrome</a> or <a style="color:#FF2200;" href="http://perian.cachefly.net/Perian_1.2.3.dmg">Dowload Perian</a></span>
+         </div> 
+</div>
+ 
+ <!-- <div class="c2" id="constantLabel" style="float:right; margin-top:-58px;padding-bottom:7px;font-size:15px; border-bottom: 1px solid rgba(180,7,6,1);">
+    <b><spanLabel id="newsFeedLabel" style="float:left;margin-left:33%;vertical-align:middle;margin-top:7px;">News Feed</spanLabel></b>
+  </div>  
+   <div class="c2" id="feed" style="float:right"></div>
+</div>
+-->
+</div>
+</div> 
+
+</div>
+
+
+
+<script type="text/javascript">      
+  function previewImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        //the only jQuery line.  All else is the File API.
+        $('#preview').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('#create').show();
+  });
+
+</script>
+
+<script>
+  (function($){
+    // console.log(navigator.userAgent);
+    /* Adjustments for Safari on Mac */
+    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Mac') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+        // console.log('Safari on Mac detected, applying class...');
+        $('html').addClass('safari-mac'); // provide a class for the safari-mac specific css to filter with
+    }
+  })(jQuery);
+</script>
+<style>
+  .safari-mac #SafariWarning{
+    display:block !important;
+  }
+</style>
+
+<!-- FB Like Script-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- End FB Like Script -->
+</body>
+<% script('video.js') -%>       
+<script>
+  videojs("vidYo", {}, function(){
+  // Player (this) is initialized and ready.
+  });
+</script>
+<script>
+  videojs.options.flash.swf = "video-js.swf"
+</script>     
+
+
+
+
+
+<% stylesheet('modals.css') -%>
+<%-partial('modals', ["'IJKLMNOPTUWX'"]) %>
+
+
+

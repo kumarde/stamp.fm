@@ -1,0 +1,1039 @@
+#actualPic{
+    padding-bottom: 20px;
+    margin-left: 50px;
+    border-bottom: 1px groove rgba(0,0,0,.1);
+    width: 100%;
+}
+
+
+#preview #submitProfPic{
+    display: inline;
+}
+
+#submitProfPic{
+    visibility: hidden;
+    font-size: 20px;
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+
+#submitProfPic:hover{
+    background-color: rgba(120,7,6,1);
+}
+
+.addTourney:active{
+    background-image: url('trebleClef.png');
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: rgba(120,7,6,1);
+    border: solid 1px #000;
+}
+
+.addTourney:hover{
+    background-color: rgba(140,7,6,1);
+}
+
+.addTourney{
+    font-size: 10px;
+    color: white;
+    margin-bottom: 7px;
+    background-color: rgba(180,7,6,1);
+    border: none;         
+    cursor: pointer;       
+    height: 15px;
+    width: 55px;    
+    vertical-align: middle;
+    margin-left: 0%;
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 10px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    } 
+
+
+
+
+
+#nameStuff{
+    margin-left: 50px;
+}
+#displayName{
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 0px;
+    margin: auto;
+    color: #1E90FF;
+}
+
+
+#displayName:hover{
+    background-color: rgba(180,7,6,.3);
+}
+#displayNameEdit{
+    margin-bottom: 40px;
+    width: 100%;
+}
+#submitNameButton{
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    font-size: 10px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#submitNameButton:hover{
+    background-color: rgba(120,7,6,1);
+}
+#location{
+    width:70%;
+    margin-top: -40px;
+    margin-left:50px;
+    margin-right: auto;
+    font-size: 15px;
+    border-bottom: 1px groove rgba(0,0,0,.1);    
+}
+#displayLocationEdit{
+    margin-bottom: 10px;
+    width: 100%;
+}
+#spanLocation:hover{
+    background-color: rgba(180,7,6,.3);
+}
+#submitLocationButton{
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    font-size: 10px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#submitLocationButton:hover{
+    background-color: rgba(120,7,6,1);
+}
+#bio{
+    margin-left: auto;
+    margin-right: 190px;
+    text-align:center; 
+    overflow : hidden;
+    word-wrap: break-word;
+    font-size: 15px;
+    border : 1px;
+    color : #000; 
+    padding : 4px; 
+    margin-bottom: 10px;
+    margin-top: -40px;
+    max-width : 50%; 
+    max-height : 30px; 
+}
+#displayBio:hover{
+    background-color: rgba(180,7,6,.3);
+}
+#submitBioButton{
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    font-size: 10px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#submitBioButton:hover{
+    background-color: rgba(120,7,6,1);
+}
+
+
+
+#songListLabel #uploadForm{
+    display: inline;
+}
+#uploadForm{
+    font-size: 10px;
+}
+
+
+#uploadFigurehead{
+    float: right;
+    font-size: 12px;
+    color: #FFFFFF;
+    border: none;         
+    cursor: pointer;       
+    background-color: rgba(180,7,6,1);
+    border: solid 1px rgba(0,0,0,.5);
+    vertical-align: middle;
+    margin: auto;
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 100px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#uploadFigurehead:hover, #uploadFigurehead:focus{
+    background-color: rgba(140,7,6,1);
+}
+#uploadFigurehead:active{
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: rgba(120,7,6,1);
+    border: solid 1px #000;
+}
+
+
+
+
+
+
+
+#songSubmit{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#songSubmit:hover { background: rgba(163,163,163,1); }
+#cancelUpload{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#cancelUpload:hover { background: rgba(163,163,163,1); }
+
+.but{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+.but:hover { background: rgba(163,163,163,1); }
+
+
+#enterTourney{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#enterTourney:hover { background: rgba(163,163,163,1); }
+
+#noThanks{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    margin-top: 2%;
+    max-width: 50%;
+    font-size: 20px;
+    height: 20%;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+#noThanks:hover { background: rgba(163,163,163,1); }
+
+.stampFollowt{
+    font-size: 12px;
+    border: 1px solid rgba(0,0,0,1);
+    background-color: rgba(180,7,6,1);
+    color: #FFFFFF;
+    cursor: pointer; 
+    height: 20px;  
+    width: 60px;  
+    vertical-align: middle;
+    max-height: 40px;
+    max-width: 90px;
+    margin-left: 0%;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.stampFollowt:hover{
+    background-color: rgba(140,7,6,1);
+}
+
+.stampFollowt:active{
+
+    color: #FFFFFF;
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    border: solid 1px #000;
+    
+}
+}
+
+
+
+
+
+
+/*MADE CHANGES IN LAYOUT.CSS SO I PASTED THEM BELOW SO NOTHING IN LAYOUT IS CHANGED IN THE REAL FILE*/
+
+html{
+    background: #FFFFFF no-repeat center center fixed;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Arimo', sans-serif;
+    min-width: 100%;
+    min-height: 100%;
+    cursor: default;
+
+    background-image: linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 20%, rgb(240,240,240) 60%, rgb(245,245,245) 80%);
+
+    background-image: -webkit-gradient(
+     linear,
+     left bottom,
+     left top,
+     color-stop(0.2, rgb(255,255,255)),
+     color-stop(0.6, rgb(240,240,240)),
+     color-stop(0.8, rgb(245,245,245))
+    );
+}
+#wrapper {
+  position: relative;
+  min-height: 400px;
+}
+table{
+    overflow-x: hidden;
+}
+body {
+    margin:0;
+    padding: 0;
+    border: 0;
+    min-width: 1200px;
+    min-height:100%;
+}
+#header {
+    min-width: 1000px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 'Arimo', sans-serif;
+    background-color: #cc0000;
+    width:100%;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    float: left;
+    opacity:1;
+    filter:alpha(opacity=90);
+    z-index:100;
+    -moz-box-shadow:    1px 1px 5px 2px rgba(0,0,0,.3);
+    -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,.3);
+    box-shadow:         1px 1px 5px 2px rgba(0,0,0,.3);
+}
+form { margin: 0px; padding: 0px; }
+
+#feedbackb{
+z-index:500;
+background-color: rgba(180,7,6,.7);
+color: #FFFFFF;
+border: 0px solid rgba(180,7,6,.9);
+width:100px;
+min-height: 30px;
+text-align: center;
+position:fixed;
+right: 2em;
+top:96%;
+}
+
+#logoPic{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#logoPic #search{
+  display: inline;
+}
+
+#search{
+  margin-left: 50px;
+  font-size: 15px;
+  width: 250px;
+  position: fixed;
+  margin-top: 8px;
+}
+
+#users{
+z-index:500;
+background-color: rgba(0,0,0,.8);
+color: #FFFFFF;
+border: 0px solid rgba(180,7,6,.9);
+width:265px;
+position:fixed;
+margin-left: 165px;
+margin-top: -15px;
+max-height: 300px;
+overflow: auto;
+cursor: pointer;
+}
+
+.user:hover{
+  background-color: rgba(180,7,6,.8);
+}
+
+.followButton{
+  width: 50px;
+  height: 20px;
+  margin-right: 5px;
+  margin-top: 3px;
+    font-size: 10px;
+    background: url('trebleClef.png');
+    color: white;
+    background-size: 5px; 
+    background-color: rgba(180,7,6,1);
+    background-repeat: no-repeat; 
+    background-position: 7px 4px;  
+    border: none;         
+    cursor: pointer;       
+    padding-left: 10px; 
+    vertical-align: middle;
+    max-height: 40px;
+    max-width: 90px;
+    margin-left: 0%;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 20px 0 rgba(180, 180, 180, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 0 rgba(230, 230, 230, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    } 
+
+
+.followButton:hover,.followButton:focus{
+    background-color: rgba(140,7,6,1);
+}
+.followButton:active{
+    background-image: url('trebleClef.png');
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: rgba(120,7,6,1);
+    border: solid 1px #000;
+}
+
+#header ul{
+    list-style-type: none;
+    color: #FFFFFF;
+}
+
+#links #prof{
+    display: inline;
+}
+
+#links{
+    margin-top: 5px;
+    float: right;
+}
+
+#prof{
+    margin-top: 2px;
+    float: right;
+}
+
+#header li{
+    display: inline;
+    font-size: 20px;
+}
+
+#upLink{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+#notrealb{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+#upload:hover{
+  background-color: rgba(0,0,0,.2);
+  padding-top: 100%;
+  padding-bottom: 6px;
+}
+
+#audition:hover{
+  background-color: rgba(0,0,0,.2);
+  padding-top: 100%;
+  padding-bottom: 6px;
+  margin-left: 0px;
+}
+
+#bracket:hover{
+  background-color: rgba(0,0,0,.2);
+  padding-top: 100%;
+  padding-bottom: 6px;
+}
+
+#prof li{
+    display: inline;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#header .nav{
+    color: black;
+    margin-top: 0px;
+    cursor: hand; 
+    cursor: pointer;
+}
+
+#profileLink{
+    text-decoration: none;
+}
+
+#profilePicture{
+    margin-left: 0px;
+    width: 100%;
+}
+
+#settings{
+    max-width: 50%;
+    max-height: 50%;
+    margin-right: 2%;
+    margin-bottom: 0px;
+}
+
+#dropdownContent li{
+    width: 100%;
+    font-size: 15px;
+}
+
+#dropdownContent{
+        margin-top: -5px;
+        list-style-type: none;
+        background-color: #000;
+        width: 110px;
+        border: 1px solid #FFFFFF;
+    text-align:center;
+}
+
+#tophalf{
+    margin-left: -40px;
+    width: 157%;
+    padding-top: 0px;
+
+}
+
+#tophalf:hover{
+    background-color: rgba(180,7,6,1)
+}
+
+#bottomhalf{
+    margin-left: -40px;
+    width: 157%;
+    padding-bottom: 10px;
+}
+
+#bottomhalf:hover{
+    background-color: rgba(180,7,6,1);
+}
+
+#logOut{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#account{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+
+
+.twitter-follow-button{
+    margin-right: 4%;
+}
+
+.fb-like{
+    float: left;
+    margin-left: 15%;
+}
+
+#password{
+    width: 60%;
+    font-size: 20px;
+}
+
+#passwordConfirm{
+    width: 60%;
+    font-size: 20px;
+}
+
+#confirm{
+    background-color: rgba(0,0,0,1);
+    color: #FFFFFF;
+    font-size: 20px;
+    border: 0px;
+    -moz-border-radius:5px;  
+    border-radius: 5px;  
+    -webkit-border-radius: 5px;
+}
+
+#confirm:hover{
+    background-color: rgba(163,163,163,1);    
+}
+
+#profileContent{
+    margin-top: 4%;
+}
+
+#profilePicture{
+    text-align: left;
+}
+#preview{
+    height: 220px; 
+    max-height: 150px;
+    max-width: 220px;
+    opacity: 1;
+    margin: auto;
+}
+#preview:hover{
+    opacity: .7;
+}
+
+
+
+#name{
+    margin:auto; 
+    text-align: center;
+    width: 20%;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    vertical-align: center;
+}
+
+.interaction #preview{
+
+}
+
+.interaction{
+    list-style-type: none;
+    float: left;
+    text-align: left;
+    margin-left: 10px;
+}
+
+
+
+
+#fbIcon{
+    max-height: 40px;
+    max-width: 40px;
+    margin-top: 20px;
+    margin-bottom: 0px;    
+    margin-left: 0%;
+    margin-right: 0%;
+    -moz-border-radius:100px;  
+    border-radius: 100px;  
+    -webkit-border-radius: 100px;
+}
+
+    
+.stampFollow{
+    font-size: 15px;
+    border: 1px solid rgba(0,0,0,1);
+    color: #FFFFFF;
+    cursor: pointer; 
+    height: 30px;  
+    width: 80px;  
+    vertical-align: middle;
+    max-height: 40px;
+    max-width: 90px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 0%;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.stampFollow:hover{
+    background-color: rgba(140,7,6,1);
+}
+
+.stampFollow:active{
+
+    color: #FFFFFF;
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    border: solid 1px #000;
+    
+}
+
+td{
+    padding-left: 5px;
+}
+#twitIcon{
+    max-height: 40px;
+    max-width: 40px;
+    margin-bottom: -10px;    
+    margin-right: 0%;
+    -moz-border-radius:100px;  
+    border-radius: 100px;  
+    -webkit-border-radius: 100px;
+}
+#twitIcon:hover{
+    border: 5px solid #000;
+}
+
+#social{
+    float: left;
+    margin-right: auto;
+    margin-top:auto;
+    margin-bottom: auto; 
+}
+
+#followInfo{
+    float: left;
+}
+
+
+#following{
+    border: 1px solid rgba(0,0,0,1);
+    color: #FFFFFF;
+    background-color: rgba(180,7,6,1);
+    padding: 2px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+#following:hover{
+    background-color: rgba(140,7,6,1);
+}
+
+#following:active{
+    color: #FFFFFF;
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: rgba(180,7,6,1);
+    border: solid 1px #000;
+}
+
+
+#followers{
+    color: #FFFFFF;
+    background-color: rgba(180,7,6,1);
+    border: 1px solid rgba(0,0,0,1);
+    padding: 2px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+
+}
+
+#followers:hover{
+    background-color: rgba(140,7,6,1);
+}
+
+#followers:active{
+    color: #FFFFFF;
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: rgba(180,7,6,1);
+    border: solid 1px #000;
+}
+
+
+
+
+#feed{
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: -18px; 
+    width:20%; 
+    height: 710px;
+    background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(240,240,240)),
+    color-stop(0.6, rgb(235,235,235)),
+    color-stop(0.8, rgb(230,230,230))
+    );
+    -moz-box-shadow:    3px 5px 10px 3px rgba(0,0,0,.2);
+    -webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,.2);
+    box-shadow:         3px 3px 10px 3px rgba(0,0,0,.2);
+    overflow: auto;
+    font-size: 12px;
+}
+
+#feedElement{
+    border-bottom: 1px solid #000;
+    cursor: pointer;
+}
+
+#feedElement:hover{
+    background-color: rgba(163,163,163,.3);
+}
+
+#constantLabel{
+    margin-left:auto;
+    margin-right: auto;
+    width:20%; 
+    background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(240,240,240)),
+    color-stop(0.6, rgb(235,235,235)),
+    color-stop(0.8, rgb(230,230,230))
+    );
+    overflow: auto;
+    font-size: 15px;
+}
+
+#newsfeedLabel{
+    width:100%; 
+}
+#music{
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+
+#vidYo{
+    margin-left: auto;
+    margin-right: auto;
+    -moz-box-shadow:    1px 1px 5px 2px rgba(0,0,0,.5);
+    -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,.5);
+    box-shadow:         1px 1px 5px 2px rgba(0,0,0,.5);
+}
+
+#videoplay{
+    text-decoration: none;
+    color: black;
+    margin-left: 10%;
+    float: left;
+}
+
+#videoplay:hover{
+    text-decoration: underline;
+}
+
+
+
+
+#songName #add{
+    display: inline;
+}
+#add{
+    max-height: 10%;
+    max-width: 10%;
+    float: right;
+}
+#song_name{
+    font-size: 10px;
+    z-index: 0;
+    width:100%;
+    min-width:100px; width: auto !important; width: 100px;
+}
+
+#song_name:hover{
+    background-color: rgba(163,163,163,.3);
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 10px;
+}   
+
+#listName{
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #000;
+}
+
+#listName a:focus {
+    outline: none;
+}
+
+#listName li{
+    display: inline;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#listName a:hover{
+    color: rgba(180,7,6,1);
+}
+
+#vidColor{
+    margin: auto;
+    padding-right: 25px;
+    border-right: 1px solid #000;
+}
+#favColor{
+    margin: auto;
+    padding-right: 25px;
+}
+#favButton{
+    margin-left:8%;
+    margin-right: auto;
+}
+
+#songListLabel{
+    font-size: 20px;
+}
+
+.highlightTab{
+    color: rgba(180,7,6,.8);
+}
+
+#playlist_name{
+    float: left;
+    font-size: 15px;
+    padding: 2px;
+}
+#playlist_name:hover{
+    background-color: #A6A6A6;
+    -moz-border-radius:10px;  
+    border-radius: 10px;  
+    -webkit-border-radius: 10px;
+    text-decoration: underline;
+}
+
+#playlistLabel{
+    font-size: 20px;
+    color: #000000;
+}
+
+.songnames{
+    width:100%;
+}
+
+#allSongs{
+    width: 50%;
+    border-left: 1px groove rgba(0,0,0,.1);
+    padding-left: 10px;
+    border-right: 1px groove rgba(0,0,0,.1);
+    padding-right: 10px;
+    height: 100%;
+    float: left;
+    margin-top: 0;    
+}
+
+#tourneyLabel{
+    font-size: 15px;
+    color: #000000;
+}
+
+#playlistContent{
+    margin-top: 0px;
+    margin-bottom: 5px;
+    background : #E0E0E0;
+    color : #ffffff; 
+    padding : 4px; 
+    max-width : 100%; 
+    height:600px;
+    overflow : auto;
+    background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(240,240,240)),
+    color-stop(0.6, rgb(235,235,235)),
+    color-stop(0.8, rgb(230,230,230))
+    );
+}
+
+#songContent{
+
+    margin-top: 0px;
+    margin-bottom: 5px;
+    background : #E0E0E0;
+    color : #ffffff; 
+    padding : 4px; 
+    max-width : 100%; 
+    height:300px;
+    overflow : auto;
+    background-image: linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(240,240,240) 20%, rgb(235,235,235) 60%, rgb(230,230,230) 80%);
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(240,240,240)),
+    color-stop(0.6, rgb(235,235,235)),
+    color-stop(0.8, rgb(230,230,230))
+    );
+}
+
+
+.replace {
+display:none;
+}
