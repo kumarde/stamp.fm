@@ -75,6 +75,7 @@ var picClient = knox.createClient({
 var app = express();
 app.configure(function(){
     app.set('port', process.env.PORT || 8888);
+	app.use(express.favicon(__dirname + '/images/favicon.ico'));
     app.use(express.static(__dirname + '/stylesheets'));
     app.use(express.static(__dirname + '/images'));
     app.use(express.static(__dirname + '/video-js'));
