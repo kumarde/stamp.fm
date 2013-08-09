@@ -27,6 +27,7 @@
 
       <div id="video">  
         <div id="selectSong">
+      <span style="font-size:30px;"> <b>The Michigan Tournament </b></span>        
     <!--    <a href="" class="genreLink selected" id="rap" style="color:#FFFFFF">Rap and R&B</a>
         <a href="" class="genreLink blurred" id="pop" style="color:#FFFFFF">Pop and Country</a>
         <a href="" class="genreLink blurred" id="edm" style="color:#FFFFFF">EDM and Instrumental</a>
@@ -154,8 +155,34 @@
            <video height="500px" width="70%" id="vidYo" class="video-js vjs-default-skin" controls autoplay="true" data-setup='{"techOrder": ["html5", "flash"]}'>           
             <source src="" type="video/mp4" id = "source">
             </video>
-            <strong><p id="tenSecs" style="font-size:25px; text-align:center;color:rgba(180,7,6,1);">Voting and sharing will appear after you watch each video!</p></strong>
-            <input type="button" value="Next" id="next"></input>
+            <strong><p id="tenSecs" style="font-size:25px; text-align:center;color:rgba(180,7,6,1);">Voting will appear after you watch ten seconds of each video!</p></strong>
+
+<div style="text-align:center; margin:auto; margin-top: 10px; width:100%;">
+
+<ul id="nextShare" style="list-style-type:none; margin:auto;">
+
+<a style="color:#FFFFFF;" href="#" 
+  onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstamp.fm', 
+      'facebook-share-dialog', 
+      'width=626,height=436'); 
+    return false;">
+<li id="feeber" style="width:30%;">
+  Share Stamp.fm on Facebook
+</li>
+</a>
+
+<li><input type="button" value="Next Pair" id="next" style="width:20%;"></input></li>
+
+<a href="http://twitter.com/intent/tweet?related=stamp.fm&amp;text=Check+Out+Stamp.fm&amp;url=URL_TO_SHARE">
+<li id="tweeter" style="width:30%;">Share Stamp.fm on Twitter</li>
+</a>
+
+</ul>
+</div>
+
+
         </div>   
     </div> 
 
