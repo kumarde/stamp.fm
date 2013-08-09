@@ -7,7 +7,7 @@ height: 100%;
 }
 .modalDialog_temp {
     position: fixed;
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, 'Arimo', Arial, "Lucida Grande", sans-serif; 
     top: 0;
     right: 0;
     bottom: 0;
@@ -65,7 +65,7 @@ height: 100%;
 
 .modalDialog_account {
     position: fixed;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, 'Arimo', Arial, "Lucida Grande", sans-serif; 
     top: 0;
     right: 0;
     bottom: 0;
@@ -121,7 +121,7 @@ height: 100%;
 
   .modalDialog_feedback {
     position: fixed;
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, 'Arimo', Arial, "Lucida Grande", sans-serif; 
     top: 0;
     right: 0;
     bottom: 0;
@@ -207,7 +207,7 @@ height: 100%;
   
 .modalDialog {
   position: fixed;
-  font-family: 'Poiret One', cursive;
+  font-family: 'Arimo', cursive;
   top: 0;
   right: 0;
   bottom: 0;
@@ -247,7 +247,7 @@ height: 100%;
 
 .modalDialog_upload {
   position: fixed;
-  font-family: 'Poiret One', cursive;
+  font-family: 'Arimo', cursive;
   top: 0;
   right: 0;
   bottom: 0;
@@ -330,7 +330,7 @@ height: 100%;
 
 .modalDialog_follow {
     position: fixed;
-    font-family: 'Alef', sans-serif;
+    font-family: 'Arimo', sans-serif;
     top: 0;
     right: 0;
     bottom: 0;
